@@ -63,7 +63,8 @@ Search for `todo`, `is-placeholder`, `[To confirm]` and `placeholder` to find th
 - `src/pages/index.astro` renders the whole document from the content collections.
 - `src/lib/outline.ts` derives the numbered outline used by every navigation surface.
 - `src/styles/global.css` holds all tokens (color, type, spacing, layout) at the top, then base and layout rules. Component styles are scoped in each `.astro` file.
-- `src/styles/fonts.css` self-hosts latin subsets of Familjen Grotesk (500, 600) and Inter (400, 500, 600). The two weights used above the fold are preloaded.
+- `src/styles/fonts.css` self-hosts latin subsets of Bricolage Grotesque (800, display headlines only), Inter (400–700) and Roboto Mono (400, numbers and labels). The two faces used above the fold are preloaded.
+- The visual system follows the "Say Briefly" style reference: Cream Paper canvas, Forest Ink for text and structure, Highlighter Yellow as a `<mark>` wash on a few key phrases, and one sticky-note pastel per case study (`--accent-*` in `global.css`). Buttons use 6px corners, cards 12px, navigation 16px.
 
 ### Navigation behaviour
 

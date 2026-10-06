@@ -33,20 +33,22 @@ const { outline } = Astro.props;
 </header>
 
 <style>
+  /* Floating pill nav (style reference top navigation) */
   .mnav {
     position: sticky;
-    top: env(safe-area-inset-top, 0px);
+    top: calc(env(safe-area-inset-top, 0px) + 8px);
     z-index: 20;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border-subtle);
+    margin: 8px calc(var(--gutter) - 8px) 0;
+    background: var(--cream-paper);
+    border: 1px solid var(--pencil-gray);
+    border-radius: var(--radius-nav);
+    box-shadow: var(--shadow-subtle);
   }
-  .mnav::after {
-    /* project accent rule, set by the scroll spy while inside a case study */
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: -1px;
-    height: 2px;
+  .mnav__bar { border-radius: var(--radius-nav); }
+  .mnav__num {
     background: var(--mnav-accent, transparent);
+    border-radius: var(--radius-pill);
+    padding: 1px 8px;
     transition: background-color var(--t-state) ease;
   }
   @media (min-width: 1024px) { .mnav { display: none; } }
@@ -56,8 +58,8 @@ const { outline } = Astro.props;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-4);
-    height: var(--mobile-nav-h);
-    padding-inline: var(--gutter);
+    height: calc(var(--mobile-nav-h) - 2px);
+    padding-inline: 8px 12px;
   }
   .mnav__current {
     display: flex;
@@ -70,6 +72,7 @@ const { outline } = Astro.props;
     font-weight: 500;
   }
   .mnav__num {
+    font-family: var(--font-mono);
     font-size: 0.8125rem;
     font-variant-numeric: tabular-nums;
     color: var(--text-tertiary);
@@ -82,28 +85,30 @@ const { outline } = Astro.props;
     min-height: 44px;
     min-width: 64px;
     padding: 0 var(--space-3);
-    margin-right: calc(-1 * var(--space-3));
+    margin-right: -4px;
     background: transparent;
-    border: 0;
+    border: 1px solid var(--forest-ink);
     font: inherit;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--text-primary);
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: var(--radius-button);
   }
   .mnav__toggle:hover { background: var(--hover-bg); }
 
   .mnav__menu {
     position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    border-bottom: 1px solid var(--border-subtle);
-    border-top: 1px solid var(--border-subtle);
-    padding: var(--space-2) var(--gutter) var(--space-4);
+    top: calc(100% + 6px);
+    left: -1px;
+    right: -1px;
+    border: 1px solid var(--pencil-gray);
+    border-radius: var(--radius-nav);
+    box-shadow: var(--shadow-subtle-2);
+    padding: var(--space-2) var(--space-4) var(--space-3);
     max-height: calc(100vh - var(--mobile-nav-h) - env(safe-area-inset-top, 0px));
     max-height: calc(100dvh - var(--mobile-nav-h) - env(safe-area-inset-top, 0px));
     overflow-y: auto;
@@ -120,8 +125,8 @@ const { outline } = Astro.props;
     border-bottom: 1px solid var(--border-subtle);
   }
   .mnav__sub a { padding-left: 1.2em; font-size: 1rem; }
-  .mnav__n { font-size: 0.8125rem; font-variant-numeric: tabular-nums; color: var(--text-tertiary); }
+  .mnav__n { font-family: var(--font-mono); font-size: 0.8125rem; font-variant-numeric: tabular-nums; color: var(--text-tertiary); }
   .mnav__menu a[data-spy="top"] .mnav__n { text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.6875rem; }
-  .mnav__menu a[aria-current] { font-weight: 600; }
+  .mnav__menu a[aria-current] { font-weight: 600; background: var(--selected-bg); border-radius: var(--radius-button); padding-inline: 6px; margin-inline: -6px; }
   .mnav__menu a[aria-current] .mnav__n { color: var(--text-primary); }
 </style>

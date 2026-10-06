@@ -68,6 +68,6 @@ The UX field has developed an impressive amount of jargon for explaining how we 
 
 </div>
 
-<p class="statement">The method follows the uncertainty.</p>
+<p class="statement">The method <mark>follows the uncertainty.</mark></p>
 
 Research, journey mapping, impact mapping, prototyping, analytics, facilitation, workshops, interviews, usability testing, or lighter-weight techniques are tools—not mandatory stages.

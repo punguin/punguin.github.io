@@ -27,8 +27,10 @@ const { outline } = Astro.props;
   .toc__inner {
     position: sticky;
     top: var(--toc-top);
-    padding-block: var(--space-2);
-    border-top: 1px solid var(--border-subtle);
+    padding: var(--space-3) var(--space-3);
+    background: var(--cream-paper);
+    border: 1px solid var(--pencil-gray);
+    border-radius: var(--radius-nav);
   }
   .toc__list, .toc__sub { list-style: none; margin: 0; padding: 0; }
   .toc__list > li:first-child { margin-bottom: var(--space-3); }
@@ -40,18 +42,18 @@ const { outline } = Astro.props;
     display: grid;
     grid-template-columns: 3.1em 1fr;
     align-items: baseline;
-    padding: 4px var(--space-2);
-    margin-inline: calc(-1 * var(--space-2));
+    padding: 5px var(--space-2);
     font-size: 0.875rem;
     line-height: 1.4;
     color: var(--text-secondary);
     text-decoration: none;
-    border-radius: 2px;
+    border-radius: var(--radius-button);
     transition: background-color var(--t-hover) ease, color var(--t-hover) ease;
   }
   .toc__sub a { grid-template-columns: 3.1em 1fr; padding-left: calc(var(--space-2) + 0.9em); }
 
   .toc__num {
+    font-family: var(--font-mono);
     font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
     color: var(--text-tertiary);
@@ -61,16 +63,7 @@ const { outline } = Astro.props;
 
   .toc a:hover { background: var(--hover-bg); color: var(--text-primary); }
 
-  /* Active: weight + darker text + a marker in the left gutter. Not color alone. */
-  .toc a[aria-current] { color: var(--text-primary); font-weight: 600; }
+  /* Active: mint selected fill + weight + darker text. Hover is only a faint wash. */
+  .toc a[aria-current] { background: var(--selected-bg); color: var(--text-primary); font-weight: 600; }
   .toc a[aria-current] .toc__num { color: var(--text-primary); }
-  .toc a[aria-current]::before {
-    content: "";
-    position: absolute;
-    left: -10px;
-    top: 50%;
-    width: 8px;
-    height: 1px;
-    background: var(--text-primary);
-  }
 </style>

@@ -1,10 +1,28 @@
 {
-  "identity": ["Pung Brooks", "Design Practice"],
+  "identity": [
+    "Pung Brooks",
+    "Design Practice"
+  ],
   "statement": "High-impact individual contributor and design leader.",
   "supporting": "I make complex problem spaces understandable to customers, teammates, leaders, and myself.",
   "context": "Fifteen years of product design experience across logistics, healthcare communications, ecommerce, and real-estate software.",
-  "capabilities": ["Product Design", "Systems", "Strategy", "Leadership"],
-  "location": ["Minneapolis–St. Paul", "Remote"],
-  "primaryAction": { "label": "View selected work", "href": "#selected-work" },
-  "secondaryAction": { "label": "Contact", "href": "#contact" }
+  "capabilities": [
+    "Product Design",
+    "Systems",
+    "Strategy",
+    "Leadership"
+  ],
+  "location": [
+    "Minneapolis–St. Paul",
+    "Remote"
+  ],
+  "primaryAction": {
+    "label": "View selected work",
+    "href": "#selected-work"
+  },
+  "secondaryAction": {
+    "label": "Contact",
+    "href": "#contact"
+  },
+  "statementHighlight": "design leader"
 }

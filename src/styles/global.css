@@ -1,41 +1,66 @@
 /* ==========================================================================
    Pung Brooks — Design Practice
+   Visual system: "Say Briefly" style reference — cream paper, Forest Ink for
+   structure, Highlighter Yellow as a marker wash, pastel sticky-note accents.
    Layout: | breathing room | document | gap | sticky TOC | breathing room |
-   The page background carries the dot grid; there is no enclosing "sheet".
+   The page background carries a faint dot grid, like sketchbook paper.
    ========================================================================== */
 
 :root {
   color-scheme: light;
 
-  /* Color */
-  --bg: #F5F3EE;
-  --surface: #FCFBF8;
-  --text-primary: #1C1C1A;
-  --text-secondary: #5C5B56;
-  --text-tertiary: #6E6C65; /* darkened from #83817A to keep small metadata AA on --bg */
-  --border-subtle: #D8D5CD;
-  --border-strong: #BDB9AF;
-  --grid-color: rgba(50, 49, 45, 0.13);
-  --hover-bg: rgba(35, 34, 31, 0.05);
-  --focus: #1C1C1A;
-  --placeholder: #8A6A1F;
+  /* Color — style reference palette */
+  --forest-ink: #1a3300;
+  --highlighter-yellow: #ffe95c;
+  --cream-paper: #fcfaf5;
+  --pencil-gray: #b6b6b6;
+  --sticky-teal: #a8e5e5;
+  --sticky-mint: #d5f5c2;
+  --sticky-blush: #f6d0ff;
+  --terracotta: #cb5521;
 
-  /* Project accents (one per case study; used for rules, identifiers, markers) */
-  --accent-relay: #A4511B;
-  --accent-account: #2F6B5E;
-  --accent-tracking: #3B5BA5;
-  --accent-spokgo: #7A4A8C;
+  /* Color — roles */
+  --bg: var(--cream-paper);
+  --surface: #ffffff;
+  --text-primary: var(--forest-ink);
+  --text-secondary: #43503a;        /* forest-tinted, AA on cream */
+  --text-tertiary: #5c6654;         /* forest-tinted, AA on cream at small sizes */
+  --border-subtle: #dcdcd4;
+  --border-strong: var(--pencil-gray);
+  --grid-color: rgba(26, 51, 0, 0.10);
+  --hover-bg: rgba(26, 51, 0, 0.06);
+  --selected-bg: var(--sticky-mint);
+  --highlight: var(--highlighter-yellow);
+  --focus: var(--forest-ink);
+  --placeholder: #a8461a;           /* terracotta, darkened for AA text */
+  --placeholder-bg: #fdf1ea;
+
+  /* Project accents: one sticky-note fill per case study (tags, markers, rules). Text on them is always Forest Ink. */
+  --accent-relay: #f3c3a6;          /* terracotta wash */
+  --accent-account: var(--sticky-mint);
+  --accent-tracking: var(--sticky-teal);
+  --accent-spokgo: var(--sticky-blush);
+
+  /* Shape + elevation */
+  --radius-button: 6px;
+  --radius-card: 12px;
+  --radius-nav: 16px;
+  --radius-pill: 9999px;
+  --shadow-subtle: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  --shadow-subtle-2: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
 
   /* Type */
-  --font-display: "Familjen Grotesk", Inter, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Archivo Black", Inter, system-ui, sans-serif;
   --font-body: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Roboto Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --tracking-display: 0.04em;
 
-  --text-body: 1.1875rem;          /* 19px desktop */
+  --text-body: 1.125rem;           /* 18px desktop (style reference body) */
   --text-small: 0.875rem;          /* 14px */
   --text-meta: 0.8125rem;          /* 13px */
-  --text-h3: clamp(1.4375rem, 1.2rem + 0.9vw, 1.875rem);   /* 23–30px */
-  --text-h2: clamp(1.875rem, 1.4rem + 1.9vw, 3.25rem);     /* 30–52px */
-  --text-hero: clamp(2.5rem, 1.6rem + 3.6vw, 4.75rem);     /* 40–76px */
+  --text-h3: clamp(1.5rem, 1.3rem + 0.8vw, 1.75rem);       /* 24–28px, Inter 700 */
+  --text-h2: clamp(2.5rem, 2rem + 1.6vw, 3.4375rem);        /* 40–55px, display */
+  --text-hero: clamp(2.75rem, 1.6rem + 4.4vw, 5.625rem);    /* 44–90px, display */
   --leading-body: 1.6;
   --measure: 36em;                 /* ≈ 68 characters of Inter at body size */
 
@@ -73,7 +98,7 @@
 
 @media (max-width: 1023px) {
   :root {
-    --text-body: 1.125rem;          /* 18px */
+    --text-body: 1.0625rem;         /* 17px */
     --mobile-nav-h: 52px;
     --anchor-offset: 76px;
   }
@@ -117,11 +142,32 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-display);
-  font-weight: 600;
   color: var(--text-primary);
   text-wrap: balance;
   margin: 0;
+}
+
+/* Display face (Bricolage Grotesque 800) is reserved for 40px+ headlines. */
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: var(--tracking-display);
+}
+
+h3, h4 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Marker-pen wash behind a word or phrase */
+mark {
+  background: var(--highlight);
+  color: inherit;
+  padding: 0 0.12em;
+  margin: 0 -0.04em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 p, ul, ol, dl, figure { margin: 0; }
@@ -151,7 +197,7 @@ a.external::after {
 :focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 3px;
-  border-radius: 1px;
+  border-radius: 2px;
 }
 
 .visually-hidden {
@@ -172,20 +218,36 @@ a.external::after {
   padding: var(--space-2) var(--space-4);
   font-size: var(--text-small);
   text-decoration: none;
+  border-radius: var(--radius-button);
 }
 .skip-link:focus { top: var(--space-2); }
 
 .label {
-  font-family: var(--font-body);
-  font-size: var(--text-meta);
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--text-tertiary);
 }
 
+/* Small pill tag (style reference "tagline badge") */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--highlight);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
 .num {
-  font-family: var(--font-body);
+  font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
   color: var(--text-tertiary);
 }
@@ -233,7 +295,7 @@ a.external::after {
 .prose h3 + * { margin-top: var(--space-4); }
 
 .prose h4 {
-  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
   line-height: 1.25;
   margin-top: var(--space-8);
   padding-top: var(--space-4);
@@ -242,15 +304,17 @@ a.external::after {
 }
 .prose h4 + * { margin-top: var(--space-4); }
 
+/* Sticky-note card: a pastel fill does the separation, no shadow */
 .prose .callout {
-  font-family: var(--font-display);
-  font-size: var(--text-h3);
-  line-height: 1.25;
-  font-weight: 500;
+  font-family: var(--font-body);
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  line-height: 1.35;
+  font-weight: 600;
   margin-top: var(--space-7);
-  padding-left: var(--space-5);
-  border-left: 1px solid var(--text-primary);
-  max-width: 28em;
+  padding: var(--space-5) 28px;
+  background: var(--sticky-mint);
+  border-radius: var(--radius-card);
+  max-width: 30em;
   text-wrap: balance;
 }
 
@@ -258,8 +322,8 @@ a.external::after {
   font-family: var(--font-display);
   font-size: var(--text-h2);
   line-height: 1.05;
-  letter-spacing: -0.02em;
-  font-weight: 600;
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
   margin-top: var(--space-9);
   text-wrap: balance;
 }
@@ -269,14 +333,17 @@ a.external::after {
   font-size: var(--text-small);
   line-height: 1.5;
   color: var(--text-secondary);
-  border-left: 2px dotted var(--placeholder);
-  padding: var(--space-1) 0 var(--space-1) var(--space-4);
+  background: var(--placeholder-bg);
+  border: 1px dashed var(--placeholder);
+  border-radius: var(--radius-card);
+  padding: var(--space-3) var(--space-4);
 }
 .todo-tag {
   display: inline-block;
+  font-family: var(--font-mono);
   font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-weight: 400;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--placeholder);
   margin-right: var(--space-2);
@@ -291,6 +358,7 @@ a.external::after {
 .visual img, .visual__frame {
   width: 100%;
   border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
   background: var(--surface);
 }
 
@@ -312,15 +380,16 @@ a.external::after {
   padding: var(--space-5);
   max-width: 100%;
   border: 1px dashed var(--border-strong);
-  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  background: color-mix(in srgb, var(--surface) 75%, transparent);
   font-size: var(--text-small);
   line-height: 1.4;
   color: var(--text-secondary);
 }
 .visual__todo {
+  font-family: var(--font-mono);
   font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-weight: 400;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--placeholder);
 }

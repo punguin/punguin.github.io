@@ -34,11 +34,19 @@ const roles = data.roles as Role[];
     border-top: 1px solid var(--border-subtle);
   }
   .timeline__item:last-child { border-bottom: 1px solid var(--border-subtle); }
-  .timeline__item--edu { margin-top: var(--space-6); border-top-color: var(--text-primary); }
+  .timeline__item--edu {
+    margin-top: var(--space-6);
+    padding-inline: var(--space-5);
+    border: 0;
+    border-radius: var(--radius-card);
+    background: var(--sticky-blush);
+  }
+  .timeline__item--edu .timeline__years, .timeline__item--edu .timeline__note { color: var(--text-primary); }
   @media (max-width: 599px) { .timeline__item { grid-template-columns: 1fr; } }
 
   .timeline__years {
-    font-size: var(--text-small);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
     font-variant-numeric: tabular-nums;
     color: var(--text-tertiary);
     padding-top: 0.3em;

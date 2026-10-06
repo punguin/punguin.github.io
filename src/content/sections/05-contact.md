@@ -4,7 +4,7 @@ number: "05"
 title: Contact
 navLabel: Contact
 order: 5
-lead: Looking for thoughtful design leadership on a complicated problem?
+lead: Looking for thoughtful design leadership on a <mark>complicated problem</mark>?
 ---
 
 I’m looking for a remote senior individual contributor or design leadership role: Staff, Lead, Principal, or equivalent scope.
