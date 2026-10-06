@@ -16,6 +16,8 @@ The UX field has developed an impressive amount of jargon for explaining how we 
 
 <div class="practice__body">
 
+<img class="practice__sketch" src="/illustrations/understand-people.svg" alt="" width="240" height="180" loading="lazy" decoding="async" />
+
 - Who are the users?
 - What are they trying to accomplish?
 - How do they think the system should work?
@@ -29,6 +31,8 @@ The UX field has developed an impressive amount of jargon for explaining how we 
 
 <div class="practice__body">
 
+<img class="practice__sketch" src="/illustrations/understand-the-system.svg" alt="" width="240" height="180" loading="lazy" decoding="async" />
+
 - How does it actually work?
 - What forces shape the experience?
 
@@ -40,6 +44,8 @@ The UX field has developed an impressive amount of jargon for explaining how we 
 
 <div class="practice__body">
 
+<img class="practice__sketch" src="/illustrations/find-the-gaps.svg" alt="" width="240" height="180" loading="lazy" decoding="async" />
+
 - Where don’t those realities line up?
 
 <p class="practice__consider"><span class="label">Look for</span> unmet needs, conflicting mental models, missing information, broken handoffs, organizational seams, product structures that no longer match real work, distance between what exists and what could exist.</p>
@@ -50,6 +56,8 @@ The UX field has developed an impressive amount of jargon for explaining how we 
 
 <div class="practice__body">
 
+<img class="practice__sketch" src="/illustrations/close-the-gaps.svg" alt="" width="240" height="180" loading="lazy" decoding="async" />
+
 - What should change—and which gaps matter enough to address?
 
 <p class="practice__consider"><span class="label">Activities may include</span> exploration, prototyping, prioritization, facilitation, design, testing, negotiation, tradeoff decisions.</p>
@@ -59,6 +67,8 @@ The UX field has developed an impressive amount of jargon for explaining how we 
 ### See what changed.
 
 <div class="practice__body">
+
+<img class="practice__sketch" src="/illustrations/see-what-changed.svg" alt="" width="240" height="180" loading="lazy" decoding="async" />
 
 - Did I close the gap?
 
