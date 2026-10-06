@@ -13,7 +13,7 @@ npm run build     # static output in dist/
 npm run preview   # serve the built site
 ```
 
-Every push to `main` builds the site and deploys it to GitHub Pages at https://punguin.github.io (`.github/workflows/deploy.yml`). Pull requests run the build only. In the repository's Settings → Pages, "Source" must be set to "GitHub Actions". If a custom domain is added later, update `site` in `astro.config.mjs` so the canonical and Open Graph URLs match.
+Every push to `main` builds the site and deploys it to GitHub Pages at https://punguin.github.io (`.github/workflows/deploy.yml`). Pull requests run the build only. Vercel is also connected to this repository: every pull request gets a preview deployment, and Vercel protects preview URLs so only people signed in to the Vercel team can open them. In the repository's Settings → Pages, "Source" must be set to "GitHub Actions". If a custom domain is added later, update `site` in `astro.config.mjs` so the canonical and Open Graph URLs match.
 
 ## Editing content
 
