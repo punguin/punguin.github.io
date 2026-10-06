@@ -22,8 +22,8 @@ All copy lives in `src/content/`. Components hold no portfolio copy.
 | What | Where |
 | --- | --- |
 | Hero | `src/content/hero.json` |
-| Sections 01–07 | `src/content/sections/*.md` (frontmatter: `id`, `number`, `title`, `navLabel`, `order`, optional `lead`) |
-| Case studies 04.1–04.4 | `src/content/projects/*.md` (frontmatter: number, company, summary/thesis, role, timing, platform, partners, accent, order) |
+| Sections 01–06 | `src/content/sections/*.md` (frontmatter: `id`, `number`, `title`, `navLabel`, `order`, optional `lead`) |
+| Case studies 03.1–03.4 | `src/content/projects/*.md` (frontmatter: number, company, summary/thesis, role, timing, platform, partners, accent, order) |
 | Experience timeline | `src/content/experience.json` |
 | Email, LinkedIn, résumé | `src/content/contact.json` |
 
@@ -71,7 +71,7 @@ Search for `todo`, `is-placeholder`, `[To confirm]` and `placeholder` to find th
 - Below 1024px: the TOC is replaced by a sticky bar showing the current section number and name, with a MENU button that opens the full numbered list. A thin scroll indicator on the right edge shows a section tooltip while scrolling, then fades.
 - Scroll spy: an `IntersectionObserver` watches a 1px line 30% down the viewport, so nothing is measured on raw scroll events. The last section whose top has crossed that line is active, which makes nested case studies win while you are inside them. "Top of document" is active at the hero.
 - Links are real anchors, so hashes, direct links, and Back/Forward are native browser behaviour. Smooth scrolling is CSS and is turned off under `prefers-reduced-motion`.
-- Each case study has an identifier bar ("04.2 · Zenni Optical") that becomes a compact sticky header ("04.2 · Zenni Account") while you read that project on desktop.
+- Each case study has an identifier bar ("03.2 · Zenni Optical") that becomes a compact sticky header ("03.2 · Zenni Account") while you read that project on desktop.
 
 ## Verified
 

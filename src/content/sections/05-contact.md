@@ -1,9 +1,9 @@
 ---
 id: contact
-number: "06"
+number: "05"
 title: Contact
 navLabel: Contact
-order: 6
+order: 5
 lead: Looking for thoughtful design leadership on a complicated problem?
 ---
 

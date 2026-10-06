@@ -1,6 +1,6 @@
 ---
 id: zenni-order-tracking
-number: "04.3"
+number: "03.3"
 title: Zenni Order Tracking
 navLabel: Tracking
 company: Zenni Optical

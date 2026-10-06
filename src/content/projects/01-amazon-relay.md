@@ -1,6 +1,6 @@
 ---
 id: amazon-relay
-number: "04.1"
+number: "03.1"
 title: Amazon Relay
 navLabel: Relay
 company: Amazon

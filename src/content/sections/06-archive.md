@@ -1,9 +1,9 @@
 ---
 id: archive
-number: "07"
+number: "06"
 title: Archive / Appendix
 navLabel: Archive
-order: 7
+order: 6
 ---
 
 A few earlier pieces of work that help explain where I started, and what I carried forward.

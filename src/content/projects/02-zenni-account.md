@@ -1,6 +1,6 @@
 ---
 id: zenni-account
-number: "04.2"
+number: "03.2"
 title: Zenni Account
 navLabel: Account
 company: Zenni Optical

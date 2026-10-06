@@ -1,9 +1,9 @@
 ---
 id: how-i-work
-number: "02"
+number: "01"
 title: How I work
 navLabel: How I work
-order: 2
+order: 1
 ---
 
 The UX field has developed an impressive amount of jargon for explaining how we do it. I have spent my career simplifying how I work. The problems are complex. The way we talk about them does not have to be.

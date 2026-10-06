@@ -1,9 +1,9 @@
 ---
 id: selected-work
-number: "04"
+number: "03"
 title: Selected work
 navLabel: Selected work
-order: 4
+order: 3
 lead: Four projects, four different kinds of hard.
 ---
 
