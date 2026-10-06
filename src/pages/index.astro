@@ -1,0 +1,53 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import DocumentSection from '../components/DocumentSection.astro';
+import SelectedWork from '../components/SelectedWork.astro';
+import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+import ContactLinks from '../components/ContactLinks.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import MobileDocumentNav from '../components/MobileDocumentNav.astro';
+import ScrollSectionIndicator from '../components/ScrollSectionIndicator.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { getOutline, getSortedSections } from '../lib/outline';
+
+const outline = await getOutline();
+const sections = await getSortedSections();
+const rendered = await Promise.all(sections.map(async (s) => ({ entry: s, ...(await render(s)) })));
+
+const title = 'Pung Brooks — Product Design & Design Leadership';
+const description =
+  'Pung Brooks is a product designer and design leader with fifteen years of experience making complex products and systems easier to understand across logistics, ecommerce, healthcare communications, and enterprise software.';
+---
+<BaseLayout title={title} description={description}>
+  <a class="skip-link" href="#about">Skip to content</a>
+  <MobileDocumentNav outline={outline} />
+  <ScrollSectionIndicator />
+
+  <div class="page-shell">
+    <main class="document" id="main">
+      <Hero />
+
+      {rendered.map(({ entry, Content }) => {
+        const d = entry.data;
+        if (d.id === 'selected-work') return <SelectedWork section={entry} />;
+        return (
+          <DocumentSection id={d.id} number={d.number} title={d.title} lead={d.lead}>
+            <div class={`prose prose--${d.id}`}><Content /></div>
+            {d.id === 'experience' && <ExperienceTimeline />}
+            {d.id === 'contact' && <ContactLinks />}
+          </DocumentSection>
+        );
+      })}
+
+      <SiteFooter />
+    </main>
+
+    <TableOfContents outline={outline} />
+  </div>
+
+  <script>
+    import '../scripts/document-nav.ts';
+  </script>
+</BaseLayout>

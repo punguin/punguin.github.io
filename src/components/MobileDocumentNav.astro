@@ -1,0 +1,127 @@
+---
+import type { OutlineItem } from '../lib/outline';
+interface Props { outline: OutlineItem[] }
+const { outline } = Astro.props;
+---
+<header class="mnav" data-mnav>
+  <div class="mnav__bar">
+    <a class="mnav__current" href="#top" data-mnav-current>
+      <span class="mnav__num" data-mnav-num>Top</span>
+      <span class="mnav__label" data-mnav-label>Top of document</span>
+    </a>
+    <button class="mnav__toggle" type="button" aria-expanded="false" aria-controls="mnav-menu" data-mnav-toggle>
+      <span data-mnav-toggle-label>Menu</span>
+    </button>
+  </div>
+  <nav class="mnav__menu" id="mnav-menu" aria-label="Document sections" hidden>
+    <ol role="list">
+      <li><a href="#top" data-spy="top" data-full="Top of document"><span class="mnav__n">Top</span><span>Top of document</span></a></li>
+      {outline.map((item) => (
+        <li>
+          <a href={`#${item.id}`} data-spy={item.id} data-full={item.fullLabel}><span class="mnav__n">{item.number}</span><span>{item.label}</span></a>
+          {item.children && (
+            <ol role="list" class="mnav__sub">
+              {item.children.map((child) => (
+                <li><a href={`#${child.id}`} data-spy={child.id} data-full={child.fullLabel} data-accent={child.accent}><span class="mnav__n">{child.number}</span><span>{child.label}</span></a></li>
+              ))}
+            </ol>
+          )}
+        </li>
+      ))}
+    </ol>
+  </nav>
+</header>
+
+<style>
+  .mnav {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .mnav::after {
+    /* project accent rule, set by the scroll spy while inside a case study */
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: var(--mnav-accent, transparent);
+    transition: background-color var(--t-state) ease;
+  }
+  @media (min-width: 1024px) { .mnav { display: none; } }
+
+  .mnav__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    height: var(--mobile-nav-h);
+    padding-inline: var(--gutter);
+  }
+  .mnav__current {
+    display: flex;
+    gap: var(--space-3);
+    min-width: 0;
+    min-height: 44px;
+    align-items: center;
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .mnav__num {
+    font-size: 0.8125rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-tertiary);
+    min-width: 2.6em;
+  }
+  .mnav__label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .mnav__toggle {
+    flex: none;
+    min-height: 44px;
+    min-width: 64px;
+    padding: 0 var(--space-3);
+    margin-right: calc(-1 * var(--space-3));
+    background: transparent;
+    border: 0;
+    font: inherit;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    cursor: pointer;
+    border-radius: 2px;
+  }
+  .mnav__toggle:hover { background: var(--hover-bg); }
+
+  .mnav__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid var(--border-subtle);
+    border-top: 1px solid var(--border-subtle);
+    padding: var(--space-2) var(--gutter) var(--space-4);
+    max-height: calc(100vh - var(--mobile-nav-h) - env(safe-area-inset-top, 0px));
+    max-height: calc(100dvh - var(--mobile-nav-h) - env(safe-area-inset-top, 0px));
+    overflow-y: auto;
+    background: var(--bg);
+  }
+  .mnav__menu ol { list-style: none; margin: 0; padding: 0; }
+  .mnav__menu a {
+    display: grid;
+    grid-template-columns: 3.4em 1fr;
+    align-items: center;
+    min-height: 44px;
+    text-decoration: none;
+    font-size: 1.0625rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .mnav__sub a { padding-left: 1.2em; font-size: 1rem; }
+  .mnav__n { font-size: 0.8125rem; font-variant-numeric: tabular-nums; color: var(--text-tertiary); }
+  .mnav__menu a[data-spy="top"] .mnav__n { text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.6875rem; }
+  .mnav__menu a[aria-current] { font-weight: 600; }
+  .mnav__menu a[aria-current] .mnav__n { color: var(--text-primary); }
+</style>

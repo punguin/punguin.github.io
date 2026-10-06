@@ -1,0 +1,76 @@
+---
+import type { OutlineItem } from '../lib/outline';
+interface Props { outline: OutlineItem[] }
+const { outline } = Astro.props;
+---
+<nav class="toc" aria-label="Contents">
+  <div class="toc__inner">
+    <ol class="toc__list" role="list">
+      <li><a href="#top" data-spy="top" aria-current="location"><span class="toc__num">Top</span><span class="toc__label">Top of document</span></a></li>
+      {outline.map((item) => (
+        <li class={item.children ? 'toc__group' : undefined}>
+          <a href={`#${item.id}`} data-spy={item.id}><span class="toc__num">{item.number}</span><span class="toc__label">{item.label}</span></a>
+          {item.children && (
+            <ol class="toc__sub" role="list">
+              {item.children.map((child) => (
+                <li><a href={`#${child.id}`} data-spy={child.id}><span class="toc__num">{child.number}</span><span class="toc__label">{child.label}</span></a></li>
+              ))}
+            </ol>
+          )}
+        </li>
+      ))}
+    </ol>
+  </div>
+</nav>
+
+<style>
+  .toc__inner {
+    position: sticky;
+    top: var(--toc-top);
+    padding-block: var(--space-2);
+    border-top: 1px solid var(--border-subtle);
+  }
+  .toc__list, .toc__sub { list-style: none; margin: 0; padding: 0; }
+  .toc__list > li:first-child { margin-bottom: var(--space-3); }
+  .toc__group + li, .toc__list > li:first-child + li { margin-top: 0; }
+  .toc__sub { margin-block: 2px var(--space-1); }
+
+  .toc a {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3.1em 1fr;
+    align-items: baseline;
+    padding: 4px var(--space-2);
+    margin-inline: calc(-1 * var(--space-2));
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background-color var(--t-hover) ease, color var(--t-hover) ease;
+  }
+  .toc__sub a { grid-template-columns: 3.1em 1fr; padding-left: calc(var(--space-2) + 0.9em); }
+
+  .toc__num {
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-tertiary);
+    letter-spacing: 0.01em;
+  }
+  .toc a[data-spy="top"] .toc__num { text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.6875rem; }
+
+  .toc a:hover { background: var(--hover-bg); color: var(--text-primary); }
+
+  /* Active: weight + darker text + a marker in the left gutter. Not color alone. */
+  .toc a[aria-current] { color: var(--text-primary); font-weight: 600; }
+  .toc a[aria-current] .toc__num { color: var(--text-primary); }
+  .toc a[aria-current]::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    width: 8px;
+    height: 1px;
+    background: var(--text-primary);
+  }
+</style>

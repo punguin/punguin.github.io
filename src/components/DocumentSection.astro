@@ -1,0 +1,14 @@
+---
+import SectionHeading from './SectionHeading.astro';
+interface Props { id: string; number: string; title: string; lead?: string }
+const { id, number, title, lead } = Astro.props;
+---
+<section class="doc-section" id={id} aria-labelledby={`${id}-title`} data-section={id}>
+  <SectionHeading id={id} number={number} title={title} lead={lead} />
+  <slot />
+</section>
+
+<style>
+  .doc-section { padding-bottom: var(--space-10); }
+  @media (max-width: 767px) { .doc-section { padding-bottom: var(--space-9); } }
+</style>

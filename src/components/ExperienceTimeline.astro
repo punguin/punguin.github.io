@@ -1,0 +1,62 @@
+---
+import data from '../content/experience.json';
+type Role = { years: string; company: string; title: string; context?: string; focus?: string[]; note?: string };
+const roles = data.roles as Role[];
+---
+<ol class="timeline" role="list">
+  {roles.map((r) => (
+    <li class="timeline__item">
+      <p class="timeline__years">{r.years}</p>
+      <div class="timeline__body">
+        <h3 class="timeline__role">{r.company}<span class="timeline__sep" aria-hidden="true"> · </span><span class="visually-hidden">, </span><span class="timeline__title">{r.title}</span></h3>
+        {r.context && <p class="timeline__context">{r.context}</p>}
+        {r.focus && <ul class="timeline__focus" aria-label="Focus">{r.focus.map((f) => <li>{f}</li>)}</ul>}
+        {r.note && <p class="timeline__note">{r.note}</p>}
+      </div>
+    </li>
+  ))}
+  <li class="timeline__item timeline__item--edu">
+    <p class="timeline__years">{data.education.year}</p>
+    <div class="timeline__body">
+      <h3 class="timeline__role">Education</h3>
+      <p class="timeline__note">{data.education.school}<br />{data.education.degree}</p>
+    </div>
+  </li>
+</ol>
+
+<style>
+  .timeline { list-style: none; margin: var(--space-7) 0 0; padding: 0; }
+  .timeline__item {
+    display: grid;
+    grid-template-columns: 9.5em 1fr;
+    gap: var(--space-2) var(--space-5);
+    padding-block: var(--space-5);
+    border-top: 1px solid var(--border-subtle);
+  }
+  .timeline__item:last-child { border-bottom: 1px solid var(--border-subtle); }
+  .timeline__item--edu { margin-top: var(--space-6); border-top-color: var(--text-primary); }
+  @media (max-width: 599px) { .timeline__item { grid-template-columns: 1fr; } }
+
+  .timeline__years {
+    font-size: var(--text-small);
+    font-variant-numeric: tabular-nums;
+    color: var(--text-tertiary);
+    padding-top: 0.3em;
+  }
+  .timeline__body { min-width: 0; max-width: var(--measure); }
+  .timeline__role { font-size: 1.375rem; line-height: 1.3; font-weight: 600; }
+  .timeline__sep { color: var(--text-tertiary); font-weight: 400; }
+  .timeline__title { font-weight: 500; }
+  .timeline__context { font-size: var(--text-small); color: var(--text-tertiary); margin-top: 2px; }
+  .timeline__focus {
+    list-style: none;
+    margin: var(--space-3) 0 0;
+    padding: 0;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+  .timeline__focus li { display: inline; }
+  .timeline__focus li:not(:last-child)::after { content: " · "; color: var(--text-tertiary); }
+  .timeline__note { margin-top: var(--space-3); font-size: 1rem; line-height: 1.55; color: var(--text-secondary); }
+</style>

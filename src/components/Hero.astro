@@ -1,0 +1,127 @@
+---
+import hero from '../content/hero.json';
+---
+<header class="hero" id="top">
+  <p class="hero__identity">
+    <span class="hero__name">{hero.identity[0]}</span>
+    <span class="hero__practice">{hero.identity[1]}</span>
+  </p>
+
+  <h1 class="hero__statement">{hero.statement}</h1>
+  <p class="hero__supporting">{hero.supporting}</p>
+  <p class="hero__context">{hero.context}</p>
+
+  <dl class="hero__facts">
+    <div>
+      <dt class="label">Practice</dt>
+      <dd>{hero.capabilities.join(' · ')}</dd>
+    </div>
+    <div>
+      <dt class="label">Based</dt>
+      <dd>{hero.location.join(' · ')}</dd>
+    </div>
+  </dl>
+
+  <p class="hero__actions">
+    <a class="hero__cta" href={hero.primaryAction.href}>{hero.primaryAction.label} <span aria-hidden="true">↓</span></a>
+    <a class="hero__secondary" href={hero.secondaryAction.href}>{hero.secondaryAction.label}</a>
+  </p>
+</header>
+
+<style>
+  .hero {
+    min-height: min(82vh, 900px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: var(--space-9) var(--space-9);
+    scroll-margin-top: 200px;
+  }
+  @media (max-width: 1023px) {
+    .hero { min-height: 0; padding-block: var(--space-8) var(--space-9); }
+  }
+
+  .hero__identity {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: var(--space-7);
+    font-size: var(--text-meta);
+    line-height: 1.35;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .hero__name { font-weight: 600; color: var(--text-primary); }
+  .hero__practice { color: var(--text-tertiary); }
+  .hero__identity::before {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--text-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .hero__statement {
+    font-size: var(--text-hero);
+    line-height: 1.02;
+    letter-spacing: -0.028em;
+    font-weight: 600;
+    max-width: 13em;
+  }
+
+  .hero__supporting {
+    margin-top: var(--space-6);
+    font-family: var(--font-display);
+    font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
+    line-height: 1.28;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    max-width: 24em;
+    text-wrap: balance;
+  }
+
+  .hero__context {
+    margin-top: var(--space-5);
+    color: var(--text-secondary);
+    max-width: var(--measure);
+  }
+
+  .hero__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-8);
+    margin-top: var(--space-7);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-subtle);
+    max-width: var(--measure);
+  }
+  .hero__facts div { display: grid; gap: var(--space-1); }
+  .hero__facts dd { margin: 0; font-size: 1rem; }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-6);
+    margin-top: var(--space-7);
+  }
+  .hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    font-weight: 600;
+    font-size: 1.0625rem;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--text-primary);
+    text-underline-offset: 0.3em;
+  }
+  .hero__secondary {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+</style>
