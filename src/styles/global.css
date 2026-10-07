@@ -50,7 +50,7 @@
   --shadow-subtle-2: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
 
   /* Type */
-  --font-display: "Bricolage Grotesque", "Archivo Black", Inter, system-ui, sans-serif;
+  --font-display: Caprasimo, "Cooper Black", Georgia, system-ui, sans-serif;
   --font-body: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-hand: Caveat, "Segoe Print", "Bradley Hand", cursive;
   --font-mono: "Roboto Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -163,10 +163,10 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
-/* Display face (Bricolage Grotesque 800) is reserved for 40px+ headlines. */
+/* Display face (Caprasimo, a single 400 weight) is reserved for 40px+ headlines. */
 h1, h2 {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 400;
   letter-spacing: var(--tracking-display);
 }
 
@@ -384,7 +384,7 @@ a.external::after {
   font-size: var(--text-h2);
   line-height: 1.05;
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 400;
   margin-top: var(--space-9);
   text-wrap: balance;
 }
