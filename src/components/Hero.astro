@@ -20,16 +20,6 @@ const [before, after] = hero.statementHighlight
   <p class="hero__supporting">{hero.supporting}</p>
   <p class="hero__context">{hero.context}</p>
 
-  <dl class="hero__facts">
-    <div>
-      <dt class="label">Practice</dt>
-      <dd>{hero.capabilities.join(' · ')}</dd>
-    </div>
-    <div>
-      <dt class="label">Based</dt>
-      <dd>{hero.location.join(' · ')}</dd>
-    </div>
-  </dl>
 
   <p class="hero__actions">
     <a class="button button--primary" href={hero.primaryAction.href}>{hero.primaryAction.label} <span aria-hidden="true">↓</span></a>
@@ -81,19 +71,6 @@ const [before, after] = hero.statementHighlight
     margin-inline: auto;
   }
 
-  .hero__facts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-4) var(--space-8);
-    margin-top: var(--space-7);
-    margin-inline: auto;
-    padding-top: var(--space-4);
-    border-top: 1px solid var(--border-strong);
-    max-width: var(--measure);
-  }
-  .hero__facts div { display: grid; gap: var(--space-1); }
-  .hero__facts dd { margin: 0; font-size: 1rem; font-weight: 500; }
 
   .hero__actions {
     display: flex;
@@ -140,7 +117,7 @@ const [before, after] = hero.statementHighlight
     .hero__text { grid-area: text; }
     .hero > :global(.brain) { grid-area: art; margin: 0; }
     .hero__text > * { margin-inline: 0; }
-    .hero__facts, .hero__actions { justify-content: flex-start; }
+    .hero__actions { justify-content: flex-start; }
     .hero__statement { max-width: 14em; }
   }
 </style>
