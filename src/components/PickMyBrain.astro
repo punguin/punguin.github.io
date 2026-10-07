@@ -29,7 +29,7 @@ const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(3)}%`;
 <style>
   .brain {
     width: 100%;
-    max-width: 1080px;
+    max-width: 640px;
     margin: 0 auto var(--space-8);
   }
   @media (max-width: 639px) {
@@ -40,6 +40,8 @@ const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(3)}%`;
   .brain__scene {
     position: relative;
     width: 100%;
+    /* the hair and neck fade out at the bottom instead of stopping at an edge */
+    mask-image: linear-gradient(180deg, #000 82%, transparent);
   }
   .bm-paper,
   .brain__scene :global(.bm-live) { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }

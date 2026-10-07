@@ -20,6 +20,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = json.loads((ROOT / "src" / "content" / "brain.json").read_text())
 OUT = ROOT / "src" / "assets" / "brain"
 W, H = DATA["viewBox"]
+X0 = 196  # the scene's left edge: the drawing is composed tall enough to sit in a column beside the hero text
 HAND = "Caveat, 'Segoe Print', 'Bradley Hand', cursive"
 
 LOOP = 8.0  # seconds
@@ -274,12 +275,13 @@ def brain_outline(seed):
     return pts
 
 
-STAR = (1078, 252)
+TANGLE = (268, 168)  # the scribble, up and left of the forehead
+STAR = (980, 78)     # the star, up and right of the back of the head
 
 # The wandering line: one loose gesture. It enters over the brow, drifts between the doodles, loops
 # once, doubles back, has a little second thought near the back of the head, then leaves for the star.
 TRAIL = (
-    [(172, 290), (228, 266), (290, 250), (346, 242), (398, 238)]     # out of the tangle, over the brow
+    [(TANGLE[0] + 46, TANGLE[1] + 10), (346, 182), (384, 200), (414, 222)]   # out of the tangle, over the brow
     + [inner(p) for p in [
         (392, 278), (428, 322), (452, 334),                          # drifting down past the heart
         (520, 318), (572, 300), (612, 270), (628, 238),              # up between the truck and the bubbles
@@ -288,7 +290,7 @@ TRAIL = (
         (730, 296), (776, 290), (812, 300),                          # under the glasses
         (842, 276), (856, 290), (850, 270), (880, 258),              # a second thought
     ]]
-    + [(900, 240), (940, 246), (984, 244), (1026, 250), (STAR[0] - 34, STAR[1] + 6)]
+    + [(876, 196), (902, 150), (930, 112), (STAR[0] - 32, STAR[1] + 12)]  # out over the crown to the star
 )
 
 
@@ -310,7 +312,7 @@ def paper():
     er = Pencil(4)
     er.arc(EYE[0] + 4, EYE[1] - 22, 14, 200, 340, w=2.2)
     er.stroke([inner(p) for p in [(704, 318), (742, 262), (792, 236), (838, 238)]], w=2.2, jitter=1)
-    er.stroke([(1040, 214), (1070, 200), (1098, 214)], w=1.8)
+    er.stroke([(STAR[0] - 30, STAR[1] + 44), (STAR[0], STAR[1] + 30), (STAR[0] + 28, STAR[1] + 44)], w=1.8)
     erased = f'<g opacity="0.1" filter="url(#bm-smudge)">{er.svg()}</g>'
 
     # colour first, so the pencil sits on top and doesn't line up with it
@@ -411,7 +413,7 @@ def paper():
         + f'<g opacity="0.55">{faint.svg()}<g transform="{INNER}">{ifaint.svg()}</g></g>'
         + f'{pen.svg()}<g transform="{INNER}">{ipen.svg()}</g></g>'
     )
-    return wrap(body, (0, 0, W, H), cls="bm-paper")
+    return wrap(body, (X0, 0, W, H), cls="bm-paper")
 
 
 def wrap(body, box, cls):
@@ -511,17 +513,18 @@ def skills(p, x, y):
 
 
 def tangle(p):
+    tx, ty = TANGLE
     r = random.Random(12)
     pts = []
     for k in range(30):
         a = k * 2.2 + r.uniform(-0.7, 0.7)
-        rad = r.uniform(10, 50)
-        pts.append((116 + rad * 1.15 * math.cos(a) + r.uniform(-6, 6), 300 + rad * 0.8 * math.sin(a) + r.uniform(-6, 6)))
-    pts.append((150, 286)); pts.append((168, 292))
+        rad = r.uniform(10, 46)
+        pts.append((tx + rad * 1.1 * math.cos(a) + r.uniform(-6, 6), ty + rad * 0.8 * math.sin(a) + r.uniform(-6, 6)))
+    pts.append((tx + 32, ty + 2)); pts.append((tx + 46, ty + 10))
     p.stroke(pts, w=1.9, jitter=1, samples=8)
-    p.question(196, 216, 1.25)
-    p.question(56, 238, 1.0)
-    p.question(204, 398, 1.1)
+    p.question(tx + 64, ty - 70, 1.2)
+    p.question(tx - 46, ty - 64, 1.0)
+    p.question(tx - 40, ty + 82, 1.05)
 
 
 # ---------------------------------------------------------------- the moving pieces
@@ -594,12 +597,12 @@ def live():
     d = smooth_d(TRAIL)
 
     r = random.Random(13)
-    extra = [(118 + 46 * math.cos(a) + r.uniform(-4, 4), 304 + 36 * math.sin(a) + r.uniform(-4, 4))
+    extra = [(TANGLE[0] + 44 * math.cos(a) + r.uniform(-4, 4), TANGLE[1] + 4 + 34 * math.sin(a) + r.uniform(-4, 4))
              for a in (k * 0.9 + 2.2 for k in range(9))]
     first, second, retrace, rays, fill = star_strokes(*STAR)
 
     body = (
-        '<defs><mask id="bm-trail-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">'
+        f'<defs><mask id="bm-trail-mask" maskUnits="userSpaceOnUse" x="{X0}" y="0" width="{W}" height="{H}">'
         f'<path class="bm-reveal" d="{d}" pathLength="1" fill="none" stroke="#fff" stroke-width="9" '
         'stroke-linecap="round" stroke-linejoin="round"/></mask></defs>'
         f'<path class="bm-extra" d="{smooth_d(extra)}" pathLength="1" fill="none" stroke="{INK}" stroke-width="1.7" '
@@ -613,7 +616,7 @@ def live():
         f'<path class="bm-rays" d="{rays}" pathLength="1" stroke-width="2"/>'
         '</g>'
     )
-    return wrap(body, (0, 0, W, H), cls="bm-live"), centre
+    return wrap(body, (X0, 0, W, H), cls="bm-live"), centre
 
 
 def ease(u):  # gentle in and out
@@ -690,7 +693,7 @@ if __name__ == "__main__":
         bx, by, bw, bh = (v * INNER_K for v in box)
         (OUT / f"piece-{pid}.svg").write_text(
             wrap(f'<g transform="scale({INNER_K}) rotate({rot})">{body}</g>', (bx, by, bw, bh), cls="bm-piece-svg"))
-        layout.append({"id": pid, "x": cx + bx, "y": cy + by, "w": bw, "h": bh, "ox": -bx / bw, "oy": -by / bh})
+        layout.append({"id": pid, "x": cx + bx - X0, "y": cy + by, "w": bw, "h": bh, "ox": -bx / bw, "oy": -by / bh})
     (OUT / "layout.json").write_text(json.dumps(layout, indent=1) + "\n")
     (OUT / "motion.css").write_text(motion(centre))
     total = sum(f.stat().st_size for f in OUT.glob("*"))

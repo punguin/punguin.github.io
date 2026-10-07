@@ -49,7 +49,7 @@ Sizes: `visual--inline` (reading width), `visual--wide` (extends up to 120px lef
 
 ### Pick My Brain
 
-The illustration at the top of the page ("Pick My Brain" in the code) reads like a page from a sketchbook: a scribble of questions on the left, a head in profile full of small doodles from past work and interests, and one line that wanders through it and turns into a small star past the back of the head. The 8-second loop is calm: the scribble gains a stroke, the line draws itself, the sticky note and the paper plane tip slightly as it passes, the star is drawn in two pencil strokes and coloured in, and everything fades out softly before starting again. With reduced motion it shows the finished drawing, still.
+The illustration at the top of the page ("Pick My Brain" in the code) reads like a page from a sketchbook (on screens 1024px and wider it sits to the right of the hero text; narrower, it comes first, above the text): a scribble of questions on the left, a head in profile full of small doodles from past work and interests, and one line that wanders through it and turns into a small star past the back of the head. The 8-second loop is calm: the scribble gains a stroke, the line draws itself, the sticky note and the paper plane tip slightly as it passes, the star is drawn in two pencil strokes and coloured in, and everything fades out softly before starting again. With reduced motion it shows the finished drawing, still.
 
 How it is made:
 

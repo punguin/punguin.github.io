@@ -9,6 +9,7 @@ const [before, after] = hero.statementHighlight
 <header class="hero" id="top">
   <PickMyBrain />
 
+  <div class="hero__text">
   <p class="hero__identity">
     <span class="tag"><span aria-hidden="true">✦</span> {hero.identity[0]} · {hero.identity[1]}</span>
   </p>
@@ -34,7 +35,7 @@ const [before, after] = hero.statementHighlight
     <a class="button button--primary" href={hero.primaryAction.href}>{hero.primaryAction.label} <span aria-hidden="true">↓</span></a>
     <a class="button button--outline" href={hero.secondaryAction.href}>{hero.secondaryAction.label}</a>
   </p>
-
+  </div>
 </header>
 
 <style>
@@ -51,6 +52,7 @@ const [before, after] = hero.statementHighlight
   @media (max-width: 1023px) {
     .hero { min-height: 0; padding-block: var(--space-8) var(--space-9); }
   }
+
 
   .hero__identity { margin-bottom: var(--space-6); }
 
@@ -125,4 +127,20 @@ const [before, after] = hero.statementHighlight
     color: var(--forest-ink);
   }
   .button--outline:hover { background: var(--hover-bg); text-decoration: none; }
+  /* Wide screens: the text on the left, the drawing on the right. */
+  @media (min-width: 1024px) {
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+      grid-template-areas: "text art";
+      align-items: center;
+      column-gap: var(--space-7);
+      text-align: left;
+    }
+    .hero__text { grid-area: text; }
+    .hero > :global(.brain) { grid-area: art; margin: 0; }
+    .hero__text > * { margin-inline: 0; }
+    .hero__facts, .hero__actions { justify-content: flex-start; }
+    .hero__statement { max-width: 14em; }
+  }
 </style>
