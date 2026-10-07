@@ -75,17 +75,19 @@ window.addEventListener('hashchange', () => requestAnimationFrame(resolveActive)
 resolveActive();
 
 // ---------- Sticky project headers ----------
-const stickyObserver = new IntersectionObserver(
-  (entries) => {
-    for (const entry of entries) {
-      const bar = (entry.target as HTMLElement).nextElementSibling as HTMLElement | null;
-      if (!bar) continue;
-      bar.classList.toggle('is-stuck', !entry.isIntersecting && entry.boundingClientRect.top < 0);
-    }
-  },
-  { threshold: 0 },
-);
-document.querySelectorAll('[data-sticky-sentinel]').forEach((s) => stickyObserver.observe(s));
+// Checked on scroll (rAF-throttled) rather than by IntersectionObserver alone: an instant jump
+// from above a project to inside it never changes the sentinel's intersection, so no entry fires.
+const sentinels = Array.from(document.querySelectorAll<HTMLElement>('[data-sticky-sentinel]'));
+let stickyFrame = 0;
+const updateSticky = () => {
+  stickyFrame = 0;
+  for (const s of sentinels) {
+    const bar = s.nextElementSibling as HTMLElement | null;
+    bar?.classList.toggle('is-stuck', s.getBoundingClientRect().top < 0);
+  }
+};
+window.addEventListener('scroll', () => { if (!stickyFrame) stickyFrame = requestAnimationFrame(updateSticky); }, { passive: true });
+updateSticky();
 
 // ---------- Mobile menu ----------
 const toggle = document.querySelector<HTMLButtonElement>('[data-mnav-toggle]');

@@ -77,6 +77,7 @@ Search for `todo`, `is-placeholder`, `[To confirm]` and `placeholder` to find th
 - Scroll spy: an `IntersectionObserver` watches a 1px line 30% down the viewport, so nothing is measured on raw scroll events. The last section whose top has crossed that line is active, which makes nested case studies win while you are inside them. "Top of document" is active at the hero.
 - Links are real anchors, so hashes, direct links, and Back/Forward are native browser behaviour. Smooth scrolling is CSS and is turned off under `prefers-reduced-motion`.
 - Each case study has an identifier bar ("03.2 · Zenni Optical") that becomes a compact sticky header ("03.2 · Zenni Account") while you read that project on desktop.
+- Navigator (desktop): a panel docked under the TOC, at the bottom right, showing a miniature of the whole page drawn from its real layout (`src/scripts/page-navigator.ts`). The yellow box is what is on screen. Click to jump there, drag the box to scroll, hover for the section name. It opens by default; the minimize button collapses it, and that choice is remembered in the browser. The map is a pointer convenience and hidden from screen readers; the TOC is the accessible equivalent.
 
 ## Verified
 

@@ -10,6 +10,7 @@ import TableOfContents from '../components/TableOfContents.astro';
 import MobileDocumentNav from '../components/MobileDocumentNav.astro';
 import ScrollSectionIndicator from '../components/ScrollSectionIndicator.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import PageNavigator from '../components/PageNavigator.astro';
 import { getOutline, getSortedSections } from '../lib/outline';
 
 const outline = await getOutline();
@@ -47,7 +48,10 @@ const description =
     <TableOfContents outline={outline} />
   </div>
 
+  <PageNavigator />
+
   <script>
     import '../scripts/document-nav.ts';
+    import '../scripts/page-navigator.ts';
   </script>
 </BaseLayout>
