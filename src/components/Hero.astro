@@ -55,9 +55,10 @@ const [before, after] = hero.statementHighlight
   .hero__identity { margin-bottom: var(--space-6); }
 
   .hero__statement {
-    font-size: var(--text-hero);
-    line-height: 1.02;
-    max-width: 11em;
+    /* Second in the hierarchy now, after the Pick My Brain illustration. */
+    font-size: clamp(1.75rem, 1.45rem + 1.1vw, 2.375rem);
+    line-height: 1.1;
+    max-width: 18em;
     margin-inline: auto;
   }
 
