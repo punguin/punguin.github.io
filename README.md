@@ -49,7 +49,14 @@ Sizes: `visual--inline` (reading width), `visual--wide` (extends up to 120px lef
 
 ### Pick My Brain
 
-The illustration at the top of the page ("Pick My Brain" in the code) comes from Pung's sketch: a scribble of questions on the left, a head in profile with a brain full of orbs, and one line that runs from the scribble through the brain to a star on the other side. It is purely illustrative: no text panel or controls, just the loop (the line draws itself, the star lights up, the orbs bob) and a small lift when the pointer is over an orb. The orbs (positions, sizes, fills) live in `src/content/brain.json`; `scripts/brain_sketch.py` draws the head, brain, scribble, line, star and one SVG per orb into `src/assets/brain/` (rerun `cd scripts && python3 brain_sketch.py` after editing the JSON). With reduced motion it shows the finished drawing, still. Orb labels use Caveat, self-hosted like the other fonts.
+The illustration at the top of the page ("Pick My Brain" in the code) reads like a page from a sketchbook: a scribble of questions on the left, a head in profile full of small doodles from past work and interests, and one line that wanders through it and turns into a small star past the back of the head. The 8-second loop is calm: the scribble gains a stroke, the line draws itself, the sticky note and the paper plane tip slightly as it passes, the star is drawn in two pencil strokes and coloured in, and everything fades out softly before starting again. With reduced motion it shows the finished drawing, still.
+
+How it is made:
+
+1. `scripts/brain_sketch.py` draws everything as pencil (variable-width strokes, second passes, overshoots, construction lines, erased marks) with marker colour underneath. It writes `src/assets/brain/`: `paper.svg` (the still drawing), `piece-*.svg` (the doodles that move), `live.svg` (the line and the star), `layout.json` and `motion.css` (keyframes timed to the line's real geometry).
+2. `scripts/bake_brain.mjs` renders `paper.svg` and the pieces to WebP in `public/illustrations/brain/`. The pencil grain is an SVG filter that browsers re-run every animation frame, so the page shows these images and only the line and the star stay live SVG. It needs Playwright with Chromium and Python Pillow.
+
+After changing the drawing: `cd scripts && python3 brain_sketch.py && cd .. && node scripts/bake_brain.mjs`. Handwriting uses Caveat, self-hosted like the other fonts.
 
 ### How I work sketches
 

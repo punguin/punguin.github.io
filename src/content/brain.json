@@ -1,17 +1,7 @@
 {
-  "description": "Hand-drawn illustration: a scribble of questions turns into one line that runs through a head full of ideas and work, and ends at a star.",
-  "viewBox": [1180, 668],
-  "orbs": [
-    {"id": "relay", "kind": "work", "sketch": "truck", "fill": "#f3c3a6", "x": 512, "y": 236, "r": 64, "label": "Amazon Relay"},
-    {"id": "account", "kind": "work", "sketch": "glasses", "fill": "#d5f5c2", "x": 742, "y": 236, "r": 64, "label": "Zenni Account"},
-    {"id": "tracking", "kind": "work", "sketch": "parcel", "fill": "#a8e5e5", "x": 640, "y": 362, "r": 58, "label": "Zenni Order Tracking"},
-    {"id": "spokgo", "kind": "work", "sketch": "conversation", "fill": "#f6d0ff", "x": 486, "y": 386, "r": 58, "label": "SpokGo"},
-    {"id": "how-i-work", "kind": "think", "fill": "#ffe95c", "x": 622, "y": 150, "r": 42, "label": "How I work"},
-    {"id": "values", "kind": "think", "fill": "#ffe95c", "x": 440, "y": 150, "r": 38, "label": "Values"},
-    {"id": "experience", "kind": "experience", "fill": "#fcfaf5", "x": 822, "y": 356, "r": 42, "label": "Experience"},
-    {"id": "skills", "kind": "skill", "fill": "#fcfaf5", "x": 772, "y": 112, "r": 38, "label": "Skills"},
-    {"id": "figma", "kind": "skill", "fill": "#fcfaf5", "x": 520, "y": 96, "r": 34, "label": "Figma"},
-    {"id": "ai", "kind": "future", "fill": "#fcfaf5", "x": 406, "y": 286, "r": 34, "label": "AI"},
-    {"id": "play", "kind": "future", "fill": "#fcfaf5", "x": 768, "y": 462, "r": 36, "label": "Play"}
+  "description": "Hand-drawn sketchbook illustration: a scribble of questions, a head full of small doodles from past work and interests, and one line that wanders through it and becomes a small star.",
+  "viewBox": [
+    1180,
+    668
   ]
 }
