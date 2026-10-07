@@ -83,7 +83,8 @@
   --doc-max: 840px;
   --toc-width: 210px;
   --toc-gap: 64px;
-  --toc-top: 24px;                 /* where the TOC sticks once it reaches the top */
+  --toc-top: 24px;
+  --sheet-pad: 20px;               /* inner margin of the white page that holds sections 01 onward */                 /* where the TOC sticks once it reaches the top */
   --anchor-offset: 96px;
   --mobile-nav-h: 0px;
 
@@ -104,8 +105,16 @@
   }
 }
 
+@media (min-width: 768px) {
+  :root { --sheet-pad: 40px; }
+}
+
 @media (min-width: 1024px) {
-  :root { --gutter: 48px; --toc-gap: clamp(40px, 4vw, 64px); }
+  :root { --gutter: 48px; --toc-gap: clamp(40px, 4vw, 64px); --sheet-pad: 56px; }
+}
+
+@media (min-width: 1200px) {
+  :root { --gutter: 32px; --toc-gap: clamp(32px, 3vw, 56px); }
 }
 
 /* ---------- Base ---------- */
@@ -275,8 +284,55 @@ a.external::after {
       minmax(var(--gutter), 1fr);
   }
   .document { grid-column: 2; }
-  /* --toc-start (set by document-nav.ts) lines the TOC up with section 01; it scrolls with the page until it reaches the top */
+  /* --toc-start (set by document-nav.ts) lines the TOC up with the white page; it scrolls with the page until it reaches the top */
   .toc { display: block; grid-column: 4; padding-top: var(--toc-start, 0px); }
+}
+
+/* Below 1200px there is no room for a navigator column; the panel floats bottom left instead. */
+.pnav-dock { display: contents; }
+
+/* 1200px and up: the document is centred, with the navigator in a column on the left mirroring the TOC on the right. */
+@media (min-width: 1200px) {
+  .page-shell {
+    grid-template-columns:
+      minmax(var(--gutter), 1fr)
+      var(--toc-width)
+      var(--toc-gap)
+      minmax(0, var(--doc-max))
+      var(--toc-gap)
+      var(--toc-width)
+      minmax(var(--gutter), 1fr);
+  }
+  .document { grid-column: 4; }
+  .toc { grid-column: 6; }
+  /* Starts at the sticky offset, so the panel never moves: a map that shifted while dragging would lose the pointer. */
+  .pnav-dock { display: block; grid-column: 2; grid-row: 1; padding-top: var(--toc-top); }
+}
+
+/* ---------- Sheet: the white page that holds sections 01 onward ---------- */
+
+.sheet {
+  --bg: var(--surface);
+  --room: var(--sheet-pad); /* wide visuals bleed to the page edge, never past it */
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-subtle-2);
+  padding: var(--sheet-pad) var(--sheet-pad-x, var(--sheet-pad)) 0;
+}
+@media (max-width: 767px) {
+  /* Phones: the page reaches nearly to the screen edge so the text keeps its width. */
+  .sheet {
+    --sheet-pad-x: calc(var(--gutter) - 8px);
+    margin-inline: calc(-1 * var(--gutter) + 8px);
+  }
+}
+/* The page edge already marks where section 01 starts. */
+.sheet > .doc-section:first-child .section-heading { border-top: 0; padding-top: 0; }
+/* Sticky project bars span the full page width so nothing shows beside them. */
+.sheet .project__bar {
+  margin-inline: calc(-1 * var(--sheet-pad-x, var(--sheet-pad)));
+  padding-inline: var(--sheet-pad-x, var(--sheet-pad));
 }
 
 /* ---------- Prose ---------- */
@@ -364,6 +420,7 @@ a.external::after {
 }
 
 .visual--inline { max-width: var(--measure); }
+.sheet .is-placeholder .visual__frame { background: var(--cream-paper); }
 
 .visual figcaption {
   margin-top: var(--space-3);
@@ -397,11 +454,11 @@ a.external::after {
 
 .visual--archive { max-width: 28em; }
 
-/* Wide and full visuals extend left, into the breathing room, never under the TOC.
-   --room is the free space left of the document, minus a gutter. */
+/* Wide and full visuals extend left into the white page's margin, never past its edge.
+   --room is that margin (set on .sheet). */
 @media (min-width: 1024px) {
   .document {
-    --room: max(0px, calc((100vw - var(--doc-max) - var(--toc-gap) - var(--toc-width)) / 2 - 40px));
+    --room: 0px; /* .sheet sets the real value */
   }
   .visual--wide { --extend: min(120px, var(--room)); }
   .visual--full { --extend: min(160px, var(--room)); }

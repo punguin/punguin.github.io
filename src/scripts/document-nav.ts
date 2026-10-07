@@ -74,15 +74,14 @@ if (footer) new IntersectionObserver(() => resolveActive(), { threshold: [0, 1] 
 window.addEventListener('hashchange', () => requestAnimationFrame(resolveActive));
 resolveActive();
 
-// ---------- TOC start ----------
-// Line the TOC up with the first numbered section rather than the hero.
+// ---------- Side column start ----------
+// Line the TOC up with the white page (section 01) rather than the hero.
 const shell = document.querySelector<HTMLElement>('.page-shell');
-const tocEl = document.querySelector<HTMLElement>('.toc');
-const firstSection = targets[1];
-if (shell && tocEl && firstSection) {
+const sheet = document.querySelector<HTMLElement>('.sheet') ?? targets[1];
+if (shell && sheet) {
   const alignToc = () => {
-    const offset = firstSection.getBoundingClientRect().top - shell.getBoundingClientRect().top;
-    tocEl.style.setProperty('--toc-start', `${Math.max(0, Math.round(offset))}px`);
+    const offset = sheet.getBoundingClientRect().top - shell.getBoundingClientRect().top;
+    shell.style.setProperty('--toc-start', `${Math.max(0, Math.round(offset))}px`);
   };
   alignToc();
   new ResizeObserver(alignToc).observe(shell);

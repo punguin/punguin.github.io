@@ -17,7 +17,8 @@ type Box = Rect & { fill?: string; stroke?: string };
 type Line = Rect & { kind: 'text' | 'heading' | 'subhead' };
 
 const panel = document.querySelector<HTMLElement>('[data-pnav]');
-const phone = window.matchMedia('(max-width: 639px)');
+// Below this width there is no free column for the panel, so it would cover the text.
+const narrow = window.matchMedia('(max-width: 1199px)');
 const STORE_KEY = 'pung-brooks:navigator-minimized';
 
 if (panel) initNavigator(panel);
@@ -76,11 +77,11 @@ function initNavigator(panel: HTMLElement) {
     if (remember) {
       try { localStorage.setItem(STORE_KEY, min ? '1' : '0'); } catch { /* storage unavailable */ }
     }
-    requestAnimationFrame(min ? place : layout);
+    if (!min) requestAnimationFrame(layout);
   };
-  // Open by default; on phones it starts as the small bar so it doesn't cover the text.
+  // Open by default where it has its own column; narrower, it starts as the small bar so it doesn't cover the text.
   const stored = readStored();
-  setMinimized(stored ? stored === '1' : phone.matches, false);
+  setMinimized(stored ? stored === '1' : narrow.matches, false);
   toggle.addEventListener('click', () => setMinimized(!isMin()));
 
   // ---------- Measure the page ----------
@@ -252,16 +253,8 @@ function initNavigator(panel: HTMLElement) {
     canvas.height = Math.round(H * dpr);
     measure();
     draw();
-    place();
   }
 
-  /** Bottom left, just outside the content column when the margin has room (as the TOC sits on the right). */
-  function place() {
-    const gap = 12;
-    const docLeft = doc!.getBoundingClientRect().left;
-    const w = panel.offsetWidth;
-    panel.style.left = docLeft - 2 * gap >= w ? `${Math.round(docLeft - gap - w)}px` : '';
-  }
 
   let layoutTimer = 0;
   const relayout = () => { clearTimeout(layoutTimer); layoutTimer = window.setTimeout(layout, 120); };
@@ -273,9 +266,12 @@ function initNavigator(panel: HTMLElement) {
   layout();
 
   // ---------- Pointer: click to jump, drag to scroll, hover for names ----------
+  // While dragging, measure against where the map was when the drag began, so the
+  // mapping stays stable even if the panel moves.
+  let dragTop: number | null = null;
   const local = (e: PointerEvent) => {
     const r = canvas.getBoundingClientRect();
-    return { x: e.clientX - r.left, y: e.clientY - r.top };
+    return { x: e.clientX - r.left, y: e.clientY - (dragTop ?? r.top) };
   };
   const pageYAt = (y: number) => y / s;
   const overBox = (y: number) => {
@@ -291,6 +287,7 @@ function initNavigator(panel: HTMLElement) {
     e.preventDefault();
     canvas.setPointerCapture(e.pointerId);
     const y = local(e).y;
+    dragTop = canvas.getBoundingClientRect().top;
     if (overBox(y)) {
       grab = pageYAt(y) - window.scrollY;
     } else {
@@ -312,7 +309,7 @@ function initNavigator(panel: HTMLElement) {
     showTip(y);
   });
 
-  const endDrag = () => { grab = null; panel.classList.remove('is-dragging'); };
+  const endDrag = () => { grab = null; dragTop = null; panel.classList.remove('is-dragging'); };
   canvas.addEventListener('pointerup', endDrag);
   canvas.addEventListener('pointercancel', endDrag);
   canvas.addEventListener('pointerleave', hideTip);

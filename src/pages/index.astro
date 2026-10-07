@@ -30,6 +30,7 @@ const description =
     <main class="document" id="main">
       <Hero />
 
+      <div class="sheet">
       {rendered.map(({ entry, Content }) => {
         const d = entry.data;
         if (d.id === 'selected-work') return <SelectedWork section={entry} />;
@@ -41,14 +42,17 @@ const description =
           </DocumentSection>
         );
       })}
+      </div>
 
       <SiteFooter />
     </main>
 
     <TableOfContents outline={outline} />
-  </div>
 
-  <PageNavigator />
+    <div class="pnav-dock">
+      <PageNavigator />
+    </div>
+  </div>
 
   <script>
     import '../scripts/document-nav.ts';
