@@ -1,9 +1,10 @@
 """Generate the hand-drawn "Pick My Brain" illustration from Pung's sketch, in the same style as
-the How I work sketches: a tangle of questions on the left, a head in profile, and a brain full of
-orbs. The orbs themselves (positions, sizes, fills, copy) live in src/content/brain.json.
+the How I work sketches: a tangle of questions on the left, a head in profile with a brain full of
+orbs, and one line that runs from the scribble through the brain to a star past the head.
+The orbs themselves (positions, sizes, fills) live in src/content/brain.json.
 
-Writes src/assets/brain/scene.svg (head, brain, tangle, trail), one orb-<id>.svg per orb and
-star.svg. PickMyBrain.astro inlines them so CSS can animate their parts.
+Writes src/assets/brain/scene.svg (head, brain, tangle, line and star) and one orb-<id>.svg per
+orb. PickMyBrain.astro inlines them so CSS can animate their parts.
 Deterministic: rerun after editing brain.json (cd scripts && python3 brain_sketch.py)."""
 import json, math, pathlib, random, re
 from sketches import Sketch, INK
@@ -94,13 +95,34 @@ def tangle():
     return f'<g class="bm-tangle">{"".join(s.parts)}</g>'
 
 
+STAR = (1086, 250)
+
+
 def trail():
-    """The dotted line from the questions, over the brow and into the brain."""
-    pts = [(176, 292), (228, 262), (268, 214), (318, 150), (380, 120)]
-    s = Sketch(13)
-    s.arrow(372, 124, 386, 116, w=2.4)
-    return (f'<path class="bm-trail" d="{smooth(pts)}" pathLength="1" stroke-width="2.4"/>'
-            f'<g class="bm-trail-end">{"".join(s.parts)}</g>')
+    """One line from the scribble, through the brain (under the orbs), out the back of the head to a star."""
+    sx, sy = STAR
+    pts = [(176, 292), (246, 248), (330, 204), (420, 214), (512, 238), (585, 296), (660, 300),
+           (742, 240), (830, 262), (900, 262), (970, 246), (sx - 44, sy + 4)]
+    return f'<path class="bm-trail" d="{smooth(pts)}" pathLength="1" stroke-width="2.6"/>'
+
+
+def star(cx, cy, size=1.0):
+    """A hand-drawn star with a yellow fill and sparkle rays, centred on (cx, cy)."""
+    pts = []
+    for k in range(10):
+        a = -math.pi / 2 + k * math.pi / 5
+        rr = (40 if k % 2 == 0 else 18) * size
+        pts.append((cx + rr * math.cos(a), cy + rr * math.sin(a)))
+    s = Sketch(91)
+    s.poly(pts, close=True, w=2.6)
+    rays = Sketch(92)
+    for a in (-150, -105, -60, -15, 30, 150):
+        t = math.radians(a)
+        rays.line(cx + 50 * size * math.cos(t), cy + 50 * size * math.sin(t),
+                  cx + 63 * size * math.cos(t), cy + 63 * size * math.sin(t), passes=1, w=2.4)
+    fill = f'<path d="M{" L".join(f"{x:.1f},{y:.1f}" for x, y in pts)} Z" fill="#ffe95c" stroke="none"/>'
+    return (f'<g class="bm-star-end">{fill}<g class="bm-star">{"".join(s.parts)}</g>'
+            f'<g class="bm-rays">{"".join(rays.parts)}</g></g>')
 
 
 def face():
@@ -125,6 +147,7 @@ def scene():
         + face()
         + tangle()
         + trail()
+        + star(*STAR)
     )
     return (f'<svg class="bm-scene-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" fill="none" '
             f'stroke="{INK}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{body}</svg>\n')
@@ -214,30 +237,11 @@ def orb(o, i):
             f'{fill}{ring}{art}</svg>\n')
 
 
-def star():
-    s = Sketch(91)
-    pts = []
-    for k in range(10):
-        a = -math.pi / 2 + k * math.pi / 5
-        rr = 34 if k % 2 == 0 else 15
-        pts.append((50 + rr * math.cos(a), 50 + rr * math.sin(a)))
-    s.poly(pts, close=True, w=2.4)
-    rays = Sketch(92)
-    for a in (-150, -110, -60, -20, 20, 160):
-        t = math.radians(a)
-        rays.line(50 + 42 * math.cos(t), 50 + 42 * math.sin(t), 50 + 52 * math.cos(t), 50 + 52 * math.sin(t), passes=1, w=2.2)
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6 112 112" fill="none" stroke="{INK}" '
-            f'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
-            f'<path d="M{" L".join(f"{x:.1f},{y:.1f}" for x, y in pts)} Z" fill="#ffe95c" stroke="none"/>'
-            f'<g class="bm-star">{"".join(s.parts)}</g><g class="bm-rays">{"".join(rays.parts)}</g></svg>\n')
-
-
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
-    for old in OUT.glob("orb-*.svg"):
+    for old in list(OUT.glob("orb-*.svg")) + list(OUT.glob("star.svg")):
         old.unlink()
     (OUT / "scene.svg").write_text(scene())
-    (OUT / "star.svg").write_text(star())
     for i, o in enumerate(DATA["orbs"]):
         (OUT / f"orb-{o['id']}.svg").write_text(orb(o, i))
     total = sum(p.stat().st_size for p in OUT.glob("*.svg"))

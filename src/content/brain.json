@@ -1,84 +1,17 @@
 {
-  "title": "Pick My Brain",
-  "prompt": "Hover or tap a thought to explore.",
-  "viewBox": [1000, 668],
+  "description": "Hand-drawn illustration: a scribble of questions turns into one line that runs through a head full of ideas and work, and ends at a star.",
+  "viewBox": [1180, 668],
   "orbs": [
-    {
-      "id": "relay", "kind": "work", "sketch": "truck", "fill": "#f3c3a6",
-      "x": 512, "y": 236, "r": 64,
-      "label": "Amazon Relay", "tag": "Selected work", "title": "Amazon Relay",
-      "text": "Design around the work, not the workflow.",
-      "href": "#amazon-relay"
-    },
-    {
-      "id": "account", "kind": "work", "sketch": "glasses", "fill": "#d5f5c2",
-      "x": 742, "y": 236, "r": 64,
-      "label": "Zenni Account", "tag": "Selected work", "title": "Zenni Account",
-      "text": "Build the foundation before the feature.",
-      "href": "#zenni-account"
-    },
-    {
-      "id": "tracking", "kind": "work", "sketch": "parcel", "fill": "#a8e5e5",
-      "x": 640, "y": 362, "r": 58,
-      "label": "Zenni Order Tracking", "tag": "Selected work", "title": "Zenni Order Tracking",
-      "text": "An order status should feel like an answer.",
-      "href": "#zenni-order-tracking"
-    },
-    {
-      "id": "spokgo", "kind": "work", "sketch": "conversation", "fill": "#f6d0ff",
-      "x": 486, "y": 386, "r": 58,
-      "label": "SpokGo", "tag": "Selected work", "title": "SpokGo",
-      "text": "Creating shared direction through discovery.",
-      "href": "#spokgo"
-    },
-    {
-      "id": "how-i-work", "kind": "think", "fill": "#ffe95c",
-      "x": 622, "y": 150, "r": 42,
-      "label": "How I work", "tag": "How I think", "title": "How I work",
-      "text": "These are not phases or steps. They are questions I keep coming back to.",
-      "list": ["Understand people.", "Understand the system.", "Find the gaps.", "Close the gaps.", "See what changed."],
-      "href": "#how-i-work"
-    },
-    {
-      "id": "values", "kind": "think", "fill": "#ffe95c",
-      "x": 440, "y": 150, "r": 38,
-      "label": "Values", "tag": "How I think", "title": "What matters underneath the work",
-      "list": ["Human first.", "Outcomes over artifacts.", "Everyone is a leader."],
-      "href": "#values"
-    },
-    {
-      "id": "experience", "kind": "experience", "fill": "#fcfaf5",
-      "x": 822, "y": 356, "r": 42,
-      "label": "Experience", "tag": "Experience", "title": "Experience",
-      "text": "Fifteen years of product design experience across logistics, healthcare communications, ecommerce, and real-estate software.",
-      "list": ["Zenni Optical", "Amazon", "Spok", "Lone Wolf Technologies", "Thomson Reuters"],
-      "href": "#experience"
-    },
-    {
-      "id": "skills", "kind": "skill", "fill": "#fcfaf5",
-      "x": 772, "y": 112, "r": 38,
-      "label": "Skills", "tag": "Skills", "title": "Practice",
-      "list": ["Product Design", "Systems", "Strategy", "Leadership"],
-      "text": "Research, journey mapping, impact mapping, prototyping, analytics, facilitation, workshops, interviews, usability testing, or lighter-weight techniques are tools—not mandatory stages.",
-      "href": "#how-i-work"
-    },
-    {
-      "id": "figma", "kind": "skill", "fill": "#fcfaf5",
-      "x": 520, "y": 96, "r": 34,
-      "label": "Figma", "tag": "Skills", "title": "Figma",
-      "todo": "How Figma fits into the way I work."
-    },
-    {
-      "id": "ai", "kind": "future", "fill": "#fcfaf5",
-      "x": 406, "y": 286, "r": 34,
-      "label": "AI", "tag": "Coming soon", "title": "AI",
-      "text": "A future topic."
-    },
-    {
-      "id": "play", "kind": "future", "fill": "#fcfaf5",
-      "x": 768, "y": 462, "r": 36,
-      "label": "Play", "tag": "Coming soon", "title": "Play",
-      "text": "A future topic."
-    }
+    {"id": "relay", "kind": "work", "sketch": "truck", "fill": "#f3c3a6", "x": 512, "y": 236, "r": 64, "label": "Amazon Relay"},
+    {"id": "account", "kind": "work", "sketch": "glasses", "fill": "#d5f5c2", "x": 742, "y": 236, "r": 64, "label": "Zenni Account"},
+    {"id": "tracking", "kind": "work", "sketch": "parcel", "fill": "#a8e5e5", "x": 640, "y": 362, "r": 58, "label": "Zenni Order Tracking"},
+    {"id": "spokgo", "kind": "work", "sketch": "conversation", "fill": "#f6d0ff", "x": 486, "y": 386, "r": 58, "label": "SpokGo"},
+    {"id": "how-i-work", "kind": "think", "fill": "#ffe95c", "x": 622, "y": 150, "r": 42, "label": "How I work"},
+    {"id": "values", "kind": "think", "fill": "#ffe95c", "x": 440, "y": 150, "r": 38, "label": "Values"},
+    {"id": "experience", "kind": "experience", "fill": "#fcfaf5", "x": 822, "y": 356, "r": 42, "label": "Experience"},
+    {"id": "skills", "kind": "skill", "fill": "#fcfaf5", "x": 772, "y": 112, "r": 38, "label": "Skills"},
+    {"id": "figma", "kind": "skill", "fill": "#fcfaf5", "x": 520, "y": 96, "r": 34, "label": "Figma"},
+    {"id": "ai", "kind": "future", "fill": "#fcfaf5", "x": 406, "y": 286, "r": 34, "label": "AI"},
+    {"id": "play", "kind": "future", "fill": "#fcfaf5", "x": 768, "y": 462, "r": 36, "label": "Play"}
   ]
 }
