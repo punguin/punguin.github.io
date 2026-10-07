@@ -7,6 +7,8 @@ const [before, after] = hero.statementHighlight
   : [hero.statement, undefined];
 ---
 <header class="hero" id="top">
+  <PickMyBrain />
+
   <p class="hero__identity">
     <span class="tag"><span aria-hidden="true">✦</span> {hero.identity[0]} · {hero.identity[1]}</span>
   </p>
@@ -33,7 +35,6 @@ const [before, after] = hero.statementHighlight
     <a class="button button--outline" href={hero.secondaryAction.href}>{hero.secondaryAction.label}</a>
   </p>
 
-  <PickMyBrain />
 </header>
 
 <style>
