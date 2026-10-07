@@ -76,7 +76,7 @@ Search for `todo`, `is-placeholder`, `[To confirm]` and `placeholder` to find th
 
 ### Navigation behaviour
 
-- Layout (1024px and up): the navigator is a full-height column on the left, and the page is centred in the space to its right. Sections 01 onward sit on a white page (`.sheet`) below the cream hero; the TOC sits inside that page, in a column right of the text, and sticks 24px from the top. Active state uses a mint fill and weight; hover is a faint background only.
+- Layout (1024px and up): the navigator is a full-height column on the left, and the page is centred in the space to its right. Sections 01 onward sit on a white page (`.sheet`) below the cream hero, with square corners and two more sheets peeking out underneath like a loose stack of paper (they start fanned out and square up as the page scrolls into view, `src/scripts/sheet-stack.ts`; still with reduced motion); the TOC sits inside that page, in a column right of the text, and sticks 24px from the top. Active state uses a mint fill and weight; hover is a faint background only.
 - Below 1024px: the TOC is replaced by a sticky bar showing the current section number and name, with a MENU button that opens the full numbered list. A thin scroll indicator on the right edge shows a section tooltip while scrolling, then fades.
 - Scroll spy: an `IntersectionObserver` watches a 1px line 30% down the viewport, so nothing is measured on raw scroll events. The last section whose top has crossed that line is active, which makes nested case studies win while you are inside them. "Top of document" is active at the hero.
 - Links are real anchors, so hashes, direct links, and Back/Forward are native browser behaviour. Smooth scrolling is CSS and is turned off under `prefers-reduced-motion`.

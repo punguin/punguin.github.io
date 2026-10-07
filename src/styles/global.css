@@ -291,13 +291,27 @@ a.external::after {
   --room: var(--sheet-pad); /* wide visuals bleed to the page edge, never past it */
   background: var(--surface);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-subtle-2);
+  border-radius: 2px;
+  /* A loose stack of paper: two more sheets peek out from under the page. --fan (set by
+     sheet-stack.ts) spreads them while the page scrolls into view, then they square up. */
+  --fan: 0;
+  --stack-k: 1;
+  --s1x: calc((-5px - 16px * var(--fan)) * var(--stack-k));
+  --s1y: calc((6px + 18px * var(--fan)) * var(--stack-k));
+  --s2x: calc((6px + 20px * var(--fan)) * var(--stack-k));
+  --s2y: calc((12px + 30px * var(--fan)) * var(--stack-k));
+  box-shadow:
+    var(--s1x) var(--s1y) 0 -1px var(--surface),
+    var(--s1x) var(--s1y) 0 0 var(--border-subtle),
+    var(--s2x) var(--s2y) 0 -1px var(--surface),
+    var(--s2x) var(--s2y) 0 0 var(--border-subtle),
+    var(--shadow-subtle-2);
   padding: var(--sheet-pad) var(--sheet-pad-x, var(--sheet-pad)) 0;
 }
 @media (max-width: 767px) {
   /* Phones: the page reaches nearly to the screen edge so the text keeps its width. */
   .sheet {
+    --stack-k: 0.5; /* a tighter stack where the page nearly meets the screen edge */
     --sheet-pad-x: calc(var(--gutter) - 8px);
     margin-inline: calc(-1 * var(--gutter) + 8px);
   }
