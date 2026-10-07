@@ -26,6 +26,7 @@ LOOP = 8.0  # seconds
 
 # Soft palette, kept from the site
 TERRACOTTA, MINT, TEAL, LILAC, YELLOW, PINK = "#f3c3a6", "#d5f5c2", "#a8e5e5", "#f6d0ff", "#ffe95c", "#f7c6c0"
+CHARCOAL = "#2a2a24"  # the hair
 
 
 # ---------------------------------------------------------------- curves
@@ -77,14 +78,16 @@ def length(pts):
 class Pencil:
     """Draws like a soft pencil: each stroke is a filled ribbon whose width wanders and tapers."""
 
-    def __init__(self, seed):
+    def __init__(self, seed, k=1.0):
         self.r = random.Random(seed)
         self.parts = []
+        self.k = k  # line-weight and type-size multiplier, for pencils drawing inside a scaled group
 
     def j(self, a):
         return self.r.uniform(-a, a)
 
     def ribbon(self, centre, w, opacity=1.0, taper=8):
+        w *= self.k
         n = len(centre)
         if n < 2:
             return
@@ -150,7 +153,7 @@ class Pencil:
         self.stroke(pts, w=w, jitter=0.5, samples=4)
 
     def dot(self, x, y, r=2.2):
-        self.parts.append(f'<circle cx="{x + self.j(0.4):.1f}" cy="{y + self.j(0.4):.1f}" r="{r:.1f}"/>')
+        self.parts.append(f'<circle cx="{x + self.j(0.4):.1f}" cy="{y + self.j(0.4):.1f}" r="{r * self.k:.1f}"/>')
 
     def question(self, x, y, size=1.0, w=2.4):
         s = size
@@ -159,6 +162,7 @@ class Pencil:
         self.dot(x + 0.5 * s, y + 15 * s, 2.0 * s)
 
     def text(self, x, y, s, size=22, rot=0.0, opacity=0.85, underline=False):
+        size = round(size * self.k, 1)
         self.parts.append(
             f'<text x="{x:.1f}" y="{y:.1f}" transform="rotate({rot:.1f} {x:.1f} {y:.1f})" font-family="{HAND}" '
             f'font-weight="600" font-size="{size}" text-anchor="middle" stroke="none" opacity="{opacity}">{s}</text>')
@@ -215,15 +219,47 @@ def dab(cx, cy, rx, ry, colour, seed, opacity=0.55):
 
 # ---------------------------------------------------------------- the scene
 
-HEAD_FRONT = [  # from the front of the neck, up the face, over the forehead, to the crown
-    (432, 664), (426, 612), (414, 544), (366, 514), (320, 496), (304, 472), (300, 454),
-    (290, 442), (303, 430), (286, 418), (294, 400), (286, 388), (248, 374), (263, 338),
-    (296, 304), (301, 264), (313, 198), (356, 120), (440, 64), (560, 38), (650, 38),
+# The brain and everything in it are drawn at their own coordinates (the ellipse below) and placed
+# into the head by INNER: scaled down and moved up, so the head can have believable proportions
+# (eye a little below halfway, a small nose, a chin, a narrow neck) and still hold it all.
+BRAIN = (634, 292, 262, 210)  # cx, cy, rx, ry, before INNER
+INNER_K, INNER_AT = 0.82, (640, 252)  # scale, and where the brain's centre lands in the head
+INNER = (f'translate({INNER_AT[0] - BRAIN[0] * INNER_K:.1f},{INNER_AT[1] - BRAIN[1] * INNER_K:.1f}) '
+         f'scale({INNER_K})')
+
+
+def inner(pt):
+    """A point in brain coordinates, placed in the head."""
+    return (INNER_AT[0] + INNER_K * (pt[0] - BRAIN[0]), INNER_AT[1] + INNER_K * (pt[1] - BRAIN[1]))
+
+
+HEAD_FRONT = [  # profile facing left: from the front of the neck, up the face, over the forehead, to the crown
+    (532, 668), (535, 632), (540, 604), (516, 590), (476, 580), (436, 572), (406, 560), (384, 544),
+    (370, 526), (365, 508), (367, 492),                      # chin
+    (361, 484), (364, 476), (358, 468), (360, 460),          # closed lips
+    (356, 454), (346, 448), (338, 440), (340, 430),          # a small, rounded nose
+    (350, 418), (356, 404), (355, 386), (351, 370),          # bridge, into the eye
+    (354, 350), (358, 332), (357, 306), (362, 256),          # brow and forehead
+    (378, 194), (410, 130), (462, 82), (530, 52), (610, 40), (652, 40),
 ]
-HEAD_BACK = [  # from the crown (overlapping the front stroke) down the back of the head to the neck
-    (612, 36), (700, 46), (812, 94), (892, 178), (925, 292), (905, 410), (852, 500), (802, 560), (794, 664),
+HEAD_BACK = [  # from the crown (overlapping the front stroke) round the back of the skull to its base
+    (612, 38), (700, 46), (790, 74), (860, 124), (900, 196), (914, 272), (906, 352), (880, 420), (842, 470), (804, 502),
 ]
-BRAIN = (634, 292, 262, 210)  # cx, cy, rx, ry
+EYE = (392, 366)
+# Long hair: its outline sits a little outside the skull and falls past the neck; its front edge comes
+# down from the temple behind the cheek and jaw, hiding the ear.
+HAIR_OUT = [(552, 30), (648, 22), (760, 36), (852, 84), (916, 152), (944, 244), (946, 344), (932, 434),
+            (914, 520), (906, 600), (904, 668)]
+HAIR_FRONT = [(482, 372), (532, 414), (584, 452), (622, 504), (640, 566), (650, 620), (654, 668)]
+HAIR_STRANDS = [
+    [(560, 452), (612, 500), (634, 560), (642, 620), (646, 668)],
+    [(700, 440), (720, 520), (728, 600), (734, 668)],
+    [(780, 470), (792, 540), (796, 610), (800, 668)],
+    [(860, 440), (868, 520), (862, 600), (866, 668)],
+    [(918, 200), (930, 300), (920, 400)],
+    [(600, 28), (520, 50), (452, 92), (412, 148), (398, 196)],    # the fringe over the forehead
+    [(578, 40), (500, 72), (440, 118), (410, 170)],
+]
 
 
 def brain_outline(seed):
@@ -242,82 +278,109 @@ STAR = (1078, 252)
 
 # The wandering line: one loose gesture. It enters over the brow, drifts between the doodles, loops
 # once, doubles back, has a little second thought near the back of the head, then leaves for the star.
-TRAIL = [
-    (172, 290), (210, 268), (256, 252), (306, 246),               # out of the tangle, over the brow
-    (352, 252), (392, 278), (428, 322), (452, 334),               # drifting down past the heart
-    (520, 318), (572, 300), (612, 270), (628, 238),               # up between the truck and the bubbles
-    (614, 214), (592, 226), (600, 256), (640, 276),               # a small loop
-    (690, 282), (728, 300), (744, 326), (726, 340), (712, 322),   # wanders, doubles back on itself
-    (730, 296), (776, 290), (812, 300),                           # under the glasses
-    (842, 276), (856, 290), (850, 270), (880, 258),               # a second thought
-    (926, 252), (978, 244), (1024, 250), (STAR[0] - 34, STAR[1] + 6),
-]
+TRAIL = (
+    [(172, 290), (228, 266), (290, 250), (346, 242), (398, 238)]     # out of the tangle, over the brow
+    + [inner(p) for p in [
+        (392, 278), (428, 322), (452, 334),                          # drifting down past the heart
+        (520, 318), (572, 300), (612, 270), (628, 238),              # up between the truck and the bubbles
+        (614, 214), (592, 226), (600, 256), (640, 276),              # a small loop
+        (690, 282), (728, 300), (744, 326), (726, 340), (712, 322),  # wanders, doubles back on itself
+        (730, 296), (776, 290), (812, 300),                          # under the glasses
+        (842, 276), (856, 290), (850, 270), (880, 258),              # a second thought
+    ]]
+    + [(900, 240), (940, 246), (984, 244), (1026, 250), (STAR[0] - 34, STAR[1] + 6)]
+)
 
 
 def paper():
-    pen = Pencil(1)
+    pen = Pencil(1)       # the head, face, hair and the scribble
     faint = Pencil(2)
+    ipen = Pencil(5, k=1 / INNER_K * 0.92)  # inside the brain (drawn at brain scale, then scaled into place)
+    ifaint = Pencil(6, k=1 / INNER_K * 0.92)
 
-    # construction lines: the circle the head was built on, an eye line, a centre line
+    # construction lines: the circle the head was built on, an eye line, a centre line, the jaw
     cons = Pencil(3)
-    cons.circle(612, 270, 312, w=1.2, sweep=300, start=150)
-    cons.line(240, 316, 420, 312, w=1.0, overshoot=10)
-    cons.line(624, 18, 618, 132, w=1.0, overshoot=6)
-    cons.line(890, 470, 1000, 560, w=1.0, overshoot=4)
+    cons.circle(628, 290, 318, w=1.2, sweep=290, start=160)
+    cons.line(310, EYE[1] + 2, 480, EYE[1] - 2, w=1.0, overshoot=10)
+    cons.line(630, 14, 624, 130, w=1.0, overshoot=6)
+    cons.line(560, 520, 660, 590, w=1.0, overshoot=6)
     construction = f'<g opacity="0.16">{cons.svg()}</g>'
 
-    # erased marks: an earlier eye a little too high, and a path the line didn't take
+    # erased marks: an earlier eye a little too high, a path the line didn't take, a first star
     er = Pencil(4)
-    er.arc(322, 286, 16, 200, 340, w=2.2)
-    er.stroke([(704, 318), (742, 262), (792, 236), (838, 238)], w=2.2, jitter=1)
+    er.arc(EYE[0] + 4, EYE[1] - 22, 14, 200, 340, w=2.2)
+    er.stroke([inner(p) for p in [(704, 318), (742, 262), (792, 236), (838, 238)]], w=2.2, jitter=1)
     er.stroke([(1040, 214), (1070, 200), (1098, 214)], w=1.8)
     erased = f'<g opacity="0.1" filter="url(#bm-smudge)">{er.svg()}</g>'
 
     # colour first, so the pencil sits on top and doesn't line up with it
-    colour = "".join([
+    brain_colour = "".join([
         marker(640, 288, 400, 300, YELLOW, 10, angle=-10, opacity=0.2, nib=54),     # a wash through the brain
         marker(500, 238, 120, 70, TERRACOTTA, 11, angle=-6),                         # truck
         marker(764, 226, 124, 56, MINT, 12, angle=8),                                # glasses
         marker(650, 368, 96, 70, TEAL, 13, angle=-10),                               # parcel
         marker(486, 400, 106, 74, LILAC, 14, angle=5),                               # conversation
-        dab(306, 352, 15, 9, PINK, 15, opacity=0.7),                                 # blush
         marker(410, 300, 40, 30, PINK, 16, angle=0, opacity=0.5, nib=14),            # heart
     ])
+    # black hair, in soft charcoal: one wash over everything the hair covers (with the brain left
+    # clear), and a few broad strokes that follow the fall of the hair for texture
+    temple = [(410, 240), (428, 318), (458, 362)]
+    fringe = [(552, 30), (480, 70), (430, 120), (404, 180)]
+    outline = HAIR_FRONT + [(904, 668)] + HAIR_OUT[::-1] + fringe + temple
+    hole = [inner(p) for p in brain_outline(3)]
+    hair_fill = (f'<path d="{smooth_d(outline, closed=True)} {smooth_d(hole, closed=True)}" fill-rule="evenodd" '
+                 f'fill="{CHARCOAL}" opacity="0.2" stroke="none"/>')
+    hr = random.Random(17)
+    for k in range(11):
+        x0 = 630 + 26 * k + hr.uniform(-8, 8)
+        pts = [(x0 - 18 + hr.uniform(-4, 4), 450 + hr.uniform(-12, 12)), (x0 + hr.uniform(-6, 6), 560), (x0 + 4, 668)]
+        hair_fill += (f'<path d="{smooth_d(pts)}" fill="none" stroke="{CHARCOAL}" stroke-width="{hr.uniform(16, 26):.0f}" '
+                      f'stroke-linecap="round" opacity="0.05"/>')
+    colour = (f'<g transform="{INNER}">{brain_colour}</g>' + hair_fill
+              + dab(EYE[0] + 40, EYE[1] + 62, 19, 11, PINK, 15, opacity=0.75))          # blush, on the cheek
 
     # head: two strokes that overlap at the crown instead of meeting
-    pen.stroke(HEAD_FRONT, w=3.3, overshoot=4)
-    pen.stroke(HEAD_BACK, w=3.3, overshoot=6)
+    pen.stroke(HEAD_FRONT, w=3.1, overshoot=4)
+    pen.stroke(HEAD_BACK, w=3.1, overshoot=6)
     faint.stroke(HEAD_BACK[1:6], w=1.6, jitter=3)           # a lighter re-draw over the back of the head
-    faint.stroke(HEAD_FRONT[13:19], w=1.4, jitter=2.5)      # and over the brow
+    faint.stroke(HEAD_FRONT[23:29], w=1.4, jitter=2.5)      # and over the brow
 
-    # face: a closed, happy eye with lashes, a brow, a nostril
-    pen.arc(322, 304, 15, 20, 160, w=2.6)
-    pen.line(312, 318, 309, 324, w=1.6, overshoot=0)
-    pen.line(322, 320, 321, 327, w=1.6, overshoot=0)
-    pen.stroke([(304, 280), (318, 274), (334, 276)], w=2.2)
-    pen.arc(281, 383, 4, 120, 300, w=1.6)
+    # hair: the outline, the front edge falling behind the jaw, and a few strands
+    pen.stroke(HAIR_OUT, w=2.6, overshoot=3)
+    pen.stroke(HAIR_FRONT, w=2.4, overshoot=3)
+    for k, strand in enumerate(HAIR_STRANDS):
+        (faint if k % 2 else pen).stroke(strand, w=1.7, jitter=2)
+
+    # face: a closed, content eye with lashes, a brow, a little nostril, a closed smile
+    ex, ey = EYE
+    pen.arc(ex, ey - 8, 13, 25, 155, w=2.6)
+    pen.line(ex + 10, ey + 2, ex + 15, ey + 7, w=1.5, overshoot=0)
+    pen.line(ex + 3, ey + 5, ex + 5, ey + 11, w=1.5, overshoot=0)
+    pen.stroke([(ex - 16, ey - 30), (ex - 2, ey - 36), (ex + 14, ey - 34)], w=2.1)
+    pen.arc(349, 441, 3.2, 150, 330, w=1.5)
+    pen.stroke([(362, 473), (370, 476), (380, 474), (386, 469)], w=1.8, jitter=0.4, samples=6)
 
     # brain: a lumpy outline drawn once, then a lighter second go, plus a few folds
     bo = brain_outline(3)
-    pen.stroke(bo, w=2.3, closed=True)
-    faint.stroke(brain_outline(4)[3:13], w=1.4, jitter=3)
+    ipen.stroke(bo, w=2.3, closed=True)
+    ifaint.stroke(brain_outline(4)[3:13], w=1.4, jitter=3)
     r = random.Random(7)
     for (x, y, ln, a) in [(560, 476, 110, -0.3), (870, 250, 80, 1.4), (404, 448, 70, 0.6),
                           (640, 76, 80, 0.12), (900, 340, 60, 1.9), (740, 470, 70, -0.4)]:
         pts = [(x + math.cos(a) * ln * s / 4 + 9 * math.sin(s * 2.1) + r.uniform(-4, 4),
                 y + math.sin(a) * ln * s / 4 + 9 * math.cos(s * 1.7) + r.uniform(-4, 4)) for s in range(5)]
-        faint.stroke(pts, w=1.5)
+        ifaint.stroke(pts, w=1.5)
 
     # the doodles that stay still
-    truck(pen, 500, 236)
-    glasses(pen, 764, 222)
-    parcel(pen, 650, 366)
-    conversation(pen, 486, 398)
-    heart(pen, 410, 300)
-    figma_pen(pen, 824, 336)
-    sparkles(pen, 782, 150)
-    notebook(pen, 742, 394)
-    skills(pen, 520, 460)
+    truck(ipen, 500, 236)
+    glasses(ipen, 764, 222)
+    parcel(ipen, 650, 366)
+    conversation(ipen, 486, 398)
+    heart(ipen, 410, 300)
+    figma_pen(ipen, 824, 336)
+    sparkles(ipen, 782, 150)
+    notebook(ipen, 742, 394)
+    skills(ipen, 520, 460)
 
     # the scribble and its questions
     tangle(pen)
@@ -345,7 +408,8 @@ def paper():
         + f'<g filter="url(#bm-marker)" style="mix-blend-mode:multiply">{colour}</g>'
         + construction + erased
         + f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none">'
-        + f'<g opacity="0.55">{faint.svg()}</g>{pen.svg()}</g>'
+        + f'<g opacity="0.55">{faint.svg()}<g transform="{INNER}">{ifaint.svg()}</g></g>'
+        + f'{pen.svg()}<g transform="{INNER}">{ipen.svg()}</g></g>'
     )
     return wrap(body, (0, 0, W, H), cls="bm-paper")
 
@@ -464,7 +528,7 @@ def tangle(p):
 
 def note_piece():
     """A sticky note: "how I work". The line brushes past it, so it gets a small nudge."""
-    p = Pencil(40)
+    p = Pencil(40, k=1 / INNER_K * 0.92)
     pts = [(-44, -36), (44, -40), (47, 38), (-41, 41)]
     col = (f'<path d="{smooth_d(pts, closed=True)}" fill="#fff4a3" stroke="none" opacity="0.92"/>'
            + marker(2, 2, 86, 72, YELLOW, 41, angle=-4, opacity=0.35, nib=22))
@@ -479,11 +543,11 @@ def note_piece():
 
 def plane_piece():
     """Play: a paper aeroplane that has just done a loop-the-loop. The line passes close and it tips a little."""
-    p = Pencil(50)
+    p = Pencil(50, k=1 / INNER_K * 0.92)
     p.poly([(-30, 4), (30, -14), (-6, 22)], close=True, w=2.2, overshoot=2)
     p.line(30, -14, -10, 10, w=1.8, overshoot=0)
     p.line(-10, 10, -6, 22, w=1.6, overshoot=0)
-    loop = Pencil(51)
+    loop = Pencil(51, k=1 / INNER_K * 0.92)
     loop.stroke([(-34, -4), (-44, -12), (-48, -24), (-40, -30), (-34, -22), (-40, -12), (-47, -10)], w=1.5, jitter=0.4, samples=8)
     col = marker(-2, 4, 46, 26, "#ffd3b5", 52, angle=-16, opacity=0.6, nib=14)
     body = (f'<g filter="url(#bm-marker)">{col}</g>'
@@ -493,9 +557,9 @@ def plane_piece():
     return body, (-80, -50, 124, 90)
 
 
-PIECES = {  # id: (maker, centre in scene units, resting rotation)
-    "note": (note_piece, (634, 132), -5),
-    "plane": (plane_piece, (668, 450), -10),
+PIECES = {  # id: (maker, centre in brain coordinates, resting rotation); placed and scaled like the brain
+    "note": (note_piece, inner((634, 132)), -5),
+    "plane": (plane_piece, inner((668, 450)), -10),
 }
 
 
@@ -622,9 +686,10 @@ if __name__ == "__main__":
     (OUT / "live.svg").write_text(live_svg)
     layout = []
     for pid, (maker, (cx, cy), rot) in PIECES.items():
-        body, (bx, by, bw, bh) = maker()
+        body, box = maker()
+        bx, by, bw, bh = (v * INNER_K for v in box)
         (OUT / f"piece-{pid}.svg").write_text(
-            wrap(f'<g transform="rotate({rot})">{body}</g>', (bx, by, bw, bh), cls="bm-piece-svg"))
+            wrap(f'<g transform="scale({INNER_K}) rotate({rot})">{body}</g>', (bx, by, bw, bh), cls="bm-piece-svg"))
         layout.append({"id": pid, "x": cx + bx, "y": cy + by, "w": bw, "h": bh, "ox": -bx / bw, "oy": -by / bh})
     (OUT / "layout.json").write_text(json.dumps(layout, indent=1) + "\n")
     (OUT / "motion.css").write_text(motion(centre))

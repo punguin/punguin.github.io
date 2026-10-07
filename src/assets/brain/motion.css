@@ -45,6 +45,6 @@
 .bm-rays { animation: bm-rays 8.0s ease-in-out infinite; }
 @keyframes bm-rays { 0%, 80% { stroke-dashoffset: 1; } 86%, 100% { stroke-dashoffset: 0; } }
 .bm-piece--note { animation: bm-nudge-note 8.0s ease-in-out infinite; }
-@keyframes bm-nudge-note { 0%, 31.8% { transform: rotate(0deg) translateY(0); } 37.3% { transform: rotate(2.5deg) translateY(-3px); } 44.3%, 100% { transform: rotate(0deg) translateY(0); } }
+@keyframes bm-nudge-note { 0%, 32.2% { transform: rotate(0deg) translateY(0); } 37.7% { transform: rotate(2.5deg) translateY(-3px); } 44.7%, 100% { transform: rotate(0deg) translateY(0); } }
 .bm-piece--plane { animation: bm-nudge-plane 8.0s ease-in-out infinite; }
-@keyframes bm-nudge-plane { 0%, 39.6% { transform: rotate(0deg) translateY(0); } 45.1% { transform: rotate(2.5deg) translateY(-3px); } 52.1%, 100% { transform: rotate(0deg) translateY(0); } }
+@keyframes bm-nudge-plane { 0%, 38.9% { transform: rotate(0deg) translateY(0); } 44.4% { transform: rotate(2.5deg) translateY(-3px); } 51.4%, 100% { transform: rotate(0deg) translateY(0); } }
