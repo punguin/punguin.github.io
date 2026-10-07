@@ -1,6 +1,6 @@
 ---
 /**
- * Navigator: a true-to-scale miniature of the page, docked bottom-right, like the
+ * Navigator: a true-to-scale miniature of the page, fixed to the bottom-right of the window, like the
  * Navigator panel in drawing tools. The yellow box is the part of the page on screen;
  * click to jump, drag the box to scroll. Pointer convenience only (the map is
  * aria-hidden): the table of contents is the accessible equivalent.
@@ -36,10 +36,6 @@
     border: 1px solid var(--pencil-gray);
     border-radius: var(--radius-nav);
     box-shadow: var(--shadow-subtle-2);
-  }
-  /* Desktop: the script docks it under the table of contents column. */
-  @media (min-width: 1024px) {
-    .pnav { width: var(--toc-width); right: var(--gutter); }
   }
   .pnav.is-min { width: auto; }
 

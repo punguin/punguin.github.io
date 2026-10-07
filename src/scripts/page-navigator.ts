@@ -8,17 +8,15 @@
  *  - Click to jump, drag the box (or the rail) to scroll, hover for the section name.
  *
  * Page content is measured once per layout change into a tall offscreen canvas;
- * scrolling only copies the visible slice and redraws the box and the sticky chrome.
+ * scrolling only copies the visible slice and redraws the box and the rail.
  */
 
 type Section = { id: string; number: string; label: string; top: number; bottom: number };
 type Rect = { x: number; y: number; w: number; h: number };
 type Box = Rect & { fill?: string; stroke?: string };
 type Line = Rect & { kind: 'text' | 'heading' | 'subhead' };
-type Chrome = { el: HTMLElement; boxes: Box[]; lines: Line[] };
 
 const panel = document.querySelector<HTMLElement>('[data-pnav]');
-const desktop = window.matchMedia('(min-width: 1024px)');
 const phone = window.matchMedia('(max-width: 639px)');
 const STORE_KEY = 'pung-brooks:navigator-minimized';
 
@@ -33,7 +31,6 @@ function initNavigator(panel: HTMLElement) {
   const tipNum = panel.querySelector<HTMLElement>('[data-pnav-tip-num]')!;
   const tipLabel = panel.querySelector<HTMLElement>('[data-pnav-tip-label]')!;
   const doc = document.querySelector<HTMLElement>('.document');
-  const toc = document.querySelector<HTMLElement>('.toc__inner');
   if (!ctx || !doc) return;
 
   const css = getComputedStyle(document.documentElement);
@@ -64,7 +61,6 @@ function initNavigator(panel: HTMLElement) {
   let rs = 1; // rail scale: page px -> rail px (whole page fits)
   let offset = 0; // how far the map has slid, in map px
   let sections: Section[] = [];
-  let chrome: Chrome[] = [];
   const base = document.createElement('canvas');
   const bctx = base.getContext('2d')!;
 
@@ -177,14 +173,6 @@ function initNavigator(panel: HTMLElement) {
 
     bars.forEach((b, i) => { b.style.position = ''; b.classList.toggle('is-stuck', wasStuck[i]); });
 
-    // Fixed and sticky navigation, drawn inside the yellow box where it sits on screen.
-    chrome = [toc, document.querySelector<HTMLElement>('[data-mnav]')]
-      .filter((el): el is HTMLElement => !!el && el.getClientRects().length > 0 && getComputedStyle(el).display !== 'none')
-      .map((el) => {
-        const r = el.getBoundingClientRect();
-        return { el, ...collect(el, { x: r.left, y: r.top }) };
-      });
-
     base.width = Math.ceil(mapW * dpr);
     base.height = Math.min(Math.ceil(pageH * s * dpr), 32000);
     bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -222,14 +210,10 @@ function initNavigator(panel: HTMLElement) {
     if (srcH > 0) c.drawImage(base, 0, offset * dpr, base.width, srcH, mapX * dpr, 0, base.width, srcH);
     c.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    // The window, at exactly its own proportions: highlighter wash, sticky nav, ink outline.
+    // The window, at exactly its own proportions: highlighter wash and ink outline.
     const by = boxY - offset;
     c.fillStyle = hexAlpha(YELLOW, 0.3);
     c.fillRect(mapX, by, mapW, boxH);
-    for (const ch of chrome) {
-      const r = ch.el.getBoundingClientRect();
-      paint(c, ch.boxes, ch.lines, s, mapX + r.left * s, by + r.top * s);
-    }
     c.restore();
     c.strokeStyle = INK;
     c.lineWidth = 1.5;
@@ -271,27 +255,11 @@ function initNavigator(panel: HTMLElement) {
   // ---------- Layout ----------
   function layout() {
     if (isMin()) { schedule(); return; }
-    if (desktop.matches && toc) {
-      // Dock under the table of contents column so it never covers the document.
-      const tr = toc.getBoundingClientRect();
-      panel.style.right = `${document.documentElement.clientWidth - tr.right}px`;
-      panel.style.width = `${tr.width}px`;
-    } else {
-      panel.style.right = '';
-      panel.style.width = '';
-    }
     const body = canvas.parentElement!;
     const bs = getComputedStyle(body);
     W = Math.floor(body.clientWidth - parseFloat(bs.paddingLeft) - parseFloat(bs.paddingRight));
     const head = panel.querySelector<HTMLElement>('.pnav__head')!.offsetHeight;
-    let room: number;
-    if (desktop.matches && toc) {
-      const tocBottom = parseFloat(getComputedStyle(toc).top) + toc.offsetHeight;
-      room = window.innerHeight - tocBottom - 16 /* gap */ - 16 /* bottom */ - head - 14;
-    } else {
-      room = window.innerHeight * 0.42 - head;
-    }
-    H = Math.round(Math.min(360, Math.max(140, room)));
+    H = Math.round(Math.min(360, Math.max(140, window.innerHeight * 0.42 - head)));
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     mapX = RAIL + GAP;
     mapW = W - mapX;
