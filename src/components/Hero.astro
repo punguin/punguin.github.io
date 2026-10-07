@@ -1,0 +1,123 @@
+---
+import hero from '../content/hero.json';
+import PickMyBrain from './PickMyBrain.astro';
+// Split the statement so one phrase gets the highlighter wash.
+const [before, after] = hero.statementHighlight
+  ? hero.statement.split(hero.statementHighlight)
+  : [hero.statement, undefined];
+---
+<header class="hero" id="top">
+  <PickMyBrain />
+
+  <div class="hero__text">
+  <p class="hero__identity">
+    <span class="tag"><span aria-hidden="true">✦</span> {hero.identity[0]} · {hero.identity[1]}</span>
+  </p>
+
+  <h1 class="hero__statement">
+    {before}{after !== undefined && <><mark>{hero.statementHighlight}</mark>{after}</>}
+  </h1>
+  <p class="hero__supporting">{hero.supporting}</p>
+  <p class="hero__context">{hero.context}</p>
+
+
+  <p class="hero__actions">
+    <a class="button button--primary" href={hero.primaryAction.href}>{hero.primaryAction.label} <span aria-hidden="true">↓</span></a>
+    <a class="button button--outline" href={hero.secondaryAction.href}>{hero.secondaryAction.label}</a>
+  </p>
+  </div>
+</header>
+
+<style>
+  .hero {
+    min-height: min(82vh, 900px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-block: var(--space-9);
+    scroll-margin-top: 200px;
+  }
+  @media (max-width: 1023px) {
+    .hero { min-height: 0; padding-block: var(--space-8) var(--space-9); }
+  }
+
+
+  .hero__identity { margin-bottom: var(--space-6); }
+
+  .hero__statement {
+    /* Second in the hierarchy now, after the Pick My Brain illustration. */
+    font-size: clamp(1.75rem, 1.45rem + 1.1vw, 2.375rem);
+    line-height: 1.1;
+    max-width: 18em;
+    margin-inline: auto;
+  }
+
+  .hero__supporting {
+    margin-top: var(--space-6);
+    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.4375rem);
+    line-height: 1.4;
+    font-weight: 500;
+    max-width: 30em;
+    margin-inline: auto;
+    text-wrap: balance;
+  }
+
+  .hero__context {
+    margin-top: var(--space-4);
+    color: var(--text-secondary);
+    max-width: var(--measure);
+    margin-inline: auto;
+  }
+
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3) var(--space-4);
+    margin-top: var(--space-7);
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 48px;
+    padding: 12px 24px;
+    border-radius: var(--radius-button);
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: box-shadow var(--t-hover) ease, background-color var(--t-hover) ease;
+  }
+  .button--primary {
+    background: var(--forest-ink);
+    color: var(--cream-paper);
+    box-shadow: var(--shadow-subtle);
+  }
+  .button--primary:hover { box-shadow: var(--shadow-subtle-2); text-decoration: none; }
+  .button--outline {
+    border: 1px solid var(--forest-ink);
+    color: var(--forest-ink);
+  }
+  .button--outline:hover { background: var(--hover-bg); text-decoration: none; }
+  /* Wide screens: the text on the left, the drawing on the right. */
+  @media (min-width: 1024px) {
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+      grid-template-areas: "text art";
+      align-items: center;
+      column-gap: var(--space-7);
+      text-align: left;
+    }
+    .hero__text { grid-area: text; }
+    .hero > :global(.brain) { grid-area: art; margin: 0; }
+    .hero__text > * { margin-inline: 0; }
+    .hero__actions { justify-content: flex-start; }
+    .hero__statement { max-width: 14em; }
+  }
+</style>

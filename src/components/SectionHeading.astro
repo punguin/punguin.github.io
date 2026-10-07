@@ -1,0 +1,44 @@
+---
+// The tag pairs the number with the section's contents label (the same words as the TOC);
+// the heading itself says something more.
+interface Props { number: string; label: string; title: string; id: string; lead?: string }
+const { number, label, title, id, lead } = Astro.props;
+// A strip of washi tape per section, in the site's marker colours, each stuck down at its own angle.
+const TAPES = ['var(--sticky-mint)', 'var(--highlighter-yellow)', 'var(--accent-relay)', 'var(--sticky-teal)', 'var(--sticky-blush)', 'var(--highlighter-yellow)'];
+const TILTS = [-1.6, 1.2, -0.8, 1.6, -1.2, 0.9];
+const i = (parseInt(number, 10) - 1 + TAPES.length) % TAPES.length;
+---
+<div class="section-heading">
+  <p class="section-heading__num" aria-hidden="true" style={`--tape: ${TAPES[i]}; --tilt: ${TILTS[i]}deg`}><span class="washi">{number}<span class="section-heading__sep">·</span>{label}</span></p>
+  <h2 id={`${id}-title`}><span class="visually-hidden">{number} · {label}: </span>{title}</h2>
+  {lead && <p class="section-heading__lead" set:html={lead} />}
+</div>
+
+<style>
+  .section-heading {
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--forest-ink);
+    margin-bottom: var(--space-6);
+  }
+  .section-heading__num { margin-bottom: var(--space-4); }
+  /* Washi tape: a translucent strip with faint woven stripes and torn ends, laid on slightly crooked. */
+  .section-heading__num {
+    display: inline-block;
+    transform: rotate(var(--tilt));
+    transform-origin: 0 50%;
+    filter: drop-shadow(0 1px 1px rgb(40 40 20 / 0.12));
+  }
+  .section-heading__sep { margin-inline: 0.5em; opacity: 0.55; }
+  h2 {
+    font-size: var(--text-h2);
+    line-height: 1.02;
+  }
+  .section-heading__lead {
+    margin-top: var(--space-5);
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+    line-height: 1.35;
+    font-weight: 600;
+    max-width: 26em;
+    text-wrap: balance;
+  }
+</style>

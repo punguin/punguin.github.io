@@ -1,0 +1,144 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+interface Props { entry: CollectionEntry<'projects'> }
+const { entry } = Astro.props;
+const p = entry.data;
+const { Content } = await render(entry);
+const isTodo = (v: string) => v.startsWith('[');
+// Each case study's tape sits at its own slight angle.
+const tilt = [-1.4, 1.1, -0.9, 1.5][(parseInt(p.number.split('.')[1], 10) - 1) % 4];
+const meta: [string, string][] = [
+  ['Role', p.role],
+  ['Timing', p.timeline],
+  ['Platform', p.platform.join(', ')],
+  ['Partners', p.partners.join(', ')],
+];
+---
+<article
+  class="project"
+  id={p.id}
+  data-section={p.id}
+  data-accent={p.accent}
+  aria-labelledby={`${p.id}-title`}
+  style={`--accent: var(--accent-${p.accent})`}
+>
+  <div class="project__sentinel" data-sticky-sentinel aria-hidden="true"></div>
+  <div class="project__bar" data-sticky-bar>
+    <p class="project__id" aria-hidden="true" style={`--tilt: ${tilt}deg`}>
+      <span class="washi" style="--tape: var(--accent)"><span class="project__num">{p.number}</span><span class="project__sep">·</span>{p.title}</span>
+    </p>
+  </div>
+
+  <header class="project__header">
+    <h3 class="project__title" id={`${p.id}-title`}>
+      <span class="visually-hidden">{p.number} · {p.title}: </span>{p.summary}
+    </h3>
+    <p class="project__name"><span class="project__name-title">{p.title}</span> <span class="project__name-sub">{p.project}</span></p>
+  </header>
+
+  <dl class="project__meta">
+    <div><dt class="label">Context</dt><dd>{p.context} · {p.domain}</dd></div>
+    {meta.map(([k, v]) => (
+      <div><dt class="label">{k}</dt><dd class={isTodo(v) ? 'is-todo' : undefined}>{v}</dd></div>
+    ))}
+  </dl>
+
+  <div class="prose project__body">
+    <Content />
+  </div>
+</article>
+
+<style>
+  /* Each case study is its own sheet of slightly warmer paper, edged with the same pencil line as
+     the page it sits on (scripts/sheet_border.py). */
+  .project {
+    --case-pad: var(--space-7);
+    --bg: #fffdf8;
+    --room: var(--case-pad); /* wide visuals bleed to this sheet's edge */
+    position: relative;
+    margin-top: var(--space-9);
+    padding: var(--space-5) var(--case-pad) var(--space-8);
+    background: var(--bg);
+    border: 1px solid transparent;
+    border-image: url("../assets/sheet-border.svg") 60 / 18px / 13.2px round;
+  }
+  .project + :global(.project) { margin-top: var(--space-10); }
+  @media (max-width: 767px) {
+    /* Phones: a tighter inner margin so the text keeps its width; the sheet stays inside the page's
+       margin so the two pencil edges don't run side by side. */
+    .project { --case-pad: var(--space-4); }
+  }
+
+  .project__sentinel { height: 1px; margin-bottom: -1px; }
+
+  /* Identifier bar: the tape stays put at rest and while it is stuck at the top of the screen */
+  .project__bar {
+    z-index: 10;
+    background: var(--bg);
+  }
+  @media (min-width: 1024px) {
+    .project__bar { position: sticky; top: 0; }
+    .project__bar.is-stuck { border-bottom: 1px solid var(--border-subtle); }
+  }
+  .project__id {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding-block: var(--space-3);
+  }
+  .project__id .washi { transform: rotate(var(--tilt)); transform-origin: 0 50%; }
+  .project__num { font-variant-numeric: tabular-nums; }
+  .project__sep { margin-inline: 0.5em; opacity: 0.55; }
+  .is-stuck .project__id { padding-block: var(--space-2); }
+
+  .project__header { margin-top: var(--space-5); }
+  .project__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.5rem, 1.9rem + 2vw, 3.4375rem);
+    line-height: 1.04;
+    letter-spacing: var(--tracking-display);
+    max-width: 13em;
+  }
+  .project__name {
+    margin-top: var(--space-5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-3);
+    align-items: baseline;
+    max-width: var(--measure);
+  }
+  .project__name-title { font-weight: 700; font-size: 1.25rem; }
+  .project__name-sub { color: var(--text-secondary); }
+
+  .project__meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-4) var(--space-5);
+    margin-block: var(--space-7) var(--space-7);
+    padding: var(--space-5);
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-card);
+  }
+  .project__meta div { display: grid; gap: var(--space-1); align-content: start; min-width: 0; }
+  .project__meta dd { margin: 0; font-size: 0.9375rem; line-height: 1.45; }
+  .project__meta dd.is-todo { color: var(--placeholder); font-size: var(--text-small); }
+
+  .project__body > :first-child {
+    font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.4375rem);
+    line-height: 1.5;
+    max-width: 32em;
+  }
+  .project__body :global(h4)::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin-bottom: var(--space-3);
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+    outline: 1px solid var(--forest-ink);
+    outline-offset: -1px;
+  }
+</style>

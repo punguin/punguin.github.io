@@ -1,0 +1,130 @@
+---
+/**
+ * Navigator: a true-to-scale miniature of the page in a full-height side column, like the
+ * Navigator panel in drawing tools. The yellow box is the part of the page on screen;
+ * click to jump, drag the box to scroll. Pointer convenience only (the map is
+ * aria-hidden): the table of contents is the accessible equivalent.
+ */
+---
+<aside class="pnav" aria-label="Page navigator" data-pnav hidden>
+  <div class="pnav__head">
+    <span class="pnav__title">Navigator</span>
+    <button class="pnav__toggle" type="button" aria-expanded="true" aria-controls="pnav-map" aria-label="Minimize navigator" data-pnav-toggle>
+      <svg class="pnav__icon pnav__icon--min" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9" /></svg>
+      <svg class="pnav__icon pnav__icon--max" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2.5" width="10" height="11" rx="1.5" /><path d="M5.5 6h5M5.5 8.5h5M5.5 11h3" /></svg>
+    </button>
+  </div>
+  <div class="pnav__body" id="pnav-map" data-pnav-body>
+    <canvas class="pnav__map" aria-hidden="true" data-pnav-map></canvas>
+    <div class="pnav__tip" aria-hidden="true" data-pnav-tip>
+      <span class="pnav__tip-num" data-pnav-tip-num></span>
+      <span class="pnav__tip-label" data-pnav-tip-label></span>
+    </div>
+  </div>
+</aside>
+
+<style>
+  /* A full-height side column on the left (desktop only); the page shifts right to make room
+     (--side-w in global.css). Collapsing it leaves a slim rail with the expand button. */
+  .pnav { display: none; }
+  @media (min-width: 1024px) {
+    .pnav:not([hidden]) {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 20;
+      width: var(--side-w);
+      background: var(--cream-paper);
+      border-right: 1px solid var(--pencil-gray);
+      transition: width var(--t-state) ease;
+    }
+  }
+
+  @media print { .pnav { display: none !important; } }
+
+  .pnav__head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
+    min-height: 40px;
+  }
+  .pnav.is-min .pnav__head { justify-content: center; padding: var(--space-2) 0; }
+  .pnav.is-min .pnav__title { display: none; }
+  .pnav__title {
+    margin-right: auto;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+
+  .pnav__toggle {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-button);
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color var(--t-hover) ease;
+  }
+  .pnav__toggle:hover { background: var(--hover-bg); }
+  .pnav__icon {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+  }
+  .pnav__icon--max { display: none; }
+  .pnav.is-min .pnav__icon--min { display: none; }
+  .pnav.is-min .pnav__icon--max { display: block; }
+
+  .pnav__body {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    padding: var(--space-2) var(--space-3) var(--space-4);
+  }
+  .pnav.is-min .pnav__body { display: none; }
+
+  .pnav__map {
+    display: block;
+    margin-inline: auto;
+    border-radius: var(--radius-button);
+    background: var(--cream-paper);
+    cursor: pointer;
+    touch-action: none;
+  }
+  .pnav__map.is-over-view { cursor: grab; }
+  .pnav.is-dragging .pnav__map { cursor: grabbing; }
+
+  /* Section name while hovering the map, floated to the right of the panel */
+  .pnav__tip {
+    position: absolute;
+    left: calc(100% + var(--space-2));
+    top: 0;
+    display: grid;
+    gap: 1px;
+    padding: 6px 10px;
+    background: var(--text-primary);
+    color: var(--bg);
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    white-space: nowrap;
+    border-radius: var(--radius-button);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--t-hover) ease;
+  }
+  .pnav__tip.is-visible { opacity: 1; }
+  .pnav__tip-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 0.75rem; opacity: 0.75; }
+  .pnav__tip-num:empty { display: none; }
+</style>

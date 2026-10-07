@@ -1,0 +1,21 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <p>Pung Brooks · Design Practice · {year}</p>
+  <p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></p>
+</footer>
+
+<style>
+  .site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding-block: var(--space-5) var(--space-9);
+    border-top: 1px solid var(--border-subtle);
+    font-size: var(--text-small);
+    color: var(--text-tertiary);
+  }
+  .site-footer a { color: var(--text-secondary); }
+</style>

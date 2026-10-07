@@ -1,0 +1,44 @@
+---
+import data from '../content/contact.json';
+---
+<dl class="contact-links">
+  {data.links.map((l) => (
+    <div class={l.placeholder ? 'is-placeholder' : undefined}>
+      <dt class="label">{l.label}</dt>
+      <dd>
+        <a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.value}</a>
+        {l.placeholder && <span class="todo-tag">Placeholder</span>}
+      </dd>
+    </div>
+  ))}
+</dl>
+
+<style>
+  .contact-links {
+    display: grid;
+    gap: 0;
+    margin-top: var(--space-7);
+    padding: var(--space-2) var(--space-5);
+    background: var(--surface);
+    border: 1px solid var(--forest-ink);
+    border-radius: var(--radius-card);
+    max-width: var(--measure);
+  }
+  .contact-links div:last-child { border-bottom: 0; }
+  .contact-links div {
+    display: grid;
+    grid-template-columns: 7em 1fr;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  @media (max-width: 479px) { .contact-links div { grid-template-columns: 1fr; gap: var(--space-1); } }
+  .contact-links dd {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+  .contact-links dd .todo-tag { margin-left: var(--space-3); vertical-align: middle; }
+</style>

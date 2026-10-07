@@ -1,0 +1,57 @@
+---
+import brain from '../content/brain.json';
+// Drawn by scripts/brain_sketch.py. The still pencil drawing is baked to images by scripts/bake_brain.mjs
+// (its grain filter is too costly to re-run every frame); the line and the star stay inline SVG so CSS can draw them.
+import live from '../assets/brain/live.svg?raw';
+import layout from '../assets/brain/layout.json';
+import '../assets/brain/motion.css';
+
+const [VW, VH] = brain.viewBox;
+const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(3)}%`;
+---
+<figure class="brain" role="img" aria-label={brain.description}>
+  <div class="brain__scene" style={`aspect-ratio: ${VW} / ${VH}`}>
+    <img class="bm-paper" src="/illustrations/brain/paper.webp" width={VW * 2} height={VH * 2} alt="" fetchpriority="high" />
+    {layout.map((p) => (
+      <img
+        class={`bm-piece bm-piece--${p.id}`}
+        src={`/illustrations/brain/piece-${p.id}.webp`}
+        width={p.w * 2}
+        height={p.h * 2}
+        alt=""
+        style={`left: ${pct(p.x, VW)}; top: ${pct(p.y, VH)}; width: ${pct(p.w, VW)}; transform-origin: ${(p.ox * 100).toFixed(1)}% ${(p.oy * 100).toFixed(1)}%`}
+      />
+    ))}
+    <Fragment set:html={live} />
+  </div>
+</figure>
+
+<style>
+  .brain {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto var(--space-8);
+  }
+  @media (max-width: 639px) {
+    /* Phones: run to the screen edges so the doodles stay legible. */
+    .brain { width: calc(100% + 2 * var(--gutter)); max-width: none; margin-inline: calc(-1 * var(--gutter)); overflow-x: clip; }
+  }
+
+  .brain__scene {
+    position: relative;
+    width: 100%;
+    /* the hair and neck fade out at the bottom instead of stopping at an edge */
+    mask-image: linear-gradient(180deg, #000 82%, transparent);
+  }
+  .bm-paper,
+  .brain__scene :global(.bm-live) { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+  .bm-piece { position: absolute; display: block; height: auto; }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* No loop: show the finished drawing. */
+    .brain :global(*), .bm-piece { animation: none !important; }
+    .brain :global(.bm-reveal), .brain :global(.bm-extra), .brain :global(.bm-star path) { stroke-dashoffset: 0 !important; }
+    .brain :global(.bm-star-fill) { opacity: 1; }
+  }
+</style>

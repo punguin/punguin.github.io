@@ -1,0 +1,69 @@
+---
+---
+<div class="ssi" aria-hidden="true" data-ssi>
+  <div class="ssi__track" data-ssi-track></div>
+  <div class="ssi__thumb" data-ssi-thumb></div>
+  <div class="ssi__tip" data-ssi-tip>
+    <span class="ssi__num" data-ssi-num></span>
+    <span class="ssi__label" data-ssi-label></span>
+  </div>
+</div>
+
+<style>
+  /* Orientation aid only (aria-hidden): the sticky nav carries the same info accessibly. */
+  .ssi {
+    position: fixed;
+    top: calc(var(--mobile-nav-h) + env(safe-area-inset-top, 0px) + 12px);
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    right: 3px;
+    width: 3px;
+    z-index: 15;
+    pointer-events: none;
+  }
+  @media (min-width: 1024px) { .ssi { display: none; } }
+
+  .ssi__track { position: absolute; inset: 0; }
+  .ssi__track i {
+    position: absolute;
+    left: 0;
+    width: 3px;
+    height: 1px;
+    background: var(--border-strong);
+  }
+  .ssi__thumb {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 32px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity var(--t-state) ease;
+  }
+  .ssi__tip {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    display: grid;
+    gap: 1px;
+    padding: 6px 10px;
+    background: var(--text-primary);
+    color: var(--bg);
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    white-space: nowrap;
+    border-radius: var(--radius-button);
+    opacity: 0;
+    transition: opacity var(--t-state) ease;
+  }
+  .ssi__num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; opacity: 0.75; font-size: 0.75rem; }
+  .ssi__label { font-weight: 500; }
+
+  .ssi.is-active .ssi__thumb, .ssi.is-active .ssi__tip { opacity: 1; }
+  .ssi.is-active .ssi__tip:empty { opacity: 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ssi__thumb, .ssi__tip { transition: none; }
+  }
+</style>
