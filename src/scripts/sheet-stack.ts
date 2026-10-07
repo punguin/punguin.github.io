@@ -1,31 +1,32 @@
-// The white page sits on a loose pile of paper. As the page scrolls into view the sheets
-// underneath start fanned out and the page itself a little crooked; they square up and the page
-// straightens, like a pile being tidied before reading.
+// The white page sits on a loose pile of paper. The first time the reader scrolls far enough
+// (the top of the page a quarter of the way up from the bottom of the screen), the pile is stacked:
+// the sheets underneath drop in one after another and the page lands last. It plays once.
 function initSheetStack(): void {
   const wrap = document.querySelector<HTMLElement>('.sheet-wrap');
   const sheet = wrap?.querySelector<HTMLElement>('.sheet');
-  if (!wrap || !sheet) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    sheet.classList.add('is-settled');
-    return;
-  }
-  let queued = false;
-  const update = (): void => {
-    queued = false;
-    // The wrapper's top, because the page itself is tilted while this runs.
-    const top = wrap.getBoundingClientRect().top;
-    // 0 while the page is still below the fold, 1 once its top is a fifth of the way down the screen.
-    const p = Math.min(1, Math.max(0, (innerHeight - top) / (innerHeight * 0.8)));
-    const fan = Math.pow(1 - p, 2);
-    wrap.style.setProperty('--fan', fan.toFixed(3));
-    sheet.classList.toggle('is-settled', fan === 0);
+  if (!wrap || !sheet || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const TRIGGER = 0.75; // fraction of the screen height
+  // Already past the trigger (a reload partway down) or arriving on a link to a section: just show the pile.
+  if (location.hash || wrap.getBoundingClientRect().top < innerHeight * TRIGGER) return;
+
+  wrap.classList.add('is-waiting');
+  const io = new IntersectionObserver((entries) => {
+    const entry = entries.find((e) => e.isIntersecting);
+    if (!entry) return;
+    io.disconnect();
+    // Jumped straight past it (a link to a later section): show the page at once, no stacking.
+    if (entry.boundingClientRect.top < 0) wrap.classList.remove('is-waiting');
+    else wrap.classList.replace('is-waiting', 'is-stacking');
+  }, { rootMargin: `0px 0px -${(1 - TRIGGER) * 100}% 0px` });
+  io.observe(wrap);
+  // Once the page has landed, drop the animation so it no longer holds a transform (sticky bars and the TOC stay simple).
+  const landed = (e: AnimationEvent): void => {
+    if (e.target !== sheet) return; // animations inside the page bubble up here too
+    sheet.removeEventListener('animationend', landed);
+    wrap.classList.remove('is-stacking');
   };
-  const queue = (): void => {
-    if (!queued) { queued = true; requestAnimationFrame(update); }
-  };
-  addEventListener('scroll', queue, { passive: true });
-  addEventListener('resize', queue);
-  update();
+  sheet.addEventListener('animationend', landed);
 }
 
 initSheetStack();

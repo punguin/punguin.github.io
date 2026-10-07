@@ -286,12 +286,12 @@ a.external::after {
 
 /* ---------- Sheet: the white page that holds sections 01 onward ---------- */
 
-/* A loose pile of paper: a few more sheets lie at angles under the top of the page, and the page
-   itself arrives a little crooked and straightens as it scrolls into view. --fan (0 to 1) is set by
-   sheet-stack.ts from the page's position; 0 is the settled pile. */
+/* A loose pile of paper: a few more sheets lie at angles under the top of the page. When the reader
+   scrolls far enough (sheet-stack.ts), the pile is stacked once: each sheet is dropped onto the one
+   below, a beat apart, and the page with the writing lands last. Without JS, or with reduced motion,
+   the pile is simply there. */
 .sheet-wrap {
   position: relative;
-  --fan: 0;
   --stack-k: 1;
 }
 .sheet-pile {
@@ -312,31 +312,48 @@ a.external::after {
   border-radius: 2px;
   box-shadow: var(--shadow-subtle-2);
   transform-origin: var(--o);
-  transform:
-    translate(calc(var(--x) * (1 + 2.5 * var(--fan)) * var(--stack-k)), calc(var(--y) * (1 + 3 * var(--fan)) * var(--stack-k)))
-    rotate(calc(var(--r) * (1 + 1.6 * var(--fan)) * var(--stack-k)));
-  transition: transform 180ms ease-out;
+  transform: translate(calc(var(--x) * var(--stack-k)), calc(var(--y) * var(--stack-k))) rotate(calc(var(--r) * var(--stack-k)));
 }
-/* Resting angles and offsets chosen so a corner or an edge of each sheet peeks out from under the page. */
-.sheet-pile span:nth-child(1) { --r: -2.6deg; --x: -6px; --y: -4px; --o: 30% 0; background: #f6f4ec; }
-.sheet-pile span:nth-child(2) { --r: 2.2deg; --x: 8px; --y: -10px; --o: 75% 0; background: #faf8f2; }
-.sheet-pile span:nth-child(3) { --r: -1deg; --x: -18px; --y: 6px; --o: 50% 0; }
+/* Resting angles and offsets chosen so a corner or an edge of each sheet peeks out from under the page.
+   --dx / --dr: where each one is dropped from, so they land from slightly different directions. */
+.sheet-pile span:nth-child(1) { --r: -2.6deg; --x: -6px; --y: -4px; --o: 30% 0; --dx: -40px; --dr: -5deg; background: #f6f4ec; }
+.sheet-pile span:nth-child(2) { --r: 2.2deg; --x: 8px; --y: -10px; --o: 75% 0; --dx: 36px; --dr: 4deg; background: #faf8f2; }
+.sheet-pile span:nth-child(3) { --r: -1deg; --x: -18px; --y: 6px; --o: 50% 0; --dx: -24px; --dr: -3deg; }
+
+/* Waiting to be stacked: nothing on the desk yet. */
+.sheet-wrap.is-waiting .sheet-pile span,
+.sheet-wrap.is-waiting .sheet { opacity: 0; }
+/* Stacking: each sheet drops in from a little above, turned a little more, and eases flat. */
+.sheet-wrap.is-stacking .sheet-pile span { animation: sheet-drop 620ms cubic-bezier(0.2, 0.7, 0.25, 1) both; }
+.sheet-wrap.is-stacking .sheet-pile span:nth-child(2) { animation-delay: 150ms; }
+.sheet-wrap.is-stacking .sheet-pile span:nth-child(3) { animation-delay: 300ms; }
+.sheet-wrap.is-stacking .sheet { animation: page-drop 760ms cubic-bezier(0.2, 0.7, 0.25, 1) 470ms both; }
+@keyframes sheet-drop {
+  from {
+    opacity: 0;
+    transform: translate(calc((var(--x) + var(--dx)) * var(--stack-k)), calc(var(--y) * var(--stack-k) - 70px)) rotate(calc((var(--r) + var(--dr)) * var(--stack-k)));
+  }
+  35% { opacity: 1; }
+}
+@keyframes page-drop {
+  from { opacity: 0; transform: translate(calc(-14px * var(--stack-k)), -56px) rotate(calc(-2.2deg * var(--stack-k))); }
+  35% { opacity: 1; }
+  to { opacity: 1; transform: none; }
+}
 
 .sheet {
   --bg: var(--surface);
   position: relative;
   transform-origin: 40% 0;
-  transition: transform 180ms ease-out; /* smooths out scroll-wheel steps */
-  transform: translate(calc(-6px * var(--fan) * var(--stack-k)), calc(26px * var(--fan) * var(--stack-k))) rotate(calc(-1.3deg * var(--fan) * var(--stack-k)));
   --room: var(--sheet-pad); /* wide visuals bleed to the page edge, never past it */
   background: var(--surface);
   border: 1px solid var(--border-subtle);
   border-radius: 2px;
   /* Two straight sheets under the whole length of the page, so the pile reads all the way down. */
-  --s1x: calc((-5px - 16px * var(--fan)) * var(--stack-k));
-  --s1y: calc((6px + 18px * var(--fan)) * var(--stack-k));
-  --s2x: calc((6px + 20px * var(--fan)) * var(--stack-k));
-  --s2y: calc((12px + 30px * var(--fan)) * var(--stack-k));
+  --s1x: calc(-5px * var(--stack-k));
+  --s1y: calc(6px * var(--stack-k));
+  --s2x: calc(6px * var(--stack-k));
+  --s2y: calc(12px * var(--stack-k));
   box-shadow:
     var(--s1x) var(--s1y) 0 -1px var(--surface),
     var(--s1x) var(--s1y) 0 0 var(--border-subtle),
@@ -354,7 +371,6 @@ a.external::after {
   .sheet { --sheet-pad-x: calc(var(--gutter) - 8px); }
 }
 /* The TOC lives inside the white page, in a column right of the text (desktop only). */
-.sheet.is-settled { transform: none; } /* no stacking context or layer once the page lies flat */
 .sheet__body { min-width: 0; }
 .sheet .toc { display: none; }
 @media (min-width: 1024px) {
