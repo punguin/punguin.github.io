@@ -83,7 +83,7 @@
   --doc-max: 840px;
   --toc-width: 210px;
   --toc-gap: 64px;
-  --toc-top: 96px;
+  --toc-top: 24px;                 /* where the TOC sticks once it reaches the top */
   --anchor-offset: 96px;
   --mobile-nav-h: 0px;
 
@@ -275,7 +275,8 @@ a.external::after {
       minmax(var(--gutter), 1fr);
   }
   .document { grid-column: 2; }
-  .toc { display: block; grid-column: 4; }
+  /* --toc-start (set by document-nav.ts) lines the TOC up with section 01; it scrolls with the page until it reaches the top */
+  .toc { display: block; grid-column: 4; padding-top: var(--toc-start, 0px); }
 }
 
 /* ---------- Prose ---------- */

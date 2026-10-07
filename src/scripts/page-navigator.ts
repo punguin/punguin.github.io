@@ -26,7 +26,6 @@ function initNavigator(panel: HTMLElement) {
   const canvas = panel.querySelector<HTMLCanvasElement>('[data-pnav-map]')!;
   const ctx = canvas.getContext('2d');
   const toggle = panel.querySelector<HTMLButtonElement>('[data-pnav-toggle]')!;
-  const pct = panel.querySelector<HTMLElement>('[data-pnav-pct]')!;
   const tip = panel.querySelector<HTMLElement>('[data-pnav-tip]')!;
   const tipNum = panel.querySelector<HTMLElement>('[data-pnav-tip-num]')!;
   const tipLabel = panel.querySelector<HTMLElement>('[data-pnav-tip-label]')!;
@@ -77,7 +76,7 @@ function initNavigator(panel: HTMLElement) {
     if (remember) {
       try { localStorage.setItem(STORE_KEY, min ? '1' : '0'); } catch { /* storage unavailable */ }
     }
-    if (!min) requestAnimationFrame(layout);
+    requestAnimationFrame(min ? place : layout);
   };
   // Open by default; on phones it starts as the small bar so it doesn't cover the text.
   const stored = readStored();
@@ -186,9 +185,6 @@ function initNavigator(panel: HTMLElement) {
     frame = 0;
     if (!W || isMin()) return;
     const vh = window.innerHeight;
-    const max = pageH - vh;
-    const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-    pct.textContent = `${Math.round(progress * 100)}%`;
 
     const c = ctx!;
     c.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -256,6 +252,15 @@ function initNavigator(panel: HTMLElement) {
     canvas.height = Math.round(H * dpr);
     measure();
     draw();
+    place();
+  }
+
+  /** Bottom left, just outside the content column when the margin has room (as the TOC sits on the right). */
+  function place() {
+    const gap = 12;
+    const docLeft = doc!.getBoundingClientRect().left;
+    const w = panel.offsetWidth;
+    panel.style.left = docLeft - 2 * gap >= w ? `${Math.round(docLeft - gap - w)}px` : '';
   }
 
   let layoutTimer = 0;
