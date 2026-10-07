@@ -9,7 +9,7 @@ const { section } = Astro.props;
 const { Content } = await render(section);
 const projects = await getSortedProjects();
 ---
-<DocumentSection id={section.data.id} number={section.data.number} title={section.data.title} lead={section.data.lead}>
+<DocumentSection id={section.data.id} number={section.data.number} label={section.data.navLabel} title={section.data.title} lead={section.data.lead}>
   <div class="prose"><Content /></div>
 
   <ol class="work-index" role="list">

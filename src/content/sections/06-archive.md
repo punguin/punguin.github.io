@@ -1,7 +1,7 @@
 ---
 id: archive
 number: "06"
-title: Archive / Appendix
+title: Where I started
 navLabel: Archive
 order: 6
 ---

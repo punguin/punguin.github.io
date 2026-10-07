@@ -1,10 +1,12 @@
 ---
-interface Props { number: string; title: string; id: string; lead?: string }
-const { number, title, id, lead } = Astro.props;
+// The tag pairs the number with the section's contents label (the same words as the TOC);
+// the heading itself says something more.
+interface Props { number: string; label: string; title: string; id: string; lead?: string }
+const { number, label, title, id, lead } = Astro.props;
 ---
 <div class="section-heading">
-  <p class="section-heading__num" aria-hidden="true"><span class="tag">{number}</span></p>
-  <h2 id={`${id}-title`}><span class="visually-hidden">{number} · </span>{title}</h2>
+  <p class="section-heading__num" aria-hidden="true"><span class="tag">{number}<span class="section-heading__sep">·</span>{label}</span></p>
+  <h2 id={`${id}-title`}><span class="visually-hidden">{number} · {label}: </span>{title}</h2>
   {lead && <p class="section-heading__lead" set:html={lead} />}
 </div>
 
@@ -16,6 +18,7 @@ const { number, title, id, lead } = Astro.props;
   }
   .section-heading__num { margin-bottom: var(--space-4); }
   .section-heading__num .tag { background: transparent; border: 1px solid var(--forest-ink); }
+  .section-heading__sep { margin-inline: 0.5em; opacity: 0.6; }
   h2 {
     font-size: var(--text-h2);
     line-height: 1.02;

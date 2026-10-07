@@ -1,7 +1,7 @@
 ---
 id: how-i-work
 number: "01"
-title: How I work
+title: Simple language for complex problems
 navLabel: How I work
 order: 1
 ---

@@ -1,7 +1,7 @@
 ---
 id: contact
 number: "05"
-title: Contact
+title: Working together
 navLabel: Contact
 order: 5
 lead: Looking for thoughtful design leadership on a <mark>complicated problem</mark>?

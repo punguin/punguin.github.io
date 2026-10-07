@@ -1,10 +1,10 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-interface Props { id: string; number: string; title: string; lead?: string }
-const { id, number, title, lead } = Astro.props;
+interface Props { id: string; number: string; label: string; title: string; lead?: string }
+const { id, number, label, title, lead } = Astro.props;
 ---
 <section class="doc-section" id={id} aria-labelledby={`${id}-title`} data-section={id}>
-  <SectionHeading id={id} number={number} title={title} lead={lead} />
+  <SectionHeading id={id} number={number} label={label} title={title} lead={lead} />
   <slot />
 </section>
 

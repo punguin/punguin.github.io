@@ -1,7 +1,7 @@
 ---
 id: experience
 number: "04"
-title: Experience
+title: Fifteen years of product work
 navLabel: Experience
 order: 4
 ---

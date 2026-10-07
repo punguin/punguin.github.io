@@ -38,7 +38,7 @@ const description =
         const d = entry.data;
         if (d.id === 'selected-work') return <SelectedWork section={entry} />;
         return (
-          <DocumentSection id={d.id} number={d.number} title={d.title} lead={d.lead}>
+          <DocumentSection id={d.id} number={d.number} label={d.navLabel} title={d.title} lead={d.lead}>
             <div class={`prose prose--${d.id}`}><Content /></div>
             {d.id === 'experience' && <ExperienceTimeline />}
             {d.id === 'contact' && <ContactLinks />}
