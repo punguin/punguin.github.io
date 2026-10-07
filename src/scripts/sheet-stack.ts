@@ -1,13 +1,13 @@
-// The white page sits on a loose pile of paper. The first time the reader scrolls far enough
-// (the top of the page a quarter of the way up from the bottom of the screen), the pile is stacked:
-// the sheets underneath drop in one after another and the page lands last. It plays once.
+// The first time the reader scrolls far enough (the top of the white page a quarter of the way up
+// from the bottom of the screen), the page is set down: it drops in turned a little and straightens
+// as it lands. It plays once.
 function initSheetStack(): void {
   const wrap = document.querySelector<HTMLElement>('.sheet-wrap');
   const sheet = wrap?.querySelector<HTMLElement>('.sheet');
   if (!wrap || !sheet || !('IntersectionObserver' in window)) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const TRIGGER = 0.75; // fraction of the screen height
-  // Already past the trigger (a reload partway down) or arriving on a link to a section: just show the pile.
+  // Already past the trigger (a reload partway down) or arriving on a link to a section: just show the page.
   if (location.hash || wrap.getBoundingClientRect().top < innerHeight * TRIGGER) return;
 
   wrap.classList.add('is-waiting');
