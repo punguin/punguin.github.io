@@ -31,13 +31,11 @@
     right: var(--space-4);
     bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
     z-index: 20;
-    width: 220px;
     background: var(--cream-paper);
     border: 1px solid var(--pencil-gray);
     border-radius: var(--radius-nav);
     box-shadow: var(--shadow-subtle-2);
   }
-  .pnav.is-min { width: auto; }
 
   @media print { .pnav { display: none !important; } }
 
@@ -97,7 +95,7 @@
 
   .pnav__map {
     display: block;
-    width: 100%;
+    margin-inline: auto;
     border-radius: var(--radius-button);
     background: var(--cream-paper);
     cursor: pointer;

@@ -1,14 +1,14 @@
 /**
  * Navigator panel: a true-to-scale miniature of the page, like the Navigator in drawing tools.
  *
- *  - The map is the whole browser width scaled down uniformly, so the yellow box has the
- *    exact proportions of the window. When the page is longer than the panel, the map
- *    slides to keep the box in view.
- *  - A rail on the left shows the whole page length at once, with section numbers.
- *  - Click to jump, drag the box (or the rail) to scroll, hover for the section name.
+ *  - The whole page is scaled down uniformly to fit the panel's height (at most half the
+ *    window), and the map's width follows from that scale, so the yellow box has the
+ *    exact proportions of the window and the entire page is always in view.
+ *  - Section numbers run down the left, the current section inked.
+ *  - Click to jump, drag the box to scroll, hover for the section name.
  *
- * Page content is measured once per layout change into a tall offscreen canvas;
- * scrolling only copies the visible slice and redraws the box and the rail.
+ * Page content is measured once per layout change into an offscreen canvas;
+ * scrolling only redraws the box and the section marks.
  */
 
 type Section = { id: string; number: string; label: string; top: number; bottom: number };
@@ -49,8 +49,9 @@ function initNavigator(panel: HTMLElement) {
     names.set(a.dataset.spy!, { number: a.querySelector('.mnav__n')?.textContent ?? '', label: a.dataset.full ?? '' });
   });
 
-  const RAIL = 34; // whole-page overview with section numbers
+  const RAIL = 34; // section numbers
   const GAP = 6;
+  const MAX_MAP_W = 200; // a short page would otherwise make a very wide map
   let W = 0; // canvas CSS width
   let H = 0; // canvas CSS height
   let mapX = 0; // left edge of the scaled map
@@ -58,8 +59,6 @@ function initNavigator(panel: HTMLElement) {
   let dpr = 1;
   let pageH = 1;
   let s = 1; // uniform map scale: page px -> map px
-  let rs = 1; // rail scale: page px -> rail px (whole page fits)
-  let offset = 0; // how far the map has slid, in map px
   let sections: Section[] = [];
   const base = document.createElement('canvas');
   const bctx = base.getContext('2d')!;
@@ -174,7 +173,7 @@ function initNavigator(panel: HTMLElement) {
     bars.forEach((b, i) => { b.style.position = ''; b.classList.toggle('is-stuck', wasStuck[i]); });
 
     base.width = Math.ceil(mapW * dpr);
-    base.height = Math.min(Math.ceil(pageH * s * dpr), 32000);
+    base.height = Math.ceil(H * dpr);
     bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     bctx.fillStyle = PAPER;
     bctx.fillRect(0, 0, mapW, pageH * s);
@@ -195,40 +194,28 @@ function initNavigator(panel: HTMLElement) {
     c.setTransform(dpr, 0, 0, dpr, 0, 0);
     c.clearRect(0, 0, W, H);
 
-    // Map: slide so the box stays centred, clamped at the ends of the page.
-    const boxY = window.scrollY * s;
-    const boxH = vh * s;
-    offset = Math.max(0, Math.min(boxY + boxH / 2 - H / 2, pageH * s - H));
-    c.save();
-    c.beginPath();
-    c.rect(mapX, 0, mapW, H);
-    c.clip();
-    c.fillStyle = PAPER;
-    c.fillRect(mapX, 0, mapW, H);
+    // Map: the whole page, then the window at exactly its own proportions.
     c.setTransform(1, 0, 0, 1, 0, 0);
-    const srcH = Math.min(H * dpr, base.height - offset * dpr);
-    if (srcH > 0) c.drawImage(base, 0, offset * dpr, base.width, srcH, mapX * dpr, 0, base.width, srcH);
+    c.drawImage(base, Math.round(mapX * dpr), 0);
     c.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    // The window, at exactly its own proportions: highlighter wash and ink outline.
-    const by = boxY - offset;
-    c.fillStyle = hexAlpha(YELLOW, 0.3);
+    const by = window.scrollY * s;
+    const boxH = Math.max(vh * s, 4);
+    c.fillStyle = hexAlpha(YELLOW, 0.45);
     c.fillRect(mapX, by, mapW, boxH);
-    c.restore();
     c.strokeStyle = INK;
-    c.lineWidth = 1.5;
-    roundRect(c, mapX + 0.75, by + 0.75, mapW - 1.5, boxH - 1.5, 2);
+    c.lineWidth = 1.25;
+    roundRect(c, mapX + 0.625, by + 0.625, mapW - 1.25, boxH - 1.25, 1.5);
     c.stroke();
 
-    // Rail: the whole page at once, one pencil line per section, the current one inked.
+    // Section marks: one pencil line per section, the current one inked, with its number.
     const current = currentSection();
     c.font = `500 9px ${MONO}`;
     c.textBaseline = 'top';
     c.textAlign = 'right';
     let lastLabel = -Infinity;
     for (const sec of sections) {
-      const y0 = sec.top * rs;
-      const y1 = sec.bottom * rs;
+      const y0 = sec.top * s;
+      const y1 = sec.bottom * s;
       const active = sec === current;
       c.fillStyle = active ? INK : PENCIL;
       c.fillRect(RAIL - 4, y0 + 1, active ? 2 : 1, Math.max(y1 - y0 - 2, 1));
@@ -237,11 +224,6 @@ function initNavigator(panel: HTMLElement) {
       c.fillText(sec.number, RAIL - 8, ly);
       lastLabel = ly;
     }
-    // Where the window sits on the whole page
-    c.fillStyle = hexAlpha(YELLOW, 0.9);
-    c.fillRect(RAIL - 5, window.scrollY * rs, 4, Math.max(vh * rs, 3));
-    c.fillStyle = INK;
-    c.fillRect(RAIL - 5, window.scrollY * rs, 4, 1);
   }
   const schedule = () => { if (!frame) frame = requestAnimationFrame(draw); };
 
@@ -257,15 +239,18 @@ function initNavigator(panel: HTMLElement) {
     if (isMin()) { schedule(); return; }
     const body = canvas.parentElement!;
     const bs = getComputedStyle(body);
-    W = Math.floor(body.clientWidth - parseFloat(bs.paddingLeft) - parseFloat(bs.paddingRight));
     const head = panel.querySelector<HTMLElement>('.pnav__head')!.offsetHeight;
-    H = Math.round(Math.min(360, Math.max(140, window.innerHeight * 0.42 - head)));
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    mapX = RAIL + GAP;
-    mapW = W - mapX;
-    s = mapW / document.documentElement.clientWidth;
+    const viewW = document.documentElement.clientWidth;
     pageH = Math.max(document.documentElement.scrollHeight, 1);
-    rs = (H - 2) / pageH;
+    // Fit the whole page into at most half the window height; width follows the same scale.
+    const maxH = Math.floor(window.innerHeight * 0.5 - head - parseFloat(bs.paddingBottom) - 2);
+    s = Math.min(maxH / pageH, MAX_MAP_W / viewW);
+    H = Math.max(1, Math.floor(pageH * s));
+    mapW = Math.max(1, Math.round(viewW * s));
+    mapX = RAIL + GAP;
+    W = mapX + mapW;
+    dpr = Math.min(window.devicePixelRatio || 1, 3);
+    canvas.style.width = `${W}px`;
     canvas.style.height = `${H}px`;
     canvas.width = Math.round(W * dpr);
     canvas.height = Math.round(H * dpr);
@@ -287,48 +272,48 @@ function initNavigator(panel: HTMLElement) {
     const r = canvas.getBoundingClientRect();
     return { x: e.clientX - r.left, y: e.clientY - r.top };
   };
-  const onRail = (x: number) => x < mapX - GAP / 2;
-  const pageYAt = (x: number, y: number) => (onRail(x) ? y / rs : (offset + y) / s);
-  const overBox = (x: number, y: number) => {
-    const py = pageYAt(x, y);
+  const pageYAt = (y: number) => y / s;
+  const overBox = (y: number) => {
+    const py = pageYAt(y);
     return py >= window.scrollY && py <= window.scrollY + window.innerHeight;
   };
   const instant = (top: number) => window.scrollTo({ top, behavior: 'instant' as ScrollBehavior });
-  let drag: { startY: number; startScroll: number; k: number } | null = null;
+  // Where in the window the pointer grabbed the box, in page px, so the box stays under the pointer.
+  let grab: number | null = null;
 
   canvas.addEventListener('pointerdown', (e) => {
     if (e.button !== 0) return;
     e.preventDefault();
     canvas.setPointerCapture(e.pointerId);
-    const p = local(e);
-    const k = onRail(p.x) ? rs : s;
-    if (!overBox(p.x, p.y)) {
+    const y = local(e).y;
+    if (overBox(y)) {
+      grab = pageYAt(y) - window.scrollY;
+    } else {
       // Jump so the clicked point lands in the middle of the window, then keep following a drag.
-      const top = pageYAt(p.x, p.y) - window.innerHeight / 2;
-      instant(top);
+      grab = window.innerHeight / 2;
+      instant(pageYAt(y) - grab);
     }
-    drag = { startY: e.clientY, startScroll: window.scrollY, k };
     panel.classList.add('is-dragging');
     hideTip();
   });
 
   canvas.addEventListener('pointermove', (e) => {
-    const p = local(e);
-    if (drag) {
-      instant(drag.startScroll + (e.clientY - drag.startY) / drag.k);
+    const y = local(e).y;
+    if (grab !== null) {
+      instant(pageYAt(y) - grab);
       return;
     }
-    canvas.classList.toggle('is-over-view', overBox(p.x, p.y));
-    showTip(p.x, p.y);
+    canvas.classList.toggle('is-over-view', overBox(y));
+    showTip(y);
   });
 
-  const endDrag = () => { drag = null; panel.classList.remove('is-dragging'); };
+  const endDrag = () => { grab = null; panel.classList.remove('is-dragging'); };
   canvas.addEventListener('pointerup', endDrag);
   canvas.addEventListener('pointercancel', endDrag);
   canvas.addEventListener('pointerleave', hideTip);
 
-  function showTip(x: number, y: number) {
-    const sec = sectionAt(pageYAt(x, y));
+  function showTip(y: number) {
+    const sec = sectionAt(pageYAt(y));
     tipNum.textContent = sec ? sec.number : '';
     tipLabel.textContent = sec ? sec.label : 'Top of document';
     tip.style.top = `${Math.max(0, y + canvas.offsetTop - tip.offsetHeight / 2)}px`;
