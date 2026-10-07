@@ -337,13 +337,25 @@ a.external::after {
 
 /* The page edge already marks where section 01 starts. */
 .sheet__body > .doc-section:first-child .section-heading { border-top: 0; padding-top: 0; }
-/* Sticky project bars reach the page's left edge so nothing shows beside them. */
+/* Sticky project bars reach the case sheet's edges so nothing shows beside them. */
 .sheet .project__bar {
-  margin-inline: calc(-1 * var(--sheet-pad-x, var(--sheet-pad)));
-  padding-inline: var(--sheet-pad-x, var(--sheet-pad));
+  margin-inline: calc(-1 * var(--case-pad));
+  padding-inline: var(--case-pad);
 }
-@media (min-width: 1024px) {
-  .sheet .project__bar { margin-right: 0; padding-right: 0; }
+
+/* Washi tape label (section and case-study tags): a translucent strip with faint woven stripes and
+   torn ends. Set --tape to its colour; tilt the element that holds it. */
+.washi {
+  display: inline-block;
+  padding: 7px 20px 6px 18px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--forest-ink);
+  background:
+    repeating-linear-gradient(100deg, rgb(255 255 255 / 0.22) 0 5px, transparent 5px 11px),
+    color-mix(in srgb, var(--tape) 88%, transparent);
+  clip-path: polygon(4px 0, calc(100% - 3px) 0, 100% 14%, calc(100% - 4px) 30%, 100% 47%, calc(100% - 2px) 63%, 100% 80%, calc(100% - 4px) 100%, 2px 100%, 0 86%, 4px 70%, 1px 52%, 4px 36%, 0 20%);
 }
 
 /* ---------- Prose ---------- */

@@ -2,7 +2,7 @@
 id: amazon-relay
 number: "03.1"
 title: Amazon Relay
-navLabel: Relay
+navLabel: Amazon Relay
 company: Amazon
 context: Amazon Middle Mile / Relay
 project: Relay mobile application redesign

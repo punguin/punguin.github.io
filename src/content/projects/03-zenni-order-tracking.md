@@ -2,7 +2,7 @@
 id: zenni-order-tracking
 number: "03.3"
 title: Zenni Order Tracking
-navLabel: Tracking
+navLabel: Zenni Order Tracking
 company: Zenni Optical
 context: Zenni Optical
 project: Enhanced Order Tracking, the post-purchase shipment and order-status experience

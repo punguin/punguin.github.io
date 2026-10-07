@@ -2,7 +2,7 @@
 id: zenni-account
 number: "03.2"
 title: Zenni Account
-navLabel: Account
+navLabel: Zenni Account
 company: Zenni Optical
 context: Zenni Optical
 project: Account ecosystem and account foundation

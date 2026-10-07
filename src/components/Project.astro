@@ -5,6 +5,8 @@ const { entry } = Astro.props;
 const p = entry.data;
 const { Content } = await render(entry);
 const isTodo = (v: string) => v.startsWith('[');
+// Each case study's tape sits at its own slight angle.
+const tilt = [-1.4, 1.1, -0.9, 1.5][(parseInt(p.number.split('.')[1], 10) - 1) % 4];
 const meta: [string, string][] = [
   ['Role', p.role],
   ['Timing', p.timeline],
@@ -20,15 +22,15 @@ const meta: [string, string][] = [
   aria-labelledby={`${p.id}-title`}
   style={`--accent: var(--accent-${p.accent})`}
 >
+  <!-- a paperclip holding the case sheet to the page -->
+  <svg class="project__clip" viewBox="0 0 26 78" aria-hidden="true">
+    <path d="M7 22 V60 a6 6 0 0 0 12 0 V12 a8 8 0 0 0 -16 0 V64 a10 10 0 0 0 20 0 V26" />
+    <path class="project__clip-shine" d="M7 22 V60 a6 6 0 0 0 12 0 V12 a8 8 0 0 0 -16 0 V64 a10 10 0 0 0 20 0 V26" />
+  </svg>
   <div class="project__sentinel" data-sticky-sentinel aria-hidden="true"></div>
   <div class="project__bar" data-sticky-bar>
-    <p class="project__id">
-      <span class="project__chip">
-        <span class="project__num">{p.number}</span>
-        <span class="project__sep" aria-hidden="true">·</span>
-        <span class="project__id-expanded">{p.company}</span>
-      </span>
-      <span class="project__id-compact" aria-hidden="true">{p.title}</span>
+    <p class="project__id" aria-hidden="true" style={`--tilt: ${tilt}deg`}>
+      <span class="washi" style="--tape: var(--accent)"><span class="project__num">{p.number}</span><span class="project__sep">·</span>{p.title}</span>
     </p>
   </div>
 
@@ -52,23 +54,60 @@ const meta: [string, string][] = [
 </article>
 
 <style>
+  /* Each case study is its own sheet, clipped onto the page: a slightly warmer paper with a second
+     sheet showing under it, as in a case file. */
   .project {
+    --case-pad: var(--space-7);
+    --bg: #fffdf8;
+    --room: var(--case-pad); /* wide visuals bleed to this sheet's edge */
     position: relative;
-    padding-top: var(--space-10);
+    margin-top: var(--space-9);
+    padding: var(--space-5) var(--case-pad) var(--space-8);
+    background: var(--bg);
+    border: 1px solid var(--border-subtle);
+    box-shadow:
+      4px 5px 0 -1px #faf7ee,
+      4px 5px 0 0 var(--border-subtle),
+      0 1px 2px rgb(40 40 20 / 0.06),
+      0 10px 24px -12px rgb(40 40 20 / 0.18);
   }
-  .project + :global(.project) { padding-top: var(--space-11); }
+  .project + :global(.project) { margin-top: var(--space-10); }
   @media (max-width: 767px) {
-    .project { padding-top: var(--space-9); }
-    .project + :global(.project) { padding-top: var(--space-10); }
+    /* Phones: the case sheet runs nearly to the page edge so the text keeps its width. */
+    .project {
+      --case-pad: var(--space-5);
+      margin-inline: calc(-1 * var(--sheet-pad-x, var(--sheet-pad)) + 6px);
+    }
+  }
+
+  .project__clip {
+    position: absolute;
+    z-index: 11; /* above the sticky bar */
+    top: -30px;
+    left: calc(var(--case-pad) + 8px);
+    width: 22px;
+    height: auto;
+    transform: rotate(-9deg);
+    fill: none;
+    stroke: #7f8782;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    filter: drop-shadow(1px 2px 1px rgb(40 40 20 / 0.22));
+    pointer-events: none;
+  }
+  .project__clip .project__clip-shine {
+    stroke: #fff;
+    stroke-width: 0.8;
+    opacity: 0.55;
+    transform: translate(-0.6px, -0.4px);
   }
 
   .project__sentinel { height: 1px; margin-bottom: -1px; }
 
-  /* Identifier bar: the expanded identifier at rest, the compact sticky header while reading */
+  /* Identifier bar: the tape stays put at rest and while it is stuck at the top of the screen */
   .project__bar {
     z-index: 10;
     background: var(--bg);
-    border-top: 4px solid var(--accent);
   }
   @media (min-width: 1024px) {
     .project__bar { position: sticky; top: 0; }
@@ -77,27 +116,14 @@ const meta: [string, string][] = [
   .project__id {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
     min-height: 48px;
-    padding-top: var(--space-3);
-    font-size: 0.8125rem;
-    color: var(--text-primary);
+    padding-block: var(--space-3);
+    padding-left: 44px; /* clear of the paperclip */
   }
-  .project__chip {
-    display: inline-flex;
-    gap: 6px;
-    padding: 3px 12px;
-    border-radius: var(--radius-pill);
-    background: var(--accent);
-    font-family: var(--font-mono);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
+  .project__id .washi { transform: rotate(var(--tilt)); }
   .project__num { font-variant-numeric: tabular-nums; }
-  .project__id-compact { display: none; font-weight: 600; font-size: var(--text-small); }
+  .project__sep { margin-inline: 0.5em; opacity: 0.55; }
   .is-stuck .project__id { padding-block: var(--space-2); }
-  .is-stuck .project__id-expanded, .is-stuck .project__sep { display: none; }
-  .is-stuck .project__id-compact { display: inline; }
 
   .project__header { margin-top: var(--space-5); }
   .project__title {
