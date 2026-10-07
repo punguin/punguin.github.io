@@ -62,7 +62,7 @@
   --text-h2: clamp(2.5rem, 2rem + 1.6vw, 3.4375rem);        /* 40–55px, display */
   --text-hero: clamp(2.75rem, 1.6rem + 4.4vw, 5.625rem);    /* 44–90px, display */
   --leading-body: 1.6;
-  --measure: 36em;                 /* ≈ 68 characters of Inter at body size */
+  --measure: 40em;                 /* ≈ 75 characters of Inter at body size */
 
   /* Space */
   --space-1: 4px;
@@ -80,7 +80,8 @@
   /* Layout */
   --grid-size: 24px;
   --gutter: 24px;
-  --doc-max: 840px;
+  --doc-max: 1180px;               /* hero + white page (text column, TOC, margins) */
+  --side-w: 0px;                   /* navigator side column, set below */
   --toc-width: 210px;
   --toc-gap: 64px;
   --toc-top: 24px;
@@ -113,8 +114,13 @@
   :root { --gutter: 48px; --toc-gap: clamp(40px, 4vw, 64px); --sheet-pad: 56px; }
 }
 
-@media (min-width: 1200px) {
-  :root { --gutter: 32px; --toc-gap: clamp(32px, 3vw, 56px); }
+@media (min-width: 1024px) and (max-width: 1199px) {
+  :root { --gutter: 24px; --sheet-pad: 40px; }
+}
+
+@media (min-width: 1024px) {
+  :root { --side-w: 160px; }
+  :root.pnav-collapsed { --side-w: 48px; }
 }
 
 /* ---------- Base ---------- */
@@ -262,6 +268,7 @@ a.external::after {
 }
 
 /* ---------- Page shell ---------- */
+/* | navigator side column (fixed, ≥1024px) | margin | document | margin | */
 
 .page-shell {
   display: grid;
@@ -269,50 +276,17 @@ a.external::after {
     minmax(var(--gutter), 1fr)
     minmax(0, var(--doc-max))
     minmax(var(--gutter), 1fr);
+  margin-left: var(--side-w);
+  transition: margin-left var(--t-state) ease;
 }
 
 .document { grid-column: 2; min-width: 0; }
-.toc { display: none; }
-
-@media (min-width: 1024px) {
-  .page-shell {
-    grid-template-columns:
-      minmax(var(--gutter), 1fr)
-      minmax(0, var(--doc-max))
-      var(--toc-gap)
-      var(--toc-width)
-      minmax(var(--gutter), 1fr);
-  }
-  .document { grid-column: 2; }
-  /* --toc-start (set by document-nav.ts) lines the TOC up with the white page; it scrolls with the page until it reaches the top */
-  .toc { display: block; grid-column: 4; padding-top: var(--toc-start, 0px); }
-}
-
-/* Below 1200px there is no room for a navigator column; the panel floats bottom left instead. */
-.pnav-dock { display: contents; }
-
-/* 1200px and up: the document is centred, with the navigator in a column on the left mirroring the TOC on the right. */
-@media (min-width: 1200px) {
-  .page-shell {
-    grid-template-columns:
-      minmax(var(--gutter), 1fr)
-      var(--toc-width)
-      var(--toc-gap)
-      minmax(0, var(--doc-max))
-      var(--toc-gap)
-      var(--toc-width)
-      minmax(var(--gutter), 1fr);
-  }
-  .document { grid-column: 4; }
-  .toc { grid-column: 6; }
-  /* Starts at the sticky offset, so the panel never moves: a map that shifted while dragging would lose the pointer. */
-  .pnav-dock { display: block; grid-column: 2; grid-row: 1; padding-top: var(--toc-top); }
-}
 
 /* ---------- Sheet: the white page that holds sections 01 onward ---------- */
 
 .sheet {
   --bg: var(--surface);
+  position: relative;
   --room: var(--sheet-pad); /* wide visuals bleed to the page edge, never past it */
   background: var(--surface);
   border: 1px solid var(--border-subtle);
@@ -327,12 +301,27 @@ a.external::after {
     margin-inline: calc(-1 * var(--gutter) + 8px);
   }
 }
+/* The TOC lives inside the white page, in a column right of the text (desktop only). */
+.sheet__body { min-width: 0; }
+.sheet .toc { display: none; }
+@media (min-width: 1024px) {
+  .sheet {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--toc-width);
+    column-gap: var(--toc-gap);
+  }
+  .sheet .toc { display: block; }
+}
+
 /* The page edge already marks where section 01 starts. */
-.sheet > .doc-section:first-child .section-heading { border-top: 0; padding-top: 0; }
-/* Sticky project bars span the full page width so nothing shows beside them. */
+.sheet__body > .doc-section:first-child .section-heading { border-top: 0; padding-top: 0; }
+/* Sticky project bars reach the page's left edge so nothing shows beside them. */
 .sheet .project__bar {
   margin-inline: calc(-1 * var(--sheet-pad-x, var(--sheet-pad)));
   padding-inline: var(--sheet-pad-x, var(--sheet-pad));
+}
+@media (min-width: 1024px) {
+  .sheet .project__bar { margin-right: 0; padding-right: 0; }
 }
 
 /* ---------- Prose ---------- */

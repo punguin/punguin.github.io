@@ -74,20 +74,6 @@ if (footer) new IntersectionObserver(() => resolveActive(), { threshold: [0, 1] 
 window.addEventListener('hashchange', () => requestAnimationFrame(resolveActive));
 resolveActive();
 
-// ---------- Side column start ----------
-// Line the TOC up with the white page (section 01) rather than the hero.
-const shell = document.querySelector<HTMLElement>('.page-shell');
-const sheet = document.querySelector<HTMLElement>('.sheet') ?? targets[1];
-if (shell && sheet) {
-  const alignToc = () => {
-    const offset = sheet.getBoundingClientRect().top - shell.getBoundingClientRect().top;
-    shell.style.setProperty('--toc-start', `${Math.max(0, Math.round(offset))}px`);
-  };
-  alignToc();
-  new ResizeObserver(alignToc).observe(shell);
-  document.fonts?.ready.then(alignToc);
-}
-
 // ---------- Sticky project headers ----------
 // Checked on scroll (rAF-throttled) rather than by IntersectionObserver alone: an instant jump
 // from above a project to inside it never changes the sentinel's intersection, so no entry fires.

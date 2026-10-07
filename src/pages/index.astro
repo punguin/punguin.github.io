@@ -25,12 +25,14 @@ const description =
   <a class="skip-link" href="#main">Skip to content</a>
   <MobileDocumentNav outline={outline} />
   <ScrollSectionIndicator />
+  <PageNavigator />
 
   <div class="page-shell">
     <main class="document" id="main">
       <Hero />
 
       <div class="sheet">
+      <div class="sheet__body">
       {rendered.map(({ entry, Content }) => {
         const d = entry.data;
         if (d.id === 'selected-work') return <SelectedWork section={entry} />;
@@ -43,15 +45,11 @@ const description =
         );
       })}
       </div>
+      <TableOfContents outline={outline} />
+      </div>
 
       <SiteFooter />
     </main>
-
-    <TableOfContents outline={outline} />
-
-    <div class="pnav-dock">
-      <PageNavigator />
-    </div>
   </div>
 
   <script>

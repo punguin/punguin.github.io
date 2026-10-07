@@ -1,6 +1,6 @@
 ---
 /**
- * Navigator: a true-to-scale miniature of the page, in its own column left of the document, like the
+ * Navigator: a true-to-scale miniature of the page in a full-height side column, like the
  * Navigator panel in drawing tools. The yellow box is the part of the page on screen;
  * click to jump, drag the box to scroll. Pointer convenience only (the map is
  * aria-hidden): the table of contents is the accessible equivalent.
@@ -24,27 +24,20 @@
 </aside>
 
 <style>
-  .pnav[hidden] { display: none; }
-  .pnav {
-    position: fixed;
-    left: var(--space-4);
-    bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
-    z-index: 20;
-    background: var(--cream-paper);
-    border: 1px solid var(--pencil-gray);
-    border-radius: var(--radius-nav);
-    box-shadow: var(--shadow-subtle-2);
-  }
-
-  /* 1200px and up: pinned near the top of its own column, left of the document. */
-  @media (min-width: 1200px) {
-    :global(.pnav-dock) .pnav {
-      position: sticky;
-      top: var(--toc-top);
-      left: auto;
-      bottom: auto;
-      width: max-content;
-      margin-left: auto;
+  /* A full-height side column on the left (desktop only); the page shifts right to make room
+     (--side-w in global.css). Collapsing it leaves a slim rail with the expand button. */
+  .pnav { display: none; }
+  @media (min-width: 1024px) {
+    .pnav:not([hidden]) {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 20;
+      width: var(--side-w);
+      background: var(--cream-paper);
+      border-right: 1px solid var(--pencil-gray);
+      transition: width var(--t-state) ease;
     }
   }
 
@@ -57,6 +50,8 @@
     padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
     min-height: 40px;
   }
+  .pnav.is-min .pnav__head { justify-content: center; padding: var(--space-2) 0; }
+  .pnav.is-min .pnav__title { display: none; }
   .pnav__title {
     margin-right: auto;
     font-family: var(--font-mono);
@@ -94,7 +89,9 @@
 
   .pnav__body {
     position: relative;
-    padding: 0 var(--space-3) var(--space-3);
+    flex: 1;
+    min-height: 0;
+    padding: var(--space-2) var(--space-3) var(--space-4);
   }
   .pnav.is-min .pnav__body { display: none; }
 

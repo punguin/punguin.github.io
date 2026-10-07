@@ -1,9 +1,9 @@
 /**
  * Navigator panel: a true-to-scale miniature of the page, like the Navigator in drawing tools.
  *
- *  - The whole page is scaled down uniformly to fit the panel's height (at most half the
- *    window), and the map's width follows from that scale, so the yellow box has the
- *    exact proportions of the window and the entire page is always in view.
+ *  - It lives in a full-height side column. The whole page is scaled down uniformly to fit
+ *    that height, and the map's width follows from the same scale, so the yellow box has
+ *    the exact proportions of the reading area and the entire page is always in view.
  *  - Section numbers run down the left, the current section inked.
  *  - Click to jump, drag the box to scroll, hover for the section name.
  *
@@ -17,7 +17,8 @@ type Box = Rect & { fill?: string; stroke?: string };
 type Line = Rect & { kind: 'text' | 'heading' | 'subhead' };
 
 const panel = document.querySelector<HTMLElement>('[data-pnav]');
-// Below this width there is no free column for the panel, so it would cover the text.
+const wideScreen = window.matchMedia('(min-width: 1024px)');
+// Between 1024 and 1199px the open column would squeeze the text, so it starts collapsed there.
 const narrow = window.matchMedia('(max-width: 1199px)');
 const STORE_KEY = 'pung-brooks:navigator-minimized';
 
@@ -51,7 +52,6 @@ function initNavigator(panel: HTMLElement) {
 
   const RAIL = 34; // section numbers
   const GAP = 6;
-  const MAX_MAP_W = 200; // a short page would otherwise make a very wide map
   let W = 0; // canvas CSS width
   let H = 0; // canvas CSS height
   let mapX = 0; // left edge of the scaled map
@@ -72,14 +72,15 @@ function initNavigator(panel: HTMLElement) {
   const isMin = () => panel.classList.contains('is-min');
   const setMinimized = (min: boolean, remember = true) => {
     panel.classList.toggle('is-min', min);
+    document.documentElement.classList.toggle('pnav-collapsed', min);
     toggle.setAttribute('aria-expanded', String(!min));
-    toggle.setAttribute('aria-label', min ? 'Expand navigator' : 'Minimize navigator');
+    toggle.setAttribute('aria-label', min ? 'Expand navigator' : 'Collapse navigator');
     if (remember) {
       try { localStorage.setItem(STORE_KEY, min ? '1' : '0'); } catch { /* storage unavailable */ }
     }
     if (!min) requestAnimationFrame(layout);
   };
-  // Open by default where it has its own column; narrower, it starts as the small bar so it doesn't cover the text.
+  // Open by default; collapsed by default where the open column would squeeze the text.
   const stored = readStored();
   setMinimized(stored ? stored === '1' : narrow.matches, false);
   toggle.addEventListener('click', () => setMinimized(!isMin()));
@@ -92,6 +93,9 @@ function initNavigator(panel: HTMLElement) {
     return parts.length < 4 || parseFloat(parts[3]) > 0.05;
   }
 
+  // The TOC is sticky, so it has no single place on the page; leave it out of the map.
+  const SKIP = '.toc';
+
   /** Fills, borders and text lines inside `root`, in coordinates relative to `origin`. */
   function collect(root: HTMLElement, origin: { x: number; y: number }) {
     const boxes: Box[] = [];
@@ -99,6 +103,7 @@ function initNavigator(panel: HTMLElement) {
     const rel = (r: DOMRect): Rect => ({ x: r.left - origin.x, y: r.top - origin.y, w: r.width, h: r.height });
 
     for (const el of [root, ...Array.from(root.querySelectorAll<HTMLElement>('*'))]) {
+      if (el.closest(SKIP)) continue;
       const r = el.getBoundingClientRect();
       if (r.width < 4 || r.height < 4) continue;
       const st = getComputedStyle(el);
@@ -115,7 +120,7 @@ function initNavigator(panel: HTMLElement) {
     const range = document.createRange();
     for (let n = walker.nextNode(); n; n = walker.nextNode()) {
       const parent = n.parentElement;
-      if (!parent || parent.closest('.visually-hidden, [hidden]')) continue;
+      if (!parent || parent.closest(`.visually-hidden, [hidden], ${SKIP}`)) continue;
       const kind: Line['kind'] = parent.closest('h1, h2, .project__title, .statement')
         ? 'heading'
         : parent.closest('h3, h4, .callout, strong, b, [aria-current]')
@@ -162,7 +167,8 @@ function initNavigator(panel: HTMLElement) {
 
     const scrollY = window.scrollY;
     pageH = Math.max(document.documentElement.scrollHeight, 1);
-    const page = collect(doc!, { x: 0, y: -scrollY });
+    // x is measured from the left edge of the reading area, right of this column.
+    const page = collect(doc!, { x: panel.offsetWidth, y: -scrollY });
 
     sections = Array.from(document.querySelectorAll<HTMLElement>('[data-section]')).map((el) => {
       const r = el.getBoundingClientRect();
@@ -233,15 +239,16 @@ function initNavigator(panel: HTMLElement) {
 
   // ---------- Layout ----------
   function layout() {
-    if (isMin()) { schedule(); return; }
+    if (isMin() || !wideScreen.matches) { schedule(); return; }
     const body = canvas.parentElement!;
     const bs = getComputedStyle(body);
-    const head = panel.querySelector<HTMLElement>('.pnav__head')!.offsetHeight;
-    const viewW = document.documentElement.clientWidth;
+    // The reading area: the window minus this column.
+    const viewW = document.documentElement.clientWidth - panel.offsetWidth;
     pageH = Math.max(document.documentElement.scrollHeight, 1);
-    // Fit the whole page into at most half the window height; width follows the same scale.
-    const maxH = Math.floor(window.innerHeight * 0.5 - head - parseFloat(bs.paddingBottom) - 2);
-    s = Math.min(maxH / pageH, MAX_MAP_W / viewW);
+    // Fit the whole page into the column's full height; width follows the same scale.
+    const maxH = Math.floor(body.clientHeight - parseFloat(bs.paddingTop) - parseFloat(bs.paddingBottom));
+    const maxW = body.clientWidth - parseFloat(bs.paddingLeft) - parseFloat(bs.paddingRight) - RAIL - GAP;
+    s = Math.min(maxH / pageH, maxW / viewW);
     H = Math.max(1, Math.floor(pageH * s));
     mapW = Math.max(1, Math.round(viewW * s));
     mapX = RAIL + GAP;
@@ -260,6 +267,7 @@ function initNavigator(panel: HTMLElement) {
   const relayout = () => { clearTimeout(layoutTimer); layoutTimer = window.setTimeout(layout, 120); };
   new ResizeObserver(relayout).observe(doc);
   window.addEventListener('resize', relayout);
+  wideScreen.addEventListener('change', relayout);
   document.fonts?.ready.then(relayout);
   doc.querySelectorAll('img').forEach((img) => { if (!img.complete) img.addEventListener('load', relayout, { once: true }); });
   window.addEventListener('scroll', schedule, { passive: true });
