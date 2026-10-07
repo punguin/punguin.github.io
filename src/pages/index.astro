@@ -31,6 +31,8 @@ const description =
     <main class="document" id="main">
       <Hero />
 
+      <div class="sheet-wrap">
+      <div class="sheet-pile" aria-hidden="true"><span></span><span></span><span></span></div>
       <div class="sheet">
       <div class="sheet__body">
       {rendered.map(({ entry, Content }) => {
@@ -46,6 +48,7 @@ const description =
       })}
       </div>
       <TableOfContents outline={outline} />
+      </div>
       </div>
 
       <SiteFooter />

@@ -279,23 +279,60 @@ a.external::after {
     minmax(var(--gutter), 1fr);
   margin-left: var(--side-w);
   transition: margin-left var(--t-state) ease;
+  overflow-x: clip; /* the paper pile and the tilted page never cause sideways scrolling */
 }
 
 .document { grid-column: 2; min-width: 0; }
 
 /* ---------- Sheet: the white page that holds sections 01 onward ---------- */
 
+/* A loose pile of paper: a few more sheets lie at angles under the top of the page, and the page
+   itself arrives a little crooked and straightens as it scrolls into view. --fan (0 to 1) is set by
+   sheet-stack.ts from the page's position; 0 is the settled pile. */
+.sheet-wrap {
+  position: relative;
+  --fan: 0;
+  --stack-k: 1;
+}
+.sheet-pile {
+  /* Larger than the page by --bleed on three sides, so the fade mask doesn't clip the corners that stick out. */
+  --bleed: 80px;
+  position: absolute;
+  inset: calc(-1 * var(--bleed)) calc(-1 * var(--bleed)) auto;
+  height: min(100%, 140vh);
+  pointer-events: none;
+  /* the pile only shows round the top of the page, and fades out below */
+  mask-image: linear-gradient(180deg, #000 55%, transparent);
+}
+.sheet-pile span {
+  position: absolute;
+  inset: var(--bleed) var(--bleed) 0;
+  background: var(--surface);
+  border: 1px solid var(--border-default, var(--border-subtle));
+  border-radius: 2px;
+  box-shadow: var(--shadow-subtle-2);
+  transform-origin: var(--o);
+  transform:
+    translate(calc(var(--x) * (1 + 2.5 * var(--fan)) * var(--stack-k)), calc(var(--y) * (1 + 3 * var(--fan)) * var(--stack-k)))
+    rotate(calc(var(--r) * (1 + 1.6 * var(--fan)) * var(--stack-k)));
+  transition: transform 180ms ease-out;
+}
+/* Resting angles and offsets chosen so a corner or an edge of each sheet peeks out from under the page. */
+.sheet-pile span:nth-child(1) { --r: -2.6deg; --x: -6px; --y: -4px; --o: 30% 0; background: #f6f4ec; }
+.sheet-pile span:nth-child(2) { --r: 2.2deg; --x: 8px; --y: -10px; --o: 75% 0; background: #faf8f2; }
+.sheet-pile span:nth-child(3) { --r: -1deg; --x: -18px; --y: 6px; --o: 50% 0; }
+
 .sheet {
   --bg: var(--surface);
   position: relative;
+  transform-origin: 40% 0;
+  transition: transform 180ms ease-out; /* smooths out scroll-wheel steps */
+  transform: translate(calc(-6px * var(--fan) * var(--stack-k)), calc(26px * var(--fan) * var(--stack-k))) rotate(calc(-1.3deg * var(--fan) * var(--stack-k)));
   --room: var(--sheet-pad); /* wide visuals bleed to the page edge, never past it */
   background: var(--surface);
   border: 1px solid var(--border-subtle);
   border-radius: 2px;
-  /* A loose stack of paper: two more sheets peek out from under the page. --fan (set by
-     sheet-stack.ts) spreads them while the page scrolls into view, then they square up. */
-  --fan: 0;
-  --stack-k: 1;
+  /* Two straight sheets under the whole length of the page, so the pile reads all the way down. */
   --s1x: calc((-5px - 16px * var(--fan)) * var(--stack-k));
   --s1y: calc((6px + 18px * var(--fan)) * var(--stack-k));
   --s2x: calc((6px + 20px * var(--fan)) * var(--stack-k));
@@ -310,13 +347,14 @@ a.external::after {
 }
 @media (max-width: 767px) {
   /* Phones: the page reaches nearly to the screen edge so the text keeps its width. */
-  .sheet {
+  .sheet-wrap {
     --stack-k: 0.5; /* a tighter stack where the page nearly meets the screen edge */
-    --sheet-pad-x: calc(var(--gutter) - 8px);
     margin-inline: calc(-1 * var(--gutter) + 8px);
   }
+  .sheet { --sheet-pad-x: calc(var(--gutter) - 8px); }
 }
 /* The TOC lives inside the white page, in a column right of the text (desktop only). */
+.sheet.is-settled { transform: none; } /* no stacking context or layer once the page lies flat */
 .sheet__body { min-width: 0; }
 .sheet .toc { display: none; }
 @media (min-width: 1024px) {
@@ -490,19 +528,31 @@ section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset);
 .practice__consider { margin-top: var(--space-2); }
 .practice__consider .label { margin-right: var(--space-2); }
 
+/* Each sketch is a post-it: square, a darker glue strip along the top, and a bottom edge that
+   lifts off the page, so its shadow is deeper there and deepest at the curling corner. */
 .practice__sketch {
   width: 100%;
   max-width: 200px;
   height: auto;
-  padding: 10px;
-  border-radius: var(--radius-card);
-  background: var(--sketch-bg, var(--sticky-mint));
+  aspect-ratio: 1;
+  object-fit: contain;
+  padding: 18px 12px 24px;
+  border-radius: 1px 1px 2px 2px / 1px 1px 2px 2px;
+  border-bottom-right-radius: 26px 5px;
+  background:
+    linear-gradient(180deg, rgb(26 51 0 / 0.06), transparent 15%),
+    linear-gradient(165deg, transparent 72%, rgb(26 51 0 / 0.07)),
+    var(--sketch-bg, var(--sticky-mint));
+  box-shadow:
+    0 1px 1px rgb(26 51 0 / 0.08),
+    0 12px 14px -10px rgb(26 51 0 / 0.32),
+    12px 18px 16px -14px rgb(26 51 0 / 0.34);
   transform: rotate(var(--sketch-tilt, -1deg));
 }
-.practice__body:nth-of-type(1) { --sketch-bg: var(--sticky-mint); --sketch-tilt: -1.2deg; }
-.practice__body:nth-of-type(2) { --sketch-bg: var(--sticky-teal); --sketch-tilt: 1deg; }
-.practice__body:nth-of-type(3) { --sketch-bg: var(--sticky-blush); --sketch-tilt: -0.8deg; }
-.practice__body:nth-of-type(4) { --sketch-bg: var(--highlighter-yellow); --sketch-tilt: 1.2deg; }
+.practice__body:nth-of-type(1) { --sketch-bg: var(--sticky-mint); --sketch-tilt: -2.2deg; }
+.practice__body:nth-of-type(2) { --sketch-bg: var(--sticky-teal); --sketch-tilt: 1.8deg; }
+.practice__body:nth-of-type(3) { --sketch-bg: var(--sticky-blush); --sketch-tilt: -1.4deg; }
+.practice__body:nth-of-type(4) { --sketch-bg: var(--highlighter-yellow); --sketch-tilt: 2.4deg; }
 .practice__body:nth-of-type(5) { --sketch-bg: var(--accent-relay); --sketch-tilt: -1deg; }
 
 @media (min-width: 720px) {
