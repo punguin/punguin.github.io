@@ -54,7 +54,7 @@
   --font-body: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-hand: Caveat, "Segoe Print", "Bradley Hand", cursive;
   --font-mono: "Roboto Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --tracking-display: 0.04em;
+  --tracking-display: 0;
 
   --text-body: 1.125rem;           /* 18px desktop (style reference body) */
   --text-small: 0.875rem;          /* 14px */
