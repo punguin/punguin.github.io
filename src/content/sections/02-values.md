@@ -10,7 +10,7 @@ order: 2
 
 Products, systems, businesses, efficiency, and design ultimately exist to serve people. The work should make more room for meaningful human life rather than compete with it.
 
-You can see it in the work: [truck drivers’ real working conditions](#amazon-relay), [clinical communication in context](#spokgo), and [customer uncertainty after purchasing glasses](#zenni-order-tracking).
+You can see it in the work: [truck drivers’ real working conditions](/work/amazon-relay/), [clinical communication in context](/work/spokgo/), and [customer uncertainty after purchasing glasses](/work/zenni-order-tracking/).
 
 ### Outcomes over artifacts.
 

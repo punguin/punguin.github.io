@@ -1,7 +1,10 @@
 ---
 import { render, type CollectionEntry } from 'astro:content';
-interface Props { entry: CollectionEntry<'projects'> }
-const { entry } = Astro.props;
+// standalone: the case study is the whole page (src/pages/work/[id].astro), so its title is the
+// page's h1 and the page's own sheet holds it.
+interface Props { entry: CollectionEntry<'projects'>; standalone?: boolean }
+const { entry, standalone = false } = Astro.props;
+const Title = standalone ? 'h1' : 'h3';
 const p = entry.data;
 const { Content } = await render(entry);
 const isTodo = (v: string) => v.startsWith('[');
@@ -15,7 +18,7 @@ const meta: [string, string][] = [
 ];
 ---
 <article
-  class="project"
+  class:list={['project', { 'project--page': standalone }]}
   id={p.id}
   data-section={p.id}
   data-accent={p.accent}
@@ -30,9 +33,9 @@ const meta: [string, string][] = [
   </div>
 
   <header class="project__header">
-    <h3 class="project__title" id={`${p.id}-title`}>
+    <Title class="project__title" id={`${p.id}-title`}>
       <span class="visually-hidden">{p.number} · {p.title}: </span>{p.summary}
-    </h3>
+    </Title>
     <p class="project__name"><span class="project__name-title">{p.title}</span> <span class="project__name-sub">{p.project}</span></p>
   </header>
 
@@ -63,6 +66,16 @@ const meta: [string, string][] = [
     border-image: url("../assets/sheet-border.svg") 60 / 18px / 13.2px round;
   }
   .project + :global(.project) { margin-top: var(--space-10); }
+  /* On its own page the page's sheet already is the case sheet. */
+  .project.project--page {
+    --case-pad: var(--sheet-pad-x, var(--sheet-pad));
+    --bg: var(--surface);
+    margin: 0;
+    padding: 0 0 var(--space-8);
+    background: none;
+    border: 0;
+    border-image: none;
+  }
   @media (max-width: 767px) {
     /* Phones: a tighter inner margin so the text keeps its width; the sheet stays inside the page's
        margin so the two pencil edges don't run side by side. */
