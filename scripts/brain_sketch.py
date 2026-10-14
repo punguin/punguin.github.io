@@ -1,6 +1,7 @@
 """Generate the hero illustration: a page from a designer's sketchbook. A tangle of questions on the
-left, a head in profile full of small doodles (accumulated work, ideas and interests), and one line
-that wanders through it, finds its way out the back of the head and turns into a small star.
+left, a loose cloud of marker orbs, each holding a doodle of a piece of the work on the site (the case
+studies, how I work, values, experience), and one line that wanders between them and turns into a
+small star. Each orb drifts on its own slow loop, so the cloud never moves in step.
 
 Everything is drawn as pencil: variable-width strokes, a second exploratory pass on some lines,
 overshoots, faint construction lines and a couple of erased marks. Colour is marker / highlighter
@@ -8,9 +9,9 @@ streaks that do not line up with the pencil.
 
 Writes into src/assets/brain/:
   paper.svg           the still drawing (also holds the shared pencil filters)
-  piece-<id>.svg      the few doodles that move, each in its own layer so moving them is cheap
+  piece-<id>.svg      one orb (or the note, or the plane) per file, each in its own layer so moving it is cheap
   live.svg            the parts drawn by the loop: the extra scribble, the wandering line, the star
-  motion.css          the loop's keyframes, timed from the line's real geometry
+  motion.css          the line's loop, and a drift for every orb
   layout.json         where each piece sits, in scene units
 PickMyBrain.astro inlines them. Deterministic: cd scripts && python3 brain_sketch.py"""
 import json, math, pathlib, random
@@ -27,7 +28,7 @@ LOOP = 8.0  # seconds
 
 # Soft palette, kept from the site
 TERRACOTTA, MINT, TEAL, LILAC, YELLOW, PINK = "#f3c3a6", "#d5f5c2", "#a8e5e5", "#f6d0ff", "#ffe95c", "#f7c6c0"
-CHARCOAL = "#2a2a24"  # the hair
+
 
 
 # ---------------------------------------------------------------- curves
@@ -218,173 +219,77 @@ def dab(cx, cy, rx, ry, colour, seed, opacity=0.55):
     return f'<path d="{smooth_d(pts, closed=True)}" fill="{colour}" opacity="{opacity}" stroke="none"/>'
 
 
+
 # ---------------------------------------------------------------- the scene
 
-# The brain and everything in it are drawn at their own coordinates (the ellipse below) and placed
-# into the head by INNER: scaled down and moved up, so the head can have believable proportions
-# (eye a little below halfway, a small nose, a chin, a narrow neck) and still hold it all.
-BRAIN = (634, 292, 262, 210)  # cx, cy, rx, ry, before INNER
-INNER_K, INNER_AT = 0.82, (640, 252)  # scale, and where the brain's centre lands in the head
-INNER = (f'translate({INNER_AT[0] - BRAIN[0] * INNER_K:.1f},{INNER_AT[1] - BRAIN[1] * INNER_K:.1f}) '
-         f'scale({INNER_K})')
+TANGLE = (268, 168)  # the scribble of questions, top left
+STAR = (958, 78)     # where the line ends up, top right
+S = 1.0              # doodles are drawn at this scale inside their orbs
+
+# The orbs, one per piece of the site. id: (centre, radius, wash colour, doodle, label, label offset,
+# drift: duration in seconds, how far it wanders as a share of its own size, and a phase).
+ORBS = {
+    "loadboard": ((566, 236), 85, TEAL, "browser", "load board", 65, (13.0, 4.2, 0.10)),
+    "relay": ((404, 360), 69, TERRACOTTA, "truck", "drivers", 58, (11.0, 5.0, 0.55)),
+    "account": ((774, 218), 62, MINT, "glasses", "accounts", 52, (12.2, 5.0, 0.30)),
+    "tracking": ((716, 404), 67, TEAL, "parcel", "where is it?", 60, (10.4, 5.2, 0.80)),
+    "spokgo": ((548, 512), 69, LILAC, "conversation", "care teams", 67, (14.1, 4.6, 0.20)),
+    "values": ((392, 532), 51, PINK, "heart", None, 0, (9.6, 6.0, 0.65)),
+    "system": ((892, 474), 57, YELLOW, "system", "systems", 52, (12.8, 5.0, 0.42)),
+    "experience": ((270, 420), 46, TERRACOTTA, "notebook", None, 0, (10.9, 6.0, 0.05)),
+    "ai": ((664, 104), 41, LILAC, "sparkles", None, 0, (9.1, 6.5, 0.90)),
+    "figma": ((870, 334), 46, MINT, "figma_pen", None, 0, (11.6, 6.0, 0.35)),
+}
+NOTE = ((430, 116), -5, (12.4, 4.0, 0.15))   # the "how I work" sticky note: centre, rotation, drift
+PLANE = ((760, 588), -10, (8.6, 9.0, 0.60))  # play: a paper plane, drifting further than the rest
 
 
-def inner(pt):
-    """A point in brain coordinates, placed in the head."""
-    return (INNER_AT[0] + INNER_K * (pt[0] - BRAIN[0]), INNER_AT[1] + INNER_K * (pt[1] - BRAIN[1]))
+def orb_wash(r, colour, seed):
+    """A marker orb: a soft round fill, highlighter streaks over it, and a pencil ring that doesn't close."""
+    return (dab(0, 0, r, r * 0.96, colour, seed, opacity=0.38)
+            + marker(0, 0, r * 1.75, r * 1.7, colour, seed + 1, angle=-12, opacity=0.5, nib=max(14, r / 3)))
 
 
-HEAD_FRONT = [  # profile facing left: from the front of the neck, up the face, over the forehead, to the crown
-    (532, 668), (535, 632), (540, 604), (516, 590), (476, 580), (436, 572), (406, 560), (384, 544),
-    (370, 526), (365, 508), (367, 492),                      # chin
-    (361, 484), (364, 476), (358, 468), (360, 460),          # closed lips
-    (356, 454), (346, 448), (338, 440), (340, 430),          # a small, rounded nose
-    (350, 418), (356, 404), (355, 386), (351, 370),          # bridge, into the eye
-    (354, 350), (358, 332), (357, 306), (362, 256),          # brow and forehead
-    (378, 194), (410, 130), (462, 82), (530, 52), (610, 40), (652, 40),
+def orb_piece(oid):
+    (cx, cy), r, colour, doodle, label, ly, _ = ORBS[oid]
+    seed = sum(map(ord, oid))
+    p = Pencil(seed)
+    ring = Pencil(seed + 1)
+    ring.circle(0, 0, r * 1.02, w=1.3, sweep=r and 300, start=random.Random(seed).uniform(0, 360))
+    globals()[doodle](p, 0, -6 if label else 0)
+    if label:
+        p.text(0, ly, label, size=19, rot=random.Random(seed).uniform(-6, 6), opacity=0.72)
+    body = (f'<g filter="url(#bm-marker)" style="mix-blend-mode:multiply">{orb_wash(r, colour, seed)}</g>'
+            f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none"><g opacity="0.35">{ring.svg()}</g>'
+            f'<g transform="scale({S})">{p.svg()}</g></g>')
+    m = r + 22
+    return body, (-m, -m, 2 * m, 2 * m)
+
+
+# The wandering line: one loose gesture out of the tangle, between the orbs (never through one, so
+# their drift doesn't pull them off it), a loop, a second thought, then up to the star.
+TRAIL = [
+    (TANGLE[0] + 46, TANGLE[1] + 10), (338, 196), (372, 252), (440, 286), (486, 300), (500, 340),
+    (476, 372), (472, 410), (520, 420), (600, 396), (636, 360), (612, 330), (630, 312), (662, 322),
+    (700, 304), (712, 282), (692, 268), (706, 248), (740, 286), (800, 300), (840, 286), (868, 250),
+    (852, 236), (870, 214), (900, 176), (930, 128), (STAR[0] - 34, STAR[1] + 14),
 ]
-HEAD_BACK = [  # from the crown (overlapping the front stroke) round the back of the skull to its base
-    (612, 38), (700, 46), (790, 74), (860, 124), (900, 196), (914, 272), (906, 352), (880, 420), (842, 470), (804, 502),
-]
-EYE = (392, 366)
-# Long hair: its outline sits a little outside the skull and falls past the neck; its front edge comes
-# down from the temple behind the cheek and jaw, hiding the ear.
-HAIR_OUT = [(552, 30), (648, 22), (760, 36), (852, 84), (916, 152), (944, 244), (946, 344), (932, 434),
-            (914, 520), (906, 600), (904, 668)]
-HAIR_FRONT = [(482, 372), (532, 414), (584, 452), (622, 504), (640, 566), (650, 620), (654, 668)]
-HAIR_STRANDS = [
-    [(560, 452), (612, 500), (634, 560), (642, 620), (646, 668)],
-    [(700, 440), (720, 520), (728, 600), (734, 668)],
-    [(780, 470), (792, 540), (796, 610), (800, 668)],
-    [(860, 440), (868, 520), (862, 600), (866, 668)],
-    [(918, 200), (930, 300), (920, 400)],
-    [(600, 28), (520, 50), (452, 92), (412, 148), (398, 196)],    # the fringe over the forehead
-    [(578, 40), (500, 72), (440, 118), (410, 170)],
-]
-
-
-def brain_outline(seed):
-    cx, cy, rx, ry = BRAIN
-    r = random.Random(seed)
-    pts = []
-    n = 24
-    for k in range(n):
-        t = 2 * math.pi * k / n
-        bump = 1 + 0.05 * math.sin(5 * t + 0.4) + (0.045 if k % 2 else -0.015) + r.uniform(-0.01, 0.01)
-        pts.append((cx + rx * bump * math.cos(t), cy + ry * bump * math.sin(t)))
-    return pts
-
-
-TANGLE = (268, 168)  # the scribble, up and left of the forehead
-STAR = (980, 78)     # the star, up and right of the back of the head
-
-# The wandering line: one loose gesture. It enters over the brow, drifts between the doodles, loops
-# once, doubles back, has a little second thought near the back of the head, then leaves for the star.
-TRAIL = (
-    [(TANGLE[0] + 46, TANGLE[1] + 10), (346, 182), (384, 200), (414, 222)]   # out of the tangle, over the brow
-    + [inner(p) for p in [
-        (392, 278), (428, 322), (452, 334),                          # drifting down past the heart
-        (520, 318), (572, 300), (612, 270), (628, 238),              # up between the truck and the bubbles
-        (614, 214), (592, 226), (600, 256), (640, 276),              # a small loop
-        (690, 282), (728, 300), (744, 326), (726, 340), (712, 322),  # wanders, doubles back on itself
-        (730, 296), (776, 290), (812, 300),                          # under the glasses
-        (842, 276), (856, 290), (850, 270), (880, 258),              # a second thought
-    ]]
-    + [(876, 196), (902, 150), (930, 112), (STAR[0] - 32, STAR[1] + 12)]  # out over the crown to the star
-)
 
 
 def paper():
-    pen = Pencil(1)       # the head, face, hair and the scribble
-    faint = Pencil(2)
-    ipen = Pencil(5, k=1 / INNER_K * 0.92)  # inside the brain (drawn at brain scale, then scaled into place)
-    ifaint = Pencil(6, k=1 / INNER_K * 0.92)
+    """The still drawing: the tangle and its questions, faint construction rings and an erased first star."""
+    pen = Pencil(1)
 
-    # construction lines: the circle the head was built on, an eye line, a centre line, the jaw
     cons = Pencil(3)
-    cons.circle(628, 290, 318, w=1.2, sweep=290, start=160)
-    cons.line(310, EYE[1] + 2, 480, EYE[1] - 2, w=1.0, overshoot=10)
-    cons.line(630, 14, 624, 130, w=1.0, overshoot=6)
-    cons.line(560, 520, 660, 590, w=1.0, overshoot=6)
-    construction = f'<g opacity="0.16">{cons.svg()}</g>'
+    cons.circle(620, 340, 300, w=1.1, sweep=250, start=150, squash=0.78)
+    cons.circle(640, 330, 210, w=1.0, sweep=200, start=300, squash=0.8)
+    construction = f'<g opacity="0.14">{cons.svg()}</g>'
 
-    # erased marks: an earlier eye a little too high, a path the line didn't take, a first star
     er = Pencil(4)
-    er.arc(EYE[0] + 4, EYE[1] - 22, 14, 200, 340, w=2.2)
-    er.stroke([inner(p) for p in [(704, 318), (742, 262), (792, 236), (838, 238)]], w=2.2, jitter=1)
     er.stroke([(STAR[0] - 30, STAR[1] + 44), (STAR[0], STAR[1] + 30), (STAR[0] + 28, STAR[1] + 44)], w=1.8)
+    er.stroke([(560, 420), (600, 452), (660, 456)], w=2.0, jitter=1)
     erased = f'<g opacity="0.1" filter="url(#bm-smudge)">{er.svg()}</g>'
 
-    # colour first, so the pencil sits on top and doesn't line up with it
-    brain_colour = "".join([
-        marker(640, 288, 400, 300, YELLOW, 10, angle=-10, opacity=0.2, nib=54),     # a wash through the brain
-        marker(500, 238, 120, 70, TERRACOTTA, 11, angle=-6),                         # truck
-        marker(764, 226, 124, 56, MINT, 12, angle=8),                                # glasses
-        marker(650, 368, 96, 70, TEAL, 13, angle=-10),                               # parcel
-        marker(486, 400, 106, 74, LILAC, 14, angle=5),                               # conversation
-        marker(410, 300, 40, 30, PINK, 16, angle=0, opacity=0.5, nib=14),            # heart
-    ])
-    # black hair, in soft charcoal: one wash over everything the hair covers (with the brain left
-    # clear), and a few broad strokes that follow the fall of the hair for texture
-    temple = [(410, 240), (428, 318), (458, 362)]
-    fringe = [(552, 30), (480, 70), (430, 120), (404, 180)]
-    outline = HAIR_FRONT + [(904, 668)] + HAIR_OUT[::-1] + fringe + temple
-    hole = [inner(p) for p in brain_outline(3)]
-    hair_fill = (f'<path d="{smooth_d(outline, closed=True)} {smooth_d(hole, closed=True)}" fill-rule="evenodd" '
-                 f'fill="{CHARCOAL}" opacity="0.2" stroke="none"/>')
-    hr = random.Random(17)
-    for k in range(11):
-        x0 = 630 + 26 * k + hr.uniform(-8, 8)
-        pts = [(x0 - 18 + hr.uniform(-4, 4), 450 + hr.uniform(-12, 12)), (x0 + hr.uniform(-6, 6), 560), (x0 + 4, 668)]
-        hair_fill += (f'<path d="{smooth_d(pts)}" fill="none" stroke="{CHARCOAL}" stroke-width="{hr.uniform(16, 26):.0f}" '
-                      f'stroke-linecap="round" opacity="0.05"/>')
-    colour = (f'<g transform="{INNER}">{brain_colour}</g>' + hair_fill
-              + dab(EYE[0] + 40, EYE[1] + 62, 19, 11, PINK, 15, opacity=0.75))          # blush, on the cheek
-
-    # head: two strokes that overlap at the crown instead of meeting
-    pen.stroke(HEAD_FRONT, w=3.1, overshoot=4)
-    pen.stroke(HEAD_BACK, w=3.1, overshoot=6)
-    faint.stroke(HEAD_BACK[1:6], w=1.6, jitter=3)           # a lighter re-draw over the back of the head
-    faint.stroke(HEAD_FRONT[23:29], w=1.4, jitter=2.5)      # and over the brow
-
-    # hair: the outline, the front edge falling behind the jaw, and a few strands
-    pen.stroke(HAIR_OUT, w=2.6, overshoot=3)
-    pen.stroke(HAIR_FRONT, w=2.4, overshoot=3)
-    for k, strand in enumerate(HAIR_STRANDS):
-        (faint if k % 2 else pen).stroke(strand, w=1.7, jitter=2)
-
-    # face: a closed, content eye with lashes, a brow, a little nostril, a closed smile
-    ex, ey = EYE
-    pen.arc(ex, ey - 8, 13, 25, 155, w=2.6)
-    pen.line(ex + 10, ey + 2, ex + 15, ey + 7, w=1.5, overshoot=0)
-    pen.line(ex + 3, ey + 5, ex + 5, ey + 11, w=1.5, overshoot=0)
-    pen.stroke([(ex - 16, ey - 30), (ex - 2, ey - 36), (ex + 14, ey - 34)], w=2.1)
-    pen.arc(349, 441, 3.2, 150, 330, w=1.5)
-    pen.stroke([(362, 473), (370, 476), (380, 474), (386, 469)], w=1.8, jitter=0.4, samples=6)
-
-    # brain: a lumpy outline drawn once, then a lighter second go, plus a few folds
-    bo = brain_outline(3)
-    ipen.stroke(bo, w=2.3, closed=True)
-    ifaint.stroke(brain_outline(4)[3:13], w=1.4, jitter=3)
-    r = random.Random(7)
-    for (x, y, ln, a) in [(560, 476, 110, -0.3), (870, 250, 80, 1.4), (404, 448, 70, 0.6),
-                          (640, 76, 80, 0.12), (900, 340, 60, 1.9), (740, 470, 70, -0.4)]:
-        pts = [(x + math.cos(a) * ln * s / 4 + 9 * math.sin(s * 2.1) + r.uniform(-4, 4),
-                y + math.sin(a) * ln * s / 4 + 9 * math.cos(s * 1.7) + r.uniform(-4, 4)) for s in range(5)]
-        ifaint.stroke(pts, w=1.5)
-
-    # the doodles that stay still
-    truck(ipen, 500, 236)
-    glasses(ipen, 764, 222)
-    parcel(ipen, 650, 366)
-    conversation(ipen, 486, 398)
-    heart(ipen, 410, 300)
-    figma_pen(ipen, 824, 336)
-    sparkles(ipen, 782, 150)
-    notebook(ipen, 742, 394)
-    skills(ipen, 520, 460)
-
-    # the scribble and its questions
     tangle(pen)
 
     defs = (
@@ -405,14 +310,8 @@ def paper():
         '<filter id="bm-smudge"><feGaussianBlur stdDeviation="1.6"/></filter>'
         '</defs>'
     )
-    body = (
-        defs
-        + f'<g filter="url(#bm-marker)" style="mix-blend-mode:multiply">{colour}</g>'
-        + construction + erased
-        + f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none">'
-        + f'<g opacity="0.55">{faint.svg()}<g transform="{INNER}">{ifaint.svg()}</g></g>'
-        + f'{pen.svg()}<g transform="{INNER}">{ipen.svg()}</g></g>'
-    )
+    body = (defs + construction + erased
+            + f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none">{pen.svg()}</g>')
     return wrap(body, (X0, 0, W, H), cls="bm-paper")
 
 
@@ -527,11 +426,36 @@ def tangle(p):
     p.question(tx - 40, ty + 82, 1.05)
 
 
+
+def browser(p, x, y):
+    """The Load Board: a browser window with three search tabs, a filter column and result rows."""
+    p.poly([(x - 52, y - 30), (x + 52, y - 31), (x + 53, y + 36), (x - 51, y + 37)], close=True, w=2.2)
+    for k in range(3):  # tabs: several searches open at once
+        tx = x - 46 + k * 28
+        p.poly([(tx, y - 30), (tx + 3, y - 41), (tx + 22, y - 41), (tx + 25, y - 30)], w=1.6, overshoot=0)
+    p.line(x - 51, y - 20, x + 52, y - 21, w=1.4, overshoot=0)
+    p.line(x - 24, y - 20, x - 23, y + 36, w=1.4, overshoot=0)  # the filter panel
+    for k in range(4):
+        p.line(x - 46, y - 11 + k * 11, x - 32, y - 11 + k * 11, w=1.1, overshoot=0)
+    for k in range(3):  # results
+        p.poly([(x - 16, y - 13 + k * 15), (x + 44, y - 13 + k * 15), (x + 44, y - 3 + k * 15), (x - 16, y - 3 + k * 15)],
+               close=True, w=1.2, overshoot=0)
+
+
+def system(p, x, y):
+    """Understand the system: a few things and how they connect."""
+    nodes = [(x - 22, y - 14), (x + 22, y - 18), (x + 2, y + 18), (x + 30, y + 16)]
+    for a, b in [(0, 1), (0, 2), (1, 2), (2, 3), (1, 3)]:
+        p.line(*nodes[a], *nodes[b], w=1.3, overshoot=0, bow=3)
+    for k, (nx, ny) in enumerate(nodes):
+        p.circle(nx, ny, 7 if k else 9, w=2.0, sweep=360)
+
+
 # ---------------------------------------------------------------- the moving pieces
 
 def note_piece():
-    """A sticky note: "how I work". The line brushes past it, so it gets a small nudge."""
-    p = Pencil(40, k=1 / INNER_K * 0.92)
+    """A sticky note: "how I work"."""
+    p = Pencil(40)
     pts = [(-44, -36), (44, -40), (47, 38), (-41, 41)]
     col = (f'<path d="{smooth_d(pts, closed=True)}" fill="#fff4a3" stroke="none" opacity="0.92"/>'
            + marker(2, 2, 86, 72, YELLOW, 41, angle=-4, opacity=0.35, nib=22))
@@ -541,29 +465,29 @@ def note_piece():
     p.text(2, 20, "work", size=24, rot=-4, opacity=0.9, underline=True)
     body = (f'<g filter="url(#bm-marker)">{col}</g>{tape}'
             f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none">{p.svg()}</g>')
-    return body, (-62, -62, 124, 124)
+    return f'<g transform="scale({S}) rotate({NOTE[1]})">{body}</g>', (-56, -56, 112, 112)
 
 
 def plane_piece():
-    """Play: a paper aeroplane that has just done a loop-the-loop. The line passes close and it tips a little."""
-    p = Pencil(50, k=1 / INNER_K * 0.92)
+    """Play: a paper aeroplane that has just done a loop-the-loop."""
+    p = Pencil(50)
     p.poly([(-30, 4), (30, -14), (-6, 22)], close=True, w=2.2, overshoot=2)
     p.line(30, -14, -10, 10, w=1.8, overshoot=0)
     p.line(-10, 10, -6, 22, w=1.6, overshoot=0)
-    loop = Pencil(51, k=1 / INNER_K * 0.92)
+    loop = Pencil(51)
     loop.stroke([(-34, -4), (-44, -12), (-48, -24), (-40, -30), (-34, -22), (-40, -12), (-47, -10)], w=1.5, jitter=0.4, samples=8)
     col = marker(-2, 4, 46, 26, "#ffd3b5", 52, angle=-16, opacity=0.6, nib=14)
     body = (f'<g filter="url(#bm-marker)">{col}</g>'
-            f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none">{p.svg()}<g opacity="0.7">{loop.svg()}</g>'
-            f'</g>')
-    body = f'<g transform="scale(1.3)">{body}</g>'
-    return body, (-80, -50, 124, 90)
+            f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none">{p.svg()}<g opacity="0.7">{loop.svg()}</g></g>')
+    return f'<g transform="scale(1.15) rotate({PLANE[1]})">{body}</g>', (-70, -50, 120, 90)
 
 
-PIECES = {  # id: (maker, centre in brain coordinates, resting rotation); placed and scaled like the brain
-    "note": (note_piece, inner((634, 132)), -5),
-    "plane": (plane_piece, inner((668, 450)), -10),
-}
+def pieces():
+    """id: (svg body, box around the centre, centre in scene units, drift)."""
+    out = {oid: (*orb_piece(oid), o[0], o[6]) for oid, o in ORBS.items()}
+    out["note"] = (*note_piece(), NOTE[0], NOTE[2])
+    out["plane"] = (*plane_piece(), PLANE[0], PLANE[2])
+    return out
 
 
 # ---------------------------------------------------------------- the loop
@@ -588,12 +512,14 @@ def star_strokes(cx, cy):
     return first, second, retrace, " ".join(rays), fill
 
 
+
+
 def live():
     """What the loop draws: one more loop in the tangle, the wandering line, then the star."""
     centre = catmull(TRAIL, samples=12)
     pen = Pencil(60)
-    pen.ribbon(centre, 2.6, taper=14)
-    pen.ribbon([(x + 1.3, y + 1.0) for x, y in centre[40:260]], 1.2, opacity=0.35, taper=20)
+    pen.ribbon(centre, 2.4, taper=14)
+    pen.ribbon([(x + 1.3, y + 1.0) for x, y in centre[40:240]], 1.1, opacity=0.35, taper=20)
     d = smooth_d(TRAIL)
 
     r = random.Random(13)
@@ -607,7 +533,7 @@ def live():
         'stroke-linecap="round" stroke-linejoin="round"/></mask></defs>'
         f'<path class="bm-extra" d="{smooth_d(extra)}" pathLength="1" fill="none" stroke="{INK}" stroke-width="1.7" '
         'stroke-linecap="round" opacity="0.9"/>'
-        f'<g class="bm-trail" mask="url(#bm-trail-mask)" fill="{INK}" opacity="0.92">{pen.svg()}</g>'
+        f'<g class="bm-trail" mask="url(#bm-trail-mask)" fill="{INK}" opacity="0.8">{pen.svg()}</g>'
         f'<g class="bm-star" fill="none" stroke="{INK}" stroke-linecap="round" stroke-linejoin="round">'
         f'<g class="bm-star-fill" style="mix-blend-mode:multiply">{fill}</g>'
         f'<path class="bm-star-a" d="{first}" pathLength="1" stroke-width="2.6"/>'
@@ -616,48 +542,50 @@ def live():
         f'<path class="bm-rays" d="{rays}" pathLength="1" stroke-width="2"/>'
         '</g>'
     )
-    return wrap(body, (X0, 0, W, H), cls="bm-live"), centre
+    return wrap(body, (X0, 0, W, H), cls="bm-live")
 
 
 def ease(u):  # gentle in and out
     return 0.5 - 0.5 * math.cos(math.pi * u)
 
 
-def motion(centre):
-    """Keyframes for the loop. The line's draw is eased by hand so we know when it passes each piece."""
-    T0, T1 = 6.0, 64.0  # the line draws over this part of the loop (percent)
-    lens = [0.0]
-    for a, b in zip(centre, centre[1:]):
-        lens.append(lens[-1] + math.dist(a, b))
-    total = lens[-1]
+def drift(pid, dur, amp, phase):
+    """A slow wander for one piece: a lopsided loop (two sines at different rates, so it never traces a
+    circle), a little bob and a little tilt. Distances are a share of the piece's own size, so the drift
+    keeps its proportions at every screen width. Each piece has its own length and starting point,
+    so the cloud never moves in step."""
+    r = random.Random(pid)
+    fx = r.choice([(1, 2), (2, 1), (1, 1)])
+    ax, ay, tilt = amp * r.uniform(0.7, 1.0), amp * r.uniform(0.8, 1.2), r.uniform(1.2, 2.6)
+    p1, p2, p3 = (r.uniform(0, 2 * math.pi) for _ in range(3))
+    steps = 24  # sampled finely and played linearly, so the path stays smooth with no pause at each frame
+    frames = []
+    for i in range(steps + 1):
+        t = 2 * math.pi * i / steps
+        x = ax * math.sin(fx[0] * t + p1)
+        y = ay * math.sin(fx[1] * t + p2)
+        a = tilt * math.sin(t + p3)
+        frames.append(f"  {100 * i / steps:.2f}% {{ transform: translate({x:.2f}%, {y:.2f}%) rotate({a:.2f}deg); }}")
+    return [f".bm-piece--{pid} {{ animation: bm-drift-{pid} {dur}s linear infinite; animation-delay: {-dur * phase:.2f}s; }}",
+            f"@keyframes bm-drift-{pid} {{", *frames, "}"]
 
-    def when(frac):  # percent of the loop at which the line has drawn this fraction of itself
-        lo, hi = 0.0, 1.0
-        for _ in range(40):
-            mid = (lo + hi) / 2
-            lo, hi = (mid, hi) if ease(mid) < frac else (lo, mid)
-        return T0 + (T1 - T0) * lo
 
-    def closest(pt):
-        i = min(range(len(centre)), key=lambda k: math.dist(centre[k], pt))
-        return lens[i] / total
-
+def motion(all_pieces):
+    T0, T1 = 6.0, 64.0  # the line draws over this part of its loop (percent)
     steps = 24
     draw = "\n".join(f"  {T0 + (T1 - T0) * i / steps:.2f}% {{ stroke-dashoffset: {1 - ease(i / steps):.4f}; }}"
                      for i in range(steps + 1))
-    css = [f"/* Generated by scripts/brain_sketch.py: one {LOOP:g}s loop. */",
+    css = [f"/* Generated by scripts/brain_sketch.py: the line's {LOOP:g}s loop, and a drift for every orb. */",
            f".bm-reveal {{ stroke-dasharray: 1 2; animation: bm-draw {LOOP}s linear infinite; }}",
            "@keyframes bm-draw {",
            "  0% { stroke-dashoffset: 1; }",
            draw,
            "  100% { stroke-dashoffset: 0; }",
            "}",
-           # the trail, the extra scribble and the star fade together at the end, then it all starts again
            f".bm-trail, .bm-extra, .bm-star {{ animation: bm-fade {LOOP}s ease-in-out infinite; }}",
            "@keyframes bm-fade { 0%, 88% { opacity: 1; } 97%, 100% { opacity: 0; } }",
            f".bm-extra {{ stroke-dasharray: 1 2; animation: bm-fade {LOOP}s ease-in-out infinite, bm-extra {LOOP}s ease-in-out infinite; }}",
            "@keyframes bm-extra { 0% { stroke-dashoffset: 1; } 9%, 100% { stroke-dashoffset: 0; } }",
-           # the star: two strokes, a light retrace, the marker, then a few rays
            f".bm-star-a, .bm-star-b, .bm-star-c, .bm-rays {{ stroke-dasharray: 1 2; stroke-dashoffset: 1; }}",
            f".bm-star-a {{ animation: bm-star-a {LOOP}s linear infinite; }}",
            "@keyframes bm-star-a { 0%, 63% { stroke-dashoffset: 1; } 64% { stroke-dashoffset: 0.94; } 69% { stroke-dashoffset: 0.3; } 71%, 100% { stroke-dashoffset: 0; } }",
@@ -670,13 +598,8 @@ def motion(centre):
            f".bm-rays {{ animation: bm-rays {LOOP}s ease-in-out infinite; }}",
            "@keyframes bm-rays { 0%, 80% { stroke-dashoffset: 1; } 86%, 100% { stroke-dashoffset: 0; } }",
            ]
-    for pid, (_, (cx, cy), rot) in PIECES.items():
-        at = when(closest((cx, cy)))
-        a, b, c = at - 1.5, at + 4, at + 11
-        css.append(f".bm-piece--{pid} {{ animation: bm-nudge-{pid} {LOOP}s ease-in-out infinite; }}")
-        css.append(f"@keyframes bm-nudge-{pid} {{ 0%, {a:.1f}% {{ transform: rotate(0deg) translateY(0); }} "
-                   f"{b:.1f}% {{ transform: rotate({'-' if rot > 0 else ''}2.5deg) translateY(-3px); }} "
-                   f"{c:.1f}%, 100% {{ transform: rotate(0deg) translateY(0); }} }}")
+    for pid, (_, _, _, (dur, amp, phase)) in all_pieces.items():
+        css += drift(pid, dur, amp, phase)
     return "\n".join(css) + "\n"
 
 
@@ -685,16 +608,13 @@ if __name__ == "__main__":
     for old in OUT.glob("*"):
         old.unlink()
     (OUT / "paper.svg").write_text(paper())
-    live_svg, centre = live()
-    (OUT / "live.svg").write_text(live_svg)
+    (OUT / "live.svg").write_text(live())
+    all_pieces = pieces()
     layout = []
-    for pid, (maker, (cx, cy), rot) in PIECES.items():
-        body, box = maker()
-        bx, by, bw, bh = (v * INNER_K for v in box)
-        (OUT / f"piece-{pid}.svg").write_text(
-            wrap(f'<g transform="scale({INNER_K}) rotate({rot})">{body}</g>', (bx, by, bw, bh), cls="bm-piece-svg"))
+    for pid, (body, (bx, by, bw, bh), (cx, cy), _) in all_pieces.items():
+        (OUT / f"piece-{pid}.svg").write_text(wrap(body, (bx, by, bw, bh), cls="bm-piece-svg"))
         layout.append({"id": pid, "x": cx + bx - X0, "y": cy + by, "w": bw, "h": bh, "ox": -bx / bw, "oy": -by / bh})
     (OUT / "layout.json").write_text(json.dumps(layout, indent=1) + "\n")
-    (OUT / "motion.css").write_text(motion(centre))
+    (OUT / "motion.css").write_text(motion(all_pieces))
     total = sum(f.stat().st_size for f in OUT.glob("*"))
-    print("wrote", len(list(OUT.glob("*"))), "files,", total, "bytes; trail length", round(length(centre)))
+    print("wrote", len(list(OUT.glob("*"))), "files,", total, "bytes")
