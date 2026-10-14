@@ -48,13 +48,15 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 
 </section>
 
-<section class="step" style="--step-bg: var(--highlighter-yellow)">
+<section class="step step--feature" style="--step-bg: var(--highlighter-yellow)">
 
-<p class="step__tag"><img src="/illustrations/close-the-gaps.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />04 · Close the gaps</p>
+<img class="step__art" src="/illustrations/close-the-gaps.svg" alt="" width="240" height="180" loading="lazy" decoding="async" />
 
-### Which gaps matter enough to address?
+<p class="step__tag">04 · Design</p>
 
-<p class="step__more">What should change?</p>
+### Fix the gaps that matter
+
+<p class="step__more">Which gaps matter enough to address? What should change?</p>
 
 <p class="step__consider"><span class="label">Through</span> exploration, prototyping, prioritization, facilitation, design, testing, negotiation, tradeoff decisions.</p>
 

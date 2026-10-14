@@ -532,3 +532,14 @@ section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset);
 .step__more { font-size: 1.125rem; }
 .step__consider { font-size: 0.9375rem; max-width: 40em; }
 .step__consider .label { margin-right: 6px; }
+
+/* Step 04 is the design work itself, so it gets the most room: a bigger heading and its sketch drawn large. */
+.step--feature { padding-block: var(--space-6) var(--space-7); }
+.prose .step--feature h3 { font-size: clamp(2rem, 4vw, 3rem); }
+.step--feature .step__more { font-size: 1.25rem; }
+.step__art { display: block; width: 160px; height: auto; mix-blend-mode: multiply; }
+@media (min-width: 720px) {
+  .step--feature { display: grid; grid-template-columns: minmax(0, 1fr) 220px; column-gap: var(--space-7); align-items: center; }
+  .step--feature > :not(.step__art) { grid-column: 1; }
+  .prose .step--feature > .step__art { grid-column: 2; grid-row: 1 / span 4; width: 220px; margin: 0; }
+}
