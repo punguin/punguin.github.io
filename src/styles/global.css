@@ -82,7 +82,6 @@
   --grid-size: 24px;
   --gutter: 24px;
   --doc-max: 1180px;               /* hero + white page (text column, TOC, margins) */
-  --side-w: 0px;                   /* navigator side column, set below */
   --toc-width: 210px;
   --toc-gap: 64px;
   --toc-top: 24px;
@@ -117,11 +116,6 @@
 
 @media (min-width: 1024px) and (max-width: 1199px) {
   :root { --gutter: 24px; --sheet-pad: 40px; }
-}
-
-@media (min-width: 1024px) {
-  :root { --side-w: 160px; }
-  :root.pnav-collapsed { --side-w: 48px; }
 }
 
 /* ---------- Base ---------- */
@@ -269,7 +263,7 @@ a.external::after {
 }
 
 /* ---------- Page shell ---------- */
-/* | navigator side column (fixed, ≥1024px) | margin | document | margin | */
+/* | margin | document | margin | */
 
 .page-shell {
   display: grid;
@@ -277,17 +271,14 @@ a.external::after {
     minmax(var(--gutter), 1fr)
     minmax(0, var(--doc-max))
     minmax(var(--gutter), 1fr);
-  margin-left: var(--side-w);
-  transition: margin-left var(--t-state) ease;
-  overflow-x: clip; /* the tilted page and its pencil edge never cause sideways scrolling */
+  overflow-x: clip; /* the tilted page never causes sideways scrolling */
 }
 
 .document { grid-column: 2; min-width: 0; }
 
 /* ---------- Sheet: the white page that holds sections 01 onward ---------- */
 
-/* The page has a pencil edge, drawn in the hero's hand (scripts/sheet_border.py). When the reader
-   scrolls far enough (sheet-stack.ts), the page is set down once: it drops in turned a little and
+/* When the reader scrolls far enough (sheet-stack.ts), the page is set down once: it drops in turned a little and
    straightens as it lands. Without JS, or with reduced motion, it is simply there. */
 .sheet-wrap {
   position: relative;
@@ -307,11 +298,8 @@ a.external::after {
   transform-origin: 40% 0;
   --room: var(--sheet-pad); /* wide visuals bleed to the page edge, never past it */
   background: var(--surface);
-  /* The pencil line sits on the page's edge: the image is sliced at its 60-unit corners, shown 18px
-     wide and pushed out so its line (44 units in) lands on the edge. The edges repeat; at the corners
-     the lines run on past each other. */
-  border: 1px solid transparent;
-  border-image: url("../assets/sheet-border.svg") 60 / 18px / 13.2px round;
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
   box-shadow: var(--shadow-subtle-2);
   padding: var(--sheet-pad) var(--sheet-pad-x, var(--sheet-pad)) 0;
 }

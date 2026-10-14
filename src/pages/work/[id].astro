@@ -3,7 +3,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Project from '../../components/Project.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
-import PageNavigator from '../../components/PageNavigator.astro';
 import { getSortedProjects } from '../../lib/outline';
 
 export async function getStaticPaths() {
@@ -20,7 +19,6 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
 ---
 <BaseLayout title={title} description={`${p.title}. ${p.summary} ${p.project}.`}>
   <a class="skip-link" href="#main">Skip to content</a>
-  <PageNavigator />
 
   <div class="page-shell">
     <main class="document" id="main">
@@ -51,7 +49,6 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
 
   <script>
     import '../../scripts/document-nav.ts';
-    import '../../scripts/page-navigator.ts';
     import '../../scripts/sheet-stack.ts';
   </script>
 </BaseLayout>

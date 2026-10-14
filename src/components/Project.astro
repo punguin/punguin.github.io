@@ -52,8 +52,7 @@ const meta: [string, string][] = [
 </article>
 
 <style>
-  /* Each case study is its own sheet of slightly warmer paper, edged with the same pencil line as
-     the page it sits on (scripts/sheet_border.py). */
+  /* Each case study is its own sheet of slightly warmer paper. */
   .project {
     --case-pad: var(--space-7);
     --bg: #fffdf8;
@@ -62,8 +61,7 @@ const meta: [string, string][] = [
     margin-top: var(--space-9);
     padding: var(--space-5) var(--case-pad) var(--space-8);
     background: var(--bg);
-    border: 1px solid transparent;
-    border-image: url("../assets/sheet-border.svg") 60 / 18px / 13.2px round;
+    border: 1px solid var(--border-subtle);
   }
   .project + :global(.project) { margin-top: var(--space-10); }
   /* On its own page the page's sheet already is the case sheet. */
@@ -74,7 +72,6 @@ const meta: [string, string][] = [
     padding: 0 0 var(--space-8);
     background: none;
     border: 0;
-    border-image: none;
   }
   @media (max-width: 767px) {
     /* Phones: a tighter inner margin so the text keeps its width; the sheet stays inside the page's
