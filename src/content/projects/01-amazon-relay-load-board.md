@@ -25,7 +25,7 @@ I led a four-month redesign of Amazon Relay’s Load Board, reshaping search, fi
 
 <aside class="case-aside">
 <p class="label">My role in product definition</p>
-<p>I partnered closely with the PM as the BRD evolved. Alex remained accountable for the business case and overall product requirements; I helped define the product itself—using research, design exploration, and technical conversations to shape requirements, interaction models, scope, prioritization, and phased delivery.</p>
+<p>I partnered closely with the PM as the BRD evolved. I helped design and define the product itself—using research, design exploration, and technical conversations to shape requirements, interaction models, scope, prioritization, and phased delivery.</p>
 </aside>
 
 I inherited a redesign already in motion, but the interaction model had not yet converged. The work required more than producing screens: I had to help turn a broad growth problem into a product model the team could align around, test, build, and launch at Amazon scale.
