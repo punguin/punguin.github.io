@@ -6,11 +6,11 @@ navLabel: How I work
 order: 2
 ---
 
-UX has a rich vocabulary for describing how we work. Over my career, I've found it helps to keep mine simple. The problems are complex. The way we talk about them doesn't have to be.
+UX has a rich vocabulary for describing how we work. I keep mine simple. The problems are complex. The way we talk about them doesn't have to be.
 
-Research, journey mapping, impact mapping, prototyping, analytics, facilitation, workshops, interviews, usability testing and lighter-weight techniques are tools, not mandatory stages. AI is embedded throughout the process where it makes sense. Beyond speeding up individual work, I'm interested in how whole organizations use it to make better, faster decisions together. The tools and methods change from project to project; the questions stay the same.
+It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a prototype, analytics, a workshop, or something lighter. AI is embedded throughout the process where it makes sense. Beyond speeding up individual work, I'm interested in how whole organizations use it to make better, faster decisions together.
 
-<p class="callout">These are not phases or steps. They are questions I keep coming back to.</p>
+<p class="callout">The tools and methods change from project to project. The questions stay the same.</p>
 
 <div class="practice">
 
