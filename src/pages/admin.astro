@@ -99,7 +99,8 @@ const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
           <fieldset>
             <legend>Story</legend>
             <div class="ed-tools">
-              <button class="ed-btn" type="button" data-insert="heading">Add heading</button>
+              <button class="ed-btn" type="button" data-insert="heading">Add section</button>
+              <button class="ed-btn" type="button" data-insert="step">Add step</button>
               <button class="ed-btn" type="button" data-insert="image">Add image</button>
               <select data-image-size aria-label="Image size">
                 <option value="wide">Wide image</option>
@@ -110,7 +111,7 @@ const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
               <input type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" hidden data-image-input />
             </div>
             <textarea name="body" rows="24" spellcheck="true"></textarea>
-            <small>Written in Markdown: <code>#### Heading</code> starts a section, a blank line starts a new paragraph, <code>**bold**</code>, <code>[link](https://…)</code>.</small>
+            <small>Written in Markdown. <code>#### 00 / Context</code> starts a section and the line after it is the section's headline; <code>##### 4.1 Title</code> starts a numbered step. Both appear in the page's contents list. A blank line starts a new paragraph, <code>**bold**</code>, <code>[link](https://…)</code>.</small>
           </fieldset>
 
           <div class="ed-save">

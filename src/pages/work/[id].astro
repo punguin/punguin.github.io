@@ -1,7 +1,9 @@
 ---
 // One page per case study. The homepage's Selected work section lists them and links here.
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { render } from 'astro:content';
 import Project from '../../components/Project.astro';
+import CaseContents from '../../components/CaseContents.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { getSortedProjects } from '../../lib/outline';
 
@@ -15,6 +17,7 @@ export async function getStaticPaths() {
 
 const { entry, next } = Astro.props;
 const p = entry.data;
+const { headings } = await render(entry);
 const title = `${p.title}: ${p.summary} — Pung Brooks`;
 ---
 <BaseLayout title={title} description={`${p.title}. ${p.summary} ${p.project}.`}>
@@ -28,7 +31,7 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
       </header>
 
       <div class="sheet-wrap">
-        <div class="sheet sheet--single">
+        <div class="sheet">
           <div class="sheet__body">
             <Project entry={entry} standalone />
 
@@ -40,6 +43,7 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
               </a>
             </nav>
           </div>
+          <CaseContents headings={headings} title={p.title} />
         </div>
       </div>
 

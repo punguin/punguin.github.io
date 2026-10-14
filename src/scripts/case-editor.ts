@@ -173,7 +173,7 @@ function open(it: Item | null) {
   renderList();
 }
 
-const TEMPLATE = ['A sentence or two on what you did and why it mattered.', '', ...['Context', 'System', 'Decisions', 'Tradeoffs', 'Outcome'].flatMap((h) => [`#### ${h}`, '', `<p class="todo"><span class="todo-tag">To write</span> ${h} goes here.</p>`, ''])].join('\n');
+const TEMPLATE = ['A sentence or two on what you did and why it mattered.', '', ...['Context', 'People', 'System', 'Design', 'Impact'].flatMap((h, i) => [`#### 0${i} / ${h}`, '', 'One line that sums up this section.', '', `<p class="todo"><span class="todo-tag">To write</span> ${h} goes here.</p>`, ''])].join('\n');
 
 async function load() {
   setStatus('Loading case studies…', 'busy');
@@ -243,7 +243,8 @@ function insert(text: string) {
 document.querySelectorAll<HTMLButtonElement>('[data-insert]').forEach((b) =>
   b.addEventListener('click', () => {
     const kind = b.dataset.insert;
-    if (kind === 'heading') insert('#### Heading');
+    if (kind === 'heading') insert('#### 00 / Section\n\nOne line that sums up this section.');
+    if (kind === 'step') insert('##### 1.1 Step title\n\nOne line that sums up this step.');
     if (kind === 'todo') insert('<p class="todo"><span class="todo-tag">To write</span> What goes here.</p>');
     if (kind === 'image') {
       if (!current) return setStatus('Save the case study once before adding images.', 'error');

@@ -31,7 +31,7 @@ The table of contents, mobile menu, selected-work index and scroll spy are all g
 
 ### Heading levels
 
-Section bodies use `###` for subheads. Case-study bodies use `####` (the project thesis is the `<h3>`).
+Section bodies use `###` for subheads. Case-study bodies use `#### 00 / Context` for sections (the paragraph right after it is styled as the section headline) and `##### 4.1 Title` for numbered steps; both feed the sticky contents list beside each case study (`src/components/CaseContents.astro`). Unnumbered `#####` headings stay out of that list.
 
 ### Adding an image
 

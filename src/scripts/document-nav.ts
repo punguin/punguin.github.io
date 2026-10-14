@@ -9,8 +9,12 @@
 
 type Meta = { number: string; label: string; accent?: string };
 
-const targets = Array.from(document.querySelectorAll<HTMLElement>('#top, [data-section]'));
 const spyLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-spy]'));
+// Sections on the homepage; story headings on a case study page. Only those with a link count.
+const spyIds = new Set(spyLinks.map((a) => a.dataset.spy));
+const targets = Array.from(
+  document.querySelectorAll<HTMLElement>('#top, [data-section], .project__body :is(h4, h5)[id]'),
+).filter((el) => spyIds.has(el.id));
 const meta = new Map<string, Meta>();
 document.querySelectorAll<HTMLAnchorElement>('.mnav__menu a[data-spy]').forEach((a) => {
   meta.set(a.dataset.spy!, {
@@ -72,6 +76,12 @@ targets.forEach((el) => spy.observe(el));
 const footer = document.querySelector('footer.site-footer');
 if (footer) new IntersectionObserver(() => resolveActive(), { threshold: [0, 1] }).observe(footer);
 window.addEventListener('hashchange', () => requestAnimationFrame(resolveActive));
+// Short headings (case study pages) can jump past the line between frames without ever touching it,
+// which the observer never reports, so also check once per frame while scrolling.
+let spyFrame = 0;
+window.addEventListener('scroll', () => {
+  if (!spyFrame) spyFrame = requestAnimationFrame(() => { spyFrame = 0; resolveActive(); });
+}, { passive: true });
 resolveActive();
 
 // ---------- Sticky project headers ----------

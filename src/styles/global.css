@@ -324,8 +324,6 @@ a.external::after {
   }
   .sheet .toc { display: block; }
 }
-/* A case study page has no TOC column. */
-.sheet.sheet--single { display: block; }
 
 /* The page edge already marks where section 01 starts. */
 .sheet__body > .doc-section:first-child .section-heading { border-top: 0; padding-top: 0; }
@@ -487,7 +485,7 @@ a.external::after {
 /* ---------- Anchors ---------- */
 
 section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset); }
-.prose h3[id], .prose h4[id] { scroll-margin-top: calc(var(--anchor-offset) + 24px); }
+.prose h3[id], .prose h4[id], .prose h5[id] { scroll-margin-top: calc(var(--anchor-offset) + 24px); }
 
 /* ---------- How I work: five questions with sticky-note sketches ---------- */
 

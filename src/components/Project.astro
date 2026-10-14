@@ -140,15 +140,69 @@ const meta: [string, string][] = [
     line-height: 1.5;
     max-width: 32em;
   }
+  /* Story sections: "#### 00 / Context" is a small label; the line right after it is the
+     section's headline. "##### 4.1 …" is a step inside a section, with its own short headline. */
+  .project__body :global(h4) {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-9);
+    padding-top: var(--space-5);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--forest-ink);
+  }
   .project__body :global(h4)::before {
     content: "";
-    display: block;
+    flex: none;
     width: 10px;
     height: 10px;
-    margin-bottom: var(--space-3);
     border-radius: var(--radius-pill);
     background: var(--accent);
     outline: 1px solid var(--forest-ink);
     outline-offset: -1px;
   }
+  .project__body :global(h4 + p:not(.todo)) {
+    margin-top: var(--space-3);
+    max-width: 17em;
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 1.45rem + 1.2vw, 2.5rem);
+    line-height: 1.08;
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+  }
+  .project__body :global(h4 + p:not(.todo) + p:not(.todo)) { font-size: 1.1875rem; line-height: 1.5; }
+
+  .project__body :global(h5) {
+    margin-top: var(--space-8);
+    margin-bottom: 0;
+    max-width: var(--measure);
+    font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+    line-height: 1.25;
+  }
+  .project__body :global(h5 + p) {
+    margin-top: var(--space-2);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .project__body :global(.case-aside) {
+    max-width: var(--measure);
+    padding: var(--space-1) 0 var(--space-1) var(--space-5);
+    border-left: 3px solid var(--accent);
+  }
+  .project__body :global(.case-aside > * + *) { margin-top: var(--space-2); }
+  .project__body :global(p.label) { margin-top: var(--space-7); color: var(--forest-ink); }
+  .project__body :global(p.label + ul) { margin-top: var(--space-3); }
+  .project__body :global(.case-methods) { font-size: var(--text-small); color: var(--text-secondary); }
+  .project__body :global(.case-methods .label) { margin-right: var(--space-2); }
+
+  /* Key lines sit on the case study's own sticky-note colour. */
+  .project__body :global(.callout) { background: var(--accent); }
+  .project__body :global(.callout .label) { display: block; margin: 0 0 var(--space-2); color: var(--forest-ink); }
+  .project__body :global(.visual__frame strong) { color: var(--forest-ink); }
 </style>
