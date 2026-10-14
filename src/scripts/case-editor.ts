@@ -1,6 +1,7 @@
 /**
- * Case study editor (/admin). A small client-side tool that reads and writes the case study
- * Markdown files in src/content/projects/ through the GitHub API. Saving makes a commit, and the
+ * Site editor (/admin). A small client-side tool that reads and writes the homepage content
+ * (src/content/hero.json, experience.json, contact.json and the section Markdown files) and the
+ * case study Markdown files in src/content/projects/ through the GitHub API. Saving makes a commit, and the
  * host (Vercel) rebuilds the site from it. There is no server: the GitHub token stays in this
  * browser (session storage, or local storage when "remember" is ticked).
  */
@@ -32,6 +33,11 @@ let branch = '';
 let items: Item[] = [];
 let current: Item | null = null; // null while creating a new one
 let dirty = false;
+
+const pageForm = $<HTMLFormElement>('[data-page-form]');
+const pageList = $<HTMLUListElement>('[data-page-list]');
+const pageFields = $<HTMLElement>('[data-page-fields]');
+const pageBody = $<HTMLTextAreaElement>('[data-page-body]');
 
 // ---------- GitHub ----------
 
@@ -130,7 +136,7 @@ function renderList() {
     b.type = 'button';
     b.className = 'ed-list__item';
     b.style.setProperty('--accent', `var(--accent-${it.data.accent})`);
-    b.setAttribute('aria-current', String(it === current));
+    b.setAttribute('aria-current', String(it === current && !form.hidden));
     b.innerHTML = `<span class="ed-list__num"></span><span class="ed-list__title"></span>${it.data.featured === false ? '<span class="ed-list__hidden">Hidden</span>' : ''}`;
     b.querySelector('.ed-list__num')!.textContent = String(it.data.number);
     b.querySelector('.ed-list__title')!.textContent = String(it.data.title);
@@ -156,6 +162,8 @@ function fill(data: Data, text: string) {
 function open(it: Item | null) {
   if (dirty && !confirm('You have unsaved changes. Leave them?')) return;
   current = it;
+  page = null;
+  pageForm.hidden = true;
   form.hidden = false;
   empty.hidden = true;
   if (it) {
@@ -186,6 +194,7 @@ async function load() {
   );
   items.sort((a, b) => Number(a.data.order) - Number(b.data.order));
   renderList();
+  await loadPages();
   setStatus('');
 }
 
@@ -227,6 +236,252 @@ async function save(e: SubmitEvent) {
     setStatus(`Couldn't save. ${(err as Error).message}`, 'error');
   }
 }
+
+// ---------- Homepage ----------
+// The hero, experience and contact details are JSON; each homepage section is a Markdown file with a
+// little front matter. JSON is edited through a form built from the file's own shape, so a new field
+// added to a file shows up here without changing the editor.
+
+type Json = string | number | boolean | null | Json[] | { [k: string]: Json };
+type Page = { key: string; label: string; path: string; sha: string; kind: 'json' | 'md'; json?: Json; data?: Data; body?: string; anchor: string; hint: string };
+
+const SECTIONS = 'src/content/sections';
+const LABELS: Record<string, string> = {
+  identity: 'Name and practice',
+  statement: 'Headline',
+  statementHighlight: 'Highlighted words in the headline',
+  supporting: 'Supporting line',
+  context: 'Context',
+  capabilities: 'Capabilities',
+  location: 'Location',
+  primaryAction: 'Main button',
+  secondaryAction: 'Second button',
+  href: 'Link',
+  roles: 'Roles',
+  years: 'Years',
+  focus: 'Focus areas',
+  note: 'Note',
+  education: 'Education',
+  links: 'Links',
+  value: 'Shown as',
+  placeholder: 'Still a placeholder (shown as unfinished)',
+  external: 'Opens in a new tab',
+  navLabel: 'Contents label',
+  title: 'Title',
+  heading: 'Heading',
+};
+const HINTS: Record<string, string> = {
+  hero: 'The top of the homepage. The highlighted words must appear exactly as written in the headline.',
+  experience: 'The Experience section’s timeline. Add a role with “Add one”, and remove one with its own button.',
+  contact: 'The Contact section. Untick “Still a placeholder” once a link is real.',
+  section: 'The heading and contents label appear on the homepage; the number and position stay as they are.',
+};
+const label = (k: string) => LABELS[k] ?? k.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, (c) => c.toUpperCase());
+
+let pages: Page[] = [];
+let page: Page | null = null;
+let readPage: (() => Json) | null = null;
+
+async function loadPages() {
+  const ref = `?ref=${encodeURIComponent(branch)}`;
+  const getFile = async (path: string) => {
+    const f = await gh(`/repos/${REPO}/contents/${path}${ref}`);
+    return { sha: f.sha as string, text: decode(f.content) };
+  };
+  const json = async (key: string, label: string, anchor: string): Promise<Page> => {
+    const path = `src/content/${key}.json`;
+    const { sha, text } = await getFile(path);
+    return { key, label, path, sha, kind: 'json', json: JSON.parse(text), anchor, hint: HINTS[key] };
+  };
+  const files = ((await gh(`/repos/${REPO}/contents/${SECTIONS}${ref}`)) as { name: string; path: string }[]).filter((f) => f.name.endsWith('.md'));
+  const sections: Page[] = await Promise.all(files.map(async (f) => {
+    const { sha, text } = await getFile(f.path);
+    const { data, body } = parse(text);
+    return { key: String(data.id), label: `${data.number} · ${data.navLabel}`, path: f.path, sha, kind: 'md' as const, data, body, anchor: `#${data.id}`, hint: HINTS.section };
+  }));
+  sections.sort((a, b) => Number(a.data!.order) - Number(b.data!.order));
+  const [hero, experience, contact] = await Promise.all([json('hero', 'Hero', '#top'), json('experience', 'Experience: roles', '#experience'), json('contact', 'Contact: links', '#contact')]);
+  pages = [hero, ...sections, experience, contact];
+  renderPages();
+}
+
+function renderPages() {
+  pageList.innerHTML = '';
+  for (const p of pages) {
+    const li = document.createElement('li');
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'ed-list__item';
+    b.setAttribute('aria-current', String(p === page));
+    b.textContent = p.label;
+    b.addEventListener('click', () => openPage(p));
+    li.append(b);
+    pageList.append(li);
+  }
+}
+
+/** Builds inputs for a JSON value and returns a function that reads the edited value back. */
+function build(value: Json, key: string, into: HTMLElement): () => Json {
+  if (key.startsWith('_')) return () => value; // notes for whoever edits the file by hand
+  if (typeof value === 'boolean') {
+    const l = document.createElement('label');
+    l.className = 'ed-check';
+    const i = document.createElement('input');
+    i.type = 'checkbox';
+    i.checked = value;
+    l.append(i, ` ${label(key)}`);
+    into.append(l);
+    return () => i.checked;
+  }
+  if (typeof value === 'string' || typeof value === 'number' || value === null) {
+    const l = document.createElement('label');
+    const long = typeof value === 'string' && value.length > 70;
+    const i = document.createElement(long ? 'textarea' : 'input') as HTMLInputElement;
+    if (long) (i as unknown as HTMLTextAreaElement).rows = 3;
+    if (typeof value === 'number') i.type = 'number';
+    i.value = value === null ? '' : String(value);
+    l.append(label(key), i);
+    into.append(l);
+    return () => (typeof value === 'number' ? Number(i.value) : i.value);
+  }
+  if (Array.isArray(value) && value.every((v) => typeof v === 'string')) {
+    const l = document.createElement('label');
+    const t = document.createElement('textarea');
+    t.rows = Math.max(2, value.length);
+    t.value = (value as string[]).join('\n');
+    const hint = document.createElement('small');
+    hint.textContent = 'One per line.';
+    l.append(label(key), t, hint);
+    into.append(l);
+    return () => t.value.split('\n').map((v) => v.trim()).filter(Boolean);
+  }
+  const fs = document.createElement('fieldset');
+  const lg = document.createElement('legend');
+  lg.textContent = label(key);
+  fs.append(lg);
+  into.append(fs);
+  if (Array.isArray(value)) {
+    // A list of records (roles, links): each in its own box, with add and remove.
+    const blank = (v: Json): Json =>
+      typeof v === 'string' ? '' : typeof v === 'number' ? 0 : typeof v === 'boolean' ? false : Array.isArray(v) ? [] : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, blank(x)])) : v;
+    const shape = value[0] ?? {};
+    const getters: (() => Json)[] = [];
+    const list = document.createElement('div');
+    list.className = 'ed-page-fields';
+    const addOne = (v: Json, i: number) => {
+      const box = document.createElement('div');
+      box.className = 'ed-page-fields';
+      const get = build(v, `${label(key).replace(/s$/, '')} ${i + 1}`, box);
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'ed-btn';
+      remove.textContent = 'Remove';
+      remove.addEventListener('click', () => { getters.splice(getters.indexOf(get), 1); box.remove(); dirty = true; });
+      const actions = document.createElement('p');
+      actions.className = 'ed-item-actions';
+      actions.append(remove);
+      box.querySelector('fieldset')?.append(actions);
+      list.append(box);
+      getters.push(get);
+    };
+    value.forEach(addOne);
+    const add = document.createElement('button');
+    add.type = 'button';
+    add.className = 'ed-btn';
+    add.textContent = 'Add one';
+    add.addEventListener('click', () => { addOne(blank(shape), getters.length); dirty = true; });
+    const actions = document.createElement('p');
+    actions.className = 'ed-item-actions';
+    actions.append(add);
+    fs.append(list, actions);
+    return () => getters.map((g) => g());
+  }
+  const entries = Object.entries(value).map(([k, v]) => [k, build(v, k, fs)] as const);
+  return () => Object.fromEntries(entries.map(([k, g]) => [k, g()]));
+}
+
+function openPage(p: Page) {
+  if (dirty && !confirm('You have unsaved changes. Leave them?')) return;
+  page = p;
+  current = null;
+  form.hidden = true;
+  empty.hidden = true;
+  pageForm.hidden = false;
+  $('[data-page-title]').textContent = p.label;
+  $('[data-page-hint]').textContent = p.hint;
+  $<HTMLAnchorElement>('[data-page-view]').href = `/${p.anchor}`;
+  pageFields.innerHTML = '';
+  const bodyWrap = $<HTMLElement>('[data-page-body-wrap]');
+  if (p.kind === 'json') {
+    const box = document.createElement('div');
+    box.className = 'ed-page-fields';
+    const gets = Object.entries(p.json as Record<string, Json>).map(([k, v]) => [k, build(v, k, box)] as const);
+    readPage = () => Object.fromEntries(gets.map(([k, g]) => [k, g()]));
+    pageFields.append(box);
+    bodyWrap.hidden = true;
+  } else {
+    const fs = document.createElement('fieldset');
+    fs.innerHTML = '<legend>Heading</legend>';
+    const getTitle = build(String(p.data!.title), 'heading', fs);
+    const getNav = build(String(p.data!.navLabel), 'navLabel', fs);
+    pageFields.append(fs);
+    readPage = () => ({ title: getTitle(), navLabel: getNav() });
+    pageBody.value = p.body!;
+    bodyWrap.hidden = false;
+  }
+  dirty = false;
+  setStatus('');
+  renderPages();
+  renderList();
+}
+
+function serializeSection(data: Data, text: string) {
+  const lines = Object.entries(data).map(([k, v]) => {
+    if (Array.isArray(v)) return `${k}: [${v.map((x) => quote(x, true)).join(', ')}]`;
+    if (typeof v === 'string') return `${k}: ${k === 'number' ? JSON.stringify(v) : quote(v)}`;
+    return `${k}: ${v}`;
+  });
+  return `---\n${lines.join('\n')}\n---\n\n${text.replace(/^\n+/, '').replace(/\s+$/, '')}\n`;
+}
+
+async function savePage(e: SubmitEvent) {
+  e.preventDefault();
+  if (!page || !readPage) return;
+  let content: string;
+  const edited = readPage() as Record<string, Json>;
+  if (page.kind === 'json') {
+    const hero = edited as { statement?: string; statementHighlight?: string };
+    if (page.key === 'hero' && hero.statementHighlight && !String(hero.statement).includes(hero.statementHighlight)) {
+      return setStatus('The highlighted words need to appear exactly as written in the headline.', 'error');
+    }
+    content = `${JSON.stringify(edited, null, 2)}\n`;
+  } else {
+    const title = String(edited.title).trim();
+    if (!title) return setStatus('Give the section a heading first.', 'error');
+    const data: Data = { ...page.data!, title, navLabel: String(edited.navLabel).trim() || String(page.data!.navLabel) };
+    content = serializeSection(data, pageBody.value);
+  }
+  setStatus('Saving…', 'busy');
+  try {
+    const res = await putFile(page.path, encode(content), `Update homepage: ${page.label}`, page.sha);
+    page.sha = res.content.sha;
+    if (page.kind === 'json') page.json = edited;
+    else {
+      page.data = { ...page.data!, title: String(edited.title).trim(), navLabel: String(edited.navLabel).trim() || String(page.data!.navLabel) };
+      page.body = pageBody.value;
+      page.label = `${page.data.number} · ${page.data.navLabel}`;
+      $('[data-page-title]').textContent = page.label;
+    }
+    dirty = false;
+    renderPages();
+    setStatus('Saved. The site rebuilds with it in a minute or two.', 'ok');
+  } catch (err) {
+    setStatus(`Couldn't save. ${(err as Error).message}`, 'error');
+  }
+}
+
+pageForm.addEventListener('submit', savePage);
+pageForm.addEventListener('input', () => { dirty = true; });
 
 // ---------- Story toolbar ----------
 

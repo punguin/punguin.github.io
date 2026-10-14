@@ -13,11 +13,11 @@ const ACCENTS = [
 ];
 const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
 ---
-<BaseLayout title="Case study editor — Pung Brooks" description="Edit the case studies on Pung Brooks's site." noindex>
+<BaseLayout title="Site editor — Pung Brooks" description="Edit the homepage and case studies on Pung Brooks's site." noindex>
   <div class="ed">
     <header class="ed-top">
       <a class="ed-top__home" href="/">Pung Brooks</a>
-      <span class="ed-top__name">Case study editor</span>
+      <span class="ed-top__name">Site editor</span>
     </header>
 
     <p class="ed-status" role="status" aria-live="polite" data-status></p>
@@ -42,6 +42,8 @@ const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
 
     <div class="ed-app" data-app hidden>
       <aside class="ed-side">
+        <p class="ed-side__label">Homepage</p>
+        <ul class="ed-list" data-page-list></ul>
         <p class="ed-side__label">Case studies</p>
         <ul class="ed-list" data-list></ul>
         <button class="ed-btn" type="button" data-new>+ New case study</button>
@@ -50,7 +52,24 @@ const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
       </aside>
 
       <main class="ed-main">
-        <p class="ed-empty" data-empty>Pick a case study to edit, or start a new one.</p>
+        <p class="ed-empty" data-empty>Pick a part of the homepage or a case study to edit, or start a new case study.</p>
+
+        <form class="ed-form" data-page-form hidden>
+          <div class="ed-form__head">
+            <h1 data-page-title></h1>
+            <a class="ed-link" data-page-view target="_blank" rel="noopener">View on the site</a>
+          </div>
+          <p class="ed-hint" data-page-hint></p>
+          <div class="ed-page-fields" data-page-fields></div>
+          <fieldset data-page-body-wrap hidden>
+            <legend>Text</legend>
+            <textarea name="pageBody" rows="22" spellcheck="true" data-page-body></textarea>
+            <small>Written in Markdown: <code>### Heading</code> starts a block, a blank line starts a new paragraph, <code>**bold**</code>, <code>[link](https://…)</code>. Keep any HTML tags (the parts in angle brackets) as they are unless you mean to change the layout.</small>
+          </fieldset>
+          <div class="ed-save">
+            <button class="ed-btn ed-btn--primary" type="submit">Save</button>
+          </div>
+        </form>
 
         <form class="ed-form" data-form hidden>
           <div class="ed-form__head">
@@ -127,7 +146,8 @@ const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
   </script>
 </BaseLayout>
 
-<style>
+<style is:global>
+  /* Global (prefixed with .ed) because the homepage forms are built in the browser. */
   .ed [hidden] { display: none !important; }
   .ed { max-width: 1180px; margin: 0 auto; padding: var(--space-5) var(--gutter) var(--space-9); }
   .ed-top { display: flex; align-items: baseline; gap: var(--space-4); padding-bottom: var(--space-5); border-bottom: 1px solid var(--border-subtle); }
@@ -168,13 +188,20 @@ const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
   .ed-side__label { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-tertiary); }
   .ed-side__meta { font-size: 0.8125rem; color: var(--text-tertiary); }
   .ed-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; }
-  .ed-list :global(.ed-list__item) { display: flex; gap: var(--space-3); align-items: baseline; width: 100%; padding: 8px 10px; border: 0; border-radius: var(--radius-button); background: none; font: inherit; color: var(--forest-ink); text-align: left; cursor: pointer; }
-  .ed-list :global(.ed-list__item:hover) { background: var(--hover-bg); }
-  .ed-list :global(.ed-list__item[aria-current='true']) { background: var(--selected-bg); font-weight: 600; }
-  .ed-list :global(.ed-list__num) { padding: 0 6px; border-radius: var(--radius-pill); background: var(--accent); font-family: var(--font-mono); font-size: 0.75rem; }
-  .ed-list :global(.ed-list__hidden) { margin-left: auto; font-size: 0.75rem; color: var(--text-tertiary); }
+  .ed-list .ed-list__item { display: flex; gap: var(--space-3); align-items: baseline; width: 100%; padding: 8px 10px; border: 0; border-radius: var(--radius-button); background: none; font: inherit; color: var(--forest-ink); text-align: left; cursor: pointer; }
+  .ed-list .ed-list__item:hover { background: var(--hover-bg); }
+  .ed-list .ed-list__item[aria-current='true'] { background: var(--selected-bg); font-weight: 600; }
+  .ed-list .ed-list__num { padding: 0 6px; border-radius: var(--radius-pill); background: var(--accent); font-family: var(--font-mono); font-size: 0.75rem; }
+  .ed-list .ed-list__hidden { margin-left: auto; font-size: 0.75rem; color: var(--text-tertiary); }
 
   .ed-empty { color: var(--text-tertiary); margin-top: var(--space-5); }
+  .ed-side__label:not(:first-child) { margin-top: var(--space-4); }
+  .ed-hint { color: var(--text-secondary); max-width: 40em; }
+  .ed-hint:empty { display: none; }
+  .ed-page-fields { display: grid; gap: var(--space-6); }
+  .ed-page-fields fieldset fieldset { padding: var(--space-4); background: var(--bg-page, #fcfaf5); }
+  .ed-page-fields .ed-item-actions { display: flex; gap: var(--space-3); }
+  .ed-page-fields .ed-item-actions .ed-btn { font-size: 0.875rem; padding: 6px 12px; }
   .ed-form { display: grid; gap: var(--space-6); }
   .ed-form__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4); }
   .ed fieldset { display: grid; gap: var(--space-4); margin: 0; padding: var(--space-5); border: 1px solid var(--border-subtle); border-radius: var(--radius-card); background: var(--surface); }
