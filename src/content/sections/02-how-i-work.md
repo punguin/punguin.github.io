@@ -6,7 +6,7 @@ navLabel: How I work
 order: 2
 ---
 
-The UX field has developed an impressive amount of jargon for explaining how we do it. I have spent my career simplifying how I work. The problems are complex. The way we talk about them does not have to be.
+UX has a rich vocabulary for describing how we work. Over my career, I've found it helps to keep mine simple. The problems are complex. The way we talk about them doesn't have to be.
 
 Research, journey mapping, impact mapping, prototyping, analytics, facilitation, workshops, interviews, usability testing and lighter-weight techniques are tools, not mandatory stages. AI is one of them, built into the process wherever it makes sense. The tools change from project to project; the questions stay the same.
 
