@@ -1,9 +1,9 @@
 ---
 id: how-i-work
-number: "01"
+number: "02"
 title: Simple language for complex problems
 navLabel: How I work
-order: 1
+order: 2
 ---
 
 The UX field has developed an impressive amount of jargon for explaining how we do it. I have spent my career simplifying how I work. The problems are complex. The way we talk about them does not have to be.

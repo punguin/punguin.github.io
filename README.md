@@ -23,7 +23,7 @@ All copy lives in `src/content/`. Components hold no portfolio copy.
 | --- | --- |
 | Hero | `src/content/hero.json` |
 | Sections 01–06 | `src/content/sections/*.md` (frontmatter: `id`, `number`, `title`, `navLabel`, `order`, optional `lead`) |
-| Case studies 03.1–03.4 | `src/content/projects/*.md` (frontmatter: number, company, summary/thesis, role, timing, platform, partners, accent, order) |
+| Case studies 01.1–01.4 | `src/content/projects/*.md` (frontmatter: number, company, summary/thesis, role, timing, platform, partners, accent, order) |
 | Experience timeline | `src/content/experience.json` |
 | Email, LinkedIn, résumé | `src/content/contact.json` |
 

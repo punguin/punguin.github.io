@@ -1,9 +1,9 @@
 ---
 id: values
-number: "02"
+number: "03"
 title: What matters underneath the work
 navLabel: Values
-order: 2
+order: 3
 ---
 
 ### Human first.

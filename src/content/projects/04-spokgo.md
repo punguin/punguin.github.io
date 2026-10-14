@@ -1,6 +1,6 @@
 ---
 id: spokgo
-number: "03.4"
+number: "01.4"
 title: SpokGo
 navLabel: SpokGo
 company: Spok
