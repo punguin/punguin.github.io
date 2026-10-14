@@ -60,7 +60,7 @@ The UX field has developed an impressive amount of jargon for explaining how we 
 
 - What should change—and which gaps matter enough to address?
 
-<p class="practice__consider"><span class="label">Activities may include</span> exploration, prototyping, prioritization, facilitation, design, testing, negotiation, tradeoff decisions.</p>
+<p class="practice__consider"><span class="label">Through</span> exploration, prototyping, prioritization, facilitation, design, testing, negotiation, tradeoff decisions.</p>
 
 </div>
 
@@ -78,6 +78,6 @@ The UX field has developed an impressive amount of jargon for explaining how we 
 
 </div>
 
-<p class="statement">The method <mark>follows the uncertainty.</mark></p>
+Research, journey mapping, impact mapping, prototyping, analytics, facilitation, workshops, interviews, usability testing and lighter-weight techniques are tools, not mandatory stages. AI is one of them, built into the process wherever it makes sense. The tools change from project to project. The questions don't.
 
-Research, journey mapping, impact mapping, prototyping, analytics, facilitation, workshops, interviews, usability testing, or lighter-weight techniques are tools—not mandatory stages. AI is part of the process wherever it makes sense. The questions I'm trying to answer along the way don't change.
+<p class="statement">The method <mark>follows the uncertainty.</mark></p>
