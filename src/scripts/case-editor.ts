@@ -8,7 +8,6 @@
 
 const REPO = 'punguin/punguin.github.io';
 const DIR = 'src/content/projects';
-const IMAGES = 'public/images/work';
 const API = 'https://api.github.com';
 const STORE = 'pung-brooks:editor';
 
@@ -26,7 +25,6 @@ const empty = $<HTMLElement>('[data-empty]');
 const status = $<HTMLElement>('[data-status]');
 const body = $<HTMLTextAreaElement>('[name="body"]');
 const viewLink = $<HTMLAnchorElement>('[data-view]');
-const imageInput = $<HTMLInputElement>('[data-image-input]');
 
 let token = '';
 let branch = '';
@@ -157,6 +155,7 @@ function fill(data: Data, text: string) {
   const accent = form.querySelector<HTMLInputElement>(`[name="accent"][value="${data.accent}"]`);
   if (accent) accent.checked = true;
   body.value = text;
+  caseSlots();
 }
 
 function open(it: Item | null) {
@@ -427,6 +426,7 @@ function openPage(p: Page) {
     pageFields.append(fs);
     readPage = () => ({ title: getTitle(), navLabel: getNav() });
     pageBody.value = p.body!;
+    pageSlots();
     bodyWrap.hidden = false;
   }
   dirty = false;
@@ -485,13 +485,13 @@ pageForm.addEventListener('input', () => { dirty = true; });
 
 // ---------- Story toolbar ----------
 
-function insert(text: string) {
-  const { selectionStart: a, selectionEnd: b, value } = body;
+function insert(text: string, into = body) {
+  const { selectionStart: a, selectionEnd: b, value } = into;
   const before = value.slice(0, a);
   const pad = before && !before.endsWith('\n\n') ? (before.endsWith('\n') ? '\n' : '\n\n') : '';
-  body.value = `${before}${pad}${text}\n\n${value.slice(b).replace(/^\n+/, '')}`;
-  body.selectionStart = body.selectionEnd = (before + pad + text).length;
-  body.focus();
+  into.value = `${before}${pad}${text}\n\n${value.slice(b).replace(/^\n+/, '')}`;
+  into.selectionStart = into.selectionEnd = (before + pad + text).length;
+  into.focus();
   dirty = true;
 }
 
@@ -501,31 +501,121 @@ document.querySelectorAll<HTMLButtonElement>('[data-insert]').forEach((b) =>
     if (kind === 'heading') insert('#### 00 / Section\n\nOne line that sums up this section.');
     if (kind === 'step') insert('##### 1.1 Step title\n\nOne line that sums up this step.');
     if (kind === 'todo') insert('<p class="todo"><span class="todo-tag">To write</span> What goes here.</p>');
-    if (kind === 'image') {
-      if (!current) return setStatus('Save the case study once before adding images.', 'error');
-      imageInput.click();
-    }
   }),
 );
 
-imageInput.addEventListener('change', async () => {
-  const file = imageInput.files?.[0];
-  imageInput.value = '';
-  if (!file || !current) return;
-  if (file.size > 5 * 1024 * 1024) return setStatus('That image is over 5 MB. Export a smaller one (about 2400px wide is plenty).', 'error');
-  const dot = file.name.lastIndexOf('.');
-  const name = `${slug(dot > 0 ? file.name.slice(0, dot) : file.name) || 'image'}-${Date.now().toString(36)}${dot > 0 ? file.name.slice(dot).toLowerCase() : ''}`;
-  const path = `${IMAGES}/${current.data.id}/${name}`;
-  setStatus('Uploading image…', 'busy');
-  try {
-    await putFile(path, toBase64(new Uint8Array(await file.arrayBuffer())), `Add image to ${current.data.title}: ${name}`);
-    const size = (form.querySelector<HTMLSelectElement>('[data-image-size]')?.value) || 'wide';
-    insert(`<figure class="visual visual--${size}">\n<img src="/${path.replace(/^public\//, '')}" alt="Describe what the image shows" loading="lazy" />\n<figcaption>Caption.</figcaption>\n</figure>`);
-    setStatus('Image uploaded. Edit its description and caption, then save.', 'ok');
-  } catch (err) {
-    setStatus(`Couldn't upload. ${(err as Error).message}`, 'error');
+// ---------- Images ----------
+// Images are committed to public/images/ (one folder per case study or homepage section) and placed in
+// the text as a figure. "Evidence to add" placeholders in the text are listed as slots: uploading to a
+// slot swaps the placeholder for the image and keeps its size.
+
+const PLACEHOLDER = /<figure class="([^"]*\bis-placeholder\b[^"]*)">[\s\S]*?<\/figure>/g;
+const plain = (html: string) => html.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+// A slot's name: its bold title, else its description (without the "Evidence to add" tag), shortened.
+function slotName(html: string) {
+  const strong = html.match(/<strong>([\s\S]*?)<\/strong>/);
+  if (strong) return plain(strong[1]);
+  const text = plain((html.match(/<div class="visual__frame"[^>]*>([\s\S]*?)<\/div>/)?.[1] ?? '').replace(/<span class="visual__todo">[\s\S]*?<\/span>/, ''));
+  return text.length > 70 ? `${text.slice(0, 68).replace(/\s+\S*$/, '')}…` : text;
+}
+const attr = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+
+function figure(src: string, size: string, alt: string, caption: string) {
+  return `<figure class="${size}">\n<img src="${src}" alt="${attr(alt)}" loading="lazy" />\n<figcaption>${caption}</figcaption>\n</figure>`;
+}
+
+function imageTools(box: HTMLElement, text: HTMLTextAreaElement, folder: () => { dir: string; label: string } | string) {
+  const input = box.querySelector<HTMLInputElement>('[data-image-input]')!;
+  const size = box.querySelector<HTMLSelectElement>('[data-image-size]')!;
+  const slots = box.querySelector<HTMLElement>('[data-slots]')!;
+  let slot: string | null = null; // the placeholder the next upload replaces
+
+  async function upload(file: File) {
+    const where = folder();
+    if (typeof where === 'string') return setStatus(where, 'error');
+    if (!file.type.startsWith('image/')) return setStatus('That file isn’t an image. Use PNG, JPG, WebP, GIF or SVG.', 'error');
+    if (file.size > 5 * 1024 * 1024) return setStatus('That image is over 5 MB. Export a smaller one (about 2400px wide is plenty).', 'error');
+    const dot = file.name.lastIndexOf('.');
+    const ext = dot > 0 ? file.name.slice(dot).toLowerCase() : `.${file.type.split('/')[1].replace('svg+xml', 'svg').replace('jpeg', 'jpg')}`;
+    const name = `${slug(dot > 0 ? file.name.slice(0, dot) : file.name) || 'image'}-${Date.now().toString(36)}${ext}`;
+    const path = `${where.dir}/${name}`;
+    const target = slot;
+    slot = null;
+    setStatus('Uploading image…', 'busy');
+    try {
+      await putFile(path, toBase64(new Uint8Array(await file.arrayBuffer())), `Add image to ${where.label}: ${name}`);
+      const src = `/${path.replace(/^public\//, '')}`;
+      if (target && text.value.includes(target)) {
+        const cls = target.match(/class="([^"]*)"/)![1].split(/\s+/).filter((c) => c !== 'is-placeholder').join(' ');
+        const title = slotName(target);
+        text.value = text.value.replace(target, figure(src, cls, title || 'Describe what the image shows', title || 'Caption.'));
+        dirty = true;
+        renderSlots();
+        setStatus('Image placed in its slot. Check its description and caption, then save.', 'ok');
+      } else {
+        insert(figure(src, `visual visual--${size.value}`, 'Describe what the image shows', 'Caption.'), text);
+        renderSlots();
+        setStatus('Image uploaded. Edit its description and caption, then save.', 'ok');
+      }
+    } catch (err) {
+      setStatus(`Couldn't upload. ${(err as Error).message}`, 'error');
+    }
   }
+
+  function renderSlots() {
+    const found = [...text.value.matchAll(PLACEHOLDER)].map((m) => m[0]);
+    slots.hidden = !found.length;
+    slots.innerHTML = '';
+    if (!found.length) return;
+    const p = document.createElement('p');
+    p.textContent = `${found.length} image ${found.length === 1 ? 'slot' : 'slots'} still to fill. Uploading to one replaces its placeholder.`;
+    const ul = document.createElement('ul');
+    found.forEach((html, i) => {
+      const li = document.createElement('li');
+      const name = document.createElement('span');
+      name.textContent = slotName(html) || `Image ${i + 1}`;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'ed-btn';
+      btn.textContent = 'Upload image';
+      btn.addEventListener('click', () => { slot = html; input.click(); });
+      li.append(name, btn);
+      ul.append(li);
+    });
+    slots.append(p, ul);
+  }
+
+  box.querySelector<HTMLButtonElement>('[data-add-image]')!.addEventListener('click', () => { slot = null; input.click(); });
+  input.addEventListener('change', () => {
+    const file = input.files?.[0];
+    input.value = '';
+    if (file) upload(file); else slot = null;
+  });
+  text.addEventListener('paste', (e) => {
+    const file = [...(e.clipboardData?.files ?? [])].find((f) => f.type.startsWith('image/'));
+    if (file) { e.preventDefault(); slot = null; upload(file); }
+  });
+  text.addEventListener('dragover', (e) => {
+    if (e.dataTransfer?.types.includes('Files')) { e.preventDefault(); text.classList.add('is-drop'); }
+  });
+  text.addEventListener('dragleave', () => text.classList.remove('is-drop'));
+  text.addEventListener('drop', (e) => {
+    text.classList.remove('is-drop');
+    const file = [...(e.dataTransfer?.files ?? [])][0];
+    if (file) { e.preventDefault(); slot = null; upload(file); }
+  });
+  text.addEventListener('input', renderSlots);
+  return renderSlots;
+}
+
+const caseSlots = imageTools(body.closest('fieldset')!, body, () => {
+  const id = current ? String(current.data.id) : slug(field('title')!.value.trim());
+  if (!id) return 'Give the case study a title before adding images.';
+  return { dir: `public/images/work/${id}`, label: String(current?.data.title ?? field('title')!.value.trim()) };
 });
+const pageSlots = imageTools(pageBody.closest('fieldset')!, pageBody, () =>
+  page ? { dir: `public/images/home/${page.key}`, label: `homepage ${page.label}` } : 'Pick a section first.',
+);
 
 // ---------- Connect ----------
 

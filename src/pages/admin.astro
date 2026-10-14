@@ -11,6 +11,7 @@ const ACCENTS = [
   ['yellow', 'Yellow'],
   ['lilac', 'Lilac'],
 ];
+const ACCEPT = 'image/png,image/jpeg,image/webp,image/gif,image/svg+xml';
 const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
 ---
 <BaseLayout title="Site editor — Pung Brooks" description="Edit the homepage and case studies on Pung Brooks's site." noindex>
@@ -63,6 +64,16 @@ const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
           <div class="ed-page-fields" data-page-fields></div>
           <fieldset data-page-body-wrap hidden>
             <legend>Text</legend>
+            <div class="ed-tools">
+              <button class="ed-btn" type="button" data-add-image>Add image</button>
+              <select data-image-size aria-label="Image size">
+                  <option value="wide">Wide image</option>
+                  <option value="inline">Text-width image</option>
+                  <option value="full">Full-width image</option>
+                </select>
+              <input type="file" accept={ACCEPT} hidden data-image-input />
+            </div>
+            <div class="ed-slots" data-slots hidden></div>
             <textarea name="pageBody" rows="22" spellcheck="true" data-page-body></textarea>
             <small>Written in Markdown: <code>### Heading</code> starts a block, a blank line starts a new paragraph, <code>**bold**</code>, <code>[link](https://…)</code>. Keep any HTML tags (the parts in angle brackets) as they are unless you mean to change the layout.</small>
           </fieldset>
@@ -120,16 +131,18 @@ const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
             <div class="ed-tools">
               <button class="ed-btn" type="button" data-insert="heading">Add section</button>
               <button class="ed-btn" type="button" data-insert="step">Add step</button>
-              <button class="ed-btn" type="button" data-insert="image">Add image</button>
+              <button class="ed-btn" type="button" data-add-image>Add image</button>
               <select data-image-size aria-label="Image size">
                 <option value="wide">Wide image</option>
                 <option value="inline">Text-width image</option>
                 <option value="full">Full-width image</option>
               </select>
               <button class="ed-btn" type="button" data-insert="todo">Add “to write” note</button>
-              <input type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" hidden data-image-input />
+              <input type="file" accept={ACCEPT} hidden data-image-input />
             </div>
+            <div class="ed-slots" data-slots hidden></div>
             <textarea name="body" rows="24" spellcheck="true"></textarea>
+            <small>Images: use Add image, or drop or paste one into the text. It goes in where the cursor is.</small>
             <small>Written in Markdown. <code>#### 00 / Context</code> starts a section and the line after it is the section's headline; <code>##### 4.1 Title</code> starts a numbered step. Both appear in the page's contents list. A blank line starts a new paragraph, <code>**bold**</code>, <code>[link](https://…)</code>.</small>
           </fieldset>
 
@@ -214,5 +227,11 @@ const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
   .ed-tools { display: flex; flex-wrap: wrap; gap: var(--space-2); }
   .ed-tools .ed-btn { font-size: 0.875rem; padding: 6px 12px; }
   .ed-tools select { padding: 6px 10px; font-size: 0.875rem; }
+  .ed-slots { display: grid; gap: var(--space-2); padding: var(--space-4); border: 1px dashed var(--border-strong); border-radius: var(--radius-card); background: var(--bg-page, #fcfaf5); }
+  .ed-slots p { margin: 0; font-size: 0.875rem; color: var(--text-secondary); }
+  .ed-slots ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+  .ed-slots li { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); font-size: 0.9375rem; }
+  .ed-slots .ed-btn { font-size: 0.875rem; padding: 4px 12px; flex: none; }
+  textarea.is-drop { outline: 2px dashed var(--forest-ink); outline-offset: 2px; }
   .ed-save { position: sticky; bottom: 0; padding-block: var(--space-4); background: linear-gradient(transparent, var(--bg-page, #fcfaf5) 30%); }
 </style>
