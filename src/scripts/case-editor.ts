@@ -11,7 +11,7 @@ const DIR = 'src/content/projects';
 const API = 'https://api.github.com';
 const STORE = 'pung-brooks:editor';
 
-const KEYS = ['id', 'number', 'title', 'navLabel', 'company', 'context', 'project', 'domain', 'summary', 'role', 'timeline', 'platform', 'partners', 'accent', 'featured', 'order'] as const;
+const KEYS = ['id', 'number', 'title', 'navLabel', 'company', 'context', 'project', 'domain', 'summary', 'role', 'timeline', 'platform', 'partners', 'accent', 'cover', 'coverAlt', 'featured', 'order'] as const;
 type Value = string | number | boolean | string[];
 type Data = Record<string, Value>;
 type Item = { path: string; sha: string; data: Data; body: string };
@@ -214,6 +214,9 @@ async function save(e: SubmitEvent) {
     platform: list('platform'),
     partners: list('partners'),
     accent: (form.querySelector<HTMLInputElement>('[name="accent"]:checked')?.value) || 'yellow',
+    // The homepage card image has no field yet, so keep whatever the file already has.
+    cover: current?.data.cover,
+    coverAlt: current?.data.coverAlt,
     featured: field('featured')!.checked,
     order,
   };
