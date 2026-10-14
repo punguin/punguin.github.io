@@ -16,7 +16,7 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 
 <section class="step" style="--step-bg: var(--sticky-mint)">
 
-<p class="step__tag"><img src="/illustrations/understand-people.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />01 · Understand people</p>
+<p class="step__tag"><img src="/illustrations/understand-people.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />Understand people</p>
 
 ### What are people trying to do?
 
@@ -28,7 +28,7 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 
 <section class="step" style="--step-bg: var(--sticky-teal)">
 
-<p class="step__tag"><img src="/illustrations/understand-the-system.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />02 · Understand the system</p>
+<p class="step__tag"><img src="/illustrations/understand-the-system.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />Understand the system</p>
 
 ### How does the system actually work?
 
@@ -40,7 +40,7 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 
 <section class="step" style="--step-bg: var(--sticky-blush)">
 
-<p class="step__tag"><img src="/illustrations/find-the-gaps.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />03 · Find the gaps</p>
+<p class="step__tag"><img src="/illustrations/find-the-gaps.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />Find the gaps</p>
 
 ### Where don’t those realities line up?
 
@@ -54,7 +54,7 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 
 <img class="step__art" src="/illustrations/close-the-gaps.svg" alt="" width="240" height="180" loading="lazy" decoding="async" />
 
-<p class="step__tag">04 · Design</p>
+<p class="step__tag">Design</p>
 
 ### What is the best way to solve these gaps?
 
@@ -64,7 +64,7 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 
 <section class="step" style="--step-bg: var(--accent-relay)">
 
-<p class="step__tag"><img src="/illustrations/see-what-changed.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />05 · See what changed</p>
+<p class="step__tag"><img src="/illustrations/see-what-changed.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />See what changed</p>
 
 ### Did the gap close?
 
