@@ -15,7 +15,7 @@ const ACCEPT = 'image/png,image/jpeg,image/webp,image/gif,image/svg+xml';
 const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
 ---
 <BaseLayout title="Site editor — Pung Brooks" description="Edit the homepage and case studies on Pung Brooks's site." noindex>
-  <div class="ed">
+  <main class="ed">
     <header class="ed-top">
       <a class="ed-top__home" href="/">Pung Brooks</a>
       <span class="ed-top__name">Site editor</span>
@@ -52,7 +52,7 @@ const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
         <button class="ed-link" type="button" data-disconnect>Disconnect</button>
       </aside>
 
-      <main class="ed-main">
+      <div class="ed-main">
         <p class="ed-empty" data-empty>Pick a part of the homepage or a case study to edit, or start a new case study.</p>
 
         <form class="ed-form" data-page-form hidden>
@@ -141,7 +141,7 @@ const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
               <input type="file" accept={ACCEPT} hidden data-image-input />
             </div>
             <div class="ed-slots" data-slots hidden></div>
-            <textarea name="body" rows="24" spellcheck="true"></textarea>
+            <textarea name="body" rows="24" spellcheck="true" aria-label="Story"></textarea>
             <small>Images: use Add image, or drop or paste one into the text. It goes in where the cursor is.</small>
             <small>Written in Markdown. <code>#### 00 / Context</code> starts a section and the line after it is the section's headline; <code>##### 4.1 Title</code> starts a numbered step. Both appear in the page's contents list. A blank line starts a new paragraph, <code>**bold**</code>, <code>[link](https://…)</code>.</small>
           </fieldset>
@@ -150,9 +150,9 @@ const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
             <button class="ed-btn ed-btn--primary" type="submit">Save</button>
           </div>
         </form>
-      </main>
+      </div>
     </div>
-  </div>
+  </main>
 
   <script>
     import '../scripts/case-editor.ts';

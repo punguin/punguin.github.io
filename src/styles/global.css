@@ -532,7 +532,7 @@ section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset);
 }
 .step__more { font-size: 1.125rem; }
 .step__consider { font-size: 0.9375rem; max-width: 40em; }
-.step__consider .label { margin-right: 6px; }
+.step__consider .label { margin-right: 6px; color: var(--forest-ink); } /* the grey label fails contrast on the pastel cards */
 
 /* Step 04 is the design work itself, so it gets the most room: a bigger heading and its sketch drawn large. */
 .step--feature { padding-block: var(--space-6) var(--space-7); }
