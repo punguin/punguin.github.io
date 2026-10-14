@@ -1,8 +1,8 @@
 """Generate the hero illustration: a page from a designer's sketchbook with a loose cloud of marker
-orbs, one for each domain or area of expertise in the work (the case studies' worlds, systems, AI,
-Figma). Each orb starts as a pencil scribble, resolves into a clear doodle of its domain, then softly
-tangles again: complex problem spaces made understandable, one at a time. Each orb also drifts on its
-own slow loop, so the cloud never moves in step.
+orbs, one for each complex domain or problem space in the work (a freight marketplace, drivers on the
+road, clinical messaging, order status, customer accounts, design systems, real estate, greenfield
+products), each holding a small pencil doodle and a handwritten label. Each orb drifts on its own
+slow loop, so the cloud never moves in step.
 
 Everything is drawn as pencil: variable-width strokes, a second exploratory pass on some lines,
 overshoots and faint construction lines. Colour is marker / highlighter streaks that do not line up
@@ -10,9 +10,8 @@ with the pencil.
 
 Writes into src/assets/brain/:
   paper.svg           the still drawing (also holds the shared pencil filters)
-  piece-<id>-wash.svg, -tangle.svg, -clear.svg
-                      each orb's three layers (colour, scribble, doodle), so moving and fading them is cheap
-  motion.css          a drift for every orb and its tangle-to-clear cycle
+  piece-<id>.svg      one orb per file, each in its own layer so moving it is cheap
+  motion.css          a slow drift for every orb
   layout.json         where each orb sits, in scene units
 PickMyBrain.astro inlines them. Deterministic: cd scripts && python3 brain_sketch.py"""
 import json, math, pathlib, random
@@ -224,17 +223,18 @@ def dab(cx, cy, rx, ry, colour, seed, opacity=0.55):
 
 S = 1.0              # doodles are drawn at this scale inside their orbs
 
-# The orbs: one per domain or area of expertise in the work. id: (centre, radius, wash colour, doodle,
-# label, label offset, drift: duration in seconds, how far it wanders as a share of its own size, and a phase).
+# The orbs: the complex domains and problem spaces in the work, as a hiring manager would scan for them.
+# id: (centre, radius, wash colour, doodle, label, label offset,
+#      drift: duration in seconds, how far it wanders as a share of its own size, and a phase).
 ORBS = {
-    "loadboard": ((560, 250), 85, TEAL, "browser", "load board", 65, (13.0, 4.2, 0.10)),
-    "account": ((772, 196), 62, MINT, "glasses", "accounts", 52, (12.2, 5.0, 0.30)),
-    "relay": ((398, 338), 69, TERRACOTTA, "truck", "drivers", 58, (11.0, 5.0, 0.55)),
-    "tracking": ((742, 412), 67, TEAL, "parcel", "where is it?", 60, (10.4, 5.2, 0.80)),
-    "spokgo": ((548, 486), 69, LILAC, "conversation", "care teams", 67, (14.1, 4.6, 0.20)),
-    "system": ((906, 318), 57, YELLOW, "system", "systems", 52, (12.8, 5.0, 0.42)),
-    "ai": ((646, 104), 41, LILAC, "sparkles", None, 0, (9.1, 6.5, 0.90)),
-    "figma": ((356, 506), 46, MINT, "figma_pen", None, 0, (11.6, 6.0, 0.35)),
+    "freight": ((560, 250), 85, TEAL, "browser", "freight marketplace", 65, (15.0, 3.2, 0.10)),     # Relay Load Board
+    "clinical": ((782, 196), 66, LILAC, "conversation", "clinical messaging", 64, (17.2, 3.6, 0.30)),  # SpokGo, Spok
+    "drivers": ((392, 352), 69, TERRACOTTA, "truck", "drivers on the road", 58, (14.1, 3.6, 0.55)),  # Relay mobile
+    "orders": ((744, 412), 67, TEAL, "parcel", "order status", 60, (13.4, 3.8, 0.80)),           # Zenni Order Tracking
+    "accounts": ((560, 488), 62, MINT, "glasses", "customer accounts", 54, (16.1, 3.4, 0.20)),   # Zenni Account
+    "systems": ((918, 330), 55, YELLOW, "components", "design systems", 52, (14.8, 3.8, 0.42)),  # Meridian, Zenni DS
+    "realestate": ((356, 500), 50, PINK, "house", "real estate", 46, (13.0, 4.2, 0.65)),     # Lone Wolf
+    "greenfield": ((652, 98), 44, MINT, "sprout", "greenfield", 42, (12.2, 4.4, 0.90)),        # SpokGo, new products
 }
 
 
@@ -244,37 +244,20 @@ def orb_wash(r, colour, seed):
             + marker(0, 0, r * 1.75, r * 1.7, colour, seed + 1, angle=-12, opacity=0.5, nib=max(14, r / 3)))
 
 
-def orb_layers(oid):
-    """One orb as three layers that share a box: the wash (always there), the tangle (the problem as it
-    first looks: a scribble and a question mark) and the clear doodle with its label (after the work)."""
+def orb_piece(oid):
     (cx, cy), r, colour, doodle, label, ly, _ = ORBS[oid]
     seed = sum(map(ord, oid))
     rnd = random.Random(seed)
+    p = Pencil(seed)
     ring = Pencil(seed + 1)
     ring.circle(0, 0, r * 1.02, w=1.3, sweep=300, start=rnd.uniform(0, 360))
-    wash = (f'<g filter="url(#bm-marker)" style="mix-blend-mode:multiply">{orb_wash(r, colour, seed)}</g>'
-            f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none"><g opacity="0.35">{ring.svg()}</g></g>')
-
-    p = Pencil(seed)
-    globals()[doodle](p, 0, -6 if label else 0)
-    if label:
-        p.text(0, ly, label, size=19, rot=rnd.uniform(-6, 6), opacity=0.72)
-    clear = f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none"><g transform="scale({S})">{p.svg()}</g></g>'
-
-    t = Pencil(seed + 2)
-    spread = r * 0.5
-    pts = []
-    for k in range(int(14 + r / 3.5)):
-        a = k * 2.3 + rnd.uniform(-0.7, 0.7)
-        rad = rnd.uniform(0.2, 1.0) * spread
-        pts.append((rad * 1.15 * math.cos(a) + rnd.uniform(-5, 5), rad * 0.85 * math.sin(a) - 4 + rnd.uniform(-5, 5)))
-    t.stroke(pts, w=1.8, jitter=1, samples=8)
-    if r > 50:
-        t.question(spread * 0.95, -spread * 0.9, 0.8 + r / 300, w=2.0)
-    tangle = f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none" opacity="0.85">{t.svg()}</g>'
-
-    m = r + 22
-    return {"wash": wash, "tangle": tangle, "clear": clear}, (-m, -m, 2 * m, 2 * m)
+    globals()[doodle](p, 0, -8)
+    p.text(0, ly, label, size=18, rot=rnd.uniform(-5, 5), opacity=0.75)
+    body = (f'<g filter="url(#bm-marker)" style="mix-blend-mode:multiply">{orb_wash(r, colour, seed)}</g>'
+            f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none"><g opacity="0.35">{ring.svg()}</g>'
+            f'<g transform="scale({S})">{p.svg()}</g></g>')
+    m = r + 34  # room for labels wider than the orb
+    return body, (-m, -m, 2 * m, 2 * m)
 
 
 def paper():
@@ -394,6 +377,37 @@ def browser(p, x, y):
                close=True, w=1.2, overshoot=0)
 
 
+def components(p, x, y):
+    """Design systems: a few components on a grid (a button, a toggle, a card)."""
+    p.poly([(x - 34, y - 26), (x + 2, y - 27), (x + 3, y - 12), (x - 33, y - 11)], close=True, w=1.9, overshoot=1)
+    p.line(x - 24, y - 19, x - 8, y - 19, w=1.3, overshoot=0)
+    p.stroke([(x + 12, y - 18), (x + 34, y - 19)], w=9, jitter=0.3)  # a toggle track, drawn as one thick mark
+    p.circle(x + 30, y - 19, 6, w=1.8, sweep=360)
+    p.poly([(x - 34, y - 2), (x + 34, y - 3), (x + 35, y + 30), (x - 33, y + 31)], close=True, w=1.9, overshoot=1)
+    p.poly([(x - 26, y + 5), (x - 8, y + 5), (x - 8, y + 23), (x - 26, y + 23)], close=True, w=1.3, overshoot=0)
+    for k in range(2):
+        p.line(x - 1, y + 9 + k * 9, x + 26 - k * 8, y + 9 + k * 9, w=1.2, overshoot=0)
+
+
+def house(p, x, y):
+    """Real estate: a house beside a signed transaction form."""
+    p.poly([(x - 34, y - 2), (x - 14, y - 22), (x + 6, y - 2)], w=2.1, overshoot=2)
+    p.poly([(x - 29, y - 6), (x - 29, y + 22), (x + 1, y + 22), (x + 1, y - 6)], w=2.0, overshoot=1)
+    p.poly([(x - 19, y + 22), (x - 19, y + 8), (x - 9, y + 8), (x - 9, y + 22)], w=1.4, overshoot=0)
+    p.poly([(x + 12, y - 16), (x + 34, y - 17), (x + 35, y + 22), (x + 13, y + 23)], close=True, w=1.7, overshoot=1)
+    for k in range(3):
+        p.line(x + 17, y - 8 + k * 7, x + 30, y - 8 + k * 7, w=1.1, overshoot=0)
+    p.stroke([(x + 16, y + 16), (x + 20, y + 12), (x + 23, y + 17), (x + 27, y + 12), (x + 31, y + 16)], w=1.3, jitter=0.3)
+
+
+def sprout(p, x, y):
+    """Greenfield: a seedling coming up out of fresh ground."""
+    p.stroke([(x - 26, y + 18), (x - 8, y + 14), (x + 10, y + 16), (x + 26, y + 13)], w=1.9)
+    p.stroke([(x, y + 15), (x + 1, y + 2), (x, y - 12)], w=2.0, jitter=0.4)
+    p.stroke([(x, y - 4), (x - 10, y - 12), (x - 18, y - 10), (x - 12, y - 2), (x, y - 4)], w=1.8, jitter=0.4, samples=6)
+    p.stroke([(x, y - 10), (x + 9, y - 20), (x + 18, y - 18), (x + 13, y - 9), (x, y - 10)], w=1.8, jitter=0.4, samples=6)
+
+
 def system(p, x, y):
     """Understand the system: a few things and how they connect."""
     nodes = [(x - 22, y - 14), (x + 22, y - 18), (x + 2, y + 18), (x + 30, y + 16)]
@@ -406,8 +420,8 @@ def system(p, x, y):
 # ---------------------------------------------------------------- the moving pieces
 
 def pieces():
-    """id: (svg layers, box around the centre, centre in scene units, drift)."""
-    return {oid: (*orb_layers(oid), o[0], o[6]) for oid, o in ORBS.items()}
+    """id: (svg body, box around the centre, centre in scene units, drift)."""
+    return {oid: (*orb_piece(oid), o[0], o[6]) for oid, o in ORBS.items()}
 
 
 # ---------------------------------------------------------------- the motion
@@ -433,35 +447,10 @@ def drift(pid, dur, amp, phase):
             f"@keyframes bm-drift-{pid} {{", *frames, "}"]
 
 
-def clarify(pid, k, n):
-    """Tangle to clear: the scribble eases away as the doodle settles in, holds clear for a while, then
-    softly tangles again. Each orb has its own cycle length, and their starting points are spread
-    evenly, so at any moment some orbs are still a scribble while most are clear."""
-    dur = round(random.Random(pid + "c").uniform(9.5, 13.5), 1)
-    delay = -dur * k / n
-    return [
-        f".bm-orb--{pid} .bm-tangle {{ animation: bm-untangle {dur}s ease-in-out {delay:.2f}s infinite; }}",
-        f".bm-orb--{pid} .bm-clear {{ animation: bm-clarify {dur}s ease-in-out {delay:.2f}s infinite; }}",
-    ]
-
-
 def motion(all_pieces):
-    css = ["/* Generated by scripts/brain_sketch.py: a slow drift for every orb, and its tangle-to-clear cycle. */",
-           "@keyframes bm-untangle {",
-           "  0%, 20% { opacity: 1; transform: scale(1) rotate(0deg); }",
-           "  34%, 82% { opacity: 0; transform: scale(0.82) rotate(-8deg); }",
-           "  94%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }",
-           "}",
-           "@keyframes bm-clarify {",
-           "  0%, 22% { opacity: 0; transform: scale(0.94); }",
-           "  36%, 80% { opacity: 1; transform: scale(1); }",
-           "  92%, 100% { opacity: 0; transform: scale(0.94); }",
-           "}"]
-    ids = list(all_pieces)
-    for k, pid in enumerate(ids):
-        dur, amp, phase = all_pieces[pid][3]
+    css = ["/* Generated by scripts/brain_sketch.py: a slow drift for every orb. */"]
+    for pid, (_, _, _, (dur, amp, phase)) in all_pieces.items():
         css += drift(pid, dur, amp, phase)
-        css += clarify(pid, k * 3 % len(ids), len(ids))  # neighbours don't clear one after another
     return "\n".join(css) + "\n"
 
 
@@ -472,9 +461,8 @@ if __name__ == "__main__":
     (OUT / "paper.svg").write_text(paper())
     all_pieces = pieces()
     layout = []
-    for pid, (layers, (bx, by, bw, bh), (cx, cy), _) in all_pieces.items():
-        for name, body in layers.items():
-            (OUT / f"piece-{pid}-{name}.svg").write_text(wrap(body, (bx, by, bw, bh), cls="bm-piece-svg"))
+    for pid, (body, (bx, by, bw, bh), (cx, cy), _) in all_pieces.items():
+        (OUT / f"piece-{pid}.svg").write_text(wrap(body, (bx, by, bw, bh), cls="bm-piece-svg"))
         layout.append({"id": pid, "x": cx + bx - X0, "y": cy + by, "w": bw, "h": bh, "ox": -bx / bw, "oy": -by / bh})
     (OUT / "layout.json").write_text(json.dumps(layout, indent=1) + "\n")
     (OUT / "motion.css").write_text(motion(all_pieces))

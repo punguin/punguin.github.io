@@ -1,7 +1,7 @@
 ---
 import brain from '../content/brain.json';
 // Drawn by scripts/brain_sketch.py. The pencil drawing and each orb are baked to images by scripts/bake_brain.mjs
-// (its grain filter is too costly to re-run every frame); CSS only moves and fades the images.
+// (its grain filter is too costly to re-run every frame); CSS only moves the images.
 import layout from '../assets/brain/layout.json';
 import '../assets/brain/motion.css';
 
@@ -16,9 +16,7 @@ const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(3)}%`;
         class={`bm-orb bm-orb--${p.id}`}
         style={`left: ${pct(p.x, VW)}; top: ${pct(p.y, VH)}; width: ${pct(p.w, VW)}; transform-origin: ${(p.ox * 100).toFixed(1)}% ${(p.oy * 100).toFixed(1)}%`}
       >
-        {['wash', 'tangle', 'clear'].map((layer) => (
-          <img class={`bm-${layer}`} src={`/illustrations/brain/piece-${p.id}-${layer}.webp`} width={p.w * 2} height={p.h * 2} alt="" />
-        ))}
+        <img src={`/illustrations/brain/piece-${p.id}.webp`} width={p.w * 2} height={p.h * 2} alt="" />
       </div>
     ))}
   </div>
@@ -42,12 +40,10 @@ const pct = (v: number, of: number) => `${((v / of) * 100).toFixed(3)}%`;
   .bm-paper { position: absolute; inset: 0; width: 100%; height: 100%; }
 
   .bm-orb { position: absolute; aspect-ratio: 1; will-change: transform; }
-  .bm-orb img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
-  .bm-tangle, .bm-clear { will-change: opacity, transform; }
+  .bm-orb img { display: block; width: 100%; height: auto; }
 
   @media (prefers-reduced-motion: reduce) {
-    /* No drift and no cycle: the orbs rest where they were drawn, clear. */
-    .bm-orb, .bm-orb img { animation: none !important; }
-    .bm-tangle { opacity: 0; }
+    /* No drift: the orbs rest where they were drawn. */
+    .bm-orb { animation: none !important; }
   }
 </style>
