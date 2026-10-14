@@ -80,4 +80,4 @@ The UX field has developed an impressive amount of jargon for explaining how we 
 
 <p class="statement">The method <mark>follows the uncertainty.</mark></p>
 
-Research, journey mapping, impact mapping, prototyping, analytics, facilitation, workshops, interviews, usability testing, or lighter-weight techniques are tools—not mandatory stages.
+Research, journey mapping, impact mapping, prototyping, analytics, facilitation, workshops, interviews, usability testing, or lighter-weight techniques are tools—not mandatory stages. AI is part of the process wherever it makes sense. The questions I'm trying to answer along the way don't change.
