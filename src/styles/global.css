@@ -298,7 +298,6 @@ a.external::after {
   --bg: var(--surface);
   position: relative;
   transform-origin: 40% 0;
-  --room: var(--sheet-pad); /* wide visuals bleed to the page edge, never past it */
   background: var(--surface);
   border: 1px solid var(--border-subtle);
   border-radius: 2px;
@@ -470,20 +469,8 @@ a.external::after {
 
 .visual--archive { max-width: 28em; }
 
-/* Wide and full visuals extend left into the white page's margin, never past its edge.
-   --room is that margin (set on .sheet). */
-@media (min-width: 1024px) {
-  .document {
-    --room: 0px; /* .sheet sets the real value */
-  }
-  .visual--wide { --extend: min(120px, var(--room)); }
-  .visual--full { --extend: min(160px, var(--room)); }
-  .visual--wide, .visual--full {
-    margin-left: calc(-1 * var(--extend));
-    width: calc(100% + var(--extend));
-  }
-  .visual--wide figcaption, .visual--full figcaption { margin-left: var(--extend); }
-}
+/* Wide and full visuals line up with the text column on both sides, so they never
+   crowd the white page's edge. */
 
 /* ---------- Image viewer (case studies) ---------- */
 
