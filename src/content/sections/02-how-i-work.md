@@ -24,8 +24,6 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 
 <p class="step__consider"><span class="label">Consider</span> goals, needs, behavior, environment, mental models, real-world constraints.</p>
 
-<p class="step__proof"><a href="/work/amazon-relay-load-board/#01--people">See it in Amazon Relay Load Board: 01 / People</a></p>
-
 </section>
 
 <section class="step" style="--step-bg: var(--sticky-teal)">
@@ -38,8 +36,6 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 
 <p class="step__consider"><span class="label">Consider</span> technology, business rules, operations, ownership, organizational relationships, incentives, constraints, dependencies.</p>
 
-<p class="step__proof"><a href="/work/amazon-relay-load-board/#02--system">See it in Amazon Relay Load Board: 02 / System</a></p>
-
 </section>
 
 <section class="step" style="--step-bg: var(--sticky-blush)">
@@ -49,8 +45,6 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 ### Where don’t those realities line up?
 
 <p class="step__consider"><span class="label">Look for</span> unmet needs, conflicting mental models, missing information, broken handoffs, organizational seams, product structures that no longer match real work, distance between what exists and what could exist.</p>
-
-<p class="step__proof"><a href="/work/amazon-relay-load-board/#03--gaps">See it in Amazon Relay Load Board: 03 / Gaps</a></p>
 
 </section>
 
@@ -64,8 +58,6 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 
 <p class="step__consider"><span class="label">Through</span> exploration, prototyping, prioritization, facilitation, design, testing, negotiation, tradeoff decisions.</p>
 
-<p class="step__proof"><a href="/work/amazon-relay-load-board/#04--design">See it in Amazon Relay Load Board: 04 / Design</a></p>
-
 </section>
 
 <section class="step" style="--step-bg: var(--accent-relay)">
@@ -75,8 +67,6 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 ### Did I close the gap?
 
 <p class="step__consider"><span class="label">Evaluate</span> customer behavior, qualitative response, support demand, operational impact, product performance, adoption, new questions revealed by the work.</p>
-
-<p class="step__proof"><a href="/work/amazon-relay-load-board/#05--impact">See it in Amazon Relay Load Board: 05 / Impact</a></p>
 
 </section>
 

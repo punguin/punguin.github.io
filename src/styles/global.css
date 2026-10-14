@@ -490,11 +490,24 @@ a.external::after {
 section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset); }
 .prose h3[id], .prose h4[id], .prose h5[id] { scroll-margin-top: calc(var(--anchor-offset) + 24px); }
 
-/* ---------- How I work: each step leads with its question ---------- */
+/* ---------- How I work: each step is a coloured card that leads with its question ----------
+   People and system share the first row (the two things to understand); gaps, closing them and
+   seeing what changed each get a full row. */
 
-.practice { margin-top: var(--space-7); }
-.step { padding-top: var(--space-5); border-top: 1px solid var(--border-strong); }
-.step + .step { margin-top: var(--space-8); }
+.practice {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+@media (min-width: 720px) {
+  .practice { grid-template-columns: 1fr 1fr; }
+  .practice > .step:nth-of-type(n + 3) { grid-column: 1 / -1; }
+}
+.step {
+  padding: var(--space-5) var(--space-5) var(--space-6);
+  background: var(--step-bg);
+  border-radius: var(--radius-card);
+}
 .prose .step > * { margin-top: var(--space-3); }
 .prose .step > .step__tag {
   display: flex;
@@ -506,17 +519,16 @@ section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
-.step__tag img { width: 44px; height: 44px; padding: 4px; border-radius: 2px; background: var(--step-bg); }
+.step__tag img { width: 52px; height: 52px; mix-blend-mode: multiply; }
 .prose .step h3 {
   margin-top: var(--space-3);
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+  font-size: clamp(1.625rem, 2.6vw, 2.125rem);
   line-height: 1.08;
   letter-spacing: var(--tracking-display);
   text-wrap: balance;
 }
-.step__more { font-size: 1.125rem; color: var(--text-secondary); }
-.step__consider { font-size: 0.9375rem; color: var(--text-secondary); }
+.step__more { font-size: 1.125rem; }
+.step__consider { font-size: 0.9375rem; max-width: 40em; }
 .step__consider .label { margin-right: 6px; }
-.step__proof { font-size: 0.9375rem; }
