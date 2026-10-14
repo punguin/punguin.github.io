@@ -18,7 +18,7 @@ order: 3
 
 I connected operational order information to the questions customers actually had, then evaluated whether a clearer experience reduced the customer’s need to contact support.
 
-#### People
+#### 01 / People
 
 After buying glasses, customers were asking:
 
@@ -29,7 +29,7 @@ After buying glasses, customers were asking:
 - When should I expect it?
 - Do I need to do anything?
 
-#### System
+#### 02 / System
 
 The existing status experience exposed system states without adequately translating them into customer understanding.
 
@@ -40,7 +40,11 @@ The existing status experience exposed system states without adequately translat
 <figcaption><span class="todo-tag">Caption to write</span> How backend reality was translated into customer language.</figcaption>
 </figure>
 
-#### Decisions
+#### 03 / Gaps
+
+<p class="todo"><span class="todo-tag">To write</span> Where what people were trying to do and how the system worked didn’t line up, and which of those gaps were worth solving.</p>
+
+#### 04 / Design
 
 <p class="todo"><span class="todo-tag">To write</span> The design of the shipment tracker bar and the detailed step and status widget, and the reasoning behind each.</p>
 
@@ -53,7 +57,7 @@ The existing status experience exposed system states without adequately translat
 
 <p class="todo"><span class="todo-tag">To write</span> Which operational detail was intentionally hidden or simplified, and why.</p>
 
-#### Outcome
+#### 05 / Impact
 
 <p class="todo"><span class="todo-tag">To write</span> Measured customer and support impact from analytics and experimentation, such as change in support contacts about order status.</p>
 

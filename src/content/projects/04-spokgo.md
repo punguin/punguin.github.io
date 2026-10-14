@@ -18,11 +18,11 @@ order: 4
 
 What began as a request for something resembling a familiar messaging application became a broader effort to understand clinical communication and help multiple teams see the problem in a more useful way.
 
-#### Context
+#### 00 / Context
 
 <p class="todo"><span class="todo-tag">To write</span> The original request, why the problem definition was ambiguous, and what was at stake in a greenfield product.</p>
 
-#### People
+#### 01 / People
 
 <p class="todo"><span class="todo-tag">To write</span> What research showed about clinical communication in context.</p>
 
@@ -31,7 +31,7 @@ What began as a request for something resembling a familiar messaging applicatio
 <figcaption><span class="todo-tag">Caption to write</span> What the synthesis made visible that the original request did not.</figcaption>
 </figure>
 
-#### System
+#### 02 / System
 
 <p class="todo"><span class="todo-tag">To write</span> How communication actually moved through clinical workflows, and the system models used to explain it.</p>
 
@@ -40,7 +40,11 @@ What began as a request for something resembling a familiar messaging applicatio
 <figcaption><span class="todo-tag">Caption to write</span> How this map helped multiple teams see the same problem.</figcaption>
 </figure>
 
-#### Decisions
+#### 03 / Gaps
+
+<p class="todo"><span class="todo-tag">To write</span> Where what people were trying to do and how the system worked didn’t line up, and which of those gaps were worth solving.</p>
+
+#### 04 / Design
 
 <p class="todo"><span class="todo-tag">To write</span> The early product framing, how stakeholders aligned on it, and the role leadership played in making shared direction visible.</p>
 
@@ -49,7 +53,7 @@ What began as a request for something resembling a familiar messaging applicatio
 <figcaption><span class="todo-tag">Caption to write</span> Which artifact moved the conversation, and how.</figcaption>
 </figure>
 
-#### Outcome
+#### 05 / Impact
 
 The important outcome is not simply that an interface was designed. It is that the organization gained a clearer understanding of what it was building and why.
 

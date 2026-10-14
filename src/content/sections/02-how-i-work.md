@@ -74,4 +74,6 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 
 </div>
 
+Every case study in Selected work follows these five questions.
+
 <p class="statement">The method <mark>follows the uncertainty.</mark></p>

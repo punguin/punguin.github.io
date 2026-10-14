@@ -18,7 +18,7 @@ order: 2
 
 I modernized a fragmented Account experience while creating reusable product patterns and helping establish a healthier working relationship between product design and the design system.
 
-#### Context
+#### 00 / Context
 
 <p class="todo"><span class="todo-tag">To write</span> How Account had become fragmented, what the original request was, and why the work needed to go beyond a single feature.</p>
 
@@ -27,7 +27,11 @@ I modernized a fragmented Account experience while creating reusable product pat
 <figcaption><span class="todo-tag">Caption to write</span> What the inventory showed about how Account had grown.</figcaption>
 </figure>
 
-#### System
+#### 01 / People
+
+<p class="todo"><span class="todo-tag">To write</span> Who the users were, what they were trying to do, and what context shaped their behavior.</p>
+
+#### 02 / System
 
 <p class="todo"><span class="todo-tag">To write</span> The product architecture around Account, and the organizational relationships around design: who owned what, and where shared ownership was missing.</p>
 
@@ -36,7 +40,11 @@ I modernized a fragmented Account experience while creating reusable product pat
 <figcaption><span class="todo-tag">Caption to write</span> How the information structure clarified what Account needed to hold.</figcaption>
 </figure>
 
-#### Decisions
+#### 03 / Gaps
+
+<p class="todo"><span class="todo-tag">To write</span> Where what people were trying to do and how the system worked didn’t line up, and which of those gaps were worth solving.</p>
+
+#### 04 / Design
 
 <p class="todo"><span class="todo-tag">To write</span> The reusable patterns created, how they connected to the design system, and how the working relationship between product design and the design system changed.</p>
 
@@ -49,7 +57,7 @@ I modernized a fragmented Account experience while creating reusable product pat
 
 <p class="todo"><span class="todo-tag">To write</span> What was deferred or left out to establish the foundation first.</p>
 
-#### Outcome
+#### 05 / Impact
 
 <p class="todo"><span class="todo-tag">To write</span> What the foundation enabled in later product work. Add measured results where available.</p>
 

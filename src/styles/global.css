@@ -503,6 +503,7 @@ section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset);
   .practice { grid-template-columns: 1fr 1fr; }
   .practice > .step:nth-of-type(n + 3) { grid-column: 1 / -1; }
 }
+.prose .practice + p { margin-top: var(--space-5); color: var(--text-secondary); }
 .step {
   padding: var(--space-5) var(--space-5) var(--space-6);
   background: var(--step-bg);
