@@ -44,6 +44,8 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 
 ### Where don’t those realities line up?
 
+<p class="step__more">Which ones are worth solving?</p>
+
 <p class="step__consider"><span class="label">Look for</span> unmet needs, conflicting mental models, missing information, broken handoffs, organizational seams, product structures that no longer match real work, distance between what exists and what could exist.</p>
 
 </section>
@@ -54,9 +56,7 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 
 <p class="step__tag">04 · Design</p>
 
-### Fix the gaps that matter
-
-<p class="step__more">Which gaps matter enough to address? What should change?</p>
+### What is the best way to solve these gaps?
 
 <p class="step__consider"><span class="label">Through</span> exploration, prototyping, prioritization, facilitation, design, testing, negotiation, tradeoff decisions.</p>
 
