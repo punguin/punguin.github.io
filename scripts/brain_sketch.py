@@ -1,7 +1,8 @@
 """Generate the hero illustration: a page from a designer's sketchbook with a loose cloud of marker
 orbs, one for each domain or area of expertise in the work (the case studies' worlds, systems, AI,
-Figma), each holding a small pencil doodle. Each orb drifts on its own slow loop, so the cloud never
-moves in step.
+Figma). Each orb starts as a pencil scribble, resolves into a clear doodle of its domain, then softly
+tangles again: complex problem spaces made understandable, one at a time. Each orb also drifts on its
+own slow loop, so the cloud never moves in step.
 
 Everything is drawn as pencil: variable-width strokes, a second exploratory pass on some lines,
 overshoots and faint construction lines. Colour is marker / highlighter streaks that do not line up
@@ -9,8 +10,9 @@ with the pencil.
 
 Writes into src/assets/brain/:
   paper.svg           the still drawing (also holds the shared pencil filters)
-  piece-<id>.svg      one orb per file, each in its own layer so moving it is cheap
-  motion.css          a drift for every orb
+  piece-<id>-wash.svg, -tangle.svg, -clear.svg
+                      each orb's three layers (colour, scribble, doodle), so moving and fading them is cheap
+  motion.css          a drift for every orb and its tangle-to-clear cycle
   layout.json         where each orb sits, in scene units
 PickMyBrain.astro inlines them. Deterministic: cd scripts && python3 brain_sketch.py"""
 import json, math, pathlib, random
@@ -242,20 +244,37 @@ def orb_wash(r, colour, seed):
             + marker(0, 0, r * 1.75, r * 1.7, colour, seed + 1, angle=-12, opacity=0.5, nib=max(14, r / 3)))
 
 
-def orb_piece(oid):
+def orb_layers(oid):
+    """One orb as three layers that share a box: the wash (always there), the tangle (the problem as it
+    first looks: a scribble and a question mark) and the clear doodle with its label (after the work)."""
     (cx, cy), r, colour, doodle, label, ly, _ = ORBS[oid]
     seed = sum(map(ord, oid))
-    p = Pencil(seed)
+    rnd = random.Random(seed)
     ring = Pencil(seed + 1)
-    ring.circle(0, 0, r * 1.02, w=1.3, sweep=r and 300, start=random.Random(seed).uniform(0, 360))
+    ring.circle(0, 0, r * 1.02, w=1.3, sweep=300, start=rnd.uniform(0, 360))
+    wash = (f'<g filter="url(#bm-marker)" style="mix-blend-mode:multiply">{orb_wash(r, colour, seed)}</g>'
+            f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none"><g opacity="0.35">{ring.svg()}</g></g>')
+
+    p = Pencil(seed)
     globals()[doodle](p, 0, -6 if label else 0)
     if label:
-        p.text(0, ly, label, size=19, rot=random.Random(seed).uniform(-6, 6), opacity=0.72)
-    body = (f'<g filter="url(#bm-marker)" style="mix-blend-mode:multiply">{orb_wash(r, colour, seed)}</g>'
-            f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none"><g opacity="0.35">{ring.svg()}</g>'
-            f'<g transform="scale({S})">{p.svg()}</g></g>')
+        p.text(0, ly, label, size=19, rot=rnd.uniform(-6, 6), opacity=0.72)
+    clear = f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none"><g transform="scale({S})">{p.svg()}</g></g>'
+
+    t = Pencil(seed + 2)
+    spread = r * 0.5
+    pts = []
+    for k in range(int(14 + r / 3.5)):
+        a = k * 2.3 + rnd.uniform(-0.7, 0.7)
+        rad = rnd.uniform(0.2, 1.0) * spread
+        pts.append((rad * 1.15 * math.cos(a) + rnd.uniform(-5, 5), rad * 0.85 * math.sin(a) - 4 + rnd.uniform(-5, 5)))
+    t.stroke(pts, w=1.8, jitter=1, samples=8)
+    if r > 50:
+        t.question(spread * 0.95, -spread * 0.9, 0.8 + r / 300, w=2.0)
+    tangle = f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none" opacity="0.85">{t.svg()}</g>'
+
     m = r + 22
-    return body, (-m, -m, 2 * m, 2 * m)
+    return {"wash": wash, "tangle": tangle, "clear": clear}, (-m, -m, 2 * m, 2 * m)
 
 
 def paper():
@@ -387,8 +406,8 @@ def system(p, x, y):
 # ---------------------------------------------------------------- the moving pieces
 
 def pieces():
-    """id: (svg body, box around the centre, centre in scene units, drift)."""
-    return {oid: (*orb_piece(oid), o[0], o[6]) for oid, o in ORBS.items()}
+    """id: (svg layers, box around the centre, centre in scene units, drift)."""
+    return {oid: (*orb_layers(oid), o[0], o[6]) for oid, o in ORBS.items()}
 
 
 # ---------------------------------------------------------------- the motion
@@ -410,14 +429,39 @@ def drift(pid, dur, amp, phase):
         y = ay * math.sin(fx[1] * t + p2)
         a = tilt * math.sin(t + p3)
         frames.append(f"  {100 * i / steps:.2f}% {{ transform: translate({x:.2f}%, {y:.2f}%) rotate({a:.2f}deg); }}")
-    return [f".bm-piece--{pid} {{ animation: bm-drift-{pid} {dur}s linear infinite; animation-delay: {-dur * phase:.2f}s; }}",
+    return [f".bm-orb--{pid} {{ animation: bm-drift-{pid} {dur}s linear infinite; animation-delay: {-dur * phase:.2f}s; }}",
             f"@keyframes bm-drift-{pid} {{", *frames, "}"]
 
 
+def clarify(pid, k, n):
+    """Tangle to clear: the scribble eases away as the doodle settles in, holds clear for a while, then
+    softly tangles again. Each orb has its own cycle length, and their starting points are spread
+    evenly, so at any moment some orbs are still a scribble while most are clear."""
+    dur = round(random.Random(pid + "c").uniform(9.5, 13.5), 1)
+    delay = -dur * k / n
+    return [
+        f".bm-orb--{pid} .bm-tangle {{ animation: bm-untangle {dur}s ease-in-out {delay:.2f}s infinite; }}",
+        f".bm-orb--{pid} .bm-clear {{ animation: bm-clarify {dur}s ease-in-out {delay:.2f}s infinite; }}",
+    ]
+
+
 def motion(all_pieces):
-    css = ["/* Generated by scripts/brain_sketch.py: a slow drift for every orb. */"]
-    for pid, (_, _, _, (dur, amp, phase)) in all_pieces.items():
+    css = ["/* Generated by scripts/brain_sketch.py: a slow drift for every orb, and its tangle-to-clear cycle. */",
+           "@keyframes bm-untangle {",
+           "  0%, 20% { opacity: 1; transform: scale(1) rotate(0deg); }",
+           "  34%, 82% { opacity: 0; transform: scale(0.82) rotate(-8deg); }",
+           "  94%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }",
+           "}",
+           "@keyframes bm-clarify {",
+           "  0%, 22% { opacity: 0; transform: scale(0.94); }",
+           "  36%, 80% { opacity: 1; transform: scale(1); }",
+           "  92%, 100% { opacity: 0; transform: scale(0.94); }",
+           "}"]
+    ids = list(all_pieces)
+    for k, pid in enumerate(ids):
+        dur, amp, phase = all_pieces[pid][3]
         css += drift(pid, dur, amp, phase)
+        css += clarify(pid, k * 3 % len(ids), len(ids))  # neighbours don't clear one after another
     return "\n".join(css) + "\n"
 
 
@@ -428,8 +472,9 @@ if __name__ == "__main__":
     (OUT / "paper.svg").write_text(paper())
     all_pieces = pieces()
     layout = []
-    for pid, (body, (bx, by, bw, bh), (cx, cy), _) in all_pieces.items():
-        (OUT / f"piece-{pid}.svg").write_text(wrap(body, (bx, by, bw, bh), cls="bm-piece-svg"))
+    for pid, (layers, (bx, by, bw, bh), (cx, cy), _) in all_pieces.items():
+        for name, body in layers.items():
+            (OUT / f"piece-{pid}-{name}.svg").write_text(wrap(body, (bx, by, bw, bh), cls="bm-piece-svg"))
         layout.append({"id": pid, "x": cx + bx - X0, "y": cy + by, "w": bw, "h": bh, "ox": -bx / bw, "oy": -by / bh})
     (OUT / "layout.json").write_text(json.dumps(layout, indent=1) + "\n")
     (OUT / "motion.css").write_text(motion(all_pieces))
