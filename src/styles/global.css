@@ -325,6 +325,9 @@ a.external::after {
   .sheet .toc { display: block; }
 }
 
+/* Case study pages: the contents list starts below the sticky case-study bar (about 51px tall). */
+.sheet:has(.project--page) { --toc-top: 80px; }
+
 /* The page edge already marks where section 01 starts. */
 .sheet__body > .doc-section:first-child .section-heading { border-top: 0; padding-top: 0; }
 /* Sticky project bars reach the case sheet's edges so nothing shows beside them. */
