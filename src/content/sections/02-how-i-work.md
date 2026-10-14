@@ -8,7 +8,7 @@ order: 2
 
 UX has a rich vocabulary for describing how we work. Over my career, I've found it helps to keep mine simple. The problems are complex. The way we talk about them doesn't have to be.
 
-Research, journey mapping, impact mapping, prototyping, analytics, facilitation, workshops, interviews, usability testing and lighter-weight techniques are tools, not mandatory stages. AI is embedded throughout the process where it makes sense. The tools and methods change from project to project; the questions stay the same.
+Research, journey mapping, impact mapping, prototyping, analytics, facilitation, workshops, interviews, usability testing and lighter-weight techniques are tools, not mandatory stages. AI is embedded throughout the process where it makes sense. It is a powerful accelerator for individuals; what interests me is how organizations use it at scale while keeping governance and decision-making clear. The tools and methods change from project to project; the questions stay the same.
 
 <p class="callout">These are not phases or steps. They are questions I keep coming back to.</p>
 
