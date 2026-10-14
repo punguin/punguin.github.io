@@ -1,18 +1,17 @@
-"""Generate the hero illustration: a page from a designer's sketchbook. A tangle of questions on the
-left, a loose cloud of marker orbs, each holding a doodle of a piece of the work on the site (the case
-studies, how I work, values, experience), and one line that wanders between them and turns into a
-small star. Each orb drifts on its own slow loop, so the cloud never moves in step.
+"""Generate the hero illustration: a page from a designer's sketchbook with a loose cloud of marker
+orbs, one for each domain or area of expertise in the work (the case studies' worlds, systems, AI,
+Figma), each holding a small pencil doodle. Each orb drifts on its own slow loop, so the cloud never
+moves in step.
 
 Everything is drawn as pencil: variable-width strokes, a second exploratory pass on some lines,
-overshoots, faint construction lines and a couple of erased marks. Colour is marker / highlighter
-streaks that do not line up with the pencil.
+overshoots and faint construction lines. Colour is marker / highlighter streaks that do not line up
+with the pencil.
 
 Writes into src/assets/brain/:
   paper.svg           the still drawing (also holds the shared pencil filters)
-  piece-<id>.svg      one orb (or the note, or the plane) per file, each in its own layer so moving it is cheap
-  live.svg            the parts drawn by the loop: the extra scribble, the wandering line, the star
-  motion.css          the line's loop, and a drift for every orb
-  layout.json         where each piece sits, in scene units
+  piece-<id>.svg      one orb per file, each in its own layer so moving it is cheap
+  motion.css          a drift for every orb
+  layout.json         where each orb sits, in scene units
 PickMyBrain.astro inlines them. Deterministic: cd scripts && python3 brain_sketch.py"""
 import json, math, pathlib, random
 
@@ -21,10 +20,9 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = json.loads((ROOT / "src" / "content" / "brain.json").read_text())
 OUT = ROOT / "src" / "assets" / "brain"
 W, H = DATA["viewBox"]
-X0 = 196  # the scene's left edge: the drawing is composed tall enough to sit in a column beside the hero text
+X0 = 268  # the scene's left edge: the frame hugs the cloud of orbs
 HAND = "Caveat, 'Segoe Print', 'Bradley Hand', cursive"
 
-LOOP = 8.0  # seconds
 
 # Soft palette, kept from the site
 TERRACOTTA, MINT, TEAL, LILAC, YELLOW, PINK = "#f3c3a6", "#d5f5c2", "#a8e5e5", "#f6d0ff", "#ffe95c", "#f7c6c0"
@@ -222,26 +220,20 @@ def dab(cx, cy, rx, ry, colour, seed, opacity=0.55):
 
 # ---------------------------------------------------------------- the scene
 
-TANGLE = (268, 168)  # the scribble of questions, top left
-STAR = (958, 78)     # where the line ends up, top right
 S = 1.0              # doodles are drawn at this scale inside their orbs
 
-# The orbs, one per piece of the site. id: (centre, radius, wash colour, doodle, label, label offset,
-# drift: duration in seconds, how far it wanders as a share of its own size, and a phase).
+# The orbs: one per domain or area of expertise in the work. id: (centre, radius, wash colour, doodle,
+# label, label offset, drift: duration in seconds, how far it wanders as a share of its own size, and a phase).
 ORBS = {
-    "loadboard": ((566, 236), 85, TEAL, "browser", "load board", 65, (13.0, 4.2, 0.10)),
-    "relay": ((404, 360), 69, TERRACOTTA, "truck", "drivers", 58, (11.0, 5.0, 0.55)),
-    "account": ((774, 218), 62, MINT, "glasses", "accounts", 52, (12.2, 5.0, 0.30)),
-    "tracking": ((716, 404), 67, TEAL, "parcel", "where is it?", 60, (10.4, 5.2, 0.80)),
-    "spokgo": ((548, 512), 69, LILAC, "conversation", "care teams", 67, (14.1, 4.6, 0.20)),
-    "values": ((392, 532), 51, PINK, "heart", None, 0, (9.6, 6.0, 0.65)),
-    "system": ((892, 474), 57, YELLOW, "system", "systems", 52, (12.8, 5.0, 0.42)),
-    "experience": ((270, 420), 46, TERRACOTTA, "notebook", None, 0, (10.9, 6.0, 0.05)),
-    "ai": ((664, 104), 41, LILAC, "sparkles", None, 0, (9.1, 6.5, 0.90)),
-    "figma": ((870, 334), 46, MINT, "figma_pen", None, 0, (11.6, 6.0, 0.35)),
+    "loadboard": ((560, 250), 85, TEAL, "browser", "load board", 65, (13.0, 4.2, 0.10)),
+    "account": ((772, 196), 62, MINT, "glasses", "accounts", 52, (12.2, 5.0, 0.30)),
+    "relay": ((398, 338), 69, TERRACOTTA, "truck", "drivers", 58, (11.0, 5.0, 0.55)),
+    "tracking": ((742, 412), 67, TEAL, "parcel", "where is it?", 60, (10.4, 5.2, 0.80)),
+    "spokgo": ((548, 486), 69, LILAC, "conversation", "care teams", 67, (14.1, 4.6, 0.20)),
+    "system": ((906, 318), 57, YELLOW, "system", "systems", 52, (12.8, 5.0, 0.42)),
+    "ai": ((646, 104), 41, LILAC, "sparkles", None, 0, (9.1, 6.5, 0.90)),
+    "figma": ((356, 506), 46, MINT, "figma_pen", None, 0, (11.6, 6.0, 0.35)),
 }
-NOTE = ((430, 116), -5, (12.4, 4.0, 0.15))   # the "how I work" sticky note: centre, rotation, drift
-PLANE = ((760, 588), -10, (8.6, 9.0, 0.60))  # play: a paper plane, drifting further than the rest
 
 
 def orb_wash(r, colour, seed):
@@ -266,31 +258,12 @@ def orb_piece(oid):
     return body, (-m, -m, 2 * m, 2 * m)
 
 
-# The wandering line: one loose gesture out of the tangle, between the orbs (never through one, so
-# their drift doesn't pull them off it), a loop, a second thought, then up to the star.
-TRAIL = [
-    (TANGLE[0] + 46, TANGLE[1] + 10), (338, 196), (372, 252), (440, 286), (486, 300), (500, 340),
-    (476, 372), (472, 410), (520, 420), (600, 396), (636, 360), (612, 330), (630, 312), (662, 322),
-    (700, 304), (712, 282), (692, 268), (706, 248), (740, 286), (800, 300), (840, 286), (868, 250),
-    (852, 236), (870, 214), (900, 176), (930, 128), (STAR[0] - 34, STAR[1] + 14),
-]
-
-
 def paper():
-    """The still drawing: the tangle and its questions, faint construction rings and an erased first star."""
-    pen = Pencil(1)
-
+    """The still drawing: a couple of faint construction rings the cloud was laid out on."""
     cons = Pencil(3)
-    cons.circle(620, 340, 300, w=1.1, sweep=250, start=150, squash=0.78)
-    cons.circle(640, 330, 210, w=1.0, sweep=200, start=300, squash=0.8)
+    cons.circle(632, 310, 300, w=1.1, sweep=250, start=150, squash=0.78)
+    cons.circle(640, 300, 200, w=1.0, sweep=200, start=300, squash=0.8)
     construction = f'<g opacity="0.14">{cons.svg()}</g>'
-
-    er = Pencil(4)
-    er.stroke([(STAR[0] - 30, STAR[1] + 44), (STAR[0], STAR[1] + 30), (STAR[0] + 28, STAR[1] + 44)], w=1.8)
-    er.stroke([(560, 420), (600, 452), (660, 456)], w=2.0, jitter=1)
-    erased = f'<g opacity="0.1" filter="url(#bm-smudge)">{er.svg()}</g>'
-
-    tangle(pen)
 
     defs = (
         '<defs>'
@@ -310,8 +283,7 @@ def paper():
         '<filter id="bm-smudge"><feGaussianBlur stdDeviation="1.6"/></filter>'
         '</defs>'
     )
-    body = (defs + construction + erased
-            + f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none">{pen.svg()}</g>')
+    body = defs + construction
     return wrap(body, (X0, 0, W, H), cls="bm-paper")
 
 
@@ -368,12 +340,6 @@ def conversation(p, x, y):
     p.line(x + 11, y + 18, x + 29, y + 18, w=2.4, overshoot=0)
 
 
-def heart(p, x, y):
-    p.stroke([(x, y + 14), (x - 13, y + 2), (x - 15, y - 8), (x - 8, y - 13), (x, y - 6), (x + 7, y - 13),
-              (x + 15, y - 8), (x + 13, y + 2), (x + 1, y + 15)], w=2.2, passes=2)
-    p.text(x - 2, y + 40, "values", size=21, rot=-6, opacity=0.75)
-
-
 def figma_pen(p, x, y):
     """A pen-tool curve with its handles: the bit of Figma that lives in my head."""
     p.stroke([(x - 30, y + 18), (x - 12, y - 6), (x + 10, y + 8), (x + 30, y - 16)], w=2.0)
@@ -392,39 +358,6 @@ def sparkles(p, x, y):
     sparkle(p, x - 10, y + 4, 1.0)
     sparkle(p, x + 14, y - 12, 0.55)
     p.text(x + 18, y + 18, "AI", size=22, rot=-8, opacity=0.75)
-
-
-def notebook(p, x, y):
-    """A little notebook of past work."""
-    p.poly([(x - 18, y - 22), (x + 17, y - 21), (x + 18, y + 22), (x - 17, y + 23)], close=True, w=2.0)
-    for k in range(4):
-        p.circle(x - 18, y - 14 + k * 10, 3, w=1.3, sweep=280, start=90)
-    for k in range(3):
-        p.line(x - 9, y - 10 + k * 9, x + 10 - (k == 2) * 8, y - 10 + k * 9, w=1.2, overshoot=0)
-    p.text(x + 6, y + 44, "experience", size=20, rot=-3, opacity=0.7)
-
-
-def skills(p, x, y):
-    """A stubby pencil and a scrawled word, nothing more."""
-    p.poly([(x - 30, y + 6), (x + 6, y - 10), (x + 11, y - 1), (x - 25, y + 15)], close=True, w=1.9)
-    p.poly([(x + 6, y - 10), (x + 20, y - 9), (x + 11, y - 1)], w=1.8)
-    p.text(x + 50, y + 12, "skills", size=21, rot=-10, opacity=0.7)
-
-
-def tangle(p):
-    tx, ty = TANGLE
-    r = random.Random(12)
-    pts = []
-    for k in range(30):
-        a = k * 2.2 + r.uniform(-0.7, 0.7)
-        rad = r.uniform(10, 46)
-        pts.append((tx + rad * 1.1 * math.cos(a) + r.uniform(-6, 6), ty + rad * 0.8 * math.sin(a) + r.uniform(-6, 6)))
-    pts.append((tx + 32, ty + 2)); pts.append((tx + 46, ty + 10))
-    p.stroke(pts, w=1.9, jitter=1, samples=8)
-    p.question(tx + 64, ty - 70, 1.2)
-    p.question(tx - 46, ty - 64, 1.0)
-    p.question(tx - 40, ty + 82, 1.05)
-
 
 
 def browser(p, x, y):
@@ -453,101 +386,12 @@ def system(p, x, y):
 
 # ---------------------------------------------------------------- the moving pieces
 
-def note_piece():
-    """A sticky note: "how I work"."""
-    p = Pencil(40)
-    pts = [(-44, -36), (44, -40), (47, 38), (-41, 41)]
-    col = (f'<path d="{smooth_d(pts, closed=True)}" fill="#fff4a3" stroke="none" opacity="0.92"/>'
-           + marker(2, 2, 86, 72, YELLOW, 41, angle=-4, opacity=0.35, nib=22))
-    tape = '<path d="M-18,-48 L22,-46 L20,-32 L-20,-34 Z" fill="#1a3300" opacity="0.1"/>'
-    p.poly(pts, close=True, w=1.8, overshoot=2)
-    p.text(0, -4, "how I", size=24, rot=-4, opacity=0.9)
-    p.text(2, 20, "work", size=24, rot=-4, opacity=0.9, underline=True)
-    body = (f'<g filter="url(#bm-marker)">{col}</g>{tape}'
-            f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none">{p.svg()}</g>')
-    return f'<g transform="scale({S}) rotate({NOTE[1]})">{body}</g>', (-56, -56, 112, 112)
-
-
-def plane_piece():
-    """Play: a paper aeroplane that has just done a loop-the-loop."""
-    p = Pencil(50)
-    p.poly([(-30, 4), (30, -14), (-6, 22)], close=True, w=2.2, overshoot=2)
-    p.line(30, -14, -10, 10, w=1.8, overshoot=0)
-    p.line(-10, 10, -6, 22, w=1.6, overshoot=0)
-    loop = Pencil(51)
-    loop.stroke([(-34, -4), (-44, -12), (-48, -24), (-40, -30), (-34, -22), (-40, -12), (-47, -10)], w=1.5, jitter=0.4, samples=8)
-    col = marker(-2, 4, 46, 26, "#ffd3b5", 52, angle=-16, opacity=0.6, nib=14)
-    body = (f'<g filter="url(#bm-marker)">{col}</g>'
-            f'<g filter="url(#bm-pencil)" fill="{INK}" stroke="none">{p.svg()}<g opacity="0.7">{loop.svg()}</g></g>')
-    return f'<g transform="scale(1.15) rotate({PLANE[1]})">{body}</g>', (-70, -50, 120, 90)
-
-
 def pieces():
     """id: (svg body, box around the centre, centre in scene units, drift)."""
-    out = {oid: (*orb_piece(oid), o[0], o[6]) for oid, o in ORBS.items()}
-    out["note"] = (*note_piece(), NOTE[0], NOTE[2])
-    out["plane"] = (*plane_piece(), PLANE[0], PLANE[2])
-    return out
+    return {oid: (*orb_piece(oid), o[0], o[6]) for oid, o in ORBS.items()}
 
 
-# ---------------------------------------------------------------- the loop
-
-def star_strokes(cx, cy):
-    """The star, drawn in two loose strokes that don't quite close, plus a few rays."""
-    r = random.Random(91)
-    pts = []
-    for k in range(11):
-        a = -math.pi / 2 + k * math.pi / 5 + r.uniform(-0.05, 0.05)
-        rr = (36 if k % 2 == 0 else 16) * r.uniform(0.92, 1.08)
-        pts.append((cx + rr * math.cos(a), cy + rr * math.sin(a)))
-    pts[-1] = (pts[-1][0] + 5, pts[-1][1] + 3)  # overshoots where it started
-    first = poly_d(pts[:7], close=False)
-    second = poly_d(pts[6:], close=False)
-    retrace = poly_d([(x + 1.6, y + 1.2) for x, y in pts[1:6]], close=False)
-    rays = []
-    for a in (-140, -95, -45, 10, 160):
-        t = math.radians(a)
-        rays.append(f'M{cx + 46 * math.cos(t):.1f},{cy + 46 * math.sin(t):.1f} L{cx + 56 * math.cos(t):.1f},{cy + 56 * math.sin(t):.1f}')
-    fill = marker(cx, cy + 2, 54, 46, YELLOW, 93, angle=-12, opacity=0.8, nib=17)
-    return first, second, retrace, " ".join(rays), fill
-
-
-
-
-def live():
-    """What the loop draws: one more loop in the tangle, the wandering line, then the star."""
-    centre = catmull(TRAIL, samples=12)
-    pen = Pencil(60)
-    pen.ribbon(centre, 2.4, taper=14)
-    pen.ribbon([(x + 1.3, y + 1.0) for x, y in centre[40:240]], 1.1, opacity=0.35, taper=20)
-    d = smooth_d(TRAIL)
-
-    r = random.Random(13)
-    extra = [(TANGLE[0] + 44 * math.cos(a) + r.uniform(-4, 4), TANGLE[1] + 4 + 34 * math.sin(a) + r.uniform(-4, 4))
-             for a in (k * 0.9 + 2.2 for k in range(9))]
-    first, second, retrace, rays, fill = star_strokes(*STAR)
-
-    body = (
-        f'<defs><mask id="bm-trail-mask" maskUnits="userSpaceOnUse" x="{X0}" y="0" width="{W}" height="{H}">'
-        f'<path class="bm-reveal" d="{d}" pathLength="1" fill="none" stroke="#fff" stroke-width="9" '
-        'stroke-linecap="round" stroke-linejoin="round"/></mask></defs>'
-        f'<path class="bm-extra" d="{smooth_d(extra)}" pathLength="1" fill="none" stroke="{INK}" stroke-width="1.7" '
-        'stroke-linecap="round" opacity="0.9"/>'
-        f'<g class="bm-trail" mask="url(#bm-trail-mask)" fill="{INK}" opacity="0.8">{pen.svg()}</g>'
-        f'<g class="bm-star" fill="none" stroke="{INK}" stroke-linecap="round" stroke-linejoin="round">'
-        f'<g class="bm-star-fill" style="mix-blend-mode:multiply">{fill}</g>'
-        f'<path class="bm-star-a" d="{first}" pathLength="1" stroke-width="2.6"/>'
-        f'<path class="bm-star-b" d="{second}" pathLength="1" stroke-width="2.6"/>'
-        f'<path class="bm-star-c" d="{retrace}" pathLength="1" stroke-width="1.3" opacity="0.5"/>'
-        f'<path class="bm-rays" d="{rays}" pathLength="1" stroke-width="2"/>'
-        '</g>'
-    )
-    return wrap(body, (X0, 0, W, H), cls="bm-live")
-
-
-def ease(u):  # gentle in and out
-    return 0.5 - 0.5 * math.cos(math.pi * u)
-
+# ---------------------------------------------------------------- the motion
 
 def drift(pid, dur, amp, phase):
     """A slow wander for one piece: a lopsided loop (two sines at different rates, so it never traces a
@@ -571,33 +415,7 @@ def drift(pid, dur, amp, phase):
 
 
 def motion(all_pieces):
-    T0, T1 = 6.0, 64.0  # the line draws over this part of its loop (percent)
-    steps = 24
-    draw = "\n".join(f"  {T0 + (T1 - T0) * i / steps:.2f}% {{ stroke-dashoffset: {1 - ease(i / steps):.4f}; }}"
-                     for i in range(steps + 1))
-    css = [f"/* Generated by scripts/brain_sketch.py: the line's {LOOP:g}s loop, and a drift for every orb. */",
-           f".bm-reveal {{ stroke-dasharray: 1 2; animation: bm-draw {LOOP}s linear infinite; }}",
-           "@keyframes bm-draw {",
-           "  0% { stroke-dashoffset: 1; }",
-           draw,
-           "  100% { stroke-dashoffset: 0; }",
-           "}",
-           f".bm-trail, .bm-extra, .bm-star {{ animation: bm-fade {LOOP}s ease-in-out infinite; }}",
-           "@keyframes bm-fade { 0%, 88% { opacity: 1; } 97%, 100% { opacity: 0; } }",
-           f".bm-extra {{ stroke-dasharray: 1 2; animation: bm-fade {LOOP}s ease-in-out infinite, bm-extra {LOOP}s ease-in-out infinite; }}",
-           "@keyframes bm-extra { 0% { stroke-dashoffset: 1; } 9%, 100% { stroke-dashoffset: 0; } }",
-           f".bm-star-a, .bm-star-b, .bm-star-c, .bm-rays {{ stroke-dasharray: 1 2; stroke-dashoffset: 1; }}",
-           f".bm-star-a {{ animation: bm-star-a {LOOP}s linear infinite; }}",
-           "@keyframes bm-star-a { 0%, 63% { stroke-dashoffset: 1; } 64% { stroke-dashoffset: 0.94; } 69% { stroke-dashoffset: 0.3; } 71%, 100% { stroke-dashoffset: 0; } }",
-           f".bm-star-b {{ animation: bm-star-b {LOOP}s linear infinite; }}",
-           "@keyframes bm-star-b { 0%, 71% { stroke-dashoffset: 1; } 74% { stroke-dashoffset: 0.35; } 76%, 100% { stroke-dashoffset: 0; } }",
-           f".bm-star-c {{ animation: bm-star-c {LOOP}s ease-in-out infinite; }}",
-           "@keyframes bm-star-c { 0%, 75% { stroke-dashoffset: 1; } 80%, 100% { stroke-dashoffset: 0; } }",
-           f".bm-star-fill {{ animation: bm-star-fill {LOOP}s ease-in-out infinite; }}",
-           "@keyframes bm-star-fill { 0%, 74% { opacity: 0; } 82%, 100% { opacity: 1; } }",
-           f".bm-rays {{ animation: bm-rays {LOOP}s ease-in-out infinite; }}",
-           "@keyframes bm-rays { 0%, 80% { stroke-dashoffset: 1; } 86%, 100% { stroke-dashoffset: 0; } }",
-           ]
+    css = ["/* Generated by scripts/brain_sketch.py: a slow drift for every orb. */"]
     for pid, (_, _, _, (dur, amp, phase)) in all_pieces.items():
         css += drift(pid, dur, amp, phase)
     return "\n".join(css) + "\n"
@@ -608,7 +426,6 @@ if __name__ == "__main__":
     for old in OUT.glob("*"):
         old.unlink()
     (OUT / "paper.svg").write_text(paper())
-    (OUT / "live.svg").write_text(live())
     all_pieces = pieces()
     layout = []
     for pid, (body, (bx, by, bw, bh), (cx, cy), _) in all_pieces.items():
