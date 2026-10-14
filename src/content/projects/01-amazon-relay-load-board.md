@@ -264,3 +264,8 @@ The simplicity of the final design was the outcome of complexity, not the absenc
 The visible features in this redesign are not exotic: a smaller search, a filter panel, tabs, a drawer, a booking action. The difficult work was deciding exactly what each of those structures should be responsible for, what should remain familiar, what needed to be invented, what could scale, and what the organization could realistically build.
 
 This project reinforced the kind of design leadership I do best: create shared understanding in a complicated problem space, help define the product alongside product and engineering partners, make tradeoffs explicit, and carry a coherent interaction model all the way from ambiguity to launch.
+
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay-load-board/comparison-row-mv8kmzss.png" alt="Describe what the image shows" loading="lazy" />
+<figcaption>Caption.</figcaption>
+</figure>
