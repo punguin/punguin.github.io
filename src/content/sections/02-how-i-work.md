@@ -14,69 +14,71 @@ Research, journey mapping, impact mapping, prototyping, analytics, facilitation,
 
 <div class="practice">
 
-### Understand people
+<section class="step" style="--step-bg: var(--sticky-mint)">
 
-<div class="practice__body">
+<p class="step__tag"><img src="/illustrations/understand-people.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />01 · Understand people</p>
 
-<img class="practice__sketch" src="/illustrations/understand-people.svg" alt="" width="240" height="180" loading="lazy" decoding="async" />
+### What are people trying to do?
 
-- Who are the users?
-- What are they trying to accomplish?
-- How do they think the system should work?
-- What context affects their behavior?
+<p class="step__more">Who are the users? What context affects their behavior?</p>
 
-<p class="practice__consider"><span class="label">Consider</span> goals, needs, behavior, environment, mental models, real-world constraints.</p>
+<p class="step__consider"><span class="label">Consider</span> goals, needs, behavior, environment, mental models, real-world constraints.</p>
 
-</div>
+<p class="step__proof"><a href="/work/amazon-relay-load-board/#01--people">See it in Amazon Relay Load Board: 01 / People</a></p>
 
-### Understand the system
+</section>
 
-<div class="practice__body">
+<section class="step" style="--step-bg: var(--sticky-teal)">
 
-<img class="practice__sketch" src="/illustrations/understand-the-system.svg" alt="" width="240" height="180" loading="lazy" decoding="async" />
+<p class="step__tag"><img src="/illustrations/understand-the-system.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />02 · Understand the system</p>
 
-- How does it actually work?
-- What forces shape the experience?
+### How does the system actually work?
 
-<p class="practice__consider"><span class="label">Consider</span> technology, business rules, operations, ownership, organizational relationships, incentives, constraints, dependencies.</p>
+<p class="step__more">What forces shape the experience?</p>
 
-</div>
+<p class="step__consider"><span class="label">Consider</span> technology, business rules, operations, ownership, organizational relationships, incentives, constraints, dependencies.</p>
 
-### Find the gaps
+<p class="step__proof"><a href="/work/amazon-relay-load-board/#02--system">See it in Amazon Relay Load Board: 02 / System</a></p>
 
-<div class="practice__body">
+</section>
 
-<img class="practice__sketch" src="/illustrations/find-the-gaps.svg" alt="" width="240" height="180" loading="lazy" decoding="async" />
+<section class="step" style="--step-bg: var(--sticky-blush)">
 
-- Where don’t those realities line up?
+<p class="step__tag"><img src="/illustrations/find-the-gaps.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />03 · Find the gaps</p>
 
-<p class="practice__consider"><span class="label">Look for</span> unmet needs, conflicting mental models, missing information, broken handoffs, organizational seams, product structures that no longer match real work, distance between what exists and what could exist.</p>
+### Where don’t those realities line up?
 
-</div>
+<p class="step__consider"><span class="label">Look for</span> unmet needs, conflicting mental models, missing information, broken handoffs, organizational seams, product structures that no longer match real work, distance between what exists and what could exist.</p>
 
-### Close the gaps
+<p class="step__proof"><a href="/work/amazon-relay-load-board/#03--gaps">See it in Amazon Relay Load Board: 03 / Gaps</a></p>
 
-<div class="practice__body">
+</section>
 
-<img class="practice__sketch" src="/illustrations/close-the-gaps.svg" alt="" width="240" height="180" loading="lazy" decoding="async" />
+<section class="step" style="--step-bg: var(--highlighter-yellow)">
 
-- What should change—and which gaps matter enough to address?
+<p class="step__tag"><img src="/illustrations/close-the-gaps.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />04 · Close the gaps</p>
 
-<p class="practice__consider"><span class="label">Through</span> exploration, prototyping, prioritization, facilitation, design, testing, negotiation, tradeoff decisions.</p>
+### Which gaps matter enough to address?
 
-</div>
+<p class="step__more">What should change?</p>
 
-### See what changed
+<p class="step__consider"><span class="label">Through</span> exploration, prototyping, prioritization, facilitation, design, testing, negotiation, tradeoff decisions.</p>
 
-<div class="practice__body">
+<p class="step__proof"><a href="/work/amazon-relay-load-board/#04--design">See it in Amazon Relay Load Board: 04 / Design</a></p>
 
-<img class="practice__sketch" src="/illustrations/see-what-changed.svg" alt="" width="240" height="180" loading="lazy" decoding="async" />
+</section>
 
-- Did I close the gap?
+<section class="step" style="--step-bg: var(--accent-relay)">
 
-<p class="practice__consider"><span class="label">Evaluate</span> customer behavior, qualitative response, support demand, operational impact, product performance, adoption, new questions revealed by the work.</p>
+<p class="step__tag"><img src="/illustrations/see-what-changed.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />05 · See what changed</p>
 
-</div>
+### Did I close the gap?
+
+<p class="step__consider"><span class="label">Evaluate</span> customer behavior, qualitative response, support demand, operational impact, product performance, adoption, new questions revealed by the work.</p>
+
+<p class="step__proof"><a href="/work/amazon-relay-load-board/#05--impact">See it in Amazon Relay Load Board: 05 / Impact</a></p>
+
+</section>
 
 </div>
 

@@ -490,50 +490,33 @@ a.external::after {
 section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset); }
 .prose h3[id], .prose h4[id], .prose h5[id] { scroll-margin-top: calc(var(--anchor-offset) + 24px); }
 
-/* ---------- How I work: five questions with sticky-note sketches ---------- */
+/* ---------- How I work: each step leads with its question ---------- */
 
-.practice__body {
-  display: grid;
-  gap: var(--space-4);
-  align-items: start;
+.practice { margin-top: var(--space-7); }
+.step { padding-top: var(--space-5); border-top: 1px solid var(--border-strong); }
+.step + .step { margin-top: var(--space-8); }
+.prose .step > * { margin-top: var(--space-3); }
+.prose .step > .step__tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
-.practice__body > ul { margin: 0; }
-.practice__body > * + * { margin-top: 0; }
-.practice__consider { margin-top: var(--space-2); }
-.practice__consider .label { margin-right: var(--space-2); }
-
-/* Each sketch is a post-it: square, a darker glue strip along the top, and a bottom edge that
-   lifts off the page, so its shadow is deeper there and deepest at the curling corner. */
-.practice__sketch {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
-  aspect-ratio: 1;
-  object-fit: contain;
-  padding: 18px 12px 24px;
-  border-radius: 1px 1px 2px 2px / 1px 1px 2px 2px;
-  border-bottom-right-radius: 26px 5px;
-  background:
-    linear-gradient(180deg, rgb(26 51 0 / 0.06), transparent 15%),
-    linear-gradient(165deg, transparent 72%, rgb(26 51 0 / 0.07)),
-    var(--sketch-bg, var(--sticky-mint));
-  box-shadow:
-    0 1px 1px rgb(26 51 0 / 0.08),
-    0 12px 14px -10px rgb(26 51 0 / 0.32),
-    12px 18px 16px -14px rgb(26 51 0 / 0.34);
-  transform: rotate(var(--sketch-tilt, -1deg));
+.step__tag img { width: 44px; height: 44px; padding: 4px; border-radius: 2px; background: var(--step-bg); }
+.prose .step h3 {
+  margin-top: var(--space-3);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+  line-height: 1.08;
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
 }
-.practice__body:nth-of-type(1) { --sketch-bg: var(--sticky-mint); --sketch-tilt: -2.2deg; }
-.practice__body:nth-of-type(2) { --sketch-bg: var(--sticky-teal); --sketch-tilt: 1.8deg; }
-.practice__body:nth-of-type(3) { --sketch-bg: var(--sticky-blush); --sketch-tilt: -1.4deg; }
-.practice__body:nth-of-type(4) { --sketch-bg: var(--highlighter-yellow); --sketch-tilt: 2.4deg; }
-.practice__body:nth-of-type(5) { --sketch-bg: var(--accent-relay); --sketch-tilt: -1deg; }
-
-@media (min-width: 720px) {
-  .practice__body {
-    grid-template-columns: minmax(0, 1fr) 220px;
-    column-gap: var(--space-7);
-  }
-  .practice__sketch { grid-column: 2; grid-row: 1 / span 3; max-width: 220px; }
-  .practice__body > :not(.practice__sketch) { grid-column: 1; }
-}
+.step__more { font-size: 1.125rem; color: var(--text-secondary); }
+.step__consider { font-size: 0.9375rem; color: var(--text-secondary); }
+.step__consider .label { margin-right: 6px; }
+.step__proof { font-size: 0.9375rem; }
