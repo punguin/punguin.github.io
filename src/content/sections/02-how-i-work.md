@@ -66,7 +66,7 @@ It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a
 
 <p class="step__tag"><img src="/illustrations/see-what-changed.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />05 · See what changed</p>
 
-### Did I close the gap?
+### Did the gap close?
 
 <p class="step__consider"><span class="label">Evaluate</span> customer behavior, qualitative response, support demand, operational impact, product performance, adoption, new questions revealed by the work.</p>
 
