@@ -25,6 +25,7 @@ export async function getSortedSections() {
   return (await getCollection('sections')).sort((a, b) => a.data.order - b.data.order);
 }
 
+/** Case studies shown on the site, in order (featured: false hides one). */
 export async function getSortedProjects() {
-  return (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+  return (await getCollection('projects', (p) => p.data.featured)).sort((a, b) => a.data.order - b.data.order);
 }

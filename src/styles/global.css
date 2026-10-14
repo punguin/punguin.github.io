@@ -40,6 +40,8 @@
   --accent-account: var(--sticky-mint);
   --accent-tracking: var(--sticky-teal);
   --accent-spokgo: var(--sticky-blush);
+  --accent-yellow: #fff3a3;
+  --accent-lilac: #e2d9ff;
 
   /* Shape + elevation */
   --radius-button: 6px;

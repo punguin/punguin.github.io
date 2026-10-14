@@ -35,8 +35,9 @@ const projects = defineCollection({
     timeline: z.string(),
     platform: z.array(z.string()),
     partners: z.array(z.string()),
-    accent: z.enum(['relay', 'account', 'tracking', 'spokgo']),
-    featured: z.boolean().default(true),
+    // Named after the first case study to use each colour; yellow and lilac are spares for new ones.
+    accent: z.enum(['relay', 'account', 'tracking', 'spokgo', 'yellow', 'lilac']),
+    featured: z.boolean().default(true), // false hides the case study from the site (the editor's "Show on site")
     order: z.number(),
   }),
 });

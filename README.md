@@ -92,3 +92,7 @@ Search for `todo`, `is-placeholder`, `[To confirm]` and `placeholder` to find th
 ## Verified
 
 Tested at 320, 375, 390, 768, 1024, 1280, 1440, 1728 and 2200px: no horizontal overflow. axe-core (WCAG 2.2 AA plus best practices) reports no violations at 375 and 1440px. Lighthouse: Performance 97 on mobile and 100 on desktop; Accessibility, Best Practices and SEO 100. Scores will change once real images are added.
+
+## Editing case studies
+
+Open `/admin/` on the site for a small case study editor (`src/pages/admin.astro`, `src/scripts/case-editor.ts`). It lists the files in `src/content/projects/`, edits their details and story, adds new ones, uploads images to `public/images/work/<id>/`, and saves each change as a commit through the GitHub API. It needs a fine-grained GitHub token limited to this repository with Contents: Read and write; the token stays in the browser. Saves go to the branch typed on the connect screen (the preview branch for now, `main` once the site is live). "Show on site" off sets `featured: false`, which hides a case study without deleting it.

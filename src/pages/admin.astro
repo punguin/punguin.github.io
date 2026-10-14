@@ -1,0 +1,190 @@
+---
+// Case study editor: edit and add case studies from the browser (src/scripts/case-editor.ts).
+// Not linked from the site and hidden from search engines; it does nothing without a GitHub token.
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const ACCENTS = [
+  ['relay', 'Terracotta'],
+  ['account', 'Mint'],
+  ['tracking', 'Teal'],
+  ['spokgo', 'Blush'],
+  ['yellow', 'Yellow'],
+  ['lilac', 'Lilac'],
+];
+const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
+---
+<BaseLayout title="Case study editor — Pung Brooks" description="Edit the case studies on Pung Brooks's site." noindex>
+  <div class="ed">
+    <header class="ed-top">
+      <a class="ed-top__home" href="/">Pung Brooks</a>
+      <span class="ed-top__name">Case study editor</span>
+    </header>
+
+    <p class="ed-status" role="status" aria-live="polite" data-status></p>
+
+    <form class="ed-connect" data-connect>
+      <h1>Connect to GitHub</h1>
+      <p>The editor saves straight to your site's repository, and the site rebuilds from it. It needs a GitHub token that is allowed to change files in that one repository.</p>
+      <ol>
+        <li>Open <a href={TOKEN_URL} target="_blank" rel="noopener">New fine-grained token</a> on GitHub.</li>
+        <li>Under Repository access, choose <b>Only select repositories</b> and pick <b>punguin.github.io</b>.</li>
+        <li>Under Permissions, set <b>Contents</b> to <b>Read and write</b>. Nothing else is needed.</li>
+        <li>Create the token and paste it below.</li>
+      </ol>
+      <label>Token <input name="token" type="password" autocomplete="off" required spellcheck="false" /></label>
+      <label>Branch <input name="branch" value="claude/design-practice-site" required spellcheck="false" />
+        <small>Where saves go. The preview builds from claude/design-practice-site; once the site is live, use main.</small>
+      </label>
+      <label class="ed-check"><input name="remember" type="checkbox" /> Remember on this device</label>
+      <p class="ed-note">The token stays in this browser and is only sent to GitHub.</p>
+      <button class="ed-btn ed-btn--primary" type="submit">Connect</button>
+    </form>
+
+    <div class="ed-app" data-app hidden>
+      <aside class="ed-side">
+        <p class="ed-side__label">Case studies</p>
+        <ul class="ed-list" data-list></ul>
+        <button class="ed-btn" type="button" data-new>+ New case study</button>
+        <p class="ed-side__meta">Saving to <code data-branch></code></p>
+        <button class="ed-link" type="button" data-disconnect>Disconnect</button>
+      </aside>
+
+      <main class="ed-main">
+        <p class="ed-empty" data-empty>Pick a case study to edit, or start a new one.</p>
+
+        <form class="ed-form" data-form hidden>
+          <div class="ed-form__head">
+            <h1 data-form-title></h1>
+            <a class="ed-link" data-view target="_blank" rel="noopener">View page</a>
+          </div>
+
+          <fieldset>
+            <legend>Basics</legend>
+            <label>Title <input name="title" required placeholder="Amazon Relay" /></label>
+            <label>Headline <input name="summary" placeholder="Design around the work, not the workflow." />
+              <small>The big line at the top of the page.</small></label>
+            <label>Project <input name="project" placeholder="Relay mobile application redesign" /></label>
+            <div class="ed-row">
+              <label>Company <input name="company" placeholder="Amazon" /></label>
+              <label>Domain <input name="domain" placeholder="Middle Mile logistics" /></label>
+            </div>
+            <label>Context <input name="context" placeholder="Amazon Middle Mile / Relay" /></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Details</legend>
+            <div class="ed-row">
+              <label>Role <input name="role" placeholder="Accountable design lead" /></label>
+              <label>Timing <input name="timeline" placeholder="Four months" /></label>
+            </div>
+            <label>Platform <input name="platform" placeholder="iOS, Android" /><small>Separate with commas.</small></label>
+            <label>Partners <input name="partners" placeholder="Product, Engineering, UX Research" /><small>Separate with commas.</small></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>On the site</legend>
+            <div class="ed-swatches" role="radiogroup" aria-label="Colour">
+              {ACCENTS.map(([value, label]) => (
+                <label class="ed-swatch" style={`--accent: var(--accent-${value})`}>
+                  <input type="radio" name="accent" value={value} /><span>{label}</span>
+                </label>
+              ))}
+            </div>
+            <div class="ed-row">
+              <label>Position <input name="order" type="number" min="1" step="1" /><small>1 is first in the list.</small></label>
+              <label class="ed-check"><input name="featured" type="checkbox" /> Show on site</label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Story</legend>
+            <div class="ed-tools">
+              <button class="ed-btn" type="button" data-insert="heading">Add heading</button>
+              <button class="ed-btn" type="button" data-insert="image">Add image</button>
+              <select data-image-size aria-label="Image size">
+                <option value="wide">Wide image</option>
+                <option value="inline">Text-width image</option>
+                <option value="full">Full-width image</option>
+              </select>
+              <button class="ed-btn" type="button" data-insert="todo">Add “to write” note</button>
+              <input type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" hidden data-image-input />
+            </div>
+            <textarea name="body" rows="24" spellcheck="true"></textarea>
+            <small>Written in Markdown: <code>#### Heading</code> starts a section, a blank line starts a new paragraph, <code>**bold**</code>, <code>[link](https://…)</code>.</small>
+          </fieldset>
+
+          <div class="ed-save">
+            <button class="ed-btn ed-btn--primary" type="submit">Save</button>
+          </div>
+        </form>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    import '../scripts/case-editor.ts';
+  </script>
+</BaseLayout>
+
+<style>
+  .ed [hidden] { display: none !important; }
+  .ed { max-width: 1180px; margin: 0 auto; padding: var(--space-5) var(--gutter) var(--space-9); }
+  .ed-top { display: flex; align-items: baseline; gap: var(--space-4); padding-bottom: var(--space-5); border-bottom: 1px solid var(--border-subtle); }
+  .ed-top__home { font-family: var(--font-display); font-size: 1.25rem; text-decoration: none; color: var(--forest-ink); }
+  .ed-top__name { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--text-tertiary); }
+
+  .ed-status { min-height: 1.5em; margin-block: var(--space-4); font-size: 0.9375rem; }
+  .ed-status[data-kind='error'] { color: #b3261e; }
+  .ed-status[data-kind='ok'] { color: var(--forest-ink); font-weight: 600; }
+  .ed-status[data-kind='busy'] { color: var(--text-tertiary); }
+
+  .ed h1 { font-family: var(--font-display); font-weight: 400; font-size: 2rem; line-height: 1.1; }
+  .ed label { display: grid; gap: 4px; font-size: 0.875rem; font-weight: 600; }
+  .ed small { font-weight: 400; color: var(--text-tertiary); font-size: 0.8125rem; }
+  .ed input:not([type='checkbox']):not([type='radio']), .ed textarea, .ed select {
+    font: inherit; font-weight: 400; font-size: 1rem; color: var(--forest-ink);
+    padding: 10px 12px; border: 1px solid var(--border-strong); border-radius: var(--radius-button); background: var(--surface);
+  }
+  .ed textarea { font-family: var(--font-mono); font-size: 0.875rem; line-height: 1.6; resize: vertical; }
+  .ed input:focus-visible, .ed textarea:focus-visible, .ed select:focus-visible { outline: 2px solid var(--forest-ink); outline-offset: 1px; }
+  .ed-check { display: flex !important; align-items: center; gap: var(--space-2) !important; }
+
+  .ed-btn { font: inherit; font-size: 0.9375rem; padding: 9px 16px; border: 1px solid var(--forest-ink); border-radius: var(--radius-button); background: var(--surface); color: var(--forest-ink); cursor: pointer; }
+  .ed-btn:hover { background: var(--hover-bg); }
+  .ed-btn--primary { background: var(--forest-ink); color: #fff; }
+  .ed-btn--primary:hover { background: #2c4d0f; }
+  .ed-link { font: inherit; font-size: 0.875rem; color: var(--forest-ink); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
+
+  .ed-connect { display: grid; gap: var(--space-4); max-width: 34em; margin-top: var(--space-5); }
+  .ed-connect ol { padding-left: 1.2em; display: grid; gap: var(--space-2); }
+  .ed-note { font-size: 0.875rem; color: var(--text-tertiary); }
+  .ed-connect .ed-btn { justify-self: start; }
+
+  .ed-app { display: grid; gap: var(--space-7); }
+  @media (min-width: 900px) { .ed-app { grid-template-columns: 240px minmax(0, 1fr); } }
+  .ed-side { display: grid; gap: var(--space-3); align-content: start; }
+  @media (min-width: 900px) { .ed-side { position: sticky; top: var(--space-5); } }
+  .ed-side__label { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-tertiary); }
+  .ed-side__meta { font-size: 0.8125rem; color: var(--text-tertiary); }
+  .ed-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; }
+  .ed-list :global(.ed-list__item) { display: flex; gap: var(--space-3); align-items: baseline; width: 100%; padding: 8px 10px; border: 0; border-radius: var(--radius-button); background: none; font: inherit; color: var(--forest-ink); text-align: left; cursor: pointer; }
+  .ed-list :global(.ed-list__item:hover) { background: var(--hover-bg); }
+  .ed-list :global(.ed-list__item[aria-current='true']) { background: var(--selected-bg); font-weight: 600; }
+  .ed-list :global(.ed-list__num) { padding: 0 6px; border-radius: var(--radius-pill); background: var(--accent); font-family: var(--font-mono); font-size: 0.75rem; }
+  .ed-list :global(.ed-list__hidden) { margin-left: auto; font-size: 0.75rem; color: var(--text-tertiary); }
+
+  .ed-empty { color: var(--text-tertiary); margin-top: var(--space-5); }
+  .ed-form { display: grid; gap: var(--space-6); }
+  .ed-form__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4); }
+  .ed fieldset { display: grid; gap: var(--space-4); margin: 0; padding: var(--space-5); border: 1px solid var(--border-subtle); border-radius: var(--radius-card); background: var(--surface); }
+  .ed legend { padding-inline: 6px; font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-tertiary); }
+  .ed-row { display: grid; gap: var(--space-4); }
+  @media (min-width: 600px) { .ed-row { grid-template-columns: 1fr 1fr; align-items: end; } }
+  .ed-swatches { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .ed-swatch { display: flex !important; align-items: center; gap: 6px !important; padding: 6px 12px 6px 8px; border-radius: var(--radius-pill); background: var(--accent); font-weight: 400 !important; cursor: pointer; }
+  .ed-swatch:has(input:checked) { outline: 2px solid var(--forest-ink); }
+  .ed-tools { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .ed-tools .ed-btn { font-size: 0.875rem; padding: 6px 12px; }
+  .ed-tools select { padding: 6px 10px; font-size: 0.875rem; }
+  .ed-save { position: sticky; bottom: 0; padding-block: var(--space-4); background: linear-gradient(transparent, var(--bg-page, #fcfaf5) 30%); }
+</style>
