@@ -518,6 +518,8 @@ const plain = (html: string) => html.replace(/<[^>]+>/g, '').replace(/\s+/g, ' '
 function slotName(html: string) {
   const strong = html.match(/<strong>([\s\S]*?)<\/strong>/);
   if (strong) return plain(strong[1]);
+  const mock = html.match(/<img [^>]*alt="Placeholder: ([^"]*)"/); // a mock image standing in for a screenshot
+  if (mock) return mock[1];
   const text = plain((html.match(/<div class="visual__frame"[^>]*>([\s\S]*?)<\/div>/)?.[1] ?? '').replace(/<span class="visual__todo">[\s\S]*?<\/span>/, ''));
   return text.length > 70 ? `${text.slice(0, 68).replace(/\s+\S*$/, '')}…` : text;
 }

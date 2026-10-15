@@ -3,7 +3,7 @@
 
 const images = Array.from(
   document.querySelectorAll<HTMLImageElement>('.project__body img'),
-).filter((img) => !img.closest('a, .is-placeholder'));
+).filter((img) => !img.closest('a'));
 
 if (images.length) {
   const many = images.length > 1;

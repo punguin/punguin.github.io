@@ -64,7 +64,7 @@ The default experience, however, often dropped carriers into a generic or incons
 <p class="callout">Help carriers express the work they are actually available for first, then make the remaining options easier to evaluate.</p>
 
 <figure class="visual visual--inline is-placeholder">
-<div class="visual__frame" style="aspect-ratio: 4 / 3"><span class="visual__todo">Evidence to add</span><strong>Carrier behavior evidence</strong><span>Summarize four observations: multiple saved searches, multiple drivers, several browser tabs, and default results requiring filtering.</span></div>
+<img src="/images/work/amazon-relay-load-board/placeholder-carrier-behavior.svg" alt="Placeholder: Carrier behavior evidence" loading="lazy" />
 <figcaption><span class="todo-tag">Why</span> Makes the new interaction model feel grounded in existing behavior rather than invented from a blank canvas. <span class="todo-tag">Source</span> BRD + research synthesis + XLR review</figcaption>
 </figure>
 
@@ -95,7 +95,7 @@ For example, I explored a cleaner top-level navigation model before learning whi
 That pattern repeated throughout the work: explore far enough to understand the better model, then determine what was technically feasible, what was worth changing, and what belonged in later scope.
 
 <figure class="visual visual--wide is-placeholder">
-<div class="visual__frame" style="aspect-ratio: 16 / 9"><span class="visual__todo">Evidence to add</span><strong>Boundary discovery</strong><span>Show an early concept beside the adapted design with one or two annotated constraints that became clear through engineering/product conversations.</span></div>
+<img src="/images/work/amazon-relay-load-board/placeholder-boundary-discovery.svg" alt="Placeholder: Boundary discovery" loading="lazy" />
 <figcaption><span class="todo-tag">Why</span> Demonstrates that the final simplicity came from constraint discovery and negotiation, not from starting with a fixed box. <span class="todo-tag">Source</span> Early iteration + final design</figcaption>
 </figure>
 
@@ -112,7 +112,7 @@ The design problem was therefore not one feature. It was how the landing experie
 <p class="callout">How might we support increasing marketplace complexity without making the experience increasingly complicated?</p>
 
 <figure class="visual visual--wide is-placeholder">
-<div class="visual__frame" style="aspect-ratio: 16 / 9"><span class="visual__todo">Evidence to add</span><strong>Impact map / product-definition artifact</strong><span>Use a legible crop showing how user stories and deliverables were tied back to carrier outcomes.</span></div>
+<img src="/images/work/amazon-relay-load-board/placeholder-impact-map.svg" alt="Placeholder: Impact map / product-definition artifact" loading="lazy" />
 <figcaption><span class="todo-tag">Why</span> Shows how you moved from a long requirement list toward a coherent interaction model. <span class="todo-tag">Source</span> Impact map + BRD</figcaption>
 </figure>
 
@@ -137,7 +137,7 @@ The structure was intentionally extensible. New criteria such as certifications,
 All five carriers in high-fidelity testing preferred the sidebar filter pattern and found it easier to discover and customize.
 
 <figure class="visual visual--full is-placeholder">
-<div class="visual__frame" style="aspect-ratio: 21 / 9"><span class="visual__todo">Evidence to add</span><strong>Primary search vs. filter architecture</strong><span>Annotate the launched results page: PRIMARY SEARCH = minimum viable criteria; FILTER PANEL = scalable refinement.</span></div>
+<img src="/images/work/amazon-relay-load-board/placeholder-search-vs-filters.svg" alt="Placeholder: Primary search vs. filter architecture" loading="lazy" />
 <figcaption><span class="todo-tag">Why</span> This is the clearest visual proof of the new information/interaction architecture. <span class="todo-tag">Source</span> GTM page 11 / launched results screenshot</figcaption>
 </figure>
 
@@ -154,7 +154,7 @@ This became one of the deliberately custom patterns in the redesign. By launch, 
 The interaction also had real technical cost. Multi-search increased expected transaction load, so engineering reduced results per page from 100 to 50 after data showed that more than 95% of searches returned fewer than 50 results. We preserved the workflow value while making a data-backed implementation tradeoff.
 
 <figure class="visual visual--wide is-placeholder">
-<div class="visual__frame" style="aspect-ratio: 16 / 9"><span class="visual__todo">Evidence to add</span><strong>Multi-search as operational model</strong><span>Show 3 active search tabs labeled with example contexts: outbound · backhaul · second truck.</span></div>
+<img src="/images/work/amazon-relay-load-board/placeholder-multi-search.svg" alt="Placeholder: Multi-search as operational model" loading="lazy" />
 <figcaption><span class="todo-tag">Why</span> Makes the feature read as a model of real carrier operations rather than a novel tab treatment. <span class="todo-tag">Source</span> Final design + usability testing</figcaption>
 </figure>
 
@@ -171,7 +171,7 @@ All five usability participants preferred reviewing load details in the side pan
 That extensibility later became visible publicly: newer Relay workflows, including spot-rate negotiation, use the same split-view idea to introduce new actions while route, payout, stops, map, and load information remain in context.
 
 <figure class="visual visual--wide is-placeholder">
-<div class="visual__frame" style="aspect-ratio: 16 / 9"><span class="visual__todo">Evidence to add</span><strong>Split-view extensibility</strong><span>Show the launched trip-detail drawer beside a later Relay example using the same split-view concept for a newer workflow.</span></div>
+<img src="/images/work/amazon-relay-load-board/placeholder-split-view.svg" alt="Placeholder: Split-view extensibility" loading="lazy" />
 <figcaption><span class="todo-tag">Why</span> Demonstrates that the interaction scaffold held up beyond the MVP. <span class="todo-tag">Source</span> Launch screenshot + public Relay Assistant example</figcaption>
 </figure>
 
@@ -186,7 +186,7 @@ Moving Book into the detail panel was debated because speed mattered greatly in 
 Carrier feedback leaned toward the new placement: users valued confirming the correct load before committing, and several specifically called out accidental bookings in the existing model. In this case, booking confidence took precedence over absolute minimum interaction count.
 
 <figure class="visual visual--wide is-placeholder">
-<div class="visual__frame" style="aspect-ratio: 16 / 9"><span class="visual__todo">Evidence to add</span><strong>Decision tradeoff: speed vs. confidence</strong><span>Before/after flow showing row-level Book versus select → inspect → Book, with the accidental-booking risk called out.</span></div>
+<img src="/images/work/amazon-relay-load-board/placeholder-speed-vs-confidence.svg" alt="Placeholder: Decision tradeoff: speed vs. confidence" loading="lazy" />
 <figcaption><span class="todo-tag">Why</span> Shows judgment: you were not blindly optimizing fewer clicks. <span class="todo-tag">Source</span> BRD 'hotly debated topics' + usability synthesis</figcaption>
 </figure>
 
@@ -227,7 +227,7 @@ Testing did not simply validate the concept. It sharpened terminology, time-zone
 The design then moved through internal review, carrier UAT, beta testing, and staged production dial-up so the interaction model could be evaluated with real data, real latency, and different carrier cohorts.
 
 <figure class="visual visual--wide is-placeholder">
-<div class="visual__frame" style="aspect-ratio: 21 / 9"><span class="visual__todo">Evidence to add</span><strong>Validation ladder</strong><span>A simple sequence: research → HiFi usability → design/system review → UAT → beta → staged rollout.</span></div>
+<img src="/images/work/amazon-relay-load-board/placeholder-validation-ladder.svg" alt="Placeholder: Validation ladder" loading="lazy" />
 <figcaption><span class="todo-tag">Why</span> Makes the amount of scrutiny behind the final UI visible without turning the case study into a process timeline. <span class="todo-tag">Source</span> Research synthesis + XLR notes + GTM</figcaption>
 </figure>
 
@@ -258,7 +258,7 @@ Post-launch carrier feedback echoed the research themes: easier multi-location s
 The longer-term value was structural. Relay explicitly planned to use the redesign as the foundation for more personalized load discovery, including recommendations, suggested reloads, and targeted promotions. The split-view pattern also continued to support newer workflows later.
 
 <figure class="visual visual--wide is-placeholder">
-<div class="visual__frame" style="aspect-ratio: 16 / 9"><span class="visual__todo">Evidence to add</span><strong>Impact scorecard</strong><span>46% fewer searches/carrier (US) · 25% fewer searches/carrier (EU) · multi-search adoption and weekly use · 100% US/EU/CA rollout.</span></div>
+<img src="/images/work/amazon-relay-load-board/placeholder-impact-scorecard.svg" alt="Placeholder: Impact scorecard" loading="lazy" />
 <figcaption><span class="todo-tag">Why</span> Closes the loop from observed behavior to actual product usage at scale. <span class="todo-tag">Source</span> Launch announcement</figcaption>
 </figure>
 
