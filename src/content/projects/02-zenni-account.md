@@ -182,6 +182,13 @@ I led the project through collaborative documentation in Slack canvases. That is
 
 I then turned those canvases into templates for the team to adopt and structure however they needed. The working doc, the messaging framework and the prototype walkthrough on <a href="/work/zenni-order-tracking/">Order Tracking</a> all started from them.
 
+The template mattered most when an idea was still ambiguous. Multi-Profile Shopping, a new initiative to support households buying glasses for the whole family, started as little more than a goal. In its working doc I turned it into things the team could start to understand together: a north star, working tenets, and a dual-track UX strategy. One track validated demand quickly by letting customers label prescriptions, favorites and saved searches, while the other designed the long-term household experience. Each track had desired outcomes, metrics and the evidence of success we’d look for.
+
+<figure class="visual" style="max-width: 720px">
+<img src="/images/work/zenni-account/multi-profile-canvas.webp" alt="The Multi-Profile Shopping working doc: a dual-track UX strategy, and a table for Track 1, validate customer demand through labeling, with focus areas Organization, Workflow Efficiency and Business Value, each with a desired outcome, KPIs and evidence of success." loading="lazy" />
+<figcaption>The same template on an early, ambiguous idea: Multi-Profile Shopping, 2026.</figcaption>
+</figure>
+
 #### Validation
 
 The design was tested with customers and reviewed across the business.
