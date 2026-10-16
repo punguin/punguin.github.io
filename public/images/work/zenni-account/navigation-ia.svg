@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" font-family="Inter, system-ui, sans-serif">
+<rect width="1600" height="1100" fill="#faf9f6"/>
+<text x="80" y="90" font-size="17" font-weight="700" letter-spacing="2" fill="#666666">BEFORE</text>
+<text x="80" y="128" font-size="30" font-weight="700" fill="#161616" letter-spacing="-0.6">Grouped by internal function</text>
+<rect x="80" y="190" width="660" height="134" rx="16" fill="#fff" stroke="#dedbd3" stroke-width="2"/>
+<text x="104" y="228" font-size="15" font-weight="700" letter-spacing="1.6" fill="#666">MY ACCOUNT</text>
+<text x="104" y="268" font-size="22" fill="#161616">Dashboard</text>
+<text x="104" y="306" font-size="22" fill="#161616">Account Settings</text>
+<rect x="80" y="340" width="660" height="134" rx="16" fill="#fff" stroke="#dedbd3" stroke-width="2"/>
+<text x="104" y="378" font-size="15" font-weight="700" letter-spacing="1.6" fill="#666">ZENNI REWARDS</text>
+<text x="104" y="418" font-size="22" fill="#161616">Refer Friends, Earn $30</text>
+<text x="104" y="456" font-size="22" fill="#161616">My Status</text>
+<rect x="80" y="490" width="660" height="172" rx="16" fill="#fff" stroke="#dedbd3" stroke-width="2"/>
+<text x="104" y="528" font-size="15" font-weight="700" letter-spacing="1.6" fill="#666">ORDER MANAGEMENT</text>
+<text x="104" y="568" font-size="22" fill="#161616">My Orders | Track My Order</text>
+<text x="104" y="606" font-size="22" fill="#161616">My Payment Methods</text>
+<text x="104" y="644" font-size="22" fill="#161616">My Address Book</text>
+<rect x="80" y="678" width="660" height="248" rx="16" fill="#fff" stroke="#dedbd3" stroke-width="2"/>
+<text x="104" y="716" font-size="15" font-weight="700" letter-spacing="1.6" fill="#666">PERSONALIZATION</text>
+<text x="104" y="756" font-size="22" fill="#161616">My Prescription</text>
+<text x="104" y="794" font-size="22" fill="#161616">My Favorites</text>
+<text x="104" y="832" font-size="22" fill="#161616">My TryOn</text>
+<text x="104" y="870" font-size="22" fill="#161616">My Shared Images</text>
+<text x="104" y="908" font-size="22" fill="#161616">My Vision Test</text>
+<rect x="80" y="942" width="660" height="104" rx="16" fill="#fff" stroke="#dedbd3" stroke-width="2"/>
+<text x="104" y="982" font-size="22" fill="#161616">Gift Card Balance</text>
+<text x="104" y="1020" font-size="22" fill="#161616">Communication Preferences</text>
+<text x="860" y="90" font-size="17" font-weight="700" letter-spacing="2" fill="#5447ff">AFTER</text>
+<text x="860" y="128" font-size="30" font-weight="700" fill="#161616" letter-spacing="-0.6">Grouped by what customers manage</text>
+<rect x="860" y="190" width="660" height="248" rx="16" fill="#fff" stroke="#dedbd3" stroke-width="2"/>
+<text x="884" y="228" font-size="15" font-weight="700" letter-spacing="1.6" fill="#666">ACCOUNT</text>
+<text x="884" y="268" font-size="22" fill="#161616">My Account</text>
+<text x="884" y="306" font-size="22" fill="#161616">Orders</text>
+<text x="884" y="344" font-size="22" fill="#161616">My Prescription</text>
+<text x="884" y="382" font-size="22" fill="#161616">Gift Card Balance</text>
+<text x="884" y="420" font-size="22" fill="#161616">Favorites</text>
+<rect x="860" y="454" width="660" height="134" rx="16" fill="#fff" stroke="#dedbd3" stroke-width="2"/>
+<text x="884" y="492" font-size="15" font-weight="700" letter-spacing="1.6" fill="#666">REWARDS</text>
+<text x="884" y="532" font-size="22" fill="#161616">Zenni Rewards</text>
+<text x="884" y="570" font-size="22" fill="#161616">Refer Friends, Earn $15</text>
+<rect x="860" y="604" width="660" height="248" rx="16" fill="#fff" stroke="#dedbd3" stroke-width="2"/>
+<text x="884" y="642" font-size="15" font-weight="700" letter-spacing="1.6" fill="#666">SETTINGS</text>
+<text x="884" y="682" font-size="22" fill="#161616">Personal Information</text>
+<text x="884" y="720" font-size="22" fill="#161616">Addresses</text>
+<text x="884" y="758" font-size="22" fill="#161616">Payments</text>
+<text x="884" y="796" font-size="22" fill="#161616">Communication Preferences</text>
+<text x="884" y="834" font-size="22" fill="#161616">Language</text>
+<rect x="860" y="868" width="660" height="134" rx="16" fill="#fff" stroke="#dedbd3" stroke-width="2"/>
+<text x="884" y="906" font-size="15" font-weight="700" letter-spacing="1.6" fill="#666">HELP &amp; SUPPORT</text>
+<text x="884" y="946" font-size="22" fill="#161616">Help Center</text>
+<text x="884" y="984" font-size="22" fill="#161616">24/7 Customer Support</text>
+<path d="M772 470 L828 470" stroke="#5447ff" stroke-width="4" fill="none"/><path d="M816 458 L830 470 L816 482" stroke="#5447ff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
