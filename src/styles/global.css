@@ -2,7 +2,7 @@
    Pung Brooks — Design Practice
    Visual system (2026-10-16, from Pung's account-foundation.html and index.html references):
    warm off-white paper, near-black ink, thin rules between sections. Restyled 2026-10-16 to feel
-   less templated: Source Serif 4 headlines, Inter text, one quiet rust accent used sparingly,
+   less templated: Caprasimo headlines (Pung's original choice), Inter text, Roboto Mono labels, a dot-grid whiteboard background, one quiet rust accent used sparingly,
    sentence-case labels, small radii, no tinted panels or gradients. No sheet of paper.
    Old token names (forest-ink, cream-paper, sticky-*) are kept as aliases so components
    didn't all need renaming; their values follow the new palette.
@@ -62,13 +62,13 @@
   --shadow-subtle-2: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
 
   /* Type */
-  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-display: Caprasimo, "Cooper Black", Georgia, serif;
   --font-body: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-hand: Caveat, "Segoe Print", "Bradley Hand", cursive;
   /* Small labels are uppercase Inter now, not a monospace face. */
-  --font-mono: var(--font-body);
-  --tracking-display: -0.015em;
-  --weight-display: 600;
+  --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --tracking-display: 0;
+  --weight-display: 400;
 
   --text-body: 1.125rem;           /* 18px desktop (style reference body) */
   --text-small: 0.875rem;          /* 14px */
@@ -94,6 +94,7 @@
 
   /* Layout */
   --grid-size: 24px;
+  --grid-color: rgba(22, 22, 22, 0.13);   /* dot grid: a digital whiteboard */
   --gutter: 20px;
   --doc-max: 1120px;
   --header-h: 64px;
@@ -153,6 +154,9 @@ html {
 
 body {
   margin: 0;
+  background-image: radial-gradient(circle, var(--grid-color) 1px, transparent 1.2px);
+  background-size: var(--grid-size) var(--grid-size);
+  background-position: calc(var(--grid-size) / -2) calc(var(--grid-size) / -2);
   background-color: var(--bg);
   color: var(--text-primary);
   font-family: var(--font-body);
@@ -185,8 +189,7 @@ h3, h4 {
 /* Marker-pen wash behind a word or phrase */
 mark {
   background: none;
-  color: inherit;
-  font-style: italic;
+  color: var(--violet);
   padding: 0;
   margin: 0;
   -webkit-box-decoration-break: clone;
@@ -246,15 +249,16 @@ a.external::after {
 .skip-link:focus { top: var(--space-2); }
 
 .label {
-  font-family: var(--font-body);
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 400;
   color: var(--text-tertiary);
 }
 /* Eyebrow: the small violet line above a headline */
 .eyebrow {
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 400;
   color: var(--eyebrow);
 }
 
@@ -357,7 +361,6 @@ a.external::after {
   line-height: 1.22;
   letter-spacing: -0.01em;
   font-weight: 400;
-  font-style: italic;
   margin-top: var(--space-7);
   padding: 0 0 0 var(--space-5);
   border-left: 2px solid var(--ink);
