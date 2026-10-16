@@ -32,7 +32,7 @@ I modernized a fragmented account experience while establishing reusable product
 
 <aside class="case-aside">
 <p class="label">My role</p>
-<p>I was the lead, and only, UX designer on the redesign, partnered with a product manager, my UX manager, engineering and the design system team. The work wasn’t on a company roadmap when I started, so part of my job was showing leadership a new account experience that was worth investing in.</p>
+<p>I was the lead, and only, UX designer on the redesign, partnered with a product manager, my UX manager, engineering and the design system team. The work wasn’t on a company roadmap when I started, so part of my job was showing leadership a new account experience that was worth investing in. I led it in the open, through shared Slack canvases where the decisions were made and recorded.</p>
 </aside>
 
 #### 00 / Context
@@ -166,11 +166,19 @@ A useful foundation does not predict every future feature. It gives future teams
 
 We knew Orders had room to become much more useful. I structured the foundation so later iterations could support richer status, progressive information, contextual actions and more sophisticated post-purchase communication. Work after the MVP included store credit, frame measurements, international support and enhanced order tracking.
 
-#### Design system collaboration
+#### Building with the design system
 
-Real product needs shaped the system.
+I was designing a system at the same time as the design system.
 
-Account was redesigned while the new design system was still taking shape, so the two had to calibrate against each other. Where the system accelerated the work, I used it. Where it created friction, I raised it, and when Account needed to extend a pattern, that learning went back to the system instead of staying a one-off.
+The new design system was barebones when Account started, and we built it together. Account became its pressure test: real pages, real data and real edge cases showed where the system’s early decisions held and where they didn’t. We worked through those kinks on my project, developed patterns together, and I contributed major components and patterns back to the system along the way.
+
+I also advocated for the designer inside the design system. Where the system accelerated product work, I leaned on it. Where it created friction, I raised it, and when Account needed to extend a pattern, that learning went back to the system instead of staying a one-off.
+
+#### Making decisions in the open
+
+There was no shared place to make and track decisions, so I made one.
+
+I led the project through collaborative documentation in Slack canvases. That is where the decisions happened. Partners, and really anyone, could see what was decided and why, and offer feedback before it was final. There was no existing mechanism to track decisions or collaborate this way, and it became how my team saw me lead my projects.
 
 #### Validation
 
@@ -190,7 +198,8 @@ The outcome was optionality.
 
 The redesigned ecosystem gave the team a foundation to build on rather than another one-off redesign.
 
-- Real product needs shaped the design system.
+- The design system was pressure tested on a real product, and gained major components and patterns from it.
+- Decisions were tracked in the open, in a way partners could follow and question.
 - Patterns became reusable across Account.
 - The foundation enabled richer post-purchase experiences, including the order-tracking work that followed.
 
