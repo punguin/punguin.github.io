@@ -213,4 +213,6 @@ The new experience launched across the US and Canada, and was evaluated in a 50/
 
 <p class="callout">When customers could understand what was happening with their order, they were less likely to need someone at Zenni to explain it.</p>
 
+The work also changed how the UX team worked. The working doc, the design jam and its follow-up, the messaging framework and the recorded walkthrough reinforced the canvas practice I started on Account, and became templated ways of working the UX team could reuse on its own projects.
+
 The interface was Phase 2. The architecture started earlier, in the <a href="/work/zenni-account/">Account foundation</a> that made it possible.
