@@ -301,6 +301,13 @@ Drivers kept their pace, needed less help, and the platform could grow.
 - The UI moved to Meridian, increasing consistency and accessibility.
 - Driver feedback was positive, and a new work stream formed to consolidate shared views across Relay’s carrier and driver products.
 
+The model has kept absorbing new use cases. In a driver’s public video, the home screen still follows the same structure: the current stop with its start button, the schedule, and a new “Find work” card that brings load board and contract search into the driver app without changing the structure around it.
+
+<figure class="visual visual--inline" style="max-width: 320px">
+<img src="/images/work/amazon-relay/in-the-wild.webp" alt="The Relay home screen in use, with a current stop card for San Diego and a Start work button, a My schedule card with two upcoming trips, and a new Find work card linking to Search Load Board and Search Contracts." loading="lazy" />
+<figcaption>In the wild, from a driver’s public video: a new Find work card plugged into the same home screen.</figcaption>
+</figure>
+
 <figure class="visual visual--wide">
 <img src="/images/work/amazon-relay/impact-scorecard.svg" alt="Impact scorecard: support calls from 30% to 17% of loads, completed tours per hour steady, 4 major new capabilities in 2022, and a 6.31 out of 7 ease rating in the beta survey." loading="lazy" />
 <figcaption>Results after launch.</figcaption>
