@@ -23,12 +23,7 @@ order: 2
 <figcaption>The redesigned My Account dashboard. Personal details are hidden.</figcaption>
 </figure>
 
-I modernized a fragmented account experience while establishing reusable product patterns and a healthier working relationship between product design and the design system.
-
-<aside class="case-aside">
-<p class="label">Phase 1 of 2</p>
-<p>This foundation made the next phase possible: <a href="/work/zenni-order-tracking/">Enhanced Order Tracking</a>.</p>
-</aside>
+I modernized a fragmented account experience while establishing reusable product patterns and a healthier working relationship between product design and the design system. This was Phase 1. <a href="/work/zenni-order-tracking/">Phase 2, Enhanced Order Tracking</a>, was built on it.
 
 <aside class="case-aside">
 <p class="label">My role</p>
@@ -39,9 +34,9 @@ I modernized a fragmented account experience while establishing reusable product
 
 Barebones account pages, a new brand, and a new priority.
 
-Zenni’s Account management pages were barebones. That reflected the organization’s historical prioritization of metrics outside direct revenue, such as average order value.
+Zenni’s Account management pages were barebones. The organization had historically prioritized metrics like average order value, and Account didn’t move them directly, so it had never been a priority.
 
-Two things made this the moment to change that. First, branding had unveiled new brand and marketing guidelines: a major visual overhaul, and a single voice, tone and vibe for how Zenni wanted to be perceived. The website wasn’t up to that standard, which led to a new design system being created while major sections of the site were redesigned at the same time.
+Two things changed that. First, branding unveiled new guidelines: a major visual overhaul, and a single voice, tone and vibe for how Zenni wanted to be perceived. The website wasn’t up to that standard, so a new design system was created while major sections of the site were redesigned at the same time.
 
 Second, Zenni’s leadership changed. A new leader made a “best-in-class foundation” a major organizational goal for 2025. My UX manager saw the opportunity and assigned me to Account before it was on the roadmap. I started in November 2024.
 
@@ -54,11 +49,11 @@ Second, Zenni’s leadership changed. A new leader made a “best-in-class found
 
 Customers thought of Account as one place. The product did not.
 
-Zenni’s Account experience had evolved as a collection of pages, built at different times for different needs.
+Customers didn’t care that orders, prescriptions, payment methods and profile information came from different parts of the business. To them, Account was one thing.
 
-The customer mental model was simple: “My account is where I manage my relationship with Zenni.” Customers did not care that orders, prescriptions, payment methods, profile information, and other capabilities came from different domains.
+<p class="callout">My account is where I manage my relationship with Zenni.</p>
 
-What they came to Account to do was concrete. I tested the design against scenarios like these:
+What they came to do was concrete:
 
 - An order placed a week ago is in transit, and the customer needs an estimate of when it will arrive.
 - One pair in an order is on Rush service and the others are on Standard, and the customer needs to confirm the arrival date for each.
@@ -68,27 +63,19 @@ What they came to Account to do was concrete. I tested the design against scenar
 
 Customer service added one more. A top customer request was to show frame size prominently in order history, so customers could use it as a reference when buying their next pair.
 
-<p class="callout">My account is where I manage my relationship with Zenni.</p>
-
 #### 02 / System
 
-The design system was part infrastructure, and part working relationship.
+Account was a collection of pages, and the design system barely existed.
 
-Different pages had different structures, data, states, actions, and technical histories. I identified patterns that should become shared foundations: navigation, hierarchy, cards, responsive layouts, status, and actions.
+Account had evolved one page at a time, built at different times for different needs. Each page had its own structure, data, states, actions and technical history. The navigation showed it: pages were grouped under labels like Order Management and Personalization, alongside features such as TryOn, Shared Images and Vision Test. It described how the business had built Account, not what customers came to do.
 
-I also advocated for the product-designer workflow. Where did the system accelerate the work? Where did it create friction? When should a product team extend a pattern, and how should that learning return to the system?
-
-- **Shared structure.** Navigation, hierarchy, cards, responsive layouts.
-- **Reusable behavior.** Status and action patterns.
-- **How we work.** Contribution, feedback, ownership, and flexibility.
-
-The navigation showed how the pages had grown. The legacy navigation grouped pages under labels like Order Management and Personalization, alongside features such as TryOn, Shared Images and Vision Test. It described how the business had built Account more than what customers came to do.
+At the same time, the new design system was barebones. I was designing a system at the same time as the design system. Whatever patterns Account needed, such as navigation, hierarchy, cards, responsive layouts, status and actions, either didn’t exist yet or hadn’t been tested on a real product.
 
 #### 03 / Gaps
 
 Modernizing the UI wasn’t enough.
 
-Individual pages worked, but the experience wasn’t operating as a coherent system. At the same time, the new design system was taking shape and Account needed room to evolve. Simply reskinning the existing pages would have reproduced today’s constraints in tomorrow’s interface.
+Individual pages worked, but the experience wasn’t operating as a coherent system. Simply reskinning the existing pages would have reproduced today’s constraints in tomorrow’s interface, on top of a design system that was still changing underneath them.
 
 <p class="callout">How do we modernize today’s experience without designing ourselves into another corner tomorrow?</p>
 
@@ -98,9 +85,7 @@ Not every gap belonged in the first release. The MVP focused on the structure an
 
 Consistency was not the same thing as sameness.
 
-The organization needed reusable foundations without forcing every product problem into the same template.
-
-I established common structure and reusable interaction patterns while preserving room for domain-specific needs. The consequential decisions were not always visually dramatic: what became reusable, what stayed specific, and how the system could support capabilities we had not designed yet.
+The organization needed reusable foundations without forcing every product problem into the same template. I established common structure and reusable interaction patterns while preserving room for domain-specific needs. The consequential decisions were not always visually dramatic: what became reusable, what stayed specific, and how the system could support capabilities we had not designed yet.
 
 ##### 4.1 Organize Account around what customers manage
 
@@ -168,11 +153,11 @@ We knew Orders had room to become much more useful. I structured the foundation 
 
 #### Building with the design system
 
-I was designing a system at the same time as the design system.
+Account was the design system’s pressure test.
 
-The new design system was barebones when Account started, and we built it together. Account became its pressure test: real pages, real data and real edge cases showed where the system’s early decisions held and where they didn’t. We worked through those kinks on my project, developed patterns together, and I contributed major components and patterns back to the system along the way.
+We built Account and the design system together. Real pages, real data and real edge cases showed where the system’s early decisions held and where they didn’t. We worked through those kinks on my project, developed patterns together, and I contributed major components and patterns back to the system along the way.
 
-I also advocated for the designer inside the design system. Where the system accelerated product work, I leaned on it. Where it created friction, I raised it, and when Account needed to extend a pattern, that learning went back to the system instead of staying a one-off.
+I also advocated for the product designer inside the design system. Where did the system speed up product work, and where did it create friction? When should a product team extend a pattern, and how should that learning return to the system? Where the system helped, I leaned on it. Where it got in the way, I raised it, and when Account needed to extend a pattern, the change went back to the system instead of staying a one-off.
 
 #### Making decisions in the open
 
@@ -180,36 +165,29 @@ There was no shared place to make and track decisions, so I made one.
 
 I led the project through collaborative documentation in Slack canvases. That is where the decisions happened. Partners, and really anyone, could see what was decided and why, and offer feedback before it was final. There was no existing mechanism to track decisions or collaborate this way, and it became how my team saw me lead my projects.
 
-I then turned those canvases into templates for the team to adopt and structure however they needed. The working doc, the messaging framework and the prototype walkthrough on <a href="/work/zenni-order-tracking/">Order Tracking</a> all started from them.
+The practice outlasted the project. I turned the canvases into templates the team could adopt and structure however they needed. The working doc, the messaging framework and the prototype walkthrough on <a href="/work/zenni-order-tracking/">Order Tracking</a> all started from them.
 
-The template mattered most when an idea was still ambiguous. Multi-Profile Shopping, a new initiative to support households buying glasses for the whole family, started as little more than a goal. In its working doc I turned it into things the team could start to understand together: a north star, working tenets, and a dual-track UX strategy. One track validated demand quickly by letting customers label prescriptions, favorites and saved searches, while the other designed the long-term household experience. Each track had desired outcomes, metrics and the evidence of success we’d look for.
+The template was most useful when an idea was still ambiguous. Multi-Profile Shopping, a later initiative to support households buying glasses for the whole family, started as little more than a goal. Its working doc turned that into things the team could start to understand together: a north star, working tenets, and two tracks of UX work. One validated demand quickly by letting customers label prescriptions, favorites and saved searches. The other designed the long-term household experience. Each track named its desired outcomes, its metrics and the evidence of success we’d look for.
 
 <figure class="visual" style="max-width: 720px">
 <img src="/images/work/zenni-account/multi-profile-canvas.webp" alt="The Multi-Profile Shopping working doc: a dual-track UX strategy, and a table for Track 1, validate customer demand through labeling, with focus areas Organization, Workflow Efficiency and Business Value, each with a desired outcome, KPIs and evidence of success." loading="lazy" />
 <figcaption>The same template on an early, ambiguous idea: Multi-Profile Shopping, 2026.</figcaption>
 </figure>
 
-#### Validation
+#### Validation and launch
 
-The design was tested with customers and reviewed across the business.
+Tested with customers, reviewed across the business.
 
-I ran a usability test in January 2025 built on the customer scenarios above, then iterated through team reviews, a mobile team review and a customer service review before detail design and developer handoff. Visual QA followed the build.
-
-#### Launch
-
-The UX runway was three months, and implementation took four.
-
-Developer handoff was organized by ticket, with one design page for each piece of work.
+In January 2025 I ran a usability test built on the customer scenarios above, then iterated through team reviews, a mobile team review and a customer service review before detail design. Developer handoff was organized by ticket, with one design page for each piece of work, and visual QA followed the build. The UX runway was three months, and implementation took four.
 
 #### 05 / Impact
 
 The outcome was optionality.
 
-The redesigned ecosystem gave the team a foundation to build on rather than another one-off redesign.
+The redesign gave the team a foundation to build on rather than another one-off redesign.
 
+- Account’s pages now share one navigation, one structure and one set of patterns.
 - The design system was pressure tested on a real product, and gained major components and patterns from it.
-- Decisions were tracked in the open, and the canvases became templates the team adopted.
-- Patterns became reusable across Account.
-- The foundation enabled richer post-purchase experiences, including the order-tracking work that followed.
+- The decision-making canvases became templates the team adopted.
 
 Foundational work is often best measured by what becomes easier to build afterward. This foundation didn’t remain theoretical: the next phase used it to tackle a deeper post-purchase problem. <a href="/work/zenni-order-tracking/">See Phase 2, Enhanced Order Tracking</a>.
