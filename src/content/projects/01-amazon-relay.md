@@ -1,69 +1,271 @@
 ---
 id: amazon-relay
 number: "01.1"
-title: Amazon Relay
-navLabel: Amazon Relay
+title: Amazon Relay Mobile
+navLabel: Amazon Relay Mobile
 company: Amazon
-context: Amazon Middle Mile / Relay
-project: Relay mobile application redesign
-domain: Middle Mile logistics
-summary: Design around the work, not the workflow.
-role: Accountable design lead
-timeline: Four months
-platform: [iOS, Android]
-partners: [Product, Engineering, UX Research]
+context: Amazon Middle Mile, Relay
+project: Mobile App Redesign
+domain: Middle Mile Operations
+summary: Helping truck drivers execute loads more efficiently and confidently
+role: Design Lead
+timeline: 4 Months
+platform: [iOS, Android, Meridian Design System]
+partners: [Senior Software Engineer, Product Manager, UX Research]
 accent: relay
+cover: /images/work/amazon-relay/cover.webp
+coverAlt: The redesigned Relay home screen, weekly schedule and current stop screen
 order: 1
 ---
 
-I led a redesign of the Relay mobile app around how truck drivers actually worked, while creating a structure capable of supporting growth beyond one rigid sequence.
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay/before-after.webp" alt="Before: the old Relay trips screen with a map and a single Begin work button. After: the redesigned home screen, a weekly schedule, and the current stop screen." loading="lazy" />
+<figcaption>Before and after: the old trips screen next to the new home screen, schedule and current stop.</figcaption>
+</figure>
+
+I led a four-month redesign of the Relay mobile app, replacing a rigid, linear trips workflow with a home screen, schedule and stop details that help drivers find what they need when they need it, while giving Relay an information architecture that could grow to new personas and use cases.
+
+<aside class="case-aside">
+<p class="label">My role in product definition</p>
+<p>I was the responsible and accountable design lead, working alongside the senior software engineer who led the project with me, with UX Research and a senior product manager consulted. With limited product management, the work was largely tech and design driven, so I helped shape the problem, the goals and the scope of the release as well as the design itself.</p>
+</aside>
+
+Leadership’s ask sounded like a home-screen project: extend an app built for truck drivers to carriers and others. The real work was architectural. I had to help turn that ask into a structure the team could align on, test, ship incrementally and keep building on.
 
 #### 00 / Context
 
-Relay connects carriers and drivers with Amazon’s transportation network. The driver population had grown dramatically, and the existing application was organized around a rigid workflow. Leadership wanted Relay Mobile to support additional users and use cases. The design problem was therefore architectural, not merely a home-screen redesign.
+The app had outgrown the workflow it was built around.
 
-<p class="todo"><span class="todo-tag">To write</span> What made this difficult in practice: scale, existing commitments, and the constraints the team was working inside.</p>
+Relay connects transportation carriers and drivers to the Amazon transportation network. It started from scratch in 2017, when Amazon was building out its own network, with about 10,000 active drivers. By 2022 it had more than a million.
+
+The work had grown more complicated too. There were more workflows and types of load. The network now met third-party facilities such as shippers’ warehouses, airports and post offices, and experiences for rail yards and ocean ports needed onboarding. Five tech teams were contributing to the app, compared with one in 2017.
+
+Leadership wanted Relay Mobile to serve carriers, dispatchers and other users, not only drivers. But the existing app was organized around one rigid sequence for executing a trip, and every new capability had to squeeze into it.
+
+The constraints were real: limited time, budget and resources, unpredictable yard procedures, and resistance to change.
+
+<p class="label">Tenets</p>
+
+- **Driver safety first.** Low-touch execution, assuming hands-free operation in normal scenarios.
+- **Generic but flexible.** Relay can scale without additional development effort or compromising the experience.
+- **Incremental improvements.** Deliver smaller improvements more often rather than big steps at a time.
+
+<p class="label">Project goals</p>
+
+- **Usability.** Make it easier for drivers to find the information they need when they need it.
+- **Consistency.** Migrate to the Meridian design system.
+- **Scalability.** Make it easier to introduce new work types, loads and types of drivers.
+- **Parity.** Keep every existing use case working.
 
 #### 01 / People
 
-<p class="todo"><span class="todo-tag">To write</span> What field research showed about drivers’ real-world context: where and when they use the app, what safety demands, and what the rigid workflow got wrong about their day.</p>
+Drivers did not need step-by-step instructions. They needed information.
 
-<figure class="visual visual--inline is-placeholder">
-<div class="visual__frame" style="aspect-ratio: 4 / 3"><span class="visual__todo">Evidence to add</span><span>Field research artifacts from driver observation</span></div>
-<figcaption><span class="todo-tag">Caption to write</span> What this research revealed about drivers’ working conditions.</figcaption>
+Research combined desk research, a field study and driver interviews. In the field, drivers checked in at shipping windows with paperwork in one hand and a phone in the other, and photographed bills of lading from the cab between stops.
+
+Several findings changed how I thought about the app:
+
+- The app’s execution workflows did not always match the real workflow at a site.
+- Drivers did not need step-by-step instructions to do their jobs. Each step they had to complete in the app was more work for them.
+- Information in the workflows was not always accurate, so drivers had found workarounds to get to what they needed, and relied heavily on tribal knowledge.
+- Being on time is crucial for their performance, so drivers often arrive hours early. The day feels like hurry up and wait.
+- Drivers did not want to be bothered by messages unrelated to the work in front of them.
+
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay/field-study.jpg" alt="Three photos from the field study: a driver checking in at a shipping window with a phone and paperwork, a driver photographing a bill of lading in the cab, and a driver reviewing trip information at the wheel." loading="lazy" />
+<figcaption>From the field study: checking in at a shipping window, capturing a bill of lading, and reviewing trip information in the cab.</figcaption>
 </figure>
+
+Discovery research also showed that drivers think about information in three dimensions: what they need before work, during work, and all the time. The old app handled the first two reasonably well. It struggled with the third, which is exactly the information drivers need most when things don’t go as planned, like a reference number for a shipper or a document from an earlier stop.
+
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay/three-dimensions.svg" alt="Diagram of three columns: before work (planning questions), during work (navigate, check in, drop off and pick up, check out), and all the time (documents, reference numbers, future stop information), which was hard to reach in the old app." loading="lazy" />
+<figcaption>Before work, during work and all the time. The third column was the gap.</figcaption>
+</figure>
+
+<p class="callout">Give drivers the information about their work whenever they need it, instead of walking them through steps they already know.</p>
+
+<p class="case-methods"><span class="label">Methods</span> desk research · field study · driver interviews · journey mapping</p>
 
 #### 02 / System
 
-<p class="todo"><span class="todo-tag">To write</span> How the existing app structure worked, and why one linear workflow could not absorb new users and use cases.</p>
+One linear workflow could not absorb new users and use cases.
 
-<figure class="visual visual--wide is-placeholder">
-<div class="visual__frame" style="aspect-ratio: 16 / 9"><span class="visual__todo">Evidence to add</span><span>Previous Relay navigation and workflow, alongside a driver journey or work-state diagram</span></div>
-<figcaption><span class="todo-tag">Caption to write</span> Where the software’s structure stopped matching the work.</figcaption>
+I worked with the senior software engineer to map the existing experience end to end. From the trips card, drivers were launched into a linear workflow. Each step was its own uniquely named screen, with unique but sometimes overlapping content. Every step had one primary action to move forward, or a back button that exited to the trips card, where drivers had to select “Resume work” to get back to where they were.
+
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay/existing-design.webp" alt="Map of the existing Relay workflow: home, begin work, register vehicle, then a repeating drive and task sequence for each stop, with screenshots of the old screens below." loading="lazy" />
+<figcaption>The existing experience, mapped with engineering: one fixed sequence of screens per stop.</figcaption>
 </figure>
+
+The structure caused the problems we saw in the field. Information was split across task screens, similar information appeared in different places, and anything outside the current step was hard to reach. A late fix had added a trip information card to hold documents, reference numbers and special instructions, but it was a patch on the same structure.
+
+The technology had the same shape. Tightly coupled code made every new capability expensive to design, build and test, and one team was a bottleneck for custom workflows. In parallel with the redesign, engineering began building a federated foundation so several teams could contribute to the app independently. The UX needed a matching structure: one where each team’s experience had a natural place to go.
+
+##### I also had to define what we were not changing.
+
+The redesign could not stop drivers from working. Drivers needed to execute loads at the same rate as before, app feedback was generally good, and there was one other engineer beyond the senior engineer I worked with. Those facts set a firm boundary: the new structure had to wrap the existing execution workflow rather than replace it in the first release.
 
 #### 03 / Gaps
 
-<p class="todo"><span class="todo-tag">To write</span> Where what people were trying to do and how the system worked didn’t line up, and which of those gaps were worth solving.</p>
+The app was organized around steps. Drivers think about stops.
+
+I facilitated a journey mapping session to align the team on the customer problem. Two themes came out of it:
+
+1. Drivers need more information about their stops.
+2. Drivers need to be able to access that information whenever they need it.
+
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay/journey-map.webp" alt="Journey map of a driver’s daily workflow, with rows for stages, doing, goals, feelings, pain points and opportunities across planning, driving to the yard, pre-trip, driving, yard execution and end of trip." loading="lazy" />
+<figcaption>The driver journey map, from planning the day before to the end of the trip.</figcaption>
+</figure>
+
+I then facilitated an object mapping session to identify the nouns drivers use to describe their work, and how those objects relate: a driver has a schedule, a schedule has many trips, a trip has many stops, and each stop has a location, a scheduled time and its loads. That model gave us a structure built from drivers’ own language instead of from screens.
+
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay/object-map.webp" alt="Object map: driver, schedule, trip, stop and load connected by has-one and has-many relationships, with vehicle, task, location, status and scheduled time." loading="lazy" />
+<figcaption>Object mapping: the nouns of a driver’s work and how they relate.</figcaption>
+</figure>
+
+<p class="callout">How might we help drivers execute all loads more efficiently and with more confidence?</p>
 
 #### 04 / Design
 
-<p class="todo"><span class="todo-tag">To write</span> The structural direction chosen, how incremental change and parity for existing workflows shaped it, and how it balanced future flexibility with present usability.</p>
+The final screens look simple. Getting there required a few structural decisions.
 
-<figure class="visual visual--full is-placeholder">
-<div class="visual__frame" style="aspect-ratio: 21 / 9"><span class="visual__todo">Evidence to add</span><span>Before and after: how the new structure supported more than one linear workflow</span></div>
-<figcaption><span class="todo-tag">Caption to write</span> Why the new information architecture could expand beyond a single sequence.</figcaption>
+I ran a brainstorming session with the team and we placed the ideas on two charts: user value against feasibility, and user value against extensibility. Extensibility mattered as much as feasibility, because the goal was a structure that could keep growing. We selected one approach together to explore further.
+
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay/brainstorm.webp" alt="Two charts plotting concept sketches by user value against feasibility and against extensibility, with the selected approach circled." loading="lazy" />
+<figcaption>Brainstorm concepts, plotted by user value against feasibility and extensibility.</figcaption>
 </figure>
 
-#### Tradeoffs
+##### 4.1 Make the home screen a curated summary, not a workflow
 
-<p class="todo"><span class="todo-tag">To write</span> What the team intentionally did not do, especially where safety mattered.</p>
+The home screen should orient drivers, not do the heavy lifting.
+
+I explored a card-based approach with a focus section at the top for the driver’s current stop. The home screen became a curated collection of widgets that summarizes the most important jobs across a driver’s whole journey, while the work itself happens in dedicated views.
+
+Three goals anchored it. **Focused:** give attention to the most important task and reduce cognitive load. **Organized:** show status, progress and messages consistently, in context. **Curated:** summarize, don’t execute.
+
+The structure is what made it scale. Each persona can have a different view, determined by the team that owns that experience, so the same framework can show a driver their current trip and a carrier their load board and performance scores.
+
+<figure class="visual visual--full">
+<img src="/images/work/amazon-relay/home-variations.webp" alt="Wireframe variations of the home screen for a driver (current trip active, no current trip, weather alert, trip cancellation), a carrier, and an owner-operator who switches between both." loading="lazy" />
+<figcaption>One home screen framework, different views: driver, carrier, and an owner-operator switching between them.</figcaption>
+</figure>
+
+##### 4.2 Replace one trip at a time with a schedule
+
+Planning and executing work are not linear. They happen at the same time.
+
+Previously, drivers could only see one trip at a time. We consolidated their work into a single schedule view, so drivers can see their current trip and plan for upcoming work in the same place, and move to previous and future stops to see their details outside the current stop.
+
+##### 4.3 Centralize everything about a stop in stop details
+
+Stop details is where “all the time” information lives.
+
+Stop details brings together everything about a stop: what, where and when, the pick-up and drop-off, load IDs, contact information and requirements such as safety equipment. Drivers can open it for the stop they are working on, or for any past or future stop.
+
+For the first release it provided parity with the existing trips experience. The structure also left room for what came next: carrier-specific details, and new freight programs like Global Mile and Amazon Freight.
+
+<figure class="visual visual--inline">
+<img src="/images/work/amazon-relay/stop-details-vision.webp" alt="Stop details wireframes for a driver and a carrier, organized by what, where and when, with a sticky task and carrier-specific sections." loading="lazy" />
+<figcaption>Stop details for a driver and a carrier: the same structure, with persona-specific content.</figcaption>
+</figure>
+
+##### 4.4 Ship the smallest change that achieves flexibility
+
+The first release changed the structure around the workflow, not the workflow itself.
+
+The goal for the first iteration was the smallest change necessary to achieve flexibility. We weighed three factors for the release: feature parity, so drivers could execute loads at the same rate as before; rate of change, because app feedback was generally good; and the resources we actually had.
+
+So the new home screen, schedule and current stop sit in front of the existing execution workflow. “Continue load” hands drivers into the screens they already knew, while the new structure gives them a way out of the sequence and back to their information at any point.
+
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay/mvp-flow.webp" alt="Three flow diagrams side by side: the existing linear flow, the MVP flow with new home, schedule and stop details screens, and the future flow." loading="lazy" />
+<figcaption>Existing, MVP and future flows. New screens are marked in blue; the MVP keeps the execution steps intact.</figcaption>
+</figure>
+
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay/current-stop-handoff.webp" alt="The new current stop screen, with its Continue load button connected by arrows to the four screens of the existing execution workflow." loading="lazy" />
+<figcaption>The current stop hands off to the existing execution workflow, so the first release kept full parity.</figcaption>
+</figure>
+
+##### 4.5 Keep the long-term vision visible without forcing it into the MVP
+
+Once the first concept was validated, I expanded it to show the long-term strategy: the home screen, structured “sticky” tasks that could support complex workflows, and stop details. Aligning on that vision early meant each release could move toward it instead of starting over.
+
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay/long-term-vision.webp" alt="Long-term vision boards for the home screen, sticky tasks and stop details, including card types and driver home screen states." loading="lazy" />
+<figcaption>The long-term vision: home screen, sticky tasks and stop details.</figcaption>
+</figure>
+
+<figure class="visual visual--inline" style="max-width: 360px">
+<img src="/images/work/amazon-relay/tasks-concept.webp" alt="Work details concept for the current stop, with To do, Details and Messages tabs and a checklist: drive to the site, check in, pick up empty, check out." loading="lazy" />
+<figcaption>A tasks concept for later releases: the current stop’s work as a checklist rather than a sequence of screens.</figcaption>
+</figure>
+
+#### Design system collaboration
+
+I moved the app onto Meridian and contributed back where it had nothing to offer.
+
+Migrating the UI to the Meridian design system was one of the project goals, and it made the new structure consistent with the rest of Relay. Where Meridian did not yet have a pattern for what drivers needed, I worked closely with the design system team and contributed patterns back.
+
+#### Validation
+
+The structure was tested with drivers before and after it shipped.
+
+In a moderated usability study of the first iteration with 8 drivers, every driver appreciated having access to additional content and quick access to statuses and weather, and 7 of 8 could reach stop information and other content. The study also found problems: 3 of 8 struggled to start their work, 3 had trouble finding their trips, and 3 could not get to information for a future stop.
+
+<blockquote>“I end up having to wait for my loads a lot of times and I like that I can check on my drive score and training in the app while I wait.”</blockquote>
+
+I iterated to honor drivers’ existing mental models and brought the screens into Meridian’s visual language.
+
+<figure class="visual visual--inline">
+<img src="/images/work/amazon-relay/home-states.webp" alt="Two home screen states for a driver named Taylor: in the yard waiting for a load, and in transit, each with the current stop, arrival times, a Resume work button and the driver’s schedule." loading="lazy" />
+<figcaption>Home screen states: the current stop card shows whether the driver is in the yard or in transit.</figcaption>
+</figure>
+
+After the beta, 13 drivers rated the new screens. 12 were satisfied with stop details, 11 with the schedule and 10 with the home screen, and the average ease rating (SEQ) was 6.31 out of 7. Drivers asked for a map view on the home screen, the block or trip number they enter into their ELD devices, and total miles. A contextual inquiry with 5 drivers added more: some use both a phone and a tablet, 3 of 5 missed the “Load Ready” notification, and drivers use pick-up and drop-off IDs from stop details when they check in.
+
+<figure class="visual visual--full">
+<img src="/images/work/amazon-relay/validation-ladder.svg" alt="Validation ladder: discovery, moderated usability with 8 drivers, iteration, beta survey with 13 drivers, contextual inquiry with 5 drivers, and a staged rollout starting at 1%." loading="lazy" />
+<figcaption>From discovery to a staged rollout.</figcaption>
+</figure>
+
+#### Launch
+
+The new experience went to general availability at 1%, with a plan to reach 100% over the following weeks.
+
+The timeline ran from kickoff and research in November 2021, through ideation in December and prototyping and testing in January, to detail design and handoff in February 2022. The beta surveys and field visits fed fixes before general availability.
+
+The roadmap continued in phases: phase 2 planned to expand the home screen with vehicle pairing, weather and smart support, and phase 3 to improve in-app navigation with a global navigation bar.
 
 #### 05 / Impact
 
-<p class="todo"><span class="todo-tag">To write</span> What changed for drivers and for the platform. Add measured results where available.</p>
+Drivers kept their pace, needed less help, and the platform could grow.
 
-<figure class="visual visual--wide is-placeholder">
-<div class="visual__frame" style="aspect-ratio: 16 / 9"><span class="visual__todo">Evidence to add</span><span>Redesigned home and navigation system, final app screens</span></div>
-<figcaption><span class="todo-tag">Caption to write</span> What the final structure made possible.</figcaption>
+- Completed tours per hour stayed consistent with the week before launch, so the change did not slow drivers down.
+- Support calls dropped from 30% of loads to 17%.
+- The foundation enabled four major new capabilities in 2022 with reduced design and engineering cost: Global Mile containers, identity, weather notifications and drive score.
+- The UI moved to Meridian, increasing consistency and accessibility.
+- Driver feedback was positive, and a new work stream formed to consolidate shared views across Relay’s carrier and driver products.
+
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay/impact-scorecard.svg" alt="Impact scorecard: support calls from 30% to 17% of loads, completed tours per hour steady, 4 major new capabilities in 2022, and a 6.31 out of 7 ease rating in the beta survey." loading="lazy" />
+<figcaption>Results after launch.</figcaption>
 </figure>
+
+Work continued toward the vision, enhancing stop details and tasks, and exploring how navigation and alerts could work within a global navigation bar.
+
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay/navigation-exploration.webp" alt="Navigation exploration screens: a route overview with stops to add, and turn-by-turn driving screens with a bottom bar for navigation, ELD, alerts and messages, including a critical alert." loading="lazy" />
+<figcaption>Looking ahead: in-app navigation and alerts inside a global navigation bar.</figcaption>
+</figure>
+
+#### Reflection
+
+The most valuable design decision was structural, and mostly invisible.
+
+Drivers see a home screen, a schedule and stop details. What made those screens matter was the model underneath them: organizing the app around the objects drivers actually work with, and leaving a place for the next persona, program or team to plug in. Shipping that structure in front of the existing workflow, instead of rebuilding everything at once, is what let it launch without slowing drivers down.
