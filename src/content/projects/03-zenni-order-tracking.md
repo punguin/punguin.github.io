@@ -14,13 +14,13 @@ platform: [Responsive web]
 partners: [Product, Engineering, Content Design, Analytics, Customer Service]
 accent: tracking
 cover: /images/work/zenni-order-tracking/cover.webp
-coverAlt: Order Details with a five-step order tracker showing Manufacturing in progress, and a Where is My Order card beside the item
+coverAlt: The shipped Order Details page with a five-step tracker from Order Placed to Delivered, and a Where is My Order card beside the item
 order: 3
 ---
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-order-tracking/final-order-details.webp" alt="The redesigned Order Details page: an Estimated January 10-12 header for Shipment 1 of 2, a five-step tracker from Order Received to Delivered with Manufacturing active, and a Where is My Order card beside the item." loading="lazy" />
-<figcaption>Order Details with the new tracker, from the design review prototype. Personal details are hidden.</figcaption>
+<img src="/images/work/zenni-order-tracking/shipped-order-details.webp" alt="The shipped Order Details page: a Delivered Thursday, May 14 header for Shipment 1 of 1, a five-step tracker from Order Placed through Manufacturing, En-route to Facility and Shipped to Delivered with a date under each, and a Where is My Order card saying your new specs are on their way, with a Track Order button." loading="lazy" />
+<figcaption>Order Details in production, May 2026: the milestone tracker, a layout built around each shipment, and the Where is my Order card. Personal details are hidden.</figcaption>
 </figure>
 
 With the Account foundation in place, I led the next phase: reframing order tracking around customer confidence, and reducing the need for support without sacrificing core commerce performance. This was Phase 2, and it was possible because <a href="/work/zenni-account/">Phase 1, the Account foundation</a>, had established the structures and design-system patterns it could build on.
@@ -115,7 +115,7 @@ The jam surfaced what the team expected a customer to need, such as a last-updat
 
 Five milestones, at a glance, at the top of the order.
 
-<p class="label case-status">In the developer handoff</p>
+<p class="label case-status">Shipped</p>
 
 Every shipment in an order gets its own tracker, similar to the one customer service already used in their workstation. It shows five milestones, so customers can see at a glance where their order is. Each step has three states: not yet started is grey with no date, in progress is half filled with the date it started and a bold label, and complete is a solid bar with the date it finished.
 
@@ -135,7 +135,7 @@ Each shipment leads with its estimated delivery dates. Before, Order Details sho
 
 The step customers call about, explained in context.
 
-<p class="label case-status">In the developer handoff</p>
+<p class="label case-status">Shipped</p>
 
 A “Where is my Order?” card sits beside the items and changes with the current milestone. En route to the US facility receives the most customer service calls, so that step says it outright: “Your glasses are in a bulk shipment from our lab to our US facility. We’ll post an update the moment it arrives stateside!” The aim was to make the tracking gap feel expected, not alarming, while keeping the excitement of a new pair.
 
