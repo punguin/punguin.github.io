@@ -26,6 +26,11 @@ order: 2
 I modernized a fragmented account experience while establishing reusable product patterns and a healthier working relationship between product design and the design system.
 
 <aside class="case-aside">
+<p class="label">Phase 1 of 2</p>
+<p>This foundation made the next phase possible: <a href="/work/zenni-order-tracking/">Enhanced Order Tracking</a>.</p>
+</aside>
+
+<aside class="case-aside">
 <p class="label">My role</p>
 <p>I was the lead, and only, UX designer on the redesign, partnered with a product manager, my UX manager, engineering and the design system team. The work wasn’t on a company roadmap when I started, so part of my job was showing leadership a new account experience that was worth investing in.</p>
 </aside>
@@ -189,4 +194,4 @@ The redesigned ecosystem gave the team a foundation to build on rather than anot
 - Patterns became reusable across Account.
 - The foundation enabled richer post-purchase experiences, including the order-tracking work that followed.
 
-Foundational work is often best measured by what becomes easier to build afterward. This foundation didn’t remain theoretical: the next phase used it to tackle a deeper post-purchase problem, order tracking.
+Foundational work is often best measured by what becomes easier to build afterward. This foundation didn’t remain theoretical: the next phase used it to tackle a deeper post-purchase problem. <a href="/work/zenni-order-tracking/">See Phase 2, Enhanced Order Tracking</a>.
