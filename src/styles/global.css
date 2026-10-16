@@ -594,3 +594,11 @@ section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset);
   .step--feature > :not(.step__art) { grid-column: 1; }
   .prose .step--feature > .step__art { grid-column: 2; grid-row: 1 / span 4; width: 220px; margin: 0; }
 }
+
+/* Values: three columns on wide screens, each value under its own rule. */
+.values { display: grid; gap: var(--space-7) var(--space-6); margin-top: var(--space-6); }
+.value { padding-top: var(--space-4); border-top: 1px solid var(--line); }
+.prose .value h3 { margin-top: 0; }
+.value p { max-width: 34em; }
+@media (min-width: 900px) { .values { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.value > * + * { margin-top: var(--space-3); }
