@@ -204,7 +204,12 @@ Customer service and leadership asked how the design would handle issues and del
 
 Shared early, challenged across the business.
 
-As on Account, the decisions lived in Slack canvases: a UX working doc with the tenets and an iteration tracker, the messaging framework, and the prototype walkthrough, each open for anyone to comment on. I recorded the walkthrough and shared it with the squad on October 31, 2025, asking for feedback directly in the canvas. That review produced the multi-origin messaging framework and the push on exception handling. Developer handoff followed on November 13, 2025, with desktop, tablet and mobile breakpoints.
+As on Account, the decisions lived in Slack canvases, built from the templates I made for the team: a UX working doc with the tenets and an iteration tracker, the messaging framework, and the prototype walkthrough, each open for anyone to comment on. I recorded the walkthrough and shared it with the squad on October 31, 2025, asking for feedback directly in the canvas. That review produced the multi-origin messaging framework and the push on exception handling. Developer handoff followed on November 13, 2025, with desktop, tablet and mobile breakpoints.
+
+<figure class="visual" style="max-width: 640px">
+<img src="/images/work/zenni-order-tracking/working-doc-canvas.webp" alt="The Enhanced Order Tracking UX Working Doc in Slack: a header illustration of glasses moving from lab to box to home, the purpose of the document, background with the squad's vision, and the UX tenets." loading="lazy" />
+<figcaption>The UX working doc, a Slack canvas built from my team template. Names are hidden.</figcaption>
+</figure>
 
 #### 05 / Impact
 

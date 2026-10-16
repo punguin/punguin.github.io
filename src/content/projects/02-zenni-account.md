@@ -180,6 +180,8 @@ There was no shared place to make and track decisions, so I made one.
 
 I led the project through collaborative documentation in Slack canvases. That is where the decisions happened. Partners, and really anyone, could see what was decided and why, and offer feedback before it was final. There was no existing mechanism to track decisions or collaborate this way, and it became how my team saw me lead my projects.
 
+I then turned those canvases into templates for the team to adopt and structure however they needed. The working doc, the messaging framework and the prototype walkthrough on <a href="/work/zenni-order-tracking/">Order Tracking</a> all started from them.
+
 #### Validation
 
 The design was tested with customers and reviewed across the business.
@@ -199,7 +201,7 @@ The outcome was optionality.
 The redesigned ecosystem gave the team a foundation to build on rather than another one-off redesign.
 
 - The design system was pressure tested on a real product, and gained major components and patterns from it.
-- Decisions were tracked in the open, in a way partners could follow and question.
+- Decisions were tracked in the open, and the canvases became templates the team adopted.
 - Patterns became reusable across Account.
 - The foundation enabled richer post-purchase experiences, including the order-tracking work that followed.
 
