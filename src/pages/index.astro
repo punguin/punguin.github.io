@@ -6,13 +6,10 @@ import DocumentSection from '../components/DocumentSection.astro';
 import SelectedWork from '../components/SelectedWork.astro';
 import ExperienceTimeline from '../components/ExperienceTimeline.astro';
 import ContactLinks from '../components/ContactLinks.astro';
-import TableOfContents from '../components/TableOfContents.astro';
-import MobileDocumentNav from '../components/MobileDocumentNav.astro';
-import ScrollSectionIndicator from '../components/ScrollSectionIndicator.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { getOutline, getSortedSections } from '../lib/outline';
+import { getSortedSections } from '../lib/outline';
 
-const outline = await getOutline();
 const sections = await getSortedSections();
 const rendered = await Promise.all(sections.map(async (s) => ({ entry: s, ...(await render(s)) })));
 
@@ -22,16 +19,13 @@ const description =
 ---
 <BaseLayout title={title} description={description}>
   <a class="skip-link" href="#main">Skip to content</a>
-  <MobileDocumentNav outline={outline} />
-  <ScrollSectionIndicator />
+  <SiteHeader />
 
   <div class="page-shell">
     <main class="document" id="main">
       <Hero />
 
-      <div class="sheet-wrap">
-      <div class="sheet">
-      <div class="sheet__body">
+      <div class="sections">
       {rendered.map(({ entry, Content }) => {
         const d = entry.data;
         if (d.id === 'selected-work') return <SelectedWork section={entry} />;
@@ -44,16 +38,9 @@ const description =
         );
       })}
       </div>
-      <TableOfContents outline={outline} />
-      </div>
-      </div>
 
       <SiteFooter />
     </main>
   </div>
 
-  <script>
-    import '../scripts/document-nav.ts';
-    import '../scripts/sheet-stack.ts';
-  </script>
 </BaseLayout>

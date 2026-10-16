@@ -1,69 +1,80 @@
 /* ==========================================================================
    Pung Brooks — Design Practice
-   Visual system: "Say Briefly" style reference — cream paper, Forest Ink for
-   structure, Highlighter Yellow as a marker wash, pastel sticky-note accents.
-   Layout: | breathing room | document | gap | sticky TOC | breathing room |
-   The page background carries a faint dot grid, like sketchbook paper.
+   Visual system (2026-10-16, from Pung's account-foundation.html and index.html references):
+   warm off-white paper, near-black ink, one violet accent, Inter throughout with tight,
+   heavy headlines, thin rules between sections and soft rounded cards. No sheet of paper.
+   Old token names (forest-ink, cream-paper, sticky-*) are kept as aliases so components
+   didn't all need renaming; their values follow the new palette.
    ========================================================================== */
 
 :root {
   color-scheme: light;
 
   /* Color — style reference palette */
-  --forest-ink: #1a3300;
-  --highlighter-yellow: #ffe95c;
-  --cream-paper: #fcfaf5;
-  --pencil-gray: #b6b6b6;
-  --sticky-teal: #a8e5e5;
-  --sticky-mint: #d5f5c2;
-  --sticky-blush: #f6d0ff;
-  --terracotta: #cb5521;
+  --ink: #161616;
+  --muted: #666666;
+  --paper: #faf9f6;
+  --line: #dedbd3;
+  --violet: #5447ff;
+  --violet-soft: #efedff;
+
+  /* Aliases kept from the previous system */
+  --forest-ink: var(--ink);
+  --highlighter-yellow: var(--violet-soft);
+  --cream-paper: var(--paper);
+  --pencil-gray: #c9c5bb;
+  --sticky-teal: #e3efee;
+  --sticky-mint: #e8f0e4;
+  --sticky-blush: #f3e8f4;
+  --terracotta: #b8501f;
 
   /* Color — roles */
   --bg: var(--cream-paper);
   --surface: #ffffff;
-  --text-primary: var(--forest-ink);
-  --text-secondary: #43503a;        /* forest-tinted, AA on cream */
-  --text-tertiary: #5c6654;         /* forest-tinted, AA on cream at small sizes */
-  --border-subtle: #dcdcd4;
+  --text-primary: var(--ink);
+  --text-secondary: #3f3f3f;
+  --text-tertiary: var(--muted);     /* 5.4:1 on paper */
+  --border-subtle: var(--line);
   --border-strong: var(--pencil-gray);
-  --grid-color: rgba(26, 51, 0, 0.10);
-  --hover-bg: rgba(26, 51, 0, 0.06);
-  --selected-bg: var(--sticky-mint);
+  --hover-bg: rgba(22, 22, 22, 0.05);
+  --selected-bg: var(--violet-soft);
+  --eyebrow: var(--violet);
   --highlight: var(--highlighter-yellow);
   --focus: var(--forest-ink);
   --placeholder: #a8461a;           /* terracotta, darkened for AA text */
   --placeholder-bg: #fdf1ea;
 
   /* Project accents: one sticky-note fill per case study (tags, markers, rules). Text on them is always Forest Ink. */
-  --accent-relay: #f3c3a6;          /* terracotta wash */
-  --accent-account: var(--sticky-mint);
-  --accent-tracking: var(--sticky-teal);
-  --accent-spokgo: var(--sticky-blush);
-  --accent-yellow: #fff3a3;
-  --accent-lilac: #e2d9ff;
+  --accent-relay: #f4e2d7;
+  --accent-account: var(--violet-soft);
+  --accent-tracking: #e1eeed;
+  --accent-spokgo: #f3e6f3;
+  --accent-yellow: #f6efd0;
+  --accent-lilac: #ebe7fb;
 
   /* Shape + elevation */
-  --radius-button: 6px;
-  --radius-card: 12px;
+  --radius-button: 999px;
+  --radius-card: 18px;
   --radius-nav: 16px;
   --radius-pill: 9999px;
   --shadow-subtle: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
   --shadow-subtle-2: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
 
   /* Type */
-  --font-display: Caprasimo, "Cooper Black", Georgia, system-ui, sans-serif;
+  --font-display: var(--font-body);
   --font-body: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-hand: Caveat, "Segoe Print", "Bradley Hand", cursive;
-  --font-mono: "Roboto Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --tracking-display: 0;
+  /* Small labels are uppercase Inter now, not a monospace face. */
+  --font-mono: var(--font-body);
+  --tracking-display: -0.045em;
+  --weight-display: 700;
 
   --text-body: 1.125rem;           /* 18px desktop (style reference body) */
   --text-small: 0.875rem;          /* 14px */
   --text-meta: 0.8125rem;          /* 13px */
   --text-h3: clamp(1.5rem, 1.3rem + 0.8vw, 1.75rem);       /* 24–28px, Inter 700 */
-  --text-h2: clamp(2.5rem, 2rem + 1.6vw, 3.4375rem);        /* 40–55px, display */
-  --text-hero: clamp(2.75rem, 1.6rem + 4.4vw, 5.625rem);    /* 44–90px, display */
+  --text-h2: clamp(2rem, 1.4rem + 2.6vw, 3.375rem);         /* 32–54px */
+  --text-hero: clamp(2.75rem, 1.6rem + 4.4vw, 5.125rem);    /* 44–82px */
   --leading-body: 1.6;
   --measure: 40em;                 /* ≈ 75 characters of Inter at body size */
 
@@ -82,13 +93,14 @@
 
   /* Layout */
   --grid-size: 24px;
-  --gutter: 24px;
-  --doc-max: 1180px;               /* hero + white page (text column, TOC, margins) */
+  --gutter: 20px;
+  --doc-max: 1120px;
+  --header-h: 64px;
   --toc-width: 210px;
   --toc-gap: 64px;
   --toc-top: 24px;
   --sheet-pad: 20px;               /* inner margin of the white page that holds sections 01 onward */                 /* where the TOC sticks once it reaches the top */
-  --anchor-offset: 96px;
+  --anchor-offset: 88px;
   --mobile-nav-h: 0px;
 
   /* Motion */
@@ -96,8 +108,8 @@
   --t-state: 180ms;
 }
 
-@media (max-width: 374px) {
-  :root { --gutter: 20px; }
+@media (max-width: 720px) {
+  :root { --gutter: 14px; }
 }
 
 @media (max-width: 1023px) {
@@ -113,11 +125,11 @@
 }
 
 @media (min-width: 1024px) {
-  :root { --gutter: 48px; --toc-gap: clamp(40px, 4vw, 64px); --sheet-pad: 56px; }
+  :root { --toc-gap: clamp(40px, 4vw, 64px); }
 }
 
 @media (min-width: 1024px) and (max-width: 1199px) {
-  :root { --gutter: 24px; --sheet-pad: 40px; }
+  :root { }
 }
 
 /* ---------- Base ---------- */
@@ -141,14 +153,11 @@ html {
 body {
   margin: 0;
   background-color: var(--bg);
-  background-image: radial-gradient(circle, var(--grid-color) 1px, transparent 1.2px);
-  background-size: var(--grid-size) var(--grid-size);
-  background-position: calc(var(--grid-size) / -2) calc(var(--grid-size) / -2);
   color: var(--text-primary);
   font-family: var(--font-body);
   font-size: var(--text-body);
   line-height: var(--leading-body);
-  font-feature-settings: "cv11", "ss01";
+  font-feature-settings: "cv11";
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
@@ -159,10 +168,10 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
-/* Display face (Caprasimo, a single 400 weight) is reserved for 40px+ headlines. */
+/* Headlines: heavy Inter with tight tracking. */
 h1, h2 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: var(--weight-display);
   letter-spacing: var(--tracking-display);
 }
 
@@ -174,10 +183,10 @@ h3, h4 {
 
 /* Marker-pen wash behind a word or phrase */
 mark {
-  background: var(--highlight);
-  color: inherit;
-  padding: 0 0.12em;
-  margin: 0 -0.04em;
+  background: none;
+  color: var(--violet);
+  padding: 0;
+  margin: 0;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
@@ -235,12 +244,20 @@ a.external::after {
 .skip-link:focus { top: var(--space-2); }
 
 .label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-tertiary);
+}
+/* Eyebrow: the small violet line above a headline */
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--eyebrow);
 }
 
 /* Small pill tag (style reference "tagline badge") */
@@ -248,14 +265,13 @@ a.external::after {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 3px 10px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
   border-radius: var(--radius-pill);
-  background: var(--highlight);
+  background: transparent;
   color: var(--text-primary);
-  font-family: var(--font-mono);
   font-size: 0.75rem;
-  line-height: 1.4;
-  letter-spacing: 0.02em;
+  line-height: 1.3;
 }
 
 .num {
@@ -278,77 +294,37 @@ a.external::after {
 
 .document { grid-column: 2; min-width: 0; }
 
-/* ---------- Sheet: the white page that holds sections 01 onward ---------- */
+/* ---------- Site header ---------- */
 
-/* When the reader scrolls far enough (sheet-stack.ts), the page is set down once: it drops in turned a little and
-   straightens as it lands. Without JS, or with reduced motion, it is simply there. */
-.sheet-wrap {
-  position: relative;
-  --stack-k: 1;
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgb(250 249 246 / 0.92);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
 }
-.sheet-wrap.is-waiting .sheet { opacity: 0; }
-.sheet-wrap.is-stacking .sheet { animation: page-drop 760ms cubic-bezier(0.2, 0.7, 0.25, 1) both; }
-@keyframes page-drop {
-  from { opacity: 0; transform: translate(calc(-14px * var(--stack-k)), -56px) rotate(calc(-2.2deg * var(--stack-k))); }
-  35% { opacity: 1; }
-  to { opacity: 1; transform: none; }
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: min(calc(100% - 2 * var(--gutter)), var(--doc-max));
+  height: var(--header-h);
+  margin-inline: auto;
 }
-
-.sheet {
-  --bg: var(--surface);
-  position: relative;
-  transform-origin: 40% 0;
-  background: var(--surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 2px;
-  box-shadow: var(--shadow-subtle-2);
-  padding: var(--sheet-pad) var(--sheet-pad-x, var(--sheet-pad)) 0;
-}
-@media (max-width: 767px) {
-  /* Phones: the page reaches nearly to the screen edge so the text keeps its width. */
-  .sheet-wrap {
-    --stack-k: 0.5; /* a smaller swing where the page nearly meets the screen edge */
-    margin-inline: calc(-1 * var(--gutter) + 8px);
-  }
-  .sheet { --sheet-pad-x: calc(var(--gutter) - 8px); }
-}
-/* The TOC lives inside the white page, in a column right of the text (desktop only). */
-.sheet__body { min-width: 0; }
-.sheet .toc { display: none; }
-@media (min-width: 1024px) {
-  .sheet {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) var(--toc-width);
-    column-gap: var(--toc-gap);
-  }
-  .sheet .toc { display: block; }
+.site-header__brand { font-weight: 700; letter-spacing: -0.01em; text-decoration: none; }
+.site-header__links { display: flex; gap: var(--space-5); font-size: 0.875rem; }
+.site-header__links a { text-decoration: none; color: var(--text-secondary); }
+.site-header__links a:hover, .site-header__links a[aria-current] { color: var(--ink); text-decoration: underline; text-underline-offset: 0.3em; }
+@media (max-width: 479px) {
+  .site-header__links { gap: var(--space-4); }
+  .site-header__links .is-optional { display: none; }
 }
 
-/* Case study pages: the contents list starts below the sticky case-study bar (about 51px tall). */
-.sheet:has(.project--page) { --toc-top: 80px; }
-
-/* The page edge already marks where section 01 starts. */
-.sheet__body > .doc-section:first-child .section-heading { border-top: 0; padding-top: 0; }
-/* Sticky project bars reach the case sheet's edges so nothing shows beside them. */
-.sheet .project__bar {
-  margin-inline: calc(-1 * var(--case-pad));
-  padding-inline: var(--case-pad);
-}
-
-/* Washi tape label (section and case-study tags): a translucent strip with faint woven stripes and
-   torn ends. Set --tape to its colour; tilt the element that holds it. */
-.washi {
-  display: inline-block;
-  padding: 7px 20px 6px 18px;
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  letter-spacing: 0.02em;
-  color: var(--forest-ink);
-  background:
-    repeating-linear-gradient(100deg, rgb(255 255 255 / 0.22) 0 5px, transparent 5px 11px),
-    color-mix(in srgb, var(--tape) 88%, transparent);
-  clip-path: polygon(4px 0, calc(100% - 3px) 0, 100% 14%, calc(100% - 4px) 30%, 100% 47%, calc(100% - 2px) 63%, 100% 80%, calc(100% - 4px) 100%, 2px 100%, 0 86%, 4px 70%, 1px 52%, 4px 36%, 0 20%);
-}
+/* Homepage sections sit directly on the paper, separated by thin rules. */
+.sections > .doc-section { border-top: 1px solid var(--line); }
 
 /* ---------- Prose ---------- */
 
@@ -379,14 +355,15 @@ a.external::after {
 /* Sticky-note card: a pastel fill does the separation, no shadow */
 .prose .callout {
   font-family: var(--font-body);
-  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
-  line-height: 1.35;
-  font-weight: 600;
+  font-size: clamp(1.5rem, 1.15rem + 1.5vw, 2.5rem);
+  line-height: 1.17;
+  letter-spacing: -0.03em;
+  font-weight: 700;
   margin-top: var(--space-7);
-  padding: var(--space-5) 28px;
-  background: var(--sticky-mint);
+  padding: 30px;
+  background: var(--violet-soft);
   border-radius: var(--radius-card);
-  max-width: 30em;
+  max-width: none;
   text-wrap: balance;
 }
 
@@ -394,7 +371,7 @@ a.external::after {
 .prose blockquote {
   margin: var(--space-6) 0 0;
   padding-left: var(--space-5);
-  border-left: 3px solid var(--forest-ink);
+  border-left: 3px solid var(--violet);
   max-width: 34em;
   font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem);
   line-height: 1.45;
@@ -406,7 +383,7 @@ a.external::after {
   font-size: var(--text-h2);
   line-height: 1.05;
   letter-spacing: var(--tracking-display);
-  font-weight: 400;
+  font-weight: var(--weight-display);
   margin-top: var(--space-9);
   text-wrap: balance;
 }
@@ -438,22 +415,22 @@ a.external::after {
 .prose > .visual { margin-top: var(--space-7); }
 .prose > .visual + * { margin-top: var(--space-7); }
 
-.visual img, .visual__frame {
-  width: 100%;
-  border: 1px solid var(--border-subtle);
+.visual {
+  overflow: hidden;
+  border: 1px solid var(--line);
   border-radius: var(--radius-card);
-  background: var(--surface);
+  background: #f0eee9;
 }
-
+.visual img, .visual__frame { width: 100%; margin-inline: auto; }
 .visual--inline { max-width: var(--measure); }
-.sheet .is-placeholder .visual__frame { background: var(--cream-paper); }
 
 .visual figcaption {
-  margin-top: var(--space-3);
-  font-size: var(--text-small);
+  padding: 13px 16px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 0.8125rem;
   line-height: 1.5;
-  color: var(--text-secondary);
-  max-width: var(--measure);
+  color: var(--text-tertiary);
 }
 
 .is-placeholder .visual__frame {
@@ -463,8 +440,8 @@ a.external::after {
   gap: var(--space-1);
   padding: var(--space-5);
   max-width: 100%;
-  border: 1px dashed var(--border-strong);
-  background: color-mix(in srgb, var(--surface) 75%, transparent);
+  border: 0;
+  background: linear-gradient(135deg, rgb(84 71 255 / 0.08), transparent 48%), #f1efe9;
   font-size: var(--text-small);
   line-height: 1.4;
   color: var(--text-secondary);
@@ -480,8 +457,7 @@ a.external::after {
 
 .visual--archive { max-width: 28em; }
 
-/* Wide and full visuals line up with the text column on both sides, so they never
-   crowd the white page's edge. */
+
 
 /* ---------- Image viewer (case studies) ---------- */
 
@@ -500,7 +476,7 @@ html.has-viewer { overflow: hidden; }
   background: transparent;
   color: var(--cream-paper);
 }
-.viewer::backdrop { background: rgb(14 26 0 / 0.97); }
+.viewer::backdrop { background: rgb(16 16 16 / 0.96); }
 .viewer[open] { display: grid; grid-template-rows: auto 1fr; animation: viewer-in 160ms ease-out; }
 @keyframes viewer-in { from { opacity: 0; } }
 
@@ -536,7 +512,7 @@ html.has-viewer { overflow: hidden; }
   height: 44px;
   border: 1px solid rgb(252 250 245 / 0.5);
   border-radius: var(--radius-pill);
-  background: rgb(14 26 0 / 0.6);
+  background: rgb(16 16 16 / 0.6);
   color: var(--cream-paper);
   font-size: 1.25rem;
   line-height: 1;
@@ -579,8 +555,9 @@ section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset);
 .prose .practice + p { margin-top: var(--space-5); color: var(--text-secondary); }
 .step {
   padding: var(--space-5) var(--space-5) var(--space-6);
-  background: var(--step-bg);
-  border-radius: var(--radius-card);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
 }
 .prose .step > * { margin-top: var(--space-3); }
 .prose .step > .step__tag {
@@ -588,27 +565,28 @@ section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset);
   align-items: center;
   gap: 10px;
   margin-top: 0;
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
+  color: var(--violet);
 }
 .step__tag img { width: 52px; height: 52px; mix-blend-mode: multiply; }
 .prose .step h3 {
   margin-top: var(--space-3);
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.625rem, 2.6vw, 2.125rem);
+  font-weight: var(--weight-display);
+  font-size: clamp(1.5rem, 2.4vw, 1.875rem);
   line-height: 1.08;
   letter-spacing: var(--tracking-display);
   text-wrap: balance;
 }
 .step__more { font-size: 1.125rem; }
 .step__consider { font-size: 0.9375rem; max-width: 40em; }
-.step__consider .label { margin-right: 6px; color: var(--forest-ink); } /* the grey label fails contrast on the pastel cards */
+.step__consider .label { margin-right: 6px; }
 
 /* Step 04 is the design work itself, so it gets the most room: a bigger heading and its sketch drawn large. */
-.step--feature { padding-block: var(--space-6) var(--space-7); }
+.step--feature { padding-block: var(--space-6) var(--space-7); background: var(--violet-soft); border-color: transparent; }
 .prose .step--feature h3 { font-size: clamp(2rem, 4vw, 3rem); }
 .step--feature .step__more { font-size: 1.25rem; }
 .step__art { display: block; width: 160px; height: auto; mix-blend-mode: multiply; }
