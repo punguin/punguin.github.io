@@ -141,7 +141,7 @@ Those themes let us reframe the original ask, design a dynamic home screen, into
 
 <p class="callout">How might we help drivers execute all loads more efficiently and with more confidence?</p>
 
-Not every gap was worth solving in the first release. Drivers could already execute loads, and app feedback was generally good, so rebuilding the execution workflow would have added risk without closing the gap that mattered most: access to information. The first release focused on that access, through the home screen, schedule and stop details. Sticky tasks, in-app navigation and alerts were set as direction for later phases.
+Not every gap was worth solving in the first release. Drivers could already execute loads, and app feedback was generally good, so rebuilding the execution workflow would have added risk without closing the gap that mattered most: access to information. The first release focused on that access, through the home screen, schedule and stop details. Sticky tasks were set as direction for later phases.
 
 #### 04 / Design
 
@@ -288,7 +288,7 @@ The new experience went to general availability at 1%, with a plan to reach 100%
 
 The timeline ran from kickoff and research in November 2021, through ideation in December and prototyping and testing in January, to detail design and handoff in February 2022. The beta surveys and field visits fed fixes before general availability.
 
-The roadmap continued in phases: phase 2 planned to expand the home screen with vehicle pairing, weather and smart support, and phase 3 to improve in-app navigation with a global navigation bar.
+The roadmap continued in phases: phase 2 planned to expand the home screen with vehicle pairing, weather and smart support.
 
 #### 05 / Impact
 
@@ -301,23 +301,16 @@ Drivers kept their pace, needed less help, and the platform could grow.
 - The UI moved to Meridian, increasing consistency and accessibility.
 - Driver feedback was positive, and a new work stream formed to consolidate shared views across Relay’s carrier and driver products.
 
-The model has kept absorbing new use cases. In a driver’s public video, the home screen still follows the same structure: the current stop with its start button, the schedule, and a new “Find work” card that brings load board and contract search into the driver app without changing the structure around it.
-
-<figure class="visual visual--inline" style="max-width: 320px">
-<img src="/images/work/amazon-relay/in-the-wild.webp" alt="The Relay home screen in use, with a current stop card for San Diego and a Start work button, a My schedule card with two upcoming trips, and a new Find work card linking to Search Load Board and Search Contracts." loading="lazy" />
-<figcaption>In the wild, from a driver’s public video: a new Find work card plugged into the same home screen.</figcaption>
-</figure>
-
 <figure class="visual visual--wide">
 <img src="/images/work/amazon-relay/impact-scorecard.svg" alt="Impact scorecard: support calls from 30% to 17% of loads, completed tours per hour steady, 4 major new capabilities in 2022, and a 6.31 out of 7 ease rating in the beta survey." loading="lazy" />
 <figcaption>Results after launch.</figcaption>
 </figure>
 
-After the first release, work was planned to continue toward the vision, enhancing stop details and tasks, and exploring how navigation and alerts could work within a global navigation bar.
+The model has kept absorbing new use cases. In a driver’s public video, the home screen still follows the same structure: the current stop with its start button, the schedule, and a new “Find work” card that brings load board and contract search into the driver app without changing the structure around it.
 
-<figure class="visual visual--wide">
-<img src="/images/work/amazon-relay/navigation-exploration.webp" alt="Navigation exploration screens: a route overview with stops to add, and turn-by-turn driving screens with a bottom bar for navigation, ELD, alerts and messages, including a critical alert." loading="lazy" />
-<figcaption>Looking ahead: in-app navigation and alerts inside a global navigation bar.</figcaption>
+<figure class="visual visual--inline" style="max-width: 320px">
+<img src="/images/work/amazon-relay/in-the-wild.webp" alt="The Relay home screen in use, with a current stop card for San Diego and a Start work button, a My schedule card with two upcoming trips, and a new Find work card linking to Search Load Board and Search Contracts." loading="lazy" />
+<figcaption>In the wild, from a driver’s public video: a new Find work card plugged into the same home screen.</figcaption>
 </figure>
 
 #### Reflection
