@@ -80,9 +80,7 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
     border: 1px solid var(--line);
     border-radius: var(--radius-card);
     text-decoration: none;
-    transition: transform var(--t-state) ease;
   }
-  .case-next a:hover { transform: translateY(-3px); }
-  .case-next__summary { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 1.9375rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; }
-  @media (prefers-reduced-motion: reduce) { .case-next a:hover { transform: none; } }
+  .case-next a:hover { border-color: var(--ink); }
+  .case-next__summary { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 1.9375rem); font-family: var(--font-display); font-weight: 600; letter-spacing: var(--tracking-display); line-height: 1.15; }
 </style>
