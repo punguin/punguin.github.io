@@ -234,7 +234,7 @@ Drivers should always know where they are in their work, wherever they are in th
 
 <p class="label case-status">Direction for later phases</p>
 
-Previously, tasks were modal-like and took over the entire experience, making it difficult for drivers to reference other loads and information. Tasks became a sticky element on any non-modal screen (home, trip, schedule and stop details) so drivers can quickly see what load they are on and where they are in their workflow. That gives them access to any content in the app while they complete their current work.
+Previously, tasks were modal-like and took over the entire experience, making it difficult for drivers to reference other loads and information. In the vision, tasks become a sticky element on any non-modal screen (home, trip, schedule and stop details), with the option to expand to full screen, so drivers can quickly see what load they are on and where they are in their workflow. That gives them access to any content in the app while they complete their current work.
 
 <figure class="visual visual--inline">
 <img src="/images/work/amazon-relay/sticky-task.webp" alt="Layout wireframe with a sticky task at the bottom of the screen, showing task instructions, context and an action, on any non-modal screen: home, trip, schedule and stop details." loading="lazy" />
@@ -250,7 +250,7 @@ Each task carries the stop sequence, the task instructions with additional conte
 
 ##### 4.6 Keep the long-term vision visible without forcing it into the MVP
 
-Once the first concept was validated, I expanded it to show the long-term strategy: the home screen, structured “sticky” tasks that could support complex workflows, and stop details. Aligning on that vision early meant each release could move toward it instead of starting over.
+Once the first concept was validated, I expanded it to show the long-term strategy: the home screen, structured “sticky” tasks that could support complex workflows, and stop details. The full vision was never built. Amazon was balancing driver needs and scalability against the existing business, and not every right decision for users makes it above the line. The vision wasn’t throwaway, though. It showed the thinking behind the structure, and it pushed the organization to think about the app’s architecture in a different way.
 
 <p class="label case-status">Direction for later phases</p>
 
@@ -313,7 +313,7 @@ The model has kept absorbing new use cases. In a driver’s public video, the ho
 <figcaption>Results after launch.</figcaption>
 </figure>
 
-Work continued toward the vision, enhancing stop details and tasks, and exploring how navigation and alerts could work within a global navigation bar.
+After the first release, work was planned to continue toward the vision, enhancing stop details and tasks, and exploring how navigation and alerts could work within a global navigation bar.
 
 <figure class="visual visual--wide">
 <img src="/images/work/amazon-relay/navigation-exploration.webp" alt="Navigation exploration screens: a route overview with stops to add, and turn-by-turn driving screens with a bottom bar for navigation, ELD, alerts and messages, including a critical alert." loading="lazy" />
@@ -327,3 +327,5 @@ Understand the boundaries first, then explore freely.
 I start by working closely with engineering to understand how and why the experience operates the way it does. That shows me the real boundaries. Inside them, I explore ideas freely, with developers and others. The point isn’t what I come up with on my own; it’s taking all the ideas and deciding which ones to move forward based on impact, time and resources.
 
 On Relay, that meant the most valuable decision was structural and mostly invisible: organizing the app around the objects drivers actually work with, leaving a place for the next persona, program or team to plug in, and shipping it in front of the existing workflow so it launched without slowing drivers down.
+
+Not all of it shipped. The sticky tasks vision is still unbuilt, because the business weighed it against everything else it needed. I don’t see that as wasted work. A vision that doesn’t ship can still change how an organization thinks, and this one changed how Relay thought about its architecture.
