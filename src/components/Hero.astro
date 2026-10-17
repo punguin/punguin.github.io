@@ -1,14 +1,11 @@
 ---
 import hero from '../content/hero.json';
-import PickMyBrain from './PickMyBrain.astro';
 // Split the statement so one phrase gets the highlighter wash.
 const [before, after] = hero.statementHighlight
   ? hero.statement.split(hero.statementHighlight)
   : [hero.statement, undefined];
 ---
 <header class="hero" id="top">
-  <PickMyBrain />
-
   <div class="hero__text">
   <p class="hero__identity eyebrow">{hero.identity[0]} · {hero.identity[1]}</p>
 
@@ -94,20 +91,12 @@ const [before, after] = hero.statementHighlight
     color: var(--ink);
   }
   .button--outline:hover { background: var(--hover-bg); text-decoration: none; }
-  /* Wide screens: the text on the left, the drawing on the right. */
+  /* Centered type, no drawing. */
+  .hero { align-items: center; text-align: center; }
+  .hero__text { display: flex; flex-direction: column; align-items: center; }
+  .hero__statement, .hero__supporting, .hero__context { margin-inline: auto; text-wrap: balance; }
+  .hero__actions { justify-content: center; }
   @media (min-width: 1024px) {
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
-      grid-template-areas: "text art";
-      align-items: center;
-      column-gap: var(--space-7);
-      text-align: left;
-    }
-    .hero__text { grid-area: text; }
-    .hero > :global(.brain) { grid-area: art; margin: 0; }
-    .hero__text > * { margin-inline: 0; }
-    .hero__actions { justify-content: flex-start; }
-    .hero__statement { max-width: 9.5em; font-size: clamp(3rem, 1.5rem + 3.6vw, 4.75rem); }
+    .hero__statement { max-width: 13em; font-size: clamp(3rem, 1.5rem + 3.6vw, 4.75rem); }
   }
 </style>
