@@ -1,0 +1,46 @@
+{
+  "roles": [
+    {
+      "years": "2024–2026",
+      "company": "Zenni Optical",
+      "title": "Senior Product Designer",
+      "focus": ["Ecommerce", "Mobile", "Post-purchase", "Account foundations", "Design-system collaboration", "Team planning", "Mentorship"]
+    },
+    {
+      "years": "2021–2023",
+      "company": "Amazon",
+      "title": "UX Designer II",
+      "focus": ["Middle Mile transportation", "Relay Mobile", "Load Board", "Post a Truck", "Smart Support", "Carrier and driver tools", "Operations"]
+    },
+    {
+      "years": "2019–2021",
+      "company": "Spok",
+      "title": "UX Manager",
+      "note": "Managed four designers. Partnered with Product, Engineering, and design leadership on cloud healthcare communication products."
+    },
+    {
+      "years": "2017–2019",
+      "company": "Spok",
+      "title": "Senior UX Designer",
+      "focus": ["Messaging", "Directory", "Workflow", "Alerting", "Administration", "Scheduling"]
+    },
+    {
+      "years": "2012–2017",
+      "company": "Lone Wolf Technologies",
+      "context": "Real-estate software",
+      "title": "UI/UX Designer",
+      "focus": ["Transaction management", "Configurable forms", "Responsive real-estate marketing and search experiences", "Functional prototypes"]
+    },
+    {
+      "years": "Early career",
+      "company": "Thomson Reuters",
+      "title": "Web Designer",
+      "note": "Where I learned production discipline, file organization, handoff, design operations, and cross-functional execution."
+    }
+  ],
+  "education": {
+    "school": "University of Wisconsin–Eau Claire",
+    "degree": "B.F.A. Graphic Design",
+    "year": "2011"
+  }
+}

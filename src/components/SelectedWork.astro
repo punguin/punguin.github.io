@@ -1,0 +1,83 @@
+---
+import { render } from 'astro:content';
+import DocumentSection from './DocumentSection.astro';
+import { getSortedProjects } from '../lib/outline';
+import type { CollectionEntry } from 'astro:content';
+interface Props { section: CollectionEntry<'sections'> }
+const { section } = Astro.props;
+const { Content } = await render(section);
+const projects = await getSortedProjects();
+---
+<DocumentSection id={section.data.id} number={section.data.number} label={section.data.navLabel} title={section.data.title} lead={section.data.lead}>
+  <div class="prose"><Content /></div>
+
+  <ol class="work-cards" role="list">
+    {projects.map((p) => (
+      <li class="work-card" style={`--accent: var(--accent-${p.data.accent})`}>
+        <a href={`/work/${p.data.id}/`}>
+          <span class={`work-card__media${p.data.cover ? ' has-cover' : ''}`}>
+            {p.data.cover
+              ? <img src={p.data.cover} alt={p.data.coverAlt ?? ''} loading="lazy" />
+              : <>
+                  <span class="work-card__kicker">{p.data.company} · {p.data.domain}</span>
+                  <span class="work-card__line">{p.data.summary}</span>
+                </>}
+          </span>
+          <span class="work-card__text">
+            <span class="work-card__title">{p.data.title}</span>
+            <span class="work-card__summary">{p.data.cover ? p.data.summary : p.data.project}</span>
+            <span class="work-card__tags">
+              <span class="tag">{p.data.role.startsWith('[') ? p.data.domain : p.data.role}</span>
+              {p.data.platform.filter((x) => !x.startsWith('[')).slice(0, 2).map((x) => <span class="tag">{x}</span>)}
+            </span>
+          </span>
+        </a>
+      </li>
+    ))}
+  </ol>
+</DocumentSection>
+
+<style>
+  .work-cards {
+    list-style: none;
+    display: grid;
+    gap: 22px;
+    margin: var(--space-7) 0 0;
+    padding: 0;
+  }
+  @media (min-width: 720px) { .work-cards { grid-template-columns: 1fr 1fr; } }
+
+  .work-card a {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+    overflow: hidden;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .work-card a:hover .work-card__title { text-decoration: underline; text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+
+  .work-card__media {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-6);
+    min-height: 330px;
+    padding: 30px;
+    background: #efece5;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+  }
+  @media (min-width: 720px) { .work-card__media { min-height: 410px; } }
+  .work-card__media.has-cover { position: relative; padding: 0; }
+  .work-card__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .work-card__kicker { font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 400; color: var(--text-tertiary); }
+  .work-card__line { font-size: clamp(1.6875rem, 1.2rem + 2vw, 2.5rem); line-height: 1.12; font-family: var(--font-display); font-weight: 400; letter-spacing: 0; max-width: 14em; }
+
+  .work-card__text { display: grid; align-content: start; gap: var(--space-2); padding: var(--space-4) 0 0; }
+  .work-card__title { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.18; font-weight: 400; }
+  .work-card__summary { font-size: 1rem; line-height: 1.55; color: var(--text-tertiary); }
+  .work-card__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+  @media (prefers-reduced-motion: reduce) { .work-card a, .work-card a:hover { transition: none; transform: none; } }
+</style>

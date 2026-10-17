@@ -1,0 +1,29 @@
+---
+import SectionHeading from './SectionHeading.astro';
+interface Props { id: string; number: string; label: string; title: string; lead?: string; tone?: 'dark' }
+const { id, number, label, title, lead, tone } = Astro.props;
+---
+<section class:list={["doc-section", tone && `doc-section--${tone}`]} id={id} aria-labelledby={`${id}-title`} data-section={id}>
+  <SectionHeading id={id} number={number} label={label} title={title} lead={lead} />
+  <slot />
+</section>
+
+<style>
+  .doc-section { padding-block: 72px; }
+  @media (max-width: 720px) { .doc-section { padding-block: 52px; } }
+  /* Full-bleed dark band: the shadow paints the background out to the viewport edges, the clip keeps it from bleeding vertically. */
+  .doc-section--dark {
+    --text-primary: #faf9f6;
+    --text-secondary: #c9c6be;
+    --line: #34332f;
+    --violet: #e8a98c;
+    --eyebrow: #b5b2aa;
+    --text-tertiary: #b5b2aa;
+    color: var(--text-primary);
+    background: var(--ink);
+    box-shadow: 0 0 0 100vmax var(--ink);
+    clip-path: inset(0 -100vmax);
+  }
+  :global(.sections) > .doc-section--dark { border-top-color: var(--ink); }
+  :global(.sections) > .doc-section--dark + :global(.doc-section) { border-top-color: transparent; }
+</style>

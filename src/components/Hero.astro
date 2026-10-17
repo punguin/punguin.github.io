@@ -1,0 +1,102 @@
+---
+import hero from '../content/hero.json';
+// Split the statement so one phrase gets the highlighter wash.
+const [before, after] = hero.statementHighlight
+  ? hero.statement.split(hero.statementHighlight)
+  : [hero.statement, undefined];
+---
+<header class="hero" id="top">
+  <div class="hero__text">
+  <p class="hero__identity eyebrow">{hero.identity[0]} · {hero.identity[1]}</p>
+
+  <h1 class="hero__statement">
+    {before}{after !== undefined && <><mark>{hero.statementHighlight}</mark>{after}</>}
+  </h1>
+  <p class="hero__supporting">{hero.supporting}</p>
+  <p class="hero__context">{hero.context}</p>
+
+
+  <p class="hero__actions">
+    <a class="button button--primary" href={hero.primaryAction.href}>{hero.primaryAction.label} <span aria-hidden="true">↓</span></a>
+    <a class="button button--outline" href={hero.secondaryAction.href}>{hero.secondaryAction.label}</a>
+  </p>
+  </div>
+</header>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    padding-block: 86px 54px;
+  }
+  @media (max-width: 720px) {
+    .hero { padding-block: 52px 32px; }
+  }
+
+  .hero__identity { margin-bottom: 14px; }
+
+  .hero__statement {
+    font-size: var(--text-hero);
+    line-height: 0.97;
+    letter-spacing: var(--tracking-display);
+    line-height: 1.02;
+    max-width: 12em;
+  }
+
+  .hero__supporting {
+    margin-top: var(--space-5);
+    font-size: clamp(1.1875rem, 1rem + 0.8vw, 1.5625rem);
+    line-height: 1.4;
+    color: var(--text-secondary);
+    max-width: 33em;
+    text-wrap: balance;
+  }
+
+  .hero__context {
+    margin-top: var(--space-4);
+    color: var(--text-tertiary);
+    max-width: var(--measure);
+  }
+
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 48px;
+    padding: 12px 24px;
+    border-radius: var(--radius-button);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: box-shadow var(--t-hover) ease, background-color var(--t-hover) ease;
+  }
+  .button--primary {
+    background: var(--ink);
+    color: var(--paper);
+    box-shadow: var(--shadow-subtle);
+  }
+  .button--primary:hover { box-shadow: var(--shadow-subtle-2); text-decoration: none; }
+  .button--outline {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+  }
+  .button--outline:hover { background: var(--hover-bg); text-decoration: none; }
+  /* Centered type, no drawing. */
+  .hero { align-items: center; text-align: center; }
+  .hero__text { display: flex; flex-direction: column; align-items: center; }
+  .hero__statement, .hero__supporting, .hero__context { margin-inline: auto; text-wrap: balance; }
+  .hero__actions { justify-content: center; }
+  @media (min-width: 1024px) {
+    .hero__statement { max-width: 13em; font-size: clamp(3rem, 1.5rem + 3.6vw, 4.75rem); }
+  }
+</style>

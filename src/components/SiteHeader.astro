@@ -1,0 +1,20 @@
+---
+// The sticky bar at the top of every page: name on the left, a few links on the right.
+interface Props { current?: string }
+const { current } = Astro.props;
+const links = [
+  { href: '/#selected-work', label: 'Work', id: 'work' },
+  { href: '/#how-i-work', label: 'How I work', id: 'how-i-work', optional: true },
+  { href: '/#contact', label: 'Contact', id: 'contact' },
+];
+---
+<header class="site-header">
+  <nav class="site-header__inner" aria-label="Site">
+    <a class="site-header__brand" href="/">Pung Brooks</a>
+    <div class="site-header__links">
+      {links.map((l) => (
+        <a href={l.href} class={l.optional ? 'is-optional' : undefined} aria-current={current === l.id ? 'page' : undefined}>{l.label}</a>
+      ))}
+    </div>
+  </nav>
+</header>
