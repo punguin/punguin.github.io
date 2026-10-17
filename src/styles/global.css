@@ -16,7 +16,7 @@
   --muted: #666666;
   --paper: #faf9f6;
   --line: #dedbd3;
-  --violet: #9c3d1b;               /* rust; the token name is historical */
+  --violet: #ff5a1f;               /* signal orange, used as a fill or marker, never for small text; the token name is historical */
   --violet-soft: #f1ece4;
 
   /* Aliases kept from the previous system */
@@ -188,9 +188,10 @@ h3, h4 {
 
 /* Marker-pen wash behind a word or phrase */
 mark {
-  background: none;
-  color: var(--violet);
-  padding: 0;
+  /* Marker-pen swipe across the lower part of the words; the text stays ink. */
+  background: linear-gradient(transparent 58%, var(--violet) 58%, var(--violet) 92%, transparent 92%);
+  color: inherit;
+  padding: 0 0.04em;
   margin: 0;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;

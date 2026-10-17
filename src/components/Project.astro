@@ -126,7 +126,8 @@ const meta: [string, string][] = [
   }
   .project__body :global(.case-aside > * + *) { margin-top: var(--space-2); }
   .project__body :global(.case-aside > :first-child) { margin-top: 0; }
-  .project__body :global(p.label) { margin-top: var(--space-7); color: var(--violet); }
+  .project__body :global(p.label) { margin-top: var(--space-7); }
+  .project__body :global(p.label)::before { content: ""; display: inline-block; width: 0.55em; height: 0.55em; margin-right: 0.5em; background: var(--violet); vertical-align: 0.05em; }
   .project__body :global(p.label + ul) { margin-top: var(--space-3); }
   .project__body :global(p.label.case-status) { margin-top: var(--space-2); }
   .project__body :global(.case-methods) { font-size: var(--text-small); color: var(--text-secondary); }
