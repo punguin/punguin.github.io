@@ -1,79 +1,81 @@
 ---
 id: how-i-work
 number: "02"
-title: Simple language for complex problems
+title: The methods change. The questions don’t.
 navLabel: How I work
 order: 2
 ---
 
-UX has a rich vocabulary for describing how we work. I keep mine simple. The problems are complex. The way we talk about them doesn't have to be.
+UX has a rich vocabulary for describing process. I keep mine simple, because the problems are complex enough. Instead of a fixed sequence of steps, I work from five questions. Any of them can be where a project starts, and I return to each one as often as the work needs. Every case study on this site is organized around them.
 
-It's not a fixed process. I calibrate the tool to the uncertainty: interviews, a prototype, analytics, a workshop, or something lighter. AI is embedded throughout the process where it makes sense. Beyond speeding up individual work, I'm interested in how whole organizations use it to make better, faster decisions together.
+<p class="questions__note">Five questions, asked in any order, often more than once</p>
 
-<p class="callout">The tools and methods change from project to project. The questions stay the same.</p>
-
-<div class="practice">
-
-<section class="step" style="--step-bg: var(--sticky-mint)">
-
-<p class="step__tag"><img src="/illustrations/understand-people.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />Understand people</p>
-
-### What are people trying to do?
-
-<p class="step__more">Who are the users? What context affects their behavior?</p>
-
-<p class="step__consider"><span class="label">Consider</span> goals, needs, behavior, environment, mental models, real-world constraints.</p>
-
-</section>
-
-<section class="step" style="--step-bg: var(--sticky-teal)">
-
-<p class="step__tag"><img src="/illustrations/understand-the-system.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />Understand the system</p>
-
-### How does the system actually work?
-
-<p class="step__more">What forces shape the experience?</p>
-
-<p class="step__consider"><span class="label">Consider</span> technology, business rules, operations, ownership, organizational relationships, incentives, constraints, dependencies.</p>
-
-</section>
-
-<section class="step" style="--step-bg: var(--sticky-blush)">
-
-<p class="step__tag"><img src="/illustrations/find-the-gaps.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />Find the gaps</p>
-
-### Where don’t those realities line up?
-
-<p class="step__more">Which ones are worth solving?</p>
-
-<p class="step__consider"><span class="label">Look for</span> unmet needs, conflicting mental models, missing information, broken handoffs, organizational seams, product structures that no longer match real work, distance between what exists and what could exist.</p>
-
-</section>
-
-<section class="step step--feature" style="--step-bg: var(--highlighter-yellow)">
-
-<img class="step__art" src="/illustrations/close-the-gaps.svg" alt="" width="240" height="180" loading="lazy" decoding="async" />
-
-<p class="step__tag">Design</p>
-
-### What is the best way to solve these gaps?
-
-<p class="step__consider"><span class="label">Through</span> exploration, prototyping, prioritization, facilitation, design, testing, negotiation, tradeoff decisions.</p>
-
-</section>
-
-<section class="step" style="--step-bg: var(--accent-relay)">
-
-<p class="step__tag"><img src="/illustrations/see-what-changed.svg" alt="" width="48" height="48" loading="lazy" decoding="async" />See what changed</p>
-
-### Did the gap close?
-
-<p class="step__consider"><span class="label">Evaluate</span> customer behavior, qualitative response, support demand, operational impact, product performance, adoption, new questions revealed by the work.</p>
-
-</section>
-
+<ol class="questions" role="list">
+<li class="question">
+<p class="question__tag"><img src="/illustrations/understand-people.svg" alt="" width="44" height="44" loading="lazy" decoding="async" />People</p>
+<div class="question__ask">
+<h3>What are people trying to do?</h3>
+<p>Who are they, and what in their world shapes how they act?</p>
 </div>
-
-Every case study in Selected work follows these five questions.
+<p class="question__look"><span class="label">I look at</span>Goals, needs, behavior, environment, mental models, and the real-world constraints people work around.</p>
+</li>
+<li class="question">
+<p class="question__tag"><img src="/illustrations/understand-the-system.svg" alt="" width="44" height="44" loading="lazy" decoding="async" />System</p>
+<div class="question__ask">
+<h3>How does the system actually work?</h3>
+<p>Not how it’s drawn on a diagram, but what really shapes the experience.</p>
+</div>
+<p class="question__look"><span class="label">I look at</span>Technology, business rules, operations, ownership, incentives, dependencies, and the relationships between teams.</p>
+</li>
+<li class="question">
+<p class="question__tag"><img src="/illustrations/find-the-gaps.svg" alt="" width="44" height="44" loading="lazy" decoding="async" />Gaps</p>
+<div class="question__ask">
+<h3>Where don’t those realities line up?</h3>
+<p>And which of those gaps are worth closing first?</p>
+</div>
+<p class="question__look"><span class="label">I look for</span>Unmet needs, conflicting mental models, missing information, broken handoffs, organizational seams, and product structures that no longer match the work.</p>
+</li>
+<li class="question">
+<p class="question__tag"><img src="/illustrations/close-the-gaps.svg" alt="" width="44" height="44" loading="lazy" decoding="async" />Design</p>
+<div class="question__ask">
+<h3>What’s the best way to close them?</h3>
+<p>Usually a mix of design, alignment and honest tradeoffs.</p>
+</div>
+<p class="question__look"><span class="label">I use</span>Exploration, prototyping, facilitation, prioritization, testing, negotiation, and clear tradeoff decisions.</p>
+</li>
+<li class="question">
+<p class="question__tag"><img src="/illustrations/see-what-changed.svg" alt="" width="44" height="44" loading="lazy" decoding="async" />Impact</p>
+<div class="question__ask">
+<h3>Did the gap close?</h3>
+<p>And what new questions did the work uncover?</p>
+</div>
+<p class="question__look"><span class="label">I measure</span>Customer behavior, qualitative response, support demand, operational impact, product performance, and adoption.</p>
+</li>
+</ol>
 
 <p class="statement">The method <mark>follows the uncertainty.</mark></p>
+
+The questions stay the same. How I answer them depends on how much we don’t know yet. When the answer is close at hand, I keep the process light. When nobody knows, I invest in the methods that build shared understanding.
+
+<ol class="dial" role="list">
+<li class="dial__level" style="--fill: 1">
+<p class="dial__meter" aria-hidden="true"><span></span><span></span><span></span></p>
+<p class="dial__when">Mostly known</p>
+<p class="dial__aim">Confirm it and move.</p>
+<p>Existing analytics, a conversation with customer service or engineering, a quick sketch or design review.</p>
+</li>
+<li class="dial__level" style="--fill: 2">
+<p class="dial__meter" aria-hidden="true"><span></span><span></span><span></span></p>
+<p class="dial__when">Partly known</p>
+<p class="dial__aim">Test the riskiest assumption.</p>
+<p>A prototype, a usability test, or a working doc that gets partners reacting to something concrete.</p>
+</li>
+<li class="dial__level" style="--fill: 3">
+<p class="dial__meter" aria-hidden="true"><span></span><span></span><span></span></p>
+<p class="dial__when">Mostly unknown</p>
+<p class="dial__aim">Build understanding together.</p>
+<p>Interviews, a workshop or design jam, and several directions explored side by side before committing to one.</p>
+</li>
+</ol>
+
+AI runs through all of it where it helps. Beyond speeding up my own work, I’m interested in how whole organizations use it to make better decisions, faster, together.

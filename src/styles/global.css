@@ -540,58 +540,53 @@ html.has-viewer { overflow: hidden; }
 section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset); }
 .prose h3[id], .prose h4[id], .prose h5[id] { scroll-margin-top: calc(var(--anchor-offset) + 24px); }
 
-/* ---------- How I work: each step is a coloured card that leads with its question ----------
-   People and system share the first row (the two things to understand); gaps, closing them and
-   seeing what changed each get a full row. */
-
-.practice {
-  display: grid;
-  gap: var(--space-4);
+/* ---------- How I work: five questions as rows (not numbered steps), then the uncertainty dial ---------- */
+.prose .questions__note {
   margin-top: var(--space-7);
-}
-@media (min-width: 720px) {
-  .practice { grid-template-columns: 1fr 1fr; }
-  .practice > .step:nth-of-type(n + 3) { grid-column: 1 / -1; }
-}
-.prose .practice + p { margin-top: var(--space-5); color: var(--text-secondary); }
-.step {
-  padding: var(--space-5) 0 var(--space-6);
-  border-top: 1px solid var(--ink);
-}
-.prose .step > * { margin-top: var(--space-3); }
-.prose .step > .step__tag {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 0;
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
   color: var(--text-tertiary);
 }
-.step__tag img { width: 52px; height: 52px; mix-blend-mode: multiply; }
-.prose .step h3 {
-  margin-top: var(--space-3);
+.prose .questions, .prose .dial { max-width: none; }
+.prose .question p, .prose .dial p { max-width: 40em; }
+.prose .questions { list-style: none; margin: var(--space-3) 0 0; padding: 0; border-bottom: 1px solid var(--ink); }
+.prose .question { margin: 0; padding: var(--space-5) 0 var(--space-6); border-top: 1px solid var(--ink); display: grid; gap: var(--space-3); }
+.prose .question > * { margin: 0; }
+.prose .question__tag { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 0.8125rem; color: var(--text-tertiary); }
+.question__tag img { width: 44px; height: 44px; mix-blend-mode: multiply; }
+.prose .question h3 {
+  margin: 0;
   font-family: var(--font-display);
   font-weight: var(--weight-display);
-  font-size: clamp(1.5rem, 2.4vw, 1.875rem);
+  font-size: clamp(1.625rem, 1.2rem + 1.6vw, 2.25rem);
   line-height: 1.08;
   letter-spacing: var(--tracking-display);
   text-wrap: balance;
 }
-.step__more { font-size: 1.125rem; }
-.step__consider { font-size: 0.9375rem; max-width: 40em; }
-.step__consider .label { margin-right: 6px; }
-
-/* Step 04 is the design work itself, so it gets the most room: a bigger heading and its sketch drawn large. */
-.step--feature { padding-block: var(--space-6) var(--space-7); }
-.prose .step--feature h3 { font-size: clamp(2rem, 4vw, 3rem); }
-.step--feature .step__more { font-size: 1.25rem; }
-.step__art { display: block; width: 160px; height: auto; mix-blend-mode: multiply; }
-@media (min-width: 720px) {
-  .step--feature { display: grid; grid-template-columns: minmax(0, 1fr) 220px; column-gap: var(--space-7); align-items: center; }
-  .step--feature > :not(.step__art) { grid-column: 1; }
-  .prose .step--feature > .step__art { grid-column: 2; grid-row: 1 / span 4; width: 220px; margin: 0; }
+.prose .question__ask p { margin-top: var(--space-2); font-size: 1.125rem; color: var(--text-secondary); }
+.prose .question__look { font-size: 0.9375rem; color: var(--text-secondary); }
+.question__look .label { display: block; margin-bottom: 4px; }
+@media (min-width: 900px) {
+  .prose .question { grid-template-columns: 8rem minmax(0, 1.4fr) minmax(0, 1fr); column-gap: var(--space-6); align-items: start; }
+  .prose .question__tag { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .prose .question__look { padding-top: 6px; }
 }
+
+.prose .dial { list-style: none; margin: var(--space-6) 0 0; padding: 0; display: grid; gap: var(--space-4); }
+@media (min-width: 720px) { .prose .dial { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.prose .dial__level { margin: 0; padding: var(--space-5); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); }
+.prose .dial__level > * { margin: 0; }
+.prose .dial__level > * + * { margin-top: var(--space-2); }
+.dial__meter { display: flex; gap: 4px; }
+.dial__meter span { flex: 1; height: 8px; border: 1px solid var(--ink); border-radius: 2px; }
+.dial__level[style*="--fill: 1"] .dial__meter span:nth-child(-n + 1),
+.dial__level[style*="--fill: 2"] .dial__meter span:nth-child(-n + 2),
+.dial__level[style*="--fill: 3"] .dial__meter span { background: var(--violet); }
+.prose .dial__when { margin-top: var(--space-4); font-family: var(--font-mono); font-size: 0.8125rem; color: var(--text-tertiary); }
+.prose .dial__aim { font-family: var(--font-display); font-size: 1.375rem; line-height: 1.15; }
+.prose .dial__level p:last-child { font-size: 0.9375rem; color: var(--text-secondary); }
+.prose .dial + p { margin-top: var(--space-6); }
+.prose .statement + p { margin-top: var(--space-4); }
 
 /* Values: three columns on wide screens, each value under its own rule. */
 .values { display: grid; gap: var(--space-7) var(--space-6); margin-top: var(--space-6); }
