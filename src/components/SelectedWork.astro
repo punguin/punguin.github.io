@@ -24,7 +24,7 @@ const projects = await getSortedProjects();
                 </>}
           </span>
           <span class="work-card__text">
-            <span class="work-card__title">{p.data.title}</span>
+            <span class="work-card__title">{p.data.title}<span class="work-card__arrow" aria-hidden="true"> →</span></span>
             <span class="work-card__summary">{p.data.cover ? p.data.summary : p.data.project}</span>
             <span class="work-card__tags">
               <span class="tag">{p.data.role.startsWith('[') ? p.data.domain : p.data.role}</span>
@@ -81,6 +81,8 @@ const projects = await getSortedProjects();
 
   .work-card__text { display: grid; align-content: start; gap: var(--space-2); padding: var(--space-4) var(--space-5) var(--space-5); }
   .work-card__title { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.18; font-weight: 400; }
+  .work-card__arrow { display: inline-block; font-family: var(--font-body); transition: transform var(--t-hover) ease; }
+  .work-card a:hover .work-card__arrow { transform: translateX(4px); }
   .work-card__summary { font-size: 1rem; line-height: 1.55; color: var(--text-tertiary); }
   .work-card__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
   @media (prefers-reduced-motion: reduce) { .work-card a, .work-card a:hover { transition: none; transform: none; } }
