@@ -15,7 +15,7 @@
   --ink: #161616;
   --muted: #666666;
   --paper: #faf9f6;
-  --line: #dedbd3;
+  --line: var(--ink);               /* every stroke uses the ink line, matching the How I work rules */
   --violet: #14b3a6;               /* bright teal, used as a fill or marker, never for small text; the token name is historical */
   --violet-soft: #f1ece4;
 
@@ -618,11 +618,13 @@ section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset);
   .prose .question__look { padding-top: 6px; }
 }
 
-.prose .dial { list-style: none; margin: var(--space-7) 0 0; padding: 0; display: grid; gap: var(--space-6); }
+.prose .dial { list-style: none; margin: var(--space-7) 0 0; padding: 0; display: grid; gap: 0; }
 .prose .dial__level { margin: 0; }
+.prose .dial__level + .dial__level { padding-top: var(--space-6); border-top: 1px solid var(--line); }
 /* Side by side, the levels are split by vertical dividers. */
 @media (min-width: 720px) {
   .prose .dial { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+  .prose .dial__level + .dial__level { padding-top: 0; border-top: 0; }
   .prose .dial__level { padding-inline: var(--space-5); }
   .prose .dial__level:first-child { padding-left: 0; }
   .prose .dial__level:last-child { padding-right: 0; }
@@ -647,15 +649,19 @@ section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset);
 .prose .ai-note p:last-child { color: #d6d3cc; }
 .prose .statement + p { margin-top: var(--space-4); }
 
-/* Values: two columns on wide screens, split by a vertical divider. */
-.values { display: grid; gap: var(--space-7) 0; margin-top: var(--space-7); }
+/* Values: a grid split by ink dividers, vertical between columns and horizontal between rows. */
+.values { display: grid; margin-top: var(--space-7); }
+.value { padding-block: var(--space-6); }
+.value:first-child { padding-top: 0; }
+.value + .value { border-top: 1px solid var(--line); }
 .prose .value h3 { margin-top: 0; }
 .value p { max-width: 34em; }
 @media (min-width: 900px) {
   .values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .value:nth-child(-n + 2) { padding-top: 0; border-top: 0; }
+  .value:nth-last-child(-n + 2):nth-child(odd), .value:last-child { padding-bottom: 0; }
   .value:nth-child(odd) { padding-right: var(--space-6); }
   .value:nth-child(even) { padding-left: var(--space-6); border-left: 1px solid var(--line); }
-  .doc-section--dark .value:nth-child(even) { border-left-color: #3f7a74; }
 }
 .value > * + * { margin-top: var(--space-3); }
 .prose .ai-note p { max-width: 52em; }

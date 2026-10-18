@@ -57,9 +57,9 @@ const projects = await getSortedProjects();
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius-card);
-    transition: border-color var(--t-hover) ease;
+    transition: box-shadow var(--t-hover) ease;
   }
-  .work-card a:hover { border-color: var(--ink); }
+  .work-card a:hover { box-shadow: 0 0 0 2px var(--ink); }
   .work-card a:hover .work-card__title { text-decoration: underline; text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
 
   .work-card__media {
