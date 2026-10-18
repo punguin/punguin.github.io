@@ -10,29 +10,25 @@ order: 3
 
 <div class="value">
 
-### Human first.
+### Humans first.
 
-Products, systems, businesses, efficiency, and design ultimately exist to serve people. The work should make more room for meaningful human life rather than compete with it.
-
-</div>
-
-<div class="value">
-
-### Outcomes over artifacts.
-
-A polished prototype, a research deck, a workshop, a journey map, a design-system component, or a perfectly followed process is not itself the outcome.
-
-The question is: what changed because of the work? Artifacts exist because they help produce understanding or movement.
+Products, systems and businesses exist to serve people, and that includes the people building them. I design for the person on the other side of the screen and work in a way that respects my team’s time and energy. Good work should make room for a meaningful life, not compete with it.
 
 </div>
 
 <div class="value">
 
-### Everyone is a leader.
+### Outcomes over output.
 
-Leadership is not limited to management. People lead when they help a group understand something more clearly, make a better decision, see a connection, disagree productively, or move toward a better outcome.
+Hours worked and artifacts produced aren’t the point. A prototype, a research deck or a workshop matters only when it changes something: a decision, a behavior, a result. I measure my work by what’s different because of it, so my team can spend its effort on what moves things forward instead of on looking busy.
 
-I try to hold a point of view and explain the reasoning behind it, without confusing clarity with certainty.
+</div>
+
+<div class="value">
+
+### Everyone can lead.
+
+Leadership isn’t a title. Anyone leads when they help a group see more clearly, decide better or move forward. I hold a clear point of view and explain my reasoning, and I make room for others to do the same, so the best idea wins no matter who had it.
 
 </div>
 
