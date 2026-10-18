@@ -80,6 +80,6 @@ The questions stay the same. How I answer them depends on how much we don’t kn
 
 <aside class="ai-note">
 <p class="label">A note about AI</p>
-<p class="ai-note__head">Human first, with AI where it helps.</p>
-<p>I use AI throughout my work, wherever it earns its place. It gets me to answers faster. It also helps teams reach decisions faster, by speeding up the analysis and shaping the story that brings partners along. What it doesn’t replace is judgment. Understanding people, deciding what matters and owning the tradeoffs stay with us.</p>
+<p class="ai-note__head">Human first. AI where it helps.</p>
+<p>AI is built into my process wherever it’s useful. I use it to get to answers faster, so my team spends less time gathering and more time deciding. I use it to turn analysis into a clear story, so partners can see the tradeoffs and get to buy-in sooner. What I don’t hand off is judgment. Understanding people, deciding what matters and owning the call stay human.</p>
 </aside>
