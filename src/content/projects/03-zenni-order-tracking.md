@@ -14,7 +14,8 @@ platform: [Responsive web]
 partners: [Product, Engineering, Content Design, Analytics, Customer Service]
 accent: tracking
 cover: /images/work/zenni-order-tracking/cover.webp
-coverAlt: The shipped Order Details page with a five-step tracker from Order Placed to Delivered, and a Where is My Order card beside the item
+hero: /images/work/zenni-order-tracking/hero.webp
+coverAlt: The shipped Zenni Order Details page in a browser window, with the Where is My Order card and the five-step milestone tracker floating beside it
 order: 3
 ---
 

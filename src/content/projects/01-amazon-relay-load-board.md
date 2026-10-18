@@ -13,6 +13,9 @@ timeline: 4 Months
 platform: [Web, Meridian Design System]
 partners: [Product Manager, Engineering, Design System]
 accent: tracking
+cover: /images/work/amazon-relay-load-board/cover.webp
+hero: /images/work/amazon-relay-load-board/hero.webp
+coverAlt: The Relay Load Board before and after the redesign, shown as two overlapping browser windows
 order: 1
 ---
 

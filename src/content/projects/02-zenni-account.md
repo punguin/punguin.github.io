@@ -14,7 +14,8 @@ platform: [Responsive web, Design system]
 partners: [Product Manager, UX Manager, Engineering, Design System]
 accent: account
 cover: /images/work/zenni-account/cover.webp
-coverAlt: The redesigned Zenni My Account dashboard, with a left navigation panel, Zenni Rewards status and recent orders
+hero: /images/work/zenni-account/hero.webp
+coverAlt: The redesigned Zenni My Account dashboard in a browser window, in front of the new Order Details page
 order: 2
 ---
 
