@@ -14,16 +14,17 @@ const { id, number, label, title, lead, tone } = Astro.props;
   /* Full-bleed dark band: the shadow paints the background out to the viewport edges, the clip keeps it from bleeding vertically. */
   .doc-section--dark {
     --text-primary: #faf9f6;
-    --text-secondary: #c9c6be;
-    --line: #34332f;
-    --violet: #3fd0c2;
-    --eyebrow: #b5b2aa;
-    --text-tertiary: #b5b2aa;
+    --text-secondary: #cfe0dd;
+    --line: #24524e;
+    --dark-bg: #0f3532;
+    --violet: #4fdccd;
+    --eyebrow: #a9c9c4;
+    --text-tertiary: #a9c9c4;
     color: var(--text-primary);
-    background: var(--ink);
-    box-shadow: 0 0 0 100vmax var(--ink);
+    background: var(--dark-bg);
+    box-shadow: 0 0 0 100vmax var(--dark-bg);
     clip-path: inset(0 -100vmax);
   }
-  :global(.sections) > .doc-section--dark { border-top-color: var(--ink); }
+  :global(.sections) > .doc-section--dark { border-top-color: #0f3532; }
   :global(.sections) > .doc-section--dark + :global(.doc-section) { border-top-color: transparent; }
 </style>
