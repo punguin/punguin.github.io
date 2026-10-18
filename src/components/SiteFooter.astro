@@ -2,7 +2,10 @@
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
-  <p>Pung Brooks · Design Practice · {year}</p>
+  <div class="site-footer__credit">
+    <p>© {year} Pung Brooks</p>
+    <p>Designed and developed by me, with help from <a href="https://claude.com/claude-code" rel="noopener">Claude Code</a>.</p>
+  </div>
   <p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></p>
 </footer>
 
@@ -18,4 +21,5 @@ const year = new Date().getFullYear();
     color: var(--text-tertiary);
   }
   .site-footer a { color: var(--text-secondary); }
+  .site-footer__credit { display: grid; gap: var(--space-1); }
 </style>
