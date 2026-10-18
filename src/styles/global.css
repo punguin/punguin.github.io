@@ -327,7 +327,7 @@ a.external::after {
 .site-header__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 0 3px rgb(20 179 166 / 0.2); }
 .site-header__contact { padding: 8px 14px; border-radius: var(--radius-button); background: var(--ink); color: #faf9f6; font-size: 0.875rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
 .site-header__contact:hover { background: #333; }
-@media (max-width: 719px) { .site-header__status { display: none; } }
+@media (max-width: 899px) { .site-header__status { display: none; } }
 @media (max-width: 399px) { .site-header__title { display: none; } }
 
 /* Homepage sections sit directly on the paper, separated by thin rules. */
