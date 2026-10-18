@@ -78,4 +78,8 @@ The questions stay the same. How I answer them depends on how much we don’t kn
 </li>
 </ol>
 
-AI runs through all of it where it helps. Beyond speeding up my own work, I’m interested in how whole organizations use it to make better decisions, faster, together.
+<aside class="ai-note">
+<p class="label">A note about AI</p>
+<p class="ai-note__head">Human first, with AI where it helps.</p>
+<p>I use AI throughout my work, wherever it earns its place. It gets me to answers faster. It also helps teams reach decisions faster, by speeding up the analysis and shaping the story that brings partners along. What it doesn’t replace is judgment. Understanding people, deciding what matters and owning the tradeoffs stay with us.</p>
+</aside>
