@@ -1,4 +1,5 @@
 ---
+import Analytics from '@vercel/analytics/astro';
 import '../styles/fonts.css';
 import '../styles/global.css';
 interface Props { title: string; description: string; ogImage?: string; noindex?: boolean }
@@ -33,6 +34,7 @@ const ogUrl = Astro.site ? new URL(ogImage, Astro.site).href : ogImage;
 
     <link rel="preload" href="/fonts/caprasimo-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <Analytics />
   </head>
   <body>
     <slot />
