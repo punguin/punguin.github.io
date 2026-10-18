@@ -1,0 +1,8 @@
+{
+  "_note": "Placeholders: replace each `value`/`href` and set `placeholder` to false.",
+  "links": [
+    { "label": "Email", "value": "name@example.com", "href": "mailto:name@example.com", "placeholder": true },
+    { "label": "LinkedIn", "value": "linkedin.com/in/your-profile", "href": "https://www.linkedin.com/", "placeholder": true, "external": true },
+    { "label": "Résumé", "value": "Résumé (PDF)", "href": "#", "placeholder": true }
+  ]
+}

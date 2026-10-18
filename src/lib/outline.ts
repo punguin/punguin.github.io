@@ -1,0 +1,31 @@
+import { getCollection } from 'astro:content';
+
+export interface OutlineItem {
+  id: string;
+  number: string;
+  label: string;
+  /** Longer label for the mobile bar and scroll tooltip (e.g. "Zenni Account"). */
+  fullLabel: string;
+  accent?: string;
+  children?: OutlineItem[];
+}
+
+/** Document outline derived from content, used by the TOC, mobile menu and scroll spy. */
+export async function getOutline(): Promise<OutlineItem[]> {
+  const sections = (await getCollection('sections')).sort((a, b) => a.data.order - b.data.order);
+  return sections.map((s) => ({
+    id: s.data.id,
+    number: s.data.number,
+    label: s.data.navLabel,
+    fullLabel: s.data.navLabel,
+  }));
+}
+
+export async function getSortedSections() {
+  return (await getCollection('sections')).sort((a, b) => a.data.order - b.data.order);
+}
+
+/** Case studies shown on the site, in order (featured: false hides one). */
+export async function getSortedProjects() {
+  return (await getCollection('projects', (p) => p.data.featured)).sort((a, b) => a.data.order - b.data.order);
+}

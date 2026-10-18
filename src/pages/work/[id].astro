@@ -1,0 +1,86 @@
+---
+// One page per case study. The homepage's Selected work section lists them and links here.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { render } from 'astro:content';
+import Project from '../../components/Project.astro';
+import CaseContents from '../../components/CaseContents.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import { getSortedProjects } from '../../lib/outline';
+
+export async function getStaticPaths() {
+  const projects = await getSortedProjects();
+  return projects.map((entry, i) => ({
+    params: { id: entry.data.id },
+    props: { entry, next: projects[(i + 1) % projects.length] },
+  }));
+}
+
+const { entry, next } = Astro.props;
+const p = entry.data;
+const { headings } = await render(entry);
+const title = `${p.title}: ${p.summary} — Pung Brooks`;
+---
+<BaseLayout title={title} description={`${p.title}. ${p.summary} ${p.project}.`}>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <SiteHeader current="work" />
+
+  <div class="page-shell">
+    <main class="document" id="main">
+      <p class="case-top" id="top"><a class="case-top__back" href="/#selected-work"><span aria-hidden="true">←</span> All work</a></p>
+
+      <div class="case-layout">
+          <div class="case-layout__body">
+            <Project entry={entry} standalone />
+
+            <nav class="case-next" aria-label="Next case study">
+              <a href={`/work/${next.data.id}/`}>
+                <span class="eyebrow">Next case study · {next.data.title}</span>
+                <span class="case-next__summary">{next.data.summary} <span aria-hidden="true">→</span></span>
+              </a>
+            </nav>
+          </div>
+          <CaseContents headings={headings} title={p.title} />
+      </div>
+
+      <SiteFooter />
+    </main>
+  </div>
+
+  <script>
+    import '../../scripts/document-nav.ts';
+    import '../../scripts/image-viewer.ts';
+  </script>
+</BaseLayout>
+
+<style>
+  .case-top { padding-top: var(--space-6); font-size: 0.875rem; }
+  .case-top__back { color: var(--text-secondary); text-decoration: none; }
+  .case-top__back:hover { color: var(--ink); text-decoration: underline; }
+
+  /* The story on the left, its contents list on the right (desktop only). */
+  .case-layout { --toc-top: calc(var(--header-h) + 24px); }
+  .case-layout__body { min-width: 0; }
+  .case-layout :global(.toc) { display: none; }
+  @media (min-width: 1100px) {
+    .case-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) var(--toc-width);
+      column-gap: var(--toc-gap);
+    }
+    .case-layout :global(.toc) { display: block; padding-top: 340px; }
+  }
+
+  .case-next { padding-block: var(--space-4) var(--space-9); }
+  .case-next a {
+    display: grid;
+    gap: var(--space-3);
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    text-decoration: none;
+  }
+  .case-next a:hover { border-color: var(--ink); }
+  .case-next__summary { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 1.9375rem); font-family: var(--font-display); font-weight: 400; line-height: 1.15; }
+</style>

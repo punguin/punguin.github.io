@@ -1,0 +1,159 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+// standalone: the case study is the whole page (src/pages/work/[id].astro), so its title is the
+// page's h1 and the page's own sheet holds it.
+interface Props { entry: CollectionEntry<'projects'>; standalone?: boolean }
+const { entry, standalone = false } = Astro.props;
+const Title = standalone ? 'h1' : 'h3';
+const p = entry.data;
+const { Content } = await render(entry);
+const isTodo = (v: string) => v.startsWith('[');
+const meta: [string, string][] = [
+  ['Role', p.role],
+  ['Timing', p.timeline],
+  ['Platform', p.platform.join(', ')],
+  ['Partners', p.partners.join(', ')],
+];
+---
+<article
+  class:list={['project', { 'project--page': standalone }]}
+  id={p.id}
+  data-section={p.id}
+  data-accent={p.accent}
+  aria-labelledby={`${p.id}-title`}
+  style={`--accent: var(--accent-${p.accent})`}
+>
+  <header class="project__header">
+    <p class="eyebrow project__kicker" aria-hidden="true">{p.company} · {p.project}</p>
+    <Title class="project__title" id={`${p.id}-title`}>
+      <span class="visually-hidden">{p.title}: </span>{p.summary}
+    </Title>
+  </header>
+
+  <dl class="project__meta">
+    <div><dt class="label">Context</dt><dd>{p.context} · {p.domain}</dd></div>
+    {meta.map(([k, v]) => (
+      <div><dt class="label">{k}</dt><dd class={isTodo(v) ? 'is-todo' : undefined}>{v}</dd></div>
+    ))}
+  </dl>
+
+  <div class="prose project__body">
+    <Content />
+  </div>
+</article>
+
+<style>
+  .project {
+    --case-pad: 0px;
+    position: relative;
+    margin-top: var(--space-9);
+  }
+  .project.project--page { margin: 0; padding: 0 0 var(--space-8); }
+
+  .project__header { padding-block: var(--space-8) 0; }
+  .project__kicker { margin-bottom: 14px; }
+  .project__title {
+    font-size: var(--text-hero);
+    line-height: 1.02;
+    letter-spacing: var(--tracking-display);
+    max-width: 12em;
+  }
+
+  .project__meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 18px;
+    margin-block: 44px var(--space-7);
+    padding-block: 20px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .project__meta div { display: grid; gap: var(--space-1); align-content: start; min-width: 0; }
+  .project__meta dd { margin: 0; font-size: 0.9375rem; line-height: 1.45; }
+  .project__meta dd.is-todo { color: var(--placeholder); font-size: var(--text-small); }
+
+  .project__body > :first-child {
+    font-size: clamp(1.1875rem, 1rem + 0.8vw, 1.5625rem);
+    line-height: 1.4;
+    color: var(--text-secondary);
+    max-width: 33em;
+  }
+  /* Story sections: "#### 00 / Context" is a small label; the line right after it is the
+     section's headline. "##### 4.1 …" is a step inside a section, with its own short headline. */
+  .project__body :global(h4) {
+    margin-top: var(--space-9);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--text-tertiary);
+    max-width: none;
+  }
+  .project__body :global(h4 + p:not(.todo)) {
+    margin-top: var(--space-4);
+    max-width: 15em;
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    font-weight: var(--weight-display);
+    line-height: 1.08;
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+  }
+  .project__body :global(h4 + p:not(.todo) + p:not(.todo)) { font-size: clamp(1.1875rem, 1rem + 0.8vw, 1.5rem); line-height: 1.4; color: var(--text-secondary); }
+
+  .project__body :global(h5) {
+    margin-top: var(--space-8);
+    margin-bottom: 0;
+    max-width: var(--measure);
+    font-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.4375rem);
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+  }
+  .project__body :global(h5 + p) {
+    margin-top: var(--space-2);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .project__body :global(.case-aside) {
+    max-width: var(--measure);
+    padding: 23px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+  }
+  .project__body :global(.case-aside > * + *) { margin-top: var(--space-2); }
+  .project__body :global(.case-aside > :first-child) { margin-top: 0; }
+  .project__body :global(p.label) { margin-top: var(--space-7); }
+  .project__body :global(p.label)::before { content: ""; display: inline-block; width: 0.55em; height: 0.55em; margin-right: 0.5em; background: var(--violet); vertical-align: 0.05em; }
+  .project__body :global(p.label + ul) { margin-top: var(--space-3); }
+  .project__body :global(p.label.case-status) { margin-top: var(--space-2); }
+  .project__body :global(.case-methods) { font-size: var(--text-small); color: var(--text-secondary); }
+  .project__body :global(.case-methods .label) { margin-right: var(--space-2); }
+
+  .project__body :global(table) {
+    width: 100%;
+    max-width: var(--doc-max);
+    margin-top: var(--space-5);
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: var(--text-small);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+  .project__body :global(th),
+  .project__body :global(td) { padding: 12px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+  .project__body :global(th) { font-size: 0.8125rem; font-weight: 600; color: var(--text-secondary); }
+  .project__body :global(tr:last-child td) { border-bottom: 0; }
+  @media (max-width: 720px) {
+    .project__body :global(table) { display: block; overflow-x: auto; }
+    .project__body :global(th),
+    .project__body :global(td) { padding: 10px 12px; min-width: 7.5em; }
+  }
+
+  .project__body :global(.callout .label) { display: block; margin: 0 0 var(--space-2); }
+</style>

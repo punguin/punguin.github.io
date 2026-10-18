@@ -1,0 +1,91 @@
+---
+// Contents list for a case study page, built from the story's headings: "#### 00 / Context" is a
+// section, "##### 4.1 …" a numbered step under it. Unnumbered "#####" headings stay out of the list.
+// The homepage passes its sections as `items` instead (and no Top link).
+// Scroll spy: data-spy, src/scripts/document-nav.ts.
+import type { MarkdownHeading } from 'astro';
+type Item = { id: string; number: string; label: string; children: Item[] };
+interface Props { headings?: MarkdownHeading[]; title: string; items?: Item[]; top?: boolean }
+const { headings = [], title, items: given, top = true } = Astro.props;
+
+const split = (text: string) => {
+  const slash = text.match(/^(\d+)\s*\/\s*(.+)$/);
+  if (slash) return { number: slash[1], label: slash[2] };
+  const dotted = text.match(/^(\d+\.\d+)\s+(.+)$/);
+  if (dotted) return { number: dotted[1], label: dotted[2] };
+  return { number: '', label: text };
+};
+const items: Item[] = given ?? [];
+if (!given) for (const h of headings) {
+  const { number, label } = split(h.text);
+  if (h.depth === 4) items.push({ id: h.slug, number, label, children: [] });
+  else if (h.depth === 5 && number && items.length) items.at(-1)!.children.push({ id: h.slug, number, label, children: [] });
+}
+---
+{items.length > 0 && (
+  <nav class="toc" aria-label={`${title} contents`}>
+    <div class="toc__inner">
+      <ol class="toc__list" role="list">
+        {top && <li><a href="#top" data-spy="top" aria-current="location"><span class="toc__num">Top</span><span class="toc__label">{title}</span></a></li>}
+        {items.map((item) => (
+          <li class={item.children.length ? 'toc__group' : undefined}>
+            <a href={`#${item.id}`} data-spy={item.id}><span class="toc__num">{item.number}</span><span class="toc__label">{item.label}</span></a>
+            {item.children.length > 0 && (
+              <ol class="toc__sub" role="list">
+                {item.children.map((child) => (
+                  <li><a href={`#${child.id}`} data-spy={child.id}><span class="toc__num">{child.number}</span><span class="toc__label">{child.label}</span></a></li>
+                ))}
+              </ol>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </nav>
+)}
+
+<style>
+  .toc__inner {
+    position: sticky;
+    z-index: 1; /* stay above the full-bleed dark band, which paints out under this column */
+    top: var(--toc-top);
+    max-height: calc(100vh - 2 * var(--toc-top));
+    overflow-y: auto;
+    margin-inline: calc(-1 * var(--space-2));
+    padding-bottom: var(--space-5);
+  }
+  .toc__list, .toc__sub { list-style: none; margin: 0; padding: 0; }
+  .toc__list > li:first-child:has(a[data-spy="top"]) { margin-bottom: var(--space-3); }
+  .toc__sub { margin-block: 2px var(--space-1); }
+
+  .toc a {
+    display: grid;
+    grid-template-columns: 2.6em 1fr;
+    align-items: baseline;
+    padding: 5px var(--space-2);
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: var(--radius-button);
+    transition: background-color var(--t-hover) ease, color var(--t-hover) ease;
+  }
+  .toc__sub a { font-size: 0.8125rem; padding-left: calc(var(--space-2) + 0.9em); grid-template-columns: 2.6em 1fr; }
+
+  .toc__num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-tertiary);
+  }
+  .toc a[data-spy="top"] .toc__num { text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.6875rem; }
+
+  .toc a:hover { background: var(--hover-bg); color: var(--text-primary); }
+  .toc a[aria-current] { background: var(--selected-bg); color: var(--text-primary); font-weight: 600; }
+  .toc a[aria-current] .toc__num { color: var(--text-primary); }
+  /* Links sitting over the full-bleed dark band (homepage Values) switch to light text. */
+  .toc a.is-on-dark { color: #cfe0dd; }
+  .toc a.is-on-dark .toc__num { color: #a9c9c4; }
+  .toc a.is-on-dark:hover, .toc a.is-on-dark[aria-current] { background: rgba(255, 255, 255, 0.1); color: #faf9f6; }
+  .toc a.is-on-dark[aria-current] .toc__num { color: #faf9f6; }
+</style>

@@ -1,0 +1,27 @@
+---
+// A small muted line pairs the number with the section's label; the heading itself says something more.
+interface Props { number: string; label: string; title: string; id: string; lead?: string }
+const { number, label, title, id, lead } = Astro.props;
+---
+<div class="section-heading">
+  <p class="eyebrow section-heading__num" aria-hidden="true">{number} · {label}</p>
+  <h2 id={`${id}-title`}><span class="visually-hidden">{number} · {label}: </span>{title}</h2>
+  {lead && <p class="section-heading__lead" set:html={lead} />}
+</div>
+
+<style>
+  .section-heading { margin-bottom: var(--space-6); }
+  .section-heading__num { margin-bottom: var(--space-3); }
+  h2 {
+    font-size: var(--text-h2);
+    line-height: 1.04;
+    max-width: 18em;
+  }
+  .section-heading__lead {
+    margin-top: var(--space-5);
+    font-size: clamp(1.1875rem, 1rem + 0.8vw, 1.5625rem);
+    line-height: 1.4;
+    color: var(--text-secondary);
+    max-width: 33em;
+  }
+</style>
