@@ -2,8 +2,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  // Canonical + absolute Open Graph URLs. Update if a custom domain is added.
-  site: 'https://punguin.github.io',
+  // Canonical + absolute Open Graph URLs. The custom domain is also set in public/CNAME for GitHub Pages.
+  site: 'https://pungbrooksdesign.com',
   build: {
     inlineStylesheets: 'always',
   },

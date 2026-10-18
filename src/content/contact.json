@@ -1,8 +1,8 @@
 {
-  "_note": "Placeholders: replace each `value`/`href` and set `placeholder` to false.",
+  "_note": "Contact links shown in the Contact section. The résumé PDF is public/Pung-Brooks-Resume.pdf (copied from the resume thread's PungBrooksResume2026.pdf).",
   "links": [
-    { "label": "Email", "value": "name@example.com", "href": "mailto:name@example.com", "placeholder": true },
-    { "label": "LinkedIn", "value": "linkedin.com/in/your-profile", "href": "https://www.linkedin.com/", "placeholder": true, "external": true },
-    { "label": "Résumé", "value": "Résumé (PDF)", "href": "#", "placeholder": true }
+    { "label": "Email", "value": "pungher@gmail.com", "href": "mailto:pungher@gmail.com", "placeholder": false },
+    { "label": "LinkedIn", "value": "linkedin.com/in/pungbrooks", "href": "https://www.linkedin.com/in/pungbrooks", "placeholder": false, "external": true },
+    { "label": "Résumé", "value": "Résumé (PDF)", "href": "/Pung-Brooks-Resume.pdf", "placeholder": false, "external": true }
   ]
 }

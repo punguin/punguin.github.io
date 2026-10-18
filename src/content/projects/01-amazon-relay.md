@@ -14,7 +14,8 @@ platform: [iOS, Android, Meridian Design System]
 partners: [Senior Software Engineer, Product Manager, UX Research]
 accent: relay
 cover: /images/work/amazon-relay/cover.webp
-coverAlt: The redesigned Relay home screen, weekly schedule and current stop screen
+hero: /images/work/amazon-relay/hero.webp
+coverAlt: Three Relay for Drivers screens in phone mockups, showing the redesigned home screen at the yard, the in-transit view and the tasks concept
 order: 1
 ---
 

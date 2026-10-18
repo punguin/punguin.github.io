@@ -38,7 +38,8 @@ const projects = defineCollection({
     // Named after the first case study to use each colour; yellow and lilac are spares for new ones.
     accent: z.enum(['relay', 'account', 'tracking', 'spokgo', 'yellow', 'lilac']),
     cover: z.string().optional(), // card image on the homepage, e.g. /images/work/<id>/cover.png; a placeholder shows until it is set
-    coverAlt: z.string().optional(),
+    coverAlt: z.string().optional(), // also the alt text for hero
+    hero: z.string().optional(), // wide mockup image at the top of the case page
     featured: z.boolean().default(true), // false hides the case study from the site (the editor's "Show on site")
     order: z.number(),
   }),
