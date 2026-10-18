@@ -2,7 +2,7 @@
 <path d="M10 108 H150" stroke="#161616" stroke-width="5"/>
 <rect x="22" y="78" width="26" height="30" fill="#fff" stroke="#161616" stroke-width="5"/>
 <rect x="62" y="58" width="26" height="50" fill="#161616"/>
-<rect x="102" y="34" width="26" height="74" fill="#ff5a1f"/>
+<rect x="102" y="34" width="26" height="74" fill="#14b3a6"/>
 <path d="M18 62 L58 38 L84 48 L132 12" stroke="#161616" stroke-width="5"/>
 <path d="M116 12 H134 V30" stroke="#161616" stroke-width="5"/>
 </svg>
