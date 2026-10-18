@@ -1,10 +1,7 @@
 {
   "portrait": "/images/pung-brooks.webp",
   "portraitAlt": "Portrait of Pung Brooks",
-  "identity": [
-    "Pung Brooks",
-    "Design Practice"
-  ],
+  "greeting": "👋 Hi, I’m Pung.",
   "statement": "High-impact individual contributor and design leader.",
   "supporting": "I make complex problem spaces understandable to customers, teammates, leaders, and myself.",
   "context": "Fifteen years of product design experience across logistics, healthcare communications, ecommerce, and real-estate software.",

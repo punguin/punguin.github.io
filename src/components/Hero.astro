@@ -8,7 +8,7 @@ const [before, after] = hero.statementHighlight
 <header class="hero" id="top">
   <div class="hero__text">
   {hero.portrait && <img class="hero__portrait" src={hero.portrait} alt={hero.portraitAlt ?? ''} width="96" height="96" />}
-  <p class="hero__identity eyebrow">{hero.identity[0]} · {hero.identity[1]}</p>
+  <p class="hero__greeting">{hero.greeting}</p>
 
   <h1 class="hero__statement">
     {before}{after !== undefined && <><mark>{hero.statementHighlight}</mark>{after}</>}
@@ -43,7 +43,7 @@ const [before, after] = hero.statementHighlight
     box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--line);
   }
   @media (max-width: 720px) { .hero__portrait { width: 76px; height: 76px; } }
-  .hero__identity { margin-bottom: 14px; }
+  .hero__greeting { margin-bottom: var(--space-3); font-size: 1.125rem; font-weight: 500; color: var(--text-secondary); }
 
   .hero__statement {
     font-size: var(--text-hero);

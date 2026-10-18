@@ -249,7 +249,7 @@ type Page = { key: string; label: string; path: string; sha: string; kind: 'json
 
 const SECTIONS = 'src/content/sections';
 const LABELS: Record<string, string> = {
-  identity: 'Name and practice',
+  greeting: 'Greeting above the headline',
   statement: 'Headline',
   statementHighlight: 'Highlighted words in the headline',
   supporting: 'Supporting line',
