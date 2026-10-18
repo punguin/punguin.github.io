@@ -12,7 +12,7 @@ UX has a rich vocabulary for describing process. I keep mine simple, because the
 
 <ol class="questions" role="list">
 <li class="question">
-<p class="question__tag"><img src="/illustrations/understand-people.svg" alt="" width="44" height="44" loading="lazy" decoding="async" />People</p>
+<p class="question__tag"><img src="/illustrations/understand-people.svg" alt="" width="160" height="120" loading="lazy" decoding="async" />People</p>
 <div class="question__ask">
 <h3>What are people trying to do?</h3>
 <p>Who are they, and what in their world shapes how they act?</p>
@@ -20,7 +20,7 @@ UX has a rich vocabulary for describing process. I keep mine simple, because the
 <p class="question__look"><span class="label">I look at</span>Goals, needs, behavior, environment, mental models, and the real-world constraints people work around.</p>
 </li>
 <li class="question">
-<p class="question__tag"><img src="/illustrations/understand-the-system.svg" alt="" width="44" height="44" loading="lazy" decoding="async" />System</p>
+<p class="question__tag"><img src="/illustrations/understand-the-system.svg" alt="" width="160" height="120" loading="lazy" decoding="async" />System</p>
 <div class="question__ask">
 <h3>How does the system actually work?</h3>
 <p>Not how it’s drawn on a diagram, but what really shapes the experience.</p>
@@ -28,7 +28,7 @@ UX has a rich vocabulary for describing process. I keep mine simple, because the
 <p class="question__look"><span class="label">I look at</span>Technology, business rules, operations, ownership, incentives, dependencies, and the relationships between teams.</p>
 </li>
 <li class="question">
-<p class="question__tag"><img src="/illustrations/find-the-gaps.svg" alt="" width="44" height="44" loading="lazy" decoding="async" />Gaps</p>
+<p class="question__tag"><img src="/illustrations/find-the-gaps.svg" alt="" width="160" height="120" loading="lazy" decoding="async" />Gaps</p>
 <div class="question__ask">
 <h3>Where don’t those realities line up?</h3>
 <p>And which of those gaps are worth closing first?</p>
@@ -36,7 +36,7 @@ UX has a rich vocabulary for describing process. I keep mine simple, because the
 <p class="question__look"><span class="label">I look for</span>Unmet needs, conflicting mental models, missing information, broken handoffs, organizational seams, and product structures that no longer match the work.</p>
 </li>
 <li class="question">
-<p class="question__tag"><img src="/illustrations/close-the-gaps.svg" alt="" width="44" height="44" loading="lazy" decoding="async" />Design</p>
+<p class="question__tag"><img src="/illustrations/close-the-gaps.svg" alt="" width="160" height="120" loading="lazy" decoding="async" />Design</p>
 <div class="question__ask">
 <h3>What’s the best way to close them?</h3>
 <p>Usually a mix of design, alignment and honest tradeoffs.</p>
@@ -44,7 +44,7 @@ UX has a rich vocabulary for describing process. I keep mine simple, because the
 <p class="question__look"><span class="label">I use</span>Exploration, prototyping, facilitation, prioritization, testing, negotiation, and clear tradeoff decisions.</p>
 </li>
 <li class="question">
-<p class="question__tag"><img src="/illustrations/see-what-changed.svg" alt="" width="44" height="44" loading="lazy" decoding="async" />Impact</p>
+<p class="question__tag"><img src="/illustrations/see-what-changed.svg" alt="" width="160" height="120" loading="lazy" decoding="async" />Impact</p>
 <div class="question__ask">
 <h3>Did the gap close?</h3>
 <p>And what new questions did the work uncover?</p>
