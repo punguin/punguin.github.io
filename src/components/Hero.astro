@@ -7,6 +7,7 @@ const [before, after] = hero.statementHighlight
 ---
 <header class="hero" id="top">
   <div class="hero__text">
+  {hero.portrait && <img class="hero__portrait" src={hero.portrait} alt={hero.portraitAlt ?? ''} width="96" height="96" />}
   <p class="hero__identity eyebrow">{hero.identity[0]} · {hero.identity[1]}</p>
 
   <h1 class="hero__statement">
@@ -33,6 +34,15 @@ const [before, after] = hero.statementHighlight
     .hero { padding-block: 52px 32px; }
   }
 
+  .hero__portrait {
+    width: 96px;
+    height: 96px;
+    margin-bottom: var(--space-4);
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--line);
+  }
+  @media (max-width: 720px) { .hero__portrait { width: 76px; height: 76px; } }
   .hero__identity { margin-bottom: 14px; }
 
   .hero__statement {
