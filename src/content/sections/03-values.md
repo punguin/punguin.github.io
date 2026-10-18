@@ -12,7 +12,15 @@ order: 3
 
 ### Humans first.
 
-Products, systems and businesses exist to serve people, and that includes the people building them. I design for the person on the other side of the screen and work in a way that respects my team’s time and energy. Good work should make room for a meaningful life, not compete with it.
+Products, systems, businesses, efficiency, even design itself, exist to serve people. What matters most is deeply human: time with the people I love, making things, being outside, learning, resting and belonging. I design for the person on the other side of the screen and work in a way that protects my team’s time and energy, so the work makes room for the rest of life instead of competing with it.
+
+</div>
+
+<div class="value">
+
+### Curiosity before conviction.
+
+Judgment comes after understanding. Before I decide whether something is good, I want to know its context, its boundaries and the tradeoffs behind it. I’ve helped my team move design critique away from pixels and toward those questions, so feedback is about the problem rather than personal taste, and designers leave knowing what to change and why.
 
 </div>
 
