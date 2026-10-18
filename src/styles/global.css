@@ -618,9 +618,16 @@ section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset);
   .prose .question__look { padding-top: 6px; }
 }
 
-.prose .dial { list-style: none; margin: var(--space-6) 0 0; padding: 0; display: grid; gap: var(--space-6); }
-@media (min-width: 720px) { .prose .dial { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.prose .dial__level { margin: 0; padding-top: var(--space-4); border-top: 1px solid var(--line); }
+.prose .dial { list-style: none; margin: var(--space-7) 0 0; padding: 0; display: grid; gap: var(--space-6); }
+.prose .dial__level { margin: 0; }
+/* Side by side, the levels are split by vertical dividers. */
+@media (min-width: 720px) {
+  .prose .dial { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+  .prose .dial__level { padding-inline: var(--space-5); }
+  .prose .dial__level:first-child { padding-left: 0; }
+  .prose .dial__level:last-child { padding-right: 0; }
+  .prose .dial__level + .dial__level { border-left: 1px solid var(--line); }
+}
 .prose .dial__level > * { margin: 0; }
 .prose .dial__level > * + * { margin-top: var(--space-2); }
 .dial__meter { display: flex; gap: 4px; }
@@ -640,11 +647,15 @@ section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset);
 .prose .ai-note p:last-child { color: #d6d3cc; }
 .prose .statement + p { margin-top: var(--space-4); }
 
-/* Values: two columns on wide screens, each value under its own rule. */
-.values { display: grid; gap: var(--space-7) var(--space-6); margin-top: var(--space-6); }
-.value { padding-top: var(--space-4); border-top: 1px solid var(--line); }
+/* Values: two columns on wide screens, split by a vertical divider. */
+.values { display: grid; gap: var(--space-7) 0; margin-top: var(--space-7); }
 .prose .value h3 { margin-top: 0; }
 .value p { max-width: 34em; }
-@media (min-width: 900px) { .values { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 900px) {
+  .values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .value:nth-child(odd) { padding-right: var(--space-6); }
+  .value:nth-child(even) { padding-left: var(--space-6); border-left: 1px solid var(--line); }
+  .doc-section--dark .value:nth-child(even) { border-left-color: #3f7a74; }
+}
 .value > * + * { margin-top: var(--space-3); }
 .prose .ai-note p { max-width: 52em; }
