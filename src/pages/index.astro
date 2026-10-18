@@ -8,10 +8,13 @@ import ExperienceTimeline from '../components/ExperienceTimeline.astro';
 import ContactLinks from '../components/ContactLinks.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import CaseContents from '../components/CaseContents.astro';
 import { getSortedSections } from '../lib/outline';
 
 const sections = await getSortedSections();
 const rendered = await Promise.all(sections.map(async (s) => ({ entry: s, ...(await render(s)) })));
+
+const contents = sections.map((s) => ({ id: s.data.id, number: s.data.number, label: s.data.navLabel, children: [] }));
 
 const title = 'Pung Brooks — Product Design & Design Leadership';
 const description =
@@ -25,6 +28,8 @@ const description =
     <main class="document" id="main">
       <Hero />
 
+      <div class="home-layout">
+      <CaseContents items={contents} title="Pung Brooks" top={false} />
       <div class="sections">
       {rendered.map(({ entry, Content }) => {
         const d = entry.data;
@@ -38,6 +43,7 @@ const description =
         );
       })}
       </div>
+      </div>
 
       <SiteFooter />
     </main>
@@ -45,5 +51,18 @@ const description =
 
   <script>
     import "../scripts/reveal.ts";
+    import "../scripts/document-nav.ts";
   </script>
 </BaseLayout>
+
+<style>
+  /* Contents on the left, sections on the right (wide screens only). The page widens a little so the sections keep their room. */
+  .home-layout { --toc-top: calc(var(--header-h) + 24px); }
+  .home-layout :global(.toc) { display: none; }
+  @media (min-width: 1100px) {
+    :global(:root) { --doc-max: 1280px; }
+    .home-layout { display: grid; grid-template-columns: 180px minmax(0, 1fr); column-gap: var(--toc-gap); }
+    .home-layout :global(.toc) { display: block; padding-top: 72px; }
+    .home-layout > :global(.sections) { min-width: 0; }
+  }
+</style>

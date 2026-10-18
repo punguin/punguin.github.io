@@ -1,12 +1,13 @@
 ---
 // Contents list for a case study page, built from the story's headings: "#### 00 / Context" is a
 // section, "##### 4.1 …" a numbered step under it. Unnumbered "#####" headings stay out of the list.
-// Shares the homepage TOC's look (.toc) and scroll spy (data-spy, src/scripts/document-nav.ts).
+// The homepage passes its sections as `items` instead (and no Top link).
+// Scroll spy: data-spy, src/scripts/document-nav.ts.
 import type { MarkdownHeading } from 'astro';
-interface Props { headings: MarkdownHeading[]; title: string }
-const { headings, title } = Astro.props;
-
 type Item = { id: string; number: string; label: string; children: Item[] };
+interface Props { headings?: MarkdownHeading[]; title: string; items?: Item[]; top?: boolean }
+const { headings = [], title, items: given, top = true } = Astro.props;
+
 const split = (text: string) => {
   const slash = text.match(/^(\d+)\s*\/\s*(.+)$/);
   if (slash) return { number: slash[1], label: slash[2] };
@@ -14,8 +15,8 @@ const split = (text: string) => {
   if (dotted) return { number: dotted[1], label: dotted[2] };
   return { number: '', label: text };
 };
-const items: Item[] = [];
-for (const h of headings) {
+const items: Item[] = given ?? [];
+if (!given) for (const h of headings) {
   const { number, label } = split(h.text);
   if (h.depth === 4) items.push({ id: h.slug, number, label, children: [] });
   else if (h.depth === 5 && number && items.length) items.at(-1)!.children.push({ id: h.slug, number, label, children: [] });
@@ -25,7 +26,7 @@ for (const h of headings) {
   <nav class="toc" aria-label={`${title} contents`}>
     <div class="toc__inner">
       <ol class="toc__list" role="list">
-        <li><a href="#top" data-spy="top" aria-current="location"><span class="toc__num">Top</span><span class="toc__label">{title}</span></a></li>
+        {top && <li><a href="#top" data-spy="top" aria-current="location"><span class="toc__num">Top</span><span class="toc__label">{title}</span></a></li>}
         {items.map((item) => (
           <li class={item.children.length ? 'toc__group' : undefined}>
             <a href={`#${item.id}`} data-spy={item.id}><span class="toc__num">{item.number}</span><span class="toc__label">{item.label}</span></a>
@@ -46,6 +47,7 @@ for (const h of headings) {
 <style>
   .toc__inner {
     position: sticky;
+    z-index: 1; /* stay above the full-bleed dark band, which paints out under this column */
     top: var(--toc-top);
     max-height: calc(100vh - 2 * var(--toc-top));
     overflow-y: auto;
@@ -53,7 +55,7 @@ for (const h of headings) {
     padding-bottom: var(--space-5);
   }
   .toc__list, .toc__sub { list-style: none; margin: 0; padding: 0; }
-  .toc__list > li:first-child { margin-bottom: var(--space-3); }
+  .toc__list > li:first-child:has(a[data-spy="top"]) { margin-bottom: var(--space-3); }
   .toc__sub { margin-block: 2px var(--space-1); }
 
   .toc a {
@@ -81,4 +83,9 @@ for (const h of headings) {
   .toc a:hover { background: var(--hover-bg); color: var(--text-primary); }
   .toc a[aria-current] { background: var(--selected-bg); color: var(--text-primary); font-weight: 600; }
   .toc a[aria-current] .toc__num { color: var(--text-primary); }
+  /* Links sitting over the full-bleed dark band (homepage Values) switch to light text. */
+  .toc a.is-on-dark { color: #cfe0dd; }
+  .toc a.is-on-dark .toc__num { color: #a9c9c4; }
+  .toc a.is-on-dark:hover, .toc a.is-on-dark[aria-current] { background: rgba(255, 255, 255, 0.1); color: #faf9f6; }
+  .toc a.is-on-dark[aria-current] .toc__num { color: #faf9f6; }
 </style>
