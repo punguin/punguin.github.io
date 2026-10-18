@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" width="160" height="120" fill="none" stroke-linejoin="miter" stroke-linecap="square">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" width="160" height="120" fill="none" stroke-linejoin="round" stroke-linecap="round">
 <path d="M34 30 H126 M34 30 V90 H80 V30 M126 30 V90 H80" stroke="#161616" stroke-width="5"/>
-<rect x="20" y="16" width="28" height="28" fill="#161616"/>
-<rect x="66" y="16" width="28" height="28" fill="#fff" stroke="#161616" stroke-width="5"/>
-<rect x="112" y="16" width="28" height="28" fill="#161616"/>
-<rect x="20" y="76" width="28" height="28" fill="#fff" stroke="#161616" stroke-width="5"/>
-<rect x="64" y="74" width="32" height="32" fill="#14b3a6"/>
-<rect x="112" y="76" width="28" height="28" fill="#fff" stroke="#161616" stroke-width="5"/>
+<rect x="20" y="16" width="28" height="28" rx="6" fill="#161616"/>
+<rect x="66" y="16" width="28" height="28" rx="6" fill="#fff" stroke="#161616" stroke-width="5"/>
+<rect x="112" y="16" width="28" height="28" rx="6" fill="#161616"/>
+<rect x="20" y="76" width="28" height="28" rx="6" fill="#fff" stroke="#161616" stroke-width="5"/>
+<rect x="112" y="76" width="28" height="28" rx="6" fill="#fff" stroke="#161616" stroke-width="5"/>
+<rect x="64" y="74" width="32" height="32" rx="7" fill="#14b3a6"/>
 </svg>

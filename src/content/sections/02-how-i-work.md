@@ -12,7 +12,7 @@ UX has a rich vocabulary for describing process. I keep mine simple, because the
 
 <ol class="questions" role="list">
 <li class="question">
-<p class="question__tag"><img src="/illustrations/understand-people.svg" alt="" width="160" height="120" loading="lazy" decoding="async" />People</p>
+<div class="question__tag"><span>People</span><svg class="question__art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" width="160" height="120" fill="none" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" focusable="false"><circle style="--i:0" cx="34" cy="38" r="13" fill="#161616"/><path style="--i:1" d="M12 92 L12 78 Q12 58 34 58 Q56 58 56 78 L56 92 Q56 96 52 96 L16 96 Q12 96 12 92 Z" fill="#161616"/><path style="--i:2" d="M68 60 H106" stroke="#161616" stroke-width="5" stroke-dasharray="0.1 9"/><path style="--i:3" d="M104 51 L114 60 L104 69" stroke="#161616" stroke-width="5"/><circle style="--i:4" cx="136" cy="60" r="20" stroke="#161616" stroke-width="5" fill="#fff"/><circle style="--i:5" cx="136" cy="60" r="9" fill="#14b3a6"/></svg></div>
 <div class="question__ask">
 <h3>What are people trying to do?</h3>
 <p>Who are they, and what in their world shapes how they act?</p>
@@ -20,7 +20,7 @@ UX has a rich vocabulary for describing process. I keep mine simple, because the
 <p class="question__look"><span class="label">I look at</span>Goals, needs, behavior, environment, mental models, and the real-world constraints people work around.</p>
 </li>
 <li class="question">
-<p class="question__tag"><img src="/illustrations/understand-the-system.svg" alt="" width="160" height="120" loading="lazy" decoding="async" />System</p>
+<div class="question__tag"><span>System</span><svg class="question__art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" width="160" height="120" fill="none" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" focusable="false"><path style="--i:0" d="M34 30 H126 M34 30 V90 H80 V30 M126 30 V90 H80" stroke="#161616" stroke-width="5"/><rect style="--i:1" x="20" y="16" width="28" height="28" rx="6" fill="#161616"/><rect style="--i:2" x="66" y="16" width="28" height="28" rx="6" fill="#fff" stroke="#161616" stroke-width="5"/><rect style="--i:3" x="112" y="16" width="28" height="28" rx="6" fill="#161616"/><rect style="--i:4" x="20" y="76" width="28" height="28" rx="6" fill="#fff" stroke="#161616" stroke-width="5"/><rect style="--i:5" x="112" y="76" width="28" height="28" rx="6" fill="#fff" stroke="#161616" stroke-width="5"/><rect style="--i:6" x="64" y="74" width="32" height="32" rx="7" fill="#14b3a6"/></svg></div>
 <div class="question__ask">
 <h3>How does the system actually work?</h3>
 <p>Not how it’s drawn on a diagram, but what really shapes the experience.</p>
@@ -28,7 +28,7 @@ UX has a rich vocabulary for describing process. I keep mine simple, because the
 <p class="question__look"><span class="label">I look at</span>Technology, business rules, operations, ownership, incentives, dependencies, and the relationships between teams.</p>
 </li>
 <li class="question">
-<p class="question__tag"><img src="/illustrations/find-the-gaps.svg" alt="" width="160" height="120" loading="lazy" decoding="async" />Gaps</p>
+<div class="question__tag"><span>Gaps</span><svg class="question__art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" width="160" height="120" fill="none" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" focusable="false"><rect style="--i:0" x="8" y="34" width="50" height="40" rx="7" fill="#161616"/><rect style="--i:1" x="102" y="54" width="50" height="40" rx="7" fill="#fff" stroke="#161616" stroke-width="5"/><rect style="--i:2" x="67" y="34" width="26" height="60" rx="6" stroke="#14b3a6" stroke-width="5" stroke-dasharray="0.1 9"/><path style="--i:3" d="M80 12 V22 M80 106 V116" stroke="#14b3a6" stroke-width="5"/></svg></div>
 <div class="question__ask">
 <h3>Where don’t those realities line up?</h3>
 <p>And which of those gaps are worth closing first?</p>
@@ -36,7 +36,7 @@ UX has a rich vocabulary for describing process. I keep mine simple, because the
 <p class="question__look"><span class="label">I look for</span>Unmet needs, conflicting mental models, missing information, broken handoffs, organizational seams, and product structures that no longer match the work.</p>
 </li>
 <li class="question">
-<p class="question__tag"><img src="/illustrations/close-the-gaps.svg" alt="" width="160" height="120" loading="lazy" decoding="async" />Design</p>
+<div class="question__tag"><span>Design</span><svg class="question__art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" width="160" height="120" fill="none" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" focusable="false"><rect style="--i:0" x="8" y="50" width="60" height="40" rx="7" fill="#161616"/><rect style="--i:1" x="92" y="50" width="60" height="40" rx="7" fill="#fff" stroke="#161616" stroke-width="5"/><rect style="--i:2" x="58" y="50" width="44" height="40" rx="7" fill="#14b3a6"/><path style="--i:3" d="M80 6 Q82 20 94 24 Q82 28 80 42 Q78 28 66 24 Q78 20 80 6 Z" fill="#161616"/></svg></div>
 <div class="question__ask">
 <h3>What’s the best way to close them?</h3>
 <p>Usually a mix of design, alignment and honest tradeoffs.</p>
@@ -44,7 +44,7 @@ UX has a rich vocabulary for describing process. I keep mine simple, because the
 <p class="question__look"><span class="label">I use</span>Exploration, prototyping, facilitation, prioritization, testing, negotiation, and clear tradeoff decisions.</p>
 </li>
 <li class="question">
-<p class="question__tag"><img src="/illustrations/see-what-changed.svg" alt="" width="160" height="120" loading="lazy" decoding="async" />Impact</p>
+<div class="question__tag"><span>Impact</span><svg class="question__art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" width="160" height="120" fill="none" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" focusable="false"><path style="--i:0" d="M10 108 H150" stroke="#161616" stroke-width="5"/><rect style="--i:1" x="22" y="78" width="26" height="30" rx="5" fill="#fff" stroke="#161616" stroke-width="5"/><rect style="--i:2" x="62" y="58" width="26" height="50" rx="5" fill="#161616"/><rect style="--i:3" x="102" y="34" width="26" height="74" rx="5" fill="#14b3a6"/><path style="--i:4" d="M18 62 L58 38 L84 48 L130 14" stroke="#161616" stroke-width="5"/><path style="--i:5" d="M116 12 H132 V28" stroke="#161616" stroke-width="5"/></svg></div>
 <div class="question__ask">
 <h3>Did the gap close?</h3>
 <p>And what new questions did the work uncover?</p>
