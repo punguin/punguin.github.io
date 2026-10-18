@@ -14,7 +14,7 @@ const [before, after] = hero.statementHighlight
     {before}{after !== undefined && <><mark>{hero.statementHighlight}</mark>{after}</>}
   </h1>
   <p class="hero__supporting">{hero.supporting}</p>
-  <p class="hero__context">{hero.context}</p>
+  <p class="hero__context"><span class="hero__dot" aria-hidden="true"></span>{hero.context}</p>
 
 
   <p class="hero__actions">
@@ -62,6 +62,7 @@ const [before, after] = hero.statementHighlight
     text-wrap: balance;
   }
 
+  .hero__dot { display: inline-block; width: 8px; height: 8px; margin-right: 0.5em; border-radius: 50%; background: var(--violet); vertical-align: 0.1em; }
   .hero__context {
     margin-top: var(--space-4);
     color: var(--text-tertiary);

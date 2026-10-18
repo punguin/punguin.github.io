@@ -2,9 +2,9 @@
   "portrait": "/images/pung-brooks.webp",
   "portraitAlt": "Portrait of Pung Brooks",
   "greeting": "👋 Hi, I’m Pung.",
-  "statement": "High-impact individual contributor and design leader.",
-  "supporting": "I make complex problem spaces understandable to customers, teammates, leaders, and myself.",
-  "context": "Fifteen years of product design experience across logistics, healthcare communications, ecommerce, and real-estate software.",
+  "statement": "I make complex systems feel simple.",
+  "supporting": "A hands-on product designer and design leader with fifteen years of experience, usually working where the system is the hard part.",
+  "context": "Currently open to work. Previously at Zenni Optical and Amazon, and before that in healthcare SaaS and real-estate tech.",
   "capabilities": [
     "Product Design",
     "Systems",
@@ -23,5 +23,5 @@
     "label": "Contact",
     "href": "#contact"
   },
-  "statementHighlight": "design leader"
+  "statementHighlight": "feel simple"
 }
