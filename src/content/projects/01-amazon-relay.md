@@ -183,9 +183,9 @@ The home screen should orient drivers, not do the heavy lifting.
 
 <p class="label case-status">Shipped in the first release</p>
 
-“Dynamic” was the framing before I joined, and beyond serving carriers no one could say what it meant. If it meant content reshuffling on guesses about a driver, I was adamant it was wrong. Drivers want to get in and out, and owner-operators often work for other companies too. Relay isn’t the center of their world.
+The project began as a “dynamic home screen”, and part of my job was helping the team define what dynamic should mean for drivers. We talked through a home screen that adapts its content to each driver, and I shared what I’d seen in the field: drivers want to get in and out, and many owner-operators also work with other companies, so a predictable layout would serve them better than one that changes.
 
-A weekly show and tell, with the existing design beside a standard home screen layout, built trust with managers and later earned buy-in for the new structure.
+I started a weekly show and tell to keep everyone close to the work. Seeing the existing design beside a more standard home screen layout helped the team and managers weigh options together, and it built the shared confidence behind the new structure.
 
 The home screen became a curated set of cards: the current task first, then past and future loads and other useful content. Cards lead into each capability, and the work happens elsewhere. It is **focused** on the most important task, **organized** so status shows consistently, and **curated**: it summarizes, it doesn’t execute.
 
