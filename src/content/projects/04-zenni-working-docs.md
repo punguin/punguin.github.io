@@ -9,9 +9,9 @@ project: UX working docs in Slack
 domain: Design practice, knowledge sharing
 summary: Make the thinking as visible as the design.
 role: Senior Product Designer, initiative lead
-timeline: "[To confirm] Nov 2024 – 2026"
+timeline: Nov 2024 – 2026
 platform: [Slack canvases, Team practice]
-partners: [UX team, Product, Engineering, Business partners]
+partners: [UX manager, UX team, UX PM, Product, Engineering]
 accent: yellow
 cover: /images/work/zenni-working-docs/cover.webp
 hero: /images/work/zenni-working-docs/hero.webp
@@ -19,25 +19,24 @@ coverAlt: Two Zenni Slack canvases in browser windows, a UX working doc with its
 order: 4
 ---
 
-At Zenni, design mostly lived in Figma, and the reasoning behind it mostly lived in meetings. I proposed a lightweight way to work in the open: UX working docs in Slack canvases, built from a template I made. Teams started using it to house their own work.
+At Zenni, design mostly lived in Figma, and the reasoning behind it mostly lived in meetings. I proposed a lightweight way to work in the open: UX working docs in Slack canvases, built from a template I made. It started on my own projects, and grew into how the whole UX team tracked its work.
 
 <dl class="case-overview">
-<div><dt>The problem</dt><dd>Figma showed what we designed, not why. Decisions were often made on the surface, the work of understanding a problem was often skipped, and unless you were in the meeting, you likely had no visibility into a tradeoff or a decision.</dd></div>
-<div><dt>My role</dt><dd>I saw the gap and spearheaded the fix, for the UX team and for our partners. I proposed the workflow, created the canvas template, and led my own projects in it first. Later I co-facilitated a workshop with a UX colleague so the team could shape its knowledge sharing mechanism together.</dd></div>
-<div><dt>What I did</dt><dd>A lightweight UX working doc workflow that lived in Slack, the tool everyone was already in: one canvas per project where the purpose, the understanding of the problem, the decisions and their tradeoffs were written down and open for anyone to read and comment on.</dd></div>
+<div><dt>The problem</dt><dd>Figma showed what we designed, not why. Decisions were often made on the surface, the work of understanding a problem was often skipped, and unless you were in the meeting, you likely had no visibility into a tradeoff or a decision. The team had no place to manage its own work, and our UX manager had no bird’s-eye view of it.</dd></div>
+<div><dt>My role</dt><dd>I saw the gap and spearheaded the fix. I proposed the workflow, created the canvas template, and proved it on my own projects. When the team reorganized, I piloted it with my team, Web Experience, and with my manager’s help rolled it out to the rest of UX.</dd></div>
+<div><dt>What I did</dt><dd>A lightweight workflow that lived in Slack, the tool everyone was already in: a working doc for each project, where the purpose, the decisions and their tradeoffs were written down and open to threaded comments, and team trackers on top of them that gave everyone visibility into the work.</dd></div>
 </dl>
 
 #### 01 / Impact
 
-A habit on my projects became a way the team worked.
+A habit on my projects became how the team worked.
 
 <ul class="case-impact" role="list">
-<li><p class="case-impact__figure case-impact__figure--text">Adopted</p><p class="case-impact__label">by UX teams for their own work</p><p class="case-impact__note">Teams started using the canvas template to house their projects, and structured it however they needed.</p><p class="case-impact__kind">Organizational outcome</p></li>
-<li><p class="case-impact__figure case-impact__figure--text">Open by default</p><p class="case-impact__label">decisions visible outside the meeting</p><p class="case-impact__note">Partners, and really anyone, could see what was decided and why, comment in a thread on the doc, and see the loop closed.</p><p class="case-impact__kind">Capability</p></li>
-<li><p class="case-impact__figure case-impact__figure--text">Delivery to discovery</p><p class="case-impact__label">one template, very different work</p><p class="case-impact__note">It held a shipped launch in Order Tracking and an idea that was little more than a goal in Multi-Profile Shopping.</p><p class="case-impact__kind">Capability</p></li>
+<li><p class="case-impact__figure">3<span class="case-impact__unit">of 3</span></p><p class="case-impact__label">UX teams adopted it</p><p class="case-impact__note">Growth, Web Experience and Design System all tracked their work in Slack.</p><p class="case-impact__kind">Organizational outcome</p></li>
+<li><p class="case-impact__figure">1<span class="case-impact__unit">month</span></p><p class="case-impact__label">pilot with my team before rollout</p><p class="case-impact__note">We started slow on my own projects, then piloted it with Web Experience before rolling it out to the greater team.</p><p class="case-impact__kind">Organizational outcome</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">Replaced</p><p class="case-impact__label">the Monday top-priorities message</p><p class="case-impact__note">A weekly automated prompt to type what you were working on, with no links or context, gave way to live trackers anyone could open.</p><p class="case-impact__kind">Organizational outcome</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">Open by default</p><p class="case-impact__label">decisions visible outside the meeting</p><p class="case-impact__note">Anyone could see what was decided and why, comment in a thread on the doc, and see the loop closed.</p><p class="case-impact__kind">Capability</p></li>
 </ul>
-
-<p class="todo"><span class="todo-tag">To confirm</span> How many teams or projects used the template, and whether partners outside UX started their own docs. One number or a short list would make the adoption concrete.</p>
 
 #### 02 / Key decisions
 
@@ -46,7 +45,8 @@ The fix was a habit, not a tool.
 <ol class="case-decisions">
 <li><p class="case-decisions__title"><a href="#41-put-the-work-where-people-already-are">Put the work where people already are</a></p><p>The docs lived in Slack, so nobody had to adopt a new tool. Comments were threaded on the doc itself, so questions got answered and closed where everyone could see them. <a class="case-decisions__more" href="#41-put-the-work-where-people-already-are">4.1 ↓</a></p></li>
 <li><p class="case-decisions__title"><a href="#42-make-understanding-part-of-the-template">Make understanding part of the template</a></p><p>The template asked for the purpose, the background and the tenets before the solution, so the understanding part of a problem had a place to live. <a class="case-decisions__more" href="#42-make-understanding-part-of-the-template">4.2 ↓</a></p></li>
-<li><p class="case-decisions__title"><a href="#43-let-the-team-shape-it">Let the team shape it</a></p><p>The template was a starting point, not a form. When the question became how the whole team shares knowledge, we worked it out together in a workshop. <a class="case-decisions__more" href="#43-let-the-team-shape-it">4.3 ↓</a></p></li>
+<li><p class="case-decisions__title"><a href="#43-prove-it-then-pilot-it">Prove it, then pilot it</a></p><p>Designers didn’t want more work and our UX PM worried about Jira. I showed it on my own projects, piloted it with my team for a month, then rolled it out. <a class="case-decisions__more" href="#43-prove-it-then-pilot-it">4.3 ↓</a></p></li>
+<li><p class="case-decisions__title"><a href="#44-build-team-trackers-on-top-of-the-docs">Build team trackers on top of the docs</a></p><p>Trackers gathered every project’s doc in one view, so our manager finally had a bird’s-eye view, and the weekly status message became unnecessary. <a class="case-decisions__more" href="#44-build-team-trackers-on-top-of-the-docs">4.4 ↓</a></p></li>
 </ol>
 
 #### 03 / Understanding the problem
@@ -111,38 +111,50 @@ The same structure stretched to very different work. <a href="/work/zenni-order-
 <figcaption>The template on an early, ambiguous idea: Multi-Profile Shopping, 2026.</figcaption>
 </figure>
 
-##### 4.3 Let the team shape it
+##### 4.3 Prove it, then pilot it
 
-A mechanism only works if the team owns it.
+Adoption was the hard part, not the template.
 
-Teams adopted the template and structured it however they needed. When the question grew from documenting projects to how the whole UX team shares knowledge, I co-facilitated a workshop with a UX colleague to co-build a knowledge sharing mechanism with the team, instead of handing one down.
-
-The workshop was planned in a working doc of its own, with its goal, agenda and a tracker for everything we needed to prepare. Its goal was to collaboratively uncover knowledge gaps, find their root causes, and prioritize the most critical inefficiencies. We introduced what a mechanism is, a tool plus adoption, inspection and iteration, then collected pain points, dug into the top ones with Five Whys, and sorted them into major time sinks and quick wins.
+Before asking anyone else to change, I wanted to understand what the team actually struggled with. I co-facilitated a workshop with a UX colleague to co-build a knowledge sharing mechanism with the team, instead of handing one down. We introduced what a mechanism is, a tool plus adoption, inspection and iteration, then collected pain points, dug into the top ones with Five Whys, and sorted them into major time sinks and quick wins.
 
 <figure class="visual visual--wide">
 <img src="/images/work/zenni-working-docs/knowledge-workshop-canvas.webp" alt="The Co-building a Knowledge Sharing Mechanism PT 1 Working Doc in Slack: facilitators, the purpose of the document, a workshop tracker with every task marked Done, the workshop goal, and the start of the agenda." loading="lazy" />
-<figcaption>The working doc for the knowledge sharing workshop, late 2025. Names and links are hidden.</figcaption>
+<figcaption>The workshop was planned in a working doc of its own, late 2025. Names and links are hidden.</figcaption>
 </figure>
 
-<p class="todo"><span class="todo-tag">To confirm</span> What the workshop found (the top pain points or root causes), and what the team changed because of it. This is “PT 1”: was there a part 2?</p>
+<p class="todo"><span class="todo-tag">To confirm</span> One or two things the workshop found, if you remember them. Otherwise this paragraph can stay as is.</p>
+
+At the start of 2026 the team was reorganizing, and we needed a better way to manage everything. The tools I was already using on my own projects were a natural fit for the broader team. There was resistance. Designers were hesitant to add more work to their plates, and our UX PM was worried about what it would mean for Jira. I argued that Jira is a great developer tool once requirements are set, but we didn’t have a place to manage our own work.
+
+So we started slow. The team had seen how it improved my own projects. I piloted it with my team, Web Experience, and after a month of adoption, we rolled it out to the greater team, with my manager helping with the initial push. All three teams adopted it: Growth, Web Experience and Design System.
+
+##### 4.4 Build team trackers on top of the docs
+
+One view of all the work, still in Slack.
+
+My manager didn’t have a way to see a bird’s-eye view of all her team’s work, so the working docs were a natural solution for her too. We built on top of the project documentation by creating team trackers that housed each project’s doc and its work. Because they lived in Slack, they were visible to anyone.
+
+The trackers replaced the Monday morning top-priorities message, an automated prompt where each designer typed in what they were working on that week, with no links or further context. Instead of a weekly snapshot, anyone could open a tracker, follow a link to a project’s working doc, and see the decisions behind it.
 
 ##### Writing to bring people along
 
 The same habit, on a bigger question.
 
-Working in prose wasn’t only for projects. When the D2C organization restructured around delivery speed, I wrote a discussion starter for the UX team and D2C leaders on organizing designers by strategic domain instead. It said up front what it was, a discussion starter, and what it was not, a proposal to throw away our current structure. Peer reviewers added their thinking directly in the doc. Writing the argument out, in the open, is how I bring people along before asking them to agree.
+The reorganization came from leadership wanting to replace squads with teams organized by delivery speed. I wrote a discussion starter for the UX team and D2C leaders on organizing designers by strategic domain instead. It said up front what it was, a discussion starter, and what it was not, a proposal to throw away our current structure. Peer reviewers added their thinking directly in the doc. Writing the argument out, in the open, is how I bring people along before asking them to agree.
 
 <figure class="visual visual--wide">
 <img src="/images/work/zenni-working-docs/org-discussion-canvas.webp" alt="The UX Organization Discussion: Optimizing Velocity via Strategic Domains canvas: author Pung Brooks, audience UX team and D2C leaders, stakeholders, peer reviewers, and the lines what this document is, a discussion starter, and what it is not, a proposal to throw away our current structure." loading="lazy" />
 <figcaption>A discussion starter written for the UX team and D2C leaders. Names are hidden.</figcaption>
 </figure>
 
+After I left, I learned the organization had reversed course and returned to domain-based squads. I can’t say how much the document influenced that, because I was gone by then, but it did get the conversation started.
+
 #### 05 / What it enabled
 
-Decisions anyone could find, and a team that kept the practice.
+Visibility into our work, for the first time.
 
-The working docs outlasted the project they started on. Later projects started from the template, and the team had a shared place to see what was decided and why.
+Soon the entire UX team was tracking its work in Slack, which gave everyone visibility into what we were doing and why. It started as a template for my own projects, and became a shared way of working that three teams and our manager relied on.
 
 ##### Reflection
 
-<p class="todo"><span class="todo-tag">To write</span> Two or three sentences in your own words: what you learned about driving adoption without authority, and what you would do differently, for example how you would inspect whether the mechanism was working.</p>
+<p class="todo"><span class="todo-tag">To write</span> Two or three sentences in your own words: what you learned about driving adoption without authority, and what you would do differently.</p>
