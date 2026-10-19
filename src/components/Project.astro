@@ -164,4 +164,129 @@ const meta: [string, string][] = [
   }
 
   .project__body :global(.callout .label) { display: block; margin: 0 0 var(--space-2); }
+
+  /* Impact-first opening (2026-10-19). The lede, then three overview rows (problem, role, what I
+     did), then "01 / Impact" as a row of outcomes and "02 / Key decisions" as a numbered list that
+     links into "04 / Making it work". Open rows and dividers, no cards: only clickable things get a box. */
+  .project__body :global(.case-overview) {
+    display: grid;
+    max-width: var(--doc-max);
+  }
+  .project__body :global(.case-overview > div) {
+    display: grid;
+    grid-template-columns: 9.5em minmax(0, 1fr);
+    gap: var(--space-4);
+    padding-block: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .project__body :global(.case-overview dt) { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--text-tertiary); padding-top: 0.3em; }
+  .project__body :global(.case-overview dd) { margin: 0; max-width: var(--measure); line-height: 1.5; }
+  .project__body :global(.case-overview dd ul) { padding-left: 1.1em; font-size: 0.9375rem; }
+  .project__body :global(.case-overview dd li + li) { margin-top: var(--space-1); }
+  @media (max-width: 600px) {
+    .project__body :global(.case-overview > div) { grid-template-columns: 1fr; gap: var(--space-1); }
+    .project__body :global(.case-overview dt) { padding-top: 0; }
+  }
+
+  .project__body :global(.case-impact) {
+    list-style: none;
+    padding: 0;
+    max-width: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .project__body :global(.case-impact > li) {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-4) var(--space-5) var(--space-4);
+    border-left: 1px solid var(--line);
+  }
+  .project__body :global(.case-impact > li:nth-child(2n + 1)) { border-left: 0; padding-left: 0; }
+  .project__body :global(.case-impact > li:nth-child(n + 3)) { border-top: 1px solid var(--line); }
+  @media (min-width: 960px) {
+    .project__body :global(.case-impact) { grid-template-columns: none; grid-auto-columns: minmax(0, 1fr); grid-auto-flow: column; }
+    .project__body :global(.case-impact > li:nth-child(n)) { border-left: 1px solid var(--line); border-top: 0; padding-left: var(--space-4); }
+    .project__body :global(.case-impact > li:first-child) { border-left: 0; padding-left: 0; }
+  }
+  .project__body :global(.case-impact__figure) {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .project__body :global(.case-impact__unit) { font-size: 0.55em; margin-left: 0.12em; }
+  .project__body :global(.case-impact__figure--text) { white-space: normal; }
+  .project__body :global(.case-impact__figure--text) { font-size: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem); line-height: 1.1; }
+  .project__body :global(.case-impact__label) { font-weight: 600; font-size: 0.9375rem; line-height: 1.4; }
+  .project__body :global(.case-impact__note) { font-size: var(--text-small); line-height: 1.5; color: var(--text-secondary); }
+  .project__body :global(.case-impact__kind) { margin-top: auto; padding-top: var(--space-2); font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-tertiary); }
+  .project__body :global(.case-impact__kind)::before { content: ""; display: inline-block; width: 0.55em; height: 0.55em; margin-right: 0.5em; background: var(--violet); vertical-align: 0.05em; }
+  .project__body :global(.case-impact + p) { font-size: var(--text-small); color: var(--text-secondary); }
+  @media (max-width: 420px) {
+    .project__body :global(.case-impact > li) { padding-inline: var(--space-3) 0; }
+    .project__body :global(.case-impact > li:nth-child(2n + 1)) { padding-right: var(--space-3); }
+  }
+
+  .project__body :global(.case-decisions) {
+    list-style: none;
+    padding: 0;
+    max-width: none;
+    counter-reset: decision;
+    display: grid;
+  }
+  .project__body :global(.case-decisions > li) {
+    margin: 0;
+    counter-increment: decision;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    padding-block: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--line);
+  }
+  .project__body :global(.case-decisions > li)::before {
+    content: counter(decision, decimal-leading-zero);
+    margin-bottom: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+  }
+  .project__body :global(.case-decisions__title) {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+  .project__body :global(.case-decisions__title a) { text-decoration: none; }
+  .project__body :global(.case-decisions__title a:hover) { text-decoration: underline; text-decoration-thickness: 2px; }
+  .project__body :global(.case-decisions > li > p:not(.case-decisions__title)) { margin-top: var(--space-2); font-size: 1rem; line-height: 1.55; color: var(--text-secondary); }
+  .project__body :global(.case-decisions__more) { font-family: var(--font-mono); font-size: 0.75rem; white-space: nowrap; }
+  /* Wide screens: number, decision and why it mattered on one row, so the list stays short. */
+  @media (min-width: 760px) {
+    .project__body :global(.case-decisions > li) { grid-template-columns: 2.75em minmax(0, 0.85fr) minmax(0, 1.15fr); column-gap: var(--space-5); }
+    .project__body :global(.case-decisions > li)::before { margin: 0; padding-top: 0.4em; }
+    .project__body :global(.case-decisions > li > p:not(.case-decisions__title)) { margin-top: 0.15em; }
+  }
+
+  /* "##### 3.1 People" followed by the perspective's insight: the heading becomes a small label and
+     the insight carries the display type, matching the "#### 00 / Section" pattern one level down. */
+  .project__body :global(h5:has(+ p.case-insight)) {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--text-tertiary);
+  }
+  .project__body :global(h5 + p.case-insight) {
+    margin-top: var(--space-3);
+    max-width: 22em;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+    font-weight: var(--weight-display);
+    line-height: 1.15;
+    color: var(--text-primary);
+    text-wrap: balance;
+  }
 </style>

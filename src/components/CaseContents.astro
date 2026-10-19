@@ -1,5 +1,5 @@
 ---
-// Contents list for a case study page, built from the story's headings: "#### 00 / Context" is a
+// Contents list for a case study page (Overview links to the top), built from the story's headings: "#### 00 / Context" is a
 // section, "##### 4.1 …" a numbered step under it. Unnumbered "#####" headings stay out of the list.
 // The homepage passes its sections as `items` instead (and no Top link).
 // Scroll spy: data-spy, src/scripts/document-nav.ts.
@@ -26,7 +26,7 @@ if (!given) for (const h of headings) {
   <nav class="toc" aria-label={`${title} contents`}>
     <div class="toc__inner">
       <ol class="toc__list" role="list">
-        {top && <li><a href="#top" data-spy="top" aria-current="location"><span class="toc__num">Top</span><span class="toc__label">{title}</span></a></li>}
+        {top && <li><a href="#top" data-spy="top" aria-current="location"><span class="toc__num">00</span><span class="toc__label">Overview</span></a></li>}
         {items.map((item) => (
           <li class={item.children.length ? 'toc__group' : undefined}>
             <a href={`#${item.id}`} data-spy={item.id}><span class="toc__num">{item.number}</span><span class="toc__label">{item.label}</span></a>
@@ -55,7 +55,6 @@ if (!given) for (const h of headings) {
     padding-bottom: var(--space-5);
   }
   .toc__list, .toc__sub { list-style: none; margin: 0; padding: 0; }
-  .toc__list > li:first-child:has(a[data-spy="top"]) { margin-bottom: var(--space-3); }
   .toc__sub { margin-block: 2px var(--space-1); }
 
   .toc a {
@@ -78,7 +77,6 @@ if (!given) for (const h of headings) {
     font-variant-numeric: tabular-nums;
     color: var(--text-tertiary);
   }
-  .toc a[data-spy="top"] .toc__num { text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.6875rem; }
 
   .toc a:hover { background: var(--hover-bg); color: var(--text-primary); }
   .toc a[aria-current] { background: var(--selected-bg); color: var(--text-primary); font-weight: 600; }
