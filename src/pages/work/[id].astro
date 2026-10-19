@@ -25,13 +25,24 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
   <a class="skip-link" href="#main">Skip to content</a>
   <SiteHeader />
 
-  <div class="page-shell">
-    <main class="document" id="main">
-      <div class="case-layout" id="top">
+  <main id="main">
+    <!-- Full-width hero band in the case's colour: back link, title, and the cover mockup bleeding off the right. -->
+    <section class="case-hero" style={`--case-color: ${p.coverColor ?? `var(--accent-${p.accent})`}`}>
+      <div class="case-hero__inner">
+        <p class="case-top"><a class="case-top__back" href="/#selected-work"><span aria-hidden="true">←</span> All work</a></p>
+        <div class="case-hero__text">
+          <p class="eyebrow case-hero__kicker" aria-hidden="true">{p.company} · {p.project}</p>
+          <h1 class="case-hero__title" id={`${p.id}-title`}><span class="visually-hidden">{p.title}: </span>{p.summary}</h1>
+        </div>
+      </div>
+      {p.cover && <img class="case-hero__media" src={p.cover} alt={p.coverAlt ?? ''} width="1600" height="1000" fetchpriority="high" />}
+    </section>
+
+    <div class="page-shell">
+      <div class="document">
+        <div class="case-layout" id="top">
           <div class="case-layout__body">
-            <Project entry={entry} standalone>
-              <p class="case-top" slot="top"><a class="case-top__back" href="/#selected-work"><span aria-hidden="true">←</span> All work</a></p>
-            </Project>
+            <Project entry={entry} standalone />
 
             <nav class="case-next" aria-label="Next case study">
               <a href={`/work/${next.data.id}/`}>
@@ -41,10 +52,10 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
             </nav>
           </div>
           <CaseContents headings={headings} title={p.title} />
+        </div>
       </div>
-
-    </main>
-  </div>
+    </div>
+  </main>
 
   <SiteFooter />
 
@@ -55,10 +66,39 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
 </BaseLayout>
 
 <style>
-  .case-top, .case-next { max-width: var(--case-measure); margin-inline: auto; }
-  .case-top { padding-top: var(--space-6); font-size: 0.875rem; }
-  .case-top__back { color: var(--text-secondary); text-decoration: none; }
-  .case-top__back:hover { color: var(--ink); text-decoration: underline; }
+  .case-next { max-width: var(--case-measure); margin-inline: auto; }
+
+  .case-hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--case-color);
+  }
+  .case-hero__inner {
+    display: flex;
+    flex-direction: column;
+    width: min(calc(100% - 2 * var(--gutter)), var(--doc-max));
+    min-height: clamp(520px, 42vw, 660px);
+    margin-inline: auto;
+    padding-block: 28px var(--space-8);
+  }
+  .case-top { margin: 0; font-size: 0.875rem; }
+  .case-top__back { color: var(--ink); text-decoration: none; }
+  .case-top__back:hover { text-decoration: underline; }
+  .case-hero__text { position: relative; z-index: 1; margin-block: auto; max-width: 44%; }
+  .case-hero__kicker { margin-bottom: 14px; color: rgba(22, 22, 22, 0.72); }
+  .case-hero__title {
+    font-size: var(--text-h2);
+    line-height: 1.08;
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+  }
+  /* The cover is a transparent mockup whose devices already bleed off its right and bottom edges. */
+  .case-hero__media { position: absolute; right: 0; bottom: 0; width: min(56vw, 980px); height: auto; }
+  @media (max-width: 899px) {
+    .case-hero__inner { min-height: 0; padding-bottom: var(--space-6); }
+    .case-hero__text { max-width: none; margin-block: var(--space-7) 0; }
+    .case-hero__media { position: static; display: block; width: 100%; }
+  }
 
   /* Case pages run wider than the homepage so images can be bigger; text keeps its measure.
      The header and footer follow the same width. */
@@ -75,7 +115,7 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
       grid-template-columns: minmax(0, 1fr) var(--toc-width);
       column-gap: 48px;
     }
-    .case-layout :global(.toc) { display: block; padding-top: 340px; }
+    .case-layout :global(.toc) { display: block; padding-top: var(--space-7); }
   }
 
   .case-next { padding-block: var(--space-4) var(--space-9); }
