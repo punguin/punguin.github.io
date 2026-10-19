@@ -26,7 +26,7 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
   <SiteHeader />
 
   <main id="main">
-    <!-- Full-width hero band in the case's colour: back link, title, and the cover mockup bleeding off the right. -->
+    <!-- Inset hero panel in the case’s colour: back link, title, and the cover mockup bleeding off the right. -->
     <section class="case-hero" style={`--case-color: ${p.coverColor ?? `var(--accent-${p.accent})`}`}>
       <div class="case-hero__inner">
         <p class="case-top"><a class="case-top__back" href="/#selected-work"><span aria-hidden="true">←</span> All work</a></p>
@@ -68,10 +68,14 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
 <style>
   .case-next { max-width: var(--case-measure); margin-inline: auto; }
 
+  /* Same inset panel as the homepage hero: the header bar floats on its top edge. */
   .case-hero {
     position: relative;
     overflow: hidden;
+    margin: calc(-1 * (var(--header-h) + var(--bar-top)) + var(--frame)) var(--frame) 0;
+    padding-top: calc(var(--header-h) + var(--bar-top) - var(--frame));
     background: var(--case-color);
+    border-radius: 22px;
   }
   .case-hero__inner {
     display: flex;
