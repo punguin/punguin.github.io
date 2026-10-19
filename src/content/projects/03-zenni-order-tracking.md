@@ -48,7 +48,7 @@ Make complexity useful, not visible.
 <ol class="case-decisions">
 <li><p class="case-decisions__title"><a href="#42-what-is-happening-a-tracker-for-every-shipment">Show the milestones customers care about, not the operational record</a></p><p>Every shipment gets five milestones, with the active step as the focal point and estimated delivery dates up front, in place of one internal status line and a shipping speed. <a class="case-decisions__more" href="#42-what-is-happening-a-tracker-for-every-shipment">4.2 ↓</a></p></li>
 <li><p class="case-decisions__title"><a href="#43-what-it-means-and-what-happens-next">Explain the step customers call about, where they see it</a></p><p>A “Where is my Order?” card changes with the milestone. At the en-route step, which gets the most customer service calls, it says what is happening and what comes next. <a class="case-decisions__more" href="#43-what-it-means-and-what-happens-next">4.3 ↓</a></p></li>
-<li><p class="case-decisions__title"><a href="#44-one-framework-for-every-route">One messaging framework for every route</a></p><p>The tracker keeps the same five slots, and two of them change with the item and the route, so new origins and destinations don’t need new design. <a class="case-decisions__more" href="#44-one-framework-for-every-route">4.4 ↓</a></p></li>
+<li><p class="case-decisions__title"><a href="#44-one-framework-for-every-route">One messaging framework for every route</a></p><p>The tracker keeps the same five steps, and two of them change with the item and the route, so new origins and destinations don’t need new design. <a class="case-decisions__more" href="#44-one-framework-for-every-route">4.4 ↓</a></p></li>
 <li><p class="case-decisions__title"><a href="#45-what-i-should-do-the-hard-paths">Design for holds, delays and errors, not only the happy path</a></p><p>Templates for orders on hold, data errors, older orders and routes with no delivered step tell customers what is needed and by when. <a class="case-decisions__more" href="#45-what-i-should-do-the-hard-paths">4.5 ↓</a></p></li>
 </ol>
 
@@ -195,28 +195,21 @@ The copy had to scale with the supply chain.
 
 <p class="label case-status">In the developer handoff</p>
 
-I recorded a walkthrough of the prototype and shared it with the squad on October 31, 2025. Leadership pushed on scale: orders ship from overseas labs and from the US, to customers in the US and around the world, and new lab locations were planned. The copy had to account for every combination.
-
-I share early and often, gather feedback, and address it. Sharing early meant the scale question came up two weeks before handoff, not after launch, and the answer was worked out in the working doc, where everyone could follow it.
+After one of my recorded demos, on October 31, 2025, I received critical feedback from leadership: orders ship from overseas labs and from the US, to customers around the world, and new labs were planned. The copy had to work for every combination. I share early and often, gather feedback, and address it, so this came up two weeks before handoff instead of after launch.
 
 <p class="callout">How might we design a scalable messaging framework that adapts to complex, multi-origin logistics, so every customer feels confident and informed even when their items follow complex global routes?</p>
 
-I answered with a messaging framework I owned, built on three principles: new origins and destinations shouldn’t need a redesign, terminology must match the item’s actual status, and the long gap between manufacturing and last-mile shipping should stop being a black box. The tracker always has the same five slots. Two of them change with the order:
+My answer was a messaging framework built on three principles: new routes shouldn’t need a redesign, labels must match the item’s real status, and the gap between the lab and the last mile can’t be a black box. The tracker always has five steps, and only two of them change:
 
-- **Step 2, fulfillment.** “Manufacturing” for custom and prescription items being made in the lab, and “Order Processing” for stock items picked from inventory. A mixed shipment shows as custom.
-- **Step 3, the middle mile.** “En-route to US Facility” for imports to the US, “En-route to Regional Facility” for every other route, and hidden when the order ships directly within the US.
+| Step | What it shows |
+|---|---|
+| 1 | Order Received |
+| 2, fulfillment | Manufacturing for custom and prescription items, Order Processing for stock items |
+| 3, middle mile | En-route to US Facility for imports to the US, En-route to Regional Facility for other routes, hidden when the order ships within the US |
+| 4 | Shipped |
+| 5 | Delivered |
 
-| Route | Item | Step 2 | Step 3 |
-|---|---|---|---|
-| Overseas lab to US | Custom / Rx | Manufacturing | En-route to US Facility |
-| US to US | Custom / Rx | Manufacturing | Hidden (direct ship) |
-| Overseas lab to another country | Custom / Rx | Manufacturing | En-route to Regional Facility |
-| US to another country | Custom / Rx | Manufacturing | En-route to Regional Facility |
-| US to US | Stock / Plano | Order Processing | Hidden (direct ship) |
-| Overseas to US | Stock / Plano | Order Processing | En-route to US Facility |
-| E-gift card | n/a | Hidden | Hidden |
-
-A new lab doesn’t need new design. It follows the same logic as the labs before it, which was the point.
+A new lab doesn’t need new design. It follows the same logic as the labs before it.
 
 ##### 4.5 What I should do: the hard paths
 
