@@ -300,8 +300,8 @@ The release made the app’s architecture something other teams could build on. 
 
 In a driver’s public video, the home screen still follows the same structure: the current stop with its start button, the schedule, and a new “Find work” card that brings load board and contract search into the driver app without changing the structure around it.
 
-<figure class="visual visual--inline" style="max-width: 320px">
-<img src="/images/work/amazon-relay/in-the-wild.webp" alt="The Relay home screen in use, with a current stop card for San Diego and a Start work button, a My schedule card with two upcoming trips, and a new Find work card linking to Search Load Board and Search Contracts." loading="lazy" />
+<figure class="visual visual--inline">
+<img style="max-width: 320px" src="/images/work/amazon-relay/in-the-wild.webp" alt="The Relay home screen in use, with a current stop card for San Diego and a Start work button, a My schedule card with two upcoming trips, and a new Find work card linking to Search Load Board and Search Contracts." loading="lazy" />
 <figcaption>In the wild, from a driver’s public video: a new Find work card plugged into the same home screen.</figcaption>
 </figure>
 

@@ -110,8 +110,8 @@ Putting the purpose, background and tenets first made the understanding part of 
 
 The same structure stretched to very different work. <a href="/work/zenni-order-tracking/">Order Tracking</a> used it for a launch: the working doc, the design jam and its follow-up, the messaging framework and a recorded prototype walkthrough. Multi-Profile Shopping used it for an idea that was little more than a goal, and the doc turned it into a north star, working tenets, and two tracks of UX work with desired outcomes, metrics and the evidence of success we’d look for.
 
-<figure class="visual" style="max-width: 720px">
-<img src="/images/work/zenni-account/multi-profile-canvas.webp" alt="The Multi-Profile Shopping working doc: a dual-track UX strategy, and a table for Track 1, validate customer demand through labeling, with focus areas Organization, Workflow Efficiency and Business Value, each with a desired outcome, KPIs and evidence of success." loading="lazy" />
+<figure class="visual">
+<img style="max-width: 720px" src="/images/work/zenni-account/multi-profile-canvas.webp" alt="The Multi-Profile Shopping working doc: a dual-track UX strategy, and a table for Track 1, validate customer demand through labeling, with focus areas Organization, Workflow Efficiency and Business Value, each with a desired outcome, KPIs and evidence of success." loading="lazy" />
 <figcaption>The template on an early, ambiguous idea: Multi-Profile Shopping, 2026.</figcaption>
 </figure>
 

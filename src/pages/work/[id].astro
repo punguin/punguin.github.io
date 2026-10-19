@@ -59,6 +59,11 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
   .case-top__back { color: var(--text-secondary); text-decoration: none; }
   .case-top__back:hover { color: var(--ink); text-decoration: underline; }
 
+  /* Case pages run wider than the homepage so images can be bigger; text keeps its measure.
+     The header and footer follow the same width. */
+  :global(:root) { --doc-max: 1320px; }
+  @media (min-width: 1400px) { :global(:root) { --doc-max: min(1320px, 100vw - 2 * 48px); } }
+
   /* The story on the left, its contents list on the right (desktop only). */
   .case-layout { --toc-top: calc(var(--header-h) + 24px); }
   .case-layout__body { min-width: 0; }
@@ -67,7 +72,7 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
     .case-layout {
       display: grid;
       grid-template-columns: minmax(0, 1fr) var(--toc-width);
-      column-gap: var(--toc-gap);
+      column-gap: 48px;
     }
     .case-layout :global(.toc) { display: block; padding-top: 340px; }
   }
