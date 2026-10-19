@@ -290,4 +290,15 @@ const meta: [string, string][] = [
     color: var(--text-primary);
     text-wrap: balance;
   }
+
+  /* Case pages (Pung, 2026-10-19): every text block shares the prose measure and is centred in the
+     column; images, the hero and image panels run the full column width, a little beyond the text.
+     The width is the body text's measure in fixed units, so labels and headlines line up with it. */
+  :global(:root) { --case-measure: calc(40 * var(--text-body)); }
+  .project--page > .project__header,
+  .project--page > .project__meta,
+  .project--page .project__body > :global(:not(.visual)) {
+    max-width: var(--case-measure);
+    margin-inline: auto;
+  }
 </style>

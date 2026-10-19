@@ -27,10 +27,9 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
 
   <div class="page-shell">
     <main class="document" id="main">
-      <p class="case-top" id="top"><a class="case-top__back" href="/#selected-work"><span aria-hidden="true">←</span> All work</a></p>
-
-      <div class="case-layout">
+      <div class="case-layout" id="top">
           <div class="case-layout__body">
+            <p class="case-top"><a class="case-top__back" href="/#selected-work"><span aria-hidden="true">←</span> All work</a></p>
             <Project entry={entry} standalone />
 
             <nav class="case-next" aria-label="Next case study">
@@ -55,6 +54,7 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
 </BaseLayout>
 
 <style>
+  .case-top, .case-next { max-width: var(--case-measure); margin-inline: auto; }
   .case-top { padding-top: var(--space-6); font-size: 0.875rem; }
   .case-top__back { color: var(--text-secondary); text-decoration: none; }
   .case-top__back:hover { color: var(--ink); text-decoration: underline; }
