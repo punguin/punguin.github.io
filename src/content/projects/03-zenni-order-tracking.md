@@ -15,7 +15,8 @@ partners: [Product, Engineering, Content Design, Analytics, Customer Service]
 accent: tracking
 cover: /images/work/zenni-order-tracking/cover.webp
 hero: /images/work/zenni-order-tracking/hero.webp
-coverAlt: The shipped Zenni Order Details page in a browser window, with the Where is My Order card and the five-step milestone tracker floating beside it
+coverAlt: The shipped Zenni Order Details page in a laptop frame on mint, with the Where is My Order card floating beside it
+coverColor: "#8cf0d3"
 order: 3
 ---
 

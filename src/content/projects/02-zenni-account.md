@@ -15,7 +15,8 @@ partners: [Product Manager, UX Manager, Engineering, Design System]
 accent: account
 cover: /images/work/zenni-account/cover.webp
 hero: /images/work/zenni-account/hero.webp
-coverAlt: The redesigned Zenni My Account dashboard in a browser window, in front of the new Order Details page
+coverAlt: The redesigned Zenni My Account dashboard in a laptop frame on lime green
+coverColor: "#dcf774"
 order: 2
 ---
 

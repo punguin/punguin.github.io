@@ -14,6 +14,7 @@ platform: ["[To confirm]"]
 partners: ["[To confirm]"]
 accent: spokgo
 featured: false
+coverColor: "#fbe97c"
 order: 5
 ---
 

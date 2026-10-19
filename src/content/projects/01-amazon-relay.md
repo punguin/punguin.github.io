@@ -15,7 +15,8 @@ partners: [Senior Software Engineer, Product Manager, UX Research]
 accent: relay
 cover: /images/work/amazon-relay/cover.webp
 hero: /images/work/amazon-relay/hero.webp
-coverAlt: Three Relay for Drivers screens in phone mockups, showing the redesigned home screen at the yard, the in-transit view and the tasks concept
+coverAlt: Three Relay for Drivers screens in phone frames on lavender, showing the redesigned home screen at the yard, the in-transit view and the tasks concept
+coverColor: "#c9c1fb"
 order: 1
 ---
 

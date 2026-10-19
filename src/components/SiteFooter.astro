@@ -2,24 +2,31 @@
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
-  <div class="site-footer__credit">
-    <p>© {year} Pung Brooks</p>
-    <p>Designed and developed by me, with help from <a href="https://claude.com/claude-code" rel="noopener">Claude Code</a>.</p>
+  <div class="site-footer__inner">
+    <div class="site-footer__credit">
+      <p>© {year} Pung Brooks</p>
+      <p>Designed and developed by me, with help from <a href="https://claude.com/claude-code" rel="noopener">Claude Code</a>.</p>
+    </div>
+    <p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></p>
   </div>
-  <p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></p>
 </footer>
 
 <style>
+  /* Full-width dark gray band; the content lines up with the header. */
   .site-footer {
+    background: #26282c;
+    color: #b9bcc2;
+    font-size: 0.8125rem;
+  }
+  .site-footer__inner {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: var(--space-3);
+    width: min(calc(100% - 2 * var(--gutter)), var(--doc-max));
+    margin-inline: auto;
     padding-block: 42px 60px;
-    border-top: 1px solid var(--line);
-    font-size: 0.8125rem;
-    color: var(--text-tertiary);
   }
-  .site-footer a { color: var(--text-secondary); }
+  .site-footer a { color: #fff; }
   .site-footer__credit { display: grid; gap: var(--space-1); }
 </style>
