@@ -246,7 +246,7 @@ Testing did not simply validate the concept. It sharpened terminology, time-zone
 The design then moved through internal review, carrier UAT, beta testing, and staged production dial-up so the interaction model could be evaluated with real data, real latency, and different carrier cohorts.
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay-load-board/placeholder-validation-ladder.svg" alt="Six steps of validation: research, high-fidelity usability testing with five experienced carriers, design system review, carrier UAT, beta with real data, and a staged rollout that paused at 50% in the US before reaching 100% in the US, EU and Canada." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay-load-board/placeholder-validation-ladder.svg" alt="Six steps of validation: research, high-fidelity usability testing with five experienced carriers, design system review, carrier UAT, beta with real data, and a staged rollout that paused at 50% in the US before reaching 100% in the US, EU and Canada." loading="lazy" />
 <figcaption>The scrutiny before full launch, from research and usability testing through design review, carrier UAT and beta to a staged rollout.</figcaption>
 </figure>
 

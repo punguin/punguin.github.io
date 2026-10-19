@@ -59,7 +59,7 @@ The final screens look simple. A few structural decisions got them there.
 </ol>
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay/before-after.webp" alt="Before: the old Relay trips screen with a map and a single Begin work button. After: the redesigned home screen, a weekly schedule, and the current stop screen." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/before-after.webp" alt="Before: the old Relay trips screen with a map and a single Begin work button. After: the redesigned home screen, a weekly schedule, and the current stop screen." loading="lazy" />
 <figcaption>Before and after: the old trips screen next to the new home screen, schedule and current stop.</figcaption>
 </figure>
 
@@ -86,7 +86,11 @@ What changed my thinking:
 - They didn’t want unrelated messages, but did want quick access to training.
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay/field-study.jpg" alt="Three photos from the field study: a driver checking in at a shipping window with a phone and paperwork, a driver photographing a bill of lading in the cab, and a driver reviewing trip information at the wheel." loading="lazy" />
+<div class="img-grid img-grid--3">
+<img src="/images/work/amazon-relay/field-study-1.webp" alt="Field study photo: a driver checking in at a shipping window with a phone and paperwork." loading="lazy" />
+<img src="/images/work/amazon-relay/field-study-2.webp" alt="Field study photo: a driver photographing a bill of lading in the cab." loading="lazy" />
+<img src="/images/work/amazon-relay/field-study-3.webp" alt="Field study photo: a driver reviewing trip information at the wheel." loading="lazy" />
+</div>
 <figcaption>From the field study: checking in at a shipping window, capturing a bill of lading, and reviewing trip information in the cab.</figcaption>
 </figure>
 
@@ -103,7 +107,7 @@ Drivers think about information in three dimensions: before work, during work an
 With the senior software engineer, I mapped the existing experience end to end. From the trips card, drivers entered a linear sequence of uniquely named screens with overlapping content. Each had one action forward, or a back button out to the trips card and “Resume work”.
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay/existing-design.webp" alt="Map of the existing Relay workflow: home, begin work, register vehicle, then a repeating drive and task sequence for each stop, with screenshots of the old screens below." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/existing-design.webp" alt="Map of the existing Relay workflow: home, begin work, register vehicle, then a repeating drive and task sequence for each stop, with screenshots of the old screens below." loading="lazy" />
 <figcaption>The existing experience, mapped with engineering: one fixed sequence of screens per stop.</figcaption>
 </figure>
 
@@ -128,7 +132,7 @@ A journey mapping session I facilitated aligned the team on two themes:
 An object mapping session then aligned us on drivers’ own nouns: a driver has a schedule, a schedule has trips, a trip has stops, and each stop has a location, a time and loads. The structure came from drivers’ language, not screens.
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay/object-map.webp" alt="Object map: driver, schedule, trip, stop and load connected by has-one and has-many relationships, with vehicle, task, location, status and scheduled time." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/object-map.webp" alt="Object map: driver, schedule, trip, stop and load connected by has-one and has-many relationships, with vehicle, task, location, status and scheduled time." loading="lazy" />
 <figcaption>Object mapping: the nouns of a driver’s work and how they relate.</figcaption>
 </figure>
 
@@ -156,7 +160,7 @@ Extensibility mattered as much as feasibility.
 In a team brainstorm, we plotted ideas by user value against feasibility and extensibility, and chose one to explore.
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay/brainstorm.webp" alt="Two charts plotting concept sketches by user value against feasibility and against extensibility, with the selected approach circled." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/brainstorm.webp" alt="Two charts plotting concept sketches by user value against feasibility and against extensibility, with the selected approach circled." loading="lazy" />
 <figcaption>Brainstorm concepts, plotted by user value against feasibility and extensibility.</figcaption>
 </figure>
 
@@ -171,7 +175,7 @@ The object map became the structure. Drivers used to see one trip at a time. Now
 Stop details holds the “all the time” information: what, where and when, pick-up and drop-off, load IDs, contacts and requirements such as safety equipment. The first release matched the existing trips experience, with room for carrier details and programs like Global Mile and Amazon Freight.
 
 <figure class="visual visual--inline">
-<img src="/images/work/amazon-relay/stop-details-vision.webp" alt="Stop details wireframes for a driver and a carrier, organized by what, where and when, with a sticky task and carrier-specific sections." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/stop-details-vision.webp" alt="Stop details wireframes for a driver and a carrier, organized by what, where and when, with a sticky task and carrier-specific sections." loading="lazy" />
 <figcaption>Stop details for a driver and a carrier: the same structure, with persona-specific content.</figcaption>
 </figure>
 
@@ -192,19 +196,19 @@ The home screen became a curated set of cards: the current task first, then past
 Account and menu, a row of widgets, then cards, some shared and some per persona. Each persona’s team decides its cards, so one framework shows a driver their current trip and a carrier their load board.
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay/persona-cards.webp" alt="Card sets grouped by persona: standard cards such as learning center, Relay tips and support; driver cards such as current trip, safety score, calendar and eLog; carrier cards such as trips, load board and performance score; and hostler cards such as assignments, calendar and safety score." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/persona-cards.webp" alt="Card sets grouped by persona: standard cards such as learning center, Relay tips and support; driver cards such as current trip, safety score, calendar and eLog; carrier cards such as trips, load board and performance score; and hostler cards such as assignments, calendar and safety score." loading="lazy" />
 <figcaption>Persona-based cards: standard cards for everyone, plus driver, carrier and hostler cards.</figcaption>
 </figure>
 
 Instead of reshuffling, content is ordered by priority and disruption, with alerts at the top.
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay/priority-disruption.webp" alt="Chart plotting home screen content by priority against disruption: cancellations and account alerts at the top, then weather alert, vehicle status, current trip, hours of service, calendar, safety score, learning center and Relay tips toward the bottom." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/priority-disruption.webp" alt="Chart plotting home screen content by priority against disruption: cancellations and account alerts at the top, then weather alert, vehicle status, current trip, hours of service, calendar, safety score, learning center and Relay tips toward the bottom." loading="lazy" />
 <figcaption>Content order by priority and disruption, from alerts at the top to tips at the bottom.</figcaption>
 </figure>
 
 <figure class="visual visual--full">
-<img src="/images/work/amazon-relay/home-variations.webp" alt="Wireframe variations of the home screen for a driver (current trip active, no current trip, weather alert, trip cancellation), a carrier, and an owner-operator who switches between both." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/home-variations.webp" alt="Wireframe variations of the home screen for a driver (current trip active, no current trip, weather alert, trip cancellation), a carrier, and an owner-operator who switches between both." loading="lazy" />
 <figcaption>One home screen framework, different views: driver, carrier, and an owner-operator switching between them.</figcaption>
 </figure>
 
@@ -219,12 +223,12 @@ The first release changed the structure around the workflow, not the workflow it
 Drivers had to keep their pace, feedback on the existing app was good, and engineering was two people. So the first release made the smallest change that bought flexibility. The new home screen, schedule and current stop sit in front of the old workflow, “Continue load” hands drivers into screens they know, and they can get back to their information at any point.
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay/mvp-flow.webp" alt="Three flow diagrams side by side: the existing linear flow, the MVP flow with new home, schedule and stop details screens, and the future flow." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/mvp-flow.webp" alt="Three flow diagrams side by side: the existing linear flow, the MVP flow with new home, schedule and stop details screens, and the future flow." loading="lazy" />
 <figcaption>Existing, MVP and future flows. New screens are marked in blue; the MVP keeps the execution steps intact.</figcaption>
 </figure>
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay/current-stop-handoff.webp" alt="The new current stop screen, with its Continue load button connected by arrows to the four screens of the existing execution workflow." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/current-stop-handoff.webp" alt="The new current stop screen, with its Continue load button connected by arrows to the four screens of the existing execution workflow." loading="lazy" />
 <figcaption>The current stop hands off to the existing execution workflow, so the first release kept full parity.</figcaption>
 </figure>
 
@@ -235,7 +239,7 @@ In testing with 8 drivers, all valued the extra content, statuses and weather, a
 So I brought back familiar patterns, a “start” button and the word “Trips”, then moved the screens into Meridian’s visual language.
 
 <figure class="visual visual--inline">
-<img src="/images/work/amazon-relay/home-states.webp" alt="Two home screen states for a driver named Taylor: in the yard waiting for a load, and in transit, each with the current stop, arrival times, a Resume work button and the driver’s schedule." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/home-states.webp" alt="Two home screen states for a driver named Taylor: in the yard waiting for a load, and in transit, each with the current stop, arrival times, a Resume work button and the driver’s schedule." loading="lazy" />
 <figcaption>Home screen states: the current stop card shows whether the driver is in the yard or in transit.</figcaption>
 </figure>
 
@@ -248,14 +252,14 @@ Drivers should always know where they are in their work, wherever they are in th
 The long-term strategy added “sticky” tasks. Tasks used to take over the app. In the vision, a task sticks to the bottom of any non-modal screen and expands when needed, so drivers always see their load and step while reaching anything else.
 
 <figure class="visual visual--inline">
-<img src="/images/work/amazon-relay/sticky-task.webp" alt="Layout wireframe with a sticky task at the bottom of the screen, showing task instructions, context and an action, on any non-modal screen: home, trip, schedule and stop details." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/sticky-task.webp" alt="Layout wireframe with a sticky task at the bottom of the screen, showing task instructions, context and an action, on any non-modal screen: home, trip, schedule and stop details." loading="lazy" />
 <figcaption>The sticky task sits at the bottom of any non-modal screen.</figcaption>
 </figure>
 
 One task anatomy (stop, instructions, action, link to stop details) covers a shipper warehouse, an Amazon warehouse or a post office.
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay/task-workflows.webp" alt="Three workflows built from sticky tasks: a third-party shipper warehouse, an Amazon warehouse and a post office, each a sequence of task cards from driving to the site to checking out." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/task-workflows.webp" alt="Three workflows built from sticky tasks: a third-party shipper warehouse, an Amazon warehouse and a post office, each a sequence of task cards from driving to the site to checking out." loading="lazy" />
 <figcaption>Workflow examples: a third-party shipper warehouse, an Amazon warehouse and a post office.</figcaption>
 </figure>
 

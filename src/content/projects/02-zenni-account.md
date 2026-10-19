@@ -116,7 +116,7 @@ One navigation, grouped the way customers think.
 The new navigation panel groups Account into Account, Rewards, Settings, and Help and Support. On desktop it is visible on every Account page, so customers always know where they are and can move between orders, prescriptions and settings without starting over. Shared Images was hidden from the interface.
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-account/navigation-ia.svg" alt="Two lists side by side. Before: My Account, Zenni Rewards, Order Management and Personalization groups, with TryOn, Shared Images and Vision Test, then loose links. After: Account, Rewards, Settings, and Help and Support groups." loading="lazy" />
+<img class="is-mockup" src="/images/work/zenni-account/navigation-ia.svg" alt="Two lists side by side. Before: My Account, Zenni Rewards, Order Management and Personalization groups, with TryOn, Shared Images and Vision Test, then loose links. After: Account, Rewards, Settings, and Help and Support groups." loading="lazy" />
 <figcaption>Account navigation before and after the redesign.</figcaption>
 </figure>
 
@@ -146,7 +146,7 @@ A useful foundation does not predict every future feature. It gives future teams
 Orders answer the most questions, so they got the most structure. I started with a low-fidelity order history in which each order is a card and each item opens an item details panel, so customers can check status, track a shipment, buy again or start a return without losing their place.
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-account/wireframe-order-history.webp" alt="Low-fidelity wireframe: an order history with order cards grouped by estimated delivery date, each item with its status, and an item details drawer with Buy it again, Get help with this item, Start a return and Print return label." loading="lazy" />
+<img class="is-mockup" src="/images/work/zenni-account/wireframe-order-history.webp" alt="Low-fidelity wireframe: an order history with order cards grouped by estimated delivery date, each item with its status, and an item details drawer with Buy it again, Get help with this item, Start a return and Print return label." loading="lazy" />
 <figcaption>An early wireframe of order history and the item details panel, November 2024.</figcaption>
 </figure>
 

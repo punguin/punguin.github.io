@@ -96,7 +96,7 @@ Once an order shipped, customers were sent away to a carrier tracking page. It c
 The emails, the account status and what was actually happening didn’t line up. Working directly with the customer service team, we mapped a common scenario: on day 6, the glasses are in a bulk shipment from the lab to the US, the account says “Manufactured/en Route to Distribution Center”, and no email goes out at all. The customer is thinking “Why haven’t they shipped yet?”, and that is the common point for contacting support.
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-order-tracking/expectation-gap.webp" alt="Day 6 is when customers call. A timeline from day 0 to day 13 compares what is happening, what Track My Order says, the email sent and what the customer thinks. Day 6 is highlighted: the glasses are in a bulk shipment to the US facility, Track My Order says Manufactured/en Route to Distribution Center, no email goes out, and the customer thinks: why haven't they shipped yet? That is where Where is my order calls come in." loading="lazy" />
+<img class="is-mockup" src="/images/work/zenni-order-tracking/expectation-gap.webp" alt="Day 6 is when customers call. A timeline from day 0 to day 13 compares what is happening, what Track My Order says, the email sent and what the customer thinks. Day 6 is highlighted: the glasses are in a bulk shipment to the US facility, Track My Order says Manufactured/en Route to Distribution Center, no email goes out, and the customer thinks: why haven't they shipped yet? That is where Where is my order calls come in." loading="lazy" />
 <figcaption>The expectation gap, mapped with customer service. Day 6 is when “Where is my order?” calls come in.</figcaption>
 </figure>
 
@@ -178,14 +178,17 @@ The step customers call about, explained in context.
 A “Where is my Order?” card sits beside the items and changes with the current milestone. En route to the US facility receives the most customer service calls, so that step says it outright: “Your glasses are in a bulk shipment from our lab to our US facility. We’ll post an update the moment it arrives stateside!” The aim was to make the tracking gap feel expected, not alarming, while keeping the excitement of a new pair.
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-order-tracking/where-is-my-order-widget.webp" alt="Two Where is My Order cards. En-route to US Facility: Your package is on the move, explaining the bulk shipment, with a More Details button. Shipped: Your new specs are on their way, with a Track Shipment button and a USPS tracking number." loading="lazy" />
+<img class="is-mockup" src="/images/work/zenni-order-tracking/where-is-my-order-widget.webp" alt="Two Where is My Order cards. En-route to US Facility: Your package is on the move, explaining the bulk shipment, with a More Details button. Shipped: Your new specs are on their way, with a Track Shipment button and a USPS tracking number." loading="lazy" />
 <figcaption>The Where is my Order card for the en-route and shipped steps.</figcaption>
 </figure>
 
 The card opens a details drawer for the current step. During manufacturing, it shows production events such as lens processing, frame assembly and final quality assurance, with where and when they happened. Once shipped, every carrier event appears inside the account page instead of on another site, and the estimated delivery becomes a specific day. The tracking number still links to the carrier for anyone who wants more.
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-order-tracking/detail-drawers.webp" alt="Two details drawers. Manufacturing: a photo of a lab technician fitting lenses, then latest updates for final quality assurance, frame assembly and lens processing. Shipped: estimated delivery Tuesday, January 13, a carrier tracker at Out for Delivery, and the latest carrier updates." loading="lazy" />
+<div class="img-grid">
+<img src="/images/work/zenni-order-tracking/drawer-manufacturing.webp" alt="Manufacturing details drawer: a photo of a lab technician fitting lenses, then latest updates for final quality assurance, frame assembly and lens processing." loading="lazy" />
+<img src="/images/work/zenni-order-tracking/drawer-shipped.webp" alt="Shipped details drawer: estimated delivery Tuesday, January 13, a carrier tracker at Out for Delivery, and the latest carrier updates." loading="lazy" />
+</div>
 <figcaption>The details drawer during manufacturing and after shipping. Tracking number hidden.</figcaption>
 </figure>
 

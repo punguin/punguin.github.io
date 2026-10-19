@@ -507,8 +507,11 @@ a.external::after {
 }
 .doc-pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 3%, 32px); align-items: start; }
 .doc-pair > .doc + .doc { margin-top: 48px; }
+.visual .img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 3%, 32px); align-items: start; }
+.visual .img-grid--3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 699px) {
   .doc-pair { grid-template-columns: 1fr; }
+  .visual .img-grid--3 { grid-template-columns: 1fr; }
   .doc-pair > .doc + .doc { margin-top: 0; }
 }
 /* Composed mockups carry their own frames and shadows. */

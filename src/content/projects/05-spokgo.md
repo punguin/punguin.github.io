@@ -62,7 +62,7 @@ Hospitals already had ways to communicate: directories, paging portals, phones a
 I shadowed a hospitalist, a bedside nurse and a respiratory therapist across two hospitals to understand their workflows, motivations, pain points and opportunities. Then I mapped the bedside nurse’s day.
 
 <figure class="visual visual--wide">
-<img src="/images/work/spokgo/journey-map.webp" alt="Journey map of a bedside nurse providing patient care throughout the day, with stages from commute and start of shift through patient assessments, contacting a provider, waiting by the phone and receiving a call back, and rows for tasks, tools and touchpoints, and how the nurse felt at each stage." loading="lazy" />
+<img class="is-mockup" src="/images/work/spokgo/journey-map.webp" alt="Journey map of a bedside nurse providing patient care throughout the day, with stages from commute and start of shift through patient assessments, contacting a provider, waiting by the phone and receiving a call back, and rows for tasks, tools and touchpoints, and how the nurse felt at each stage." loading="lazy" />
 <figcaption>Journey map of the bedside nurse’s day.</figcaption>
 </figure>
 
@@ -116,7 +116,12 @@ Prioritize speed to market and extensibility.
 I held a series of brainstorming sessions with stakeholders to co-create and sketch as many ideas as possible. From them, we narrowed down the core set of features needed for seamless communication workflows.
 
 <figure class="visual visual--wide">
-<img src="/images/work/spokgo/brainstorm.webp" alt="Four photos of brainstorming sessions: whiteboards covered in flows, sticky notes and screen sketches for directory, on-call, messages, patients and tasks." loading="lazy" />
+<div class="img-grid">
+<img src="/images/work/spokgo/brainstorm-1.webp" alt="Brainstorming session 1 of 4: whiteboard with flows, sticky notes and screen sketches." loading="lazy" />
+<img src="/images/work/spokgo/brainstorm-2.webp" alt="Brainstorming session 2 of 4: whiteboard with flows, sticky notes and screen sketches." loading="lazy" />
+<img src="/images/work/spokgo/brainstorm-3.webp" alt="Brainstorming session 3 of 4: whiteboard with flows, sticky notes and screen sketches." loading="lazy" />
+<img src="/images/work/spokgo/brainstorm-4.webp" alt="Brainstorming session 4 of 4: whiteboard with flows, sticky notes and screen sketches." loading="lazy" />
+</div>
 <figcaption>Brainstorming with stakeholders.</figcaption>
 </figure>
 
@@ -140,24 +145,24 @@ Bring the care team, the conversation and the work together.
 Patient centric communication lets care team members see all the relevant information about a patient. They can coordinate care and move the patient along their care journey more quickly, without switching between several tools.
 
 <figure class="visual visual--wide">
-<img src="/images/work/spokgo/patient-centric.webp" alt="Wireframe flow for patient centric communication: my patients, a patient's details, patient activity, patient tasks, the care team and patient information." loading="lazy" />
+<img class="is-mockup" src="/images/work/spokgo/patient-centric.webp" alt="Wireframe flow for patient centric communication: my patients, a patient's details, patient activity, patient tasks, the care team and patient information." loading="lazy" />
 <figcaption>Patient centric communication.</figcaption>
 </figure>
 
 The map also covered the enterprise directory and on-call schedules, core messaging, and tasks.
 
 <figure class="visual visual--wide">
-<img src="/images/work/spokgo/directory-on-call.webp" alt="Wireframe flow for the enterprise directory and on-call: the directory, search, a person's profile, on-call schedules and services, linked back to starting a message." loading="lazy" />
+<img class="is-mockup" src="/images/work/spokgo/directory-on-call.webp" alt="Wireframe flow for the enterprise directory and on-call: the directory, search, a person's profile, on-call schedules and services, linked back to starting a message." loading="lazy" />
 <figcaption>Enterprise directory and on-call.</figcaption>
 </figure>
 
 <figure class="visual visual--wide">
-<img src="/images/work/spokgo/core-messaging.webp" alt="Wireframe flows for core messaging: the inbox, one-to-one threads, voice and group threads, with screens for composing, attachments and call options." loading="lazy" />
+<img class="is-mockup" src="/images/work/spokgo/core-messaging.webp" alt="Wireframe flows for core messaging: the inbox, one-to-one threads, voice and group threads, with screens for composing, attachments and call options." loading="lazy" />
 <figcaption>Core messaging.</figcaption>
 </figure>
 
 <figure class="visual visual--wide">
-<img src="/images/work/spokgo/tasks.webp" alt="Wireframe flow for tasks: a task list, an accepted task and a closed task." loading="lazy" />
+<img class="is-mockup" src="/images/work/spokgo/tasks.webp" alt="Wireframe flow for tasks: a task list, an accepted task and a closed task." loading="lazy" />
 <figcaption>Tasks.</figcaption>
 </figure>
 
@@ -168,6 +173,6 @@ A clear direction, a roadmap, and a launch.
 The initiative helped drive organizational alignment across teams and clarified the roadmap for the year. It served as a runway for a series of sprints that ultimately resulted in a successful GA launch of SpokGo.
 
 <figure class="visual visual--wide">
-<img src="/images/work/spokgo/final-mockups.webp" alt="Three final SpokGo screens: a critical care team chat about a patient's vitals, a nurse call from a patient's bathroom with patient details and call actions, and a respiratory consult with the department, specialties and who is currently in the role." loading="lazy" />
+<img class="is-mockup" src="/images/work/spokgo/final-mockups.webp" alt="Three final SpokGo screens: a critical care team chat about a patient's vitals, a nurse call from a patient's bathroom with patient details and call actions, and a respiratory consult with the department, specialties and who is currently in the role." loading="lazy" />
 <figcaption>Final mockups, by a visual designer on the team.</figcaption>
 </figure>
