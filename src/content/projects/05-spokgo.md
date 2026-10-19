@@ -1,6 +1,6 @@
 ---
 id: spokgo
-number: "01.4"
+number: "01.5"
 title: SpokGo
 navLabel: SpokGo
 company: Spok
@@ -14,7 +14,7 @@ platform: ["[To confirm]"]
 partners: ["[To confirm]"]
 accent: spokgo
 featured: false
-order: 4
+order: 5
 ---
 
 <!-- Unpublished draft (featured: false). Needed before publishing: role and scope, timing, platform,
