@@ -122,8 +122,6 @@ Before asking anyone else to change, I wanted to understand what the team actual
 <figcaption>The workshop was planned in a working doc of its own, late 2025. Names and links are hidden.</figcaption>
 </figure>
 
-<p class="todo"><span class="todo-tag">To confirm</span> One or two things the workshop found, if you remember them. Otherwise this paragraph can stay as is.</p>
-
 At the start of 2026 the team was reorganizing, and we needed a better way to manage everything. The tools I was already using on my own projects were a natural fit for the broader team. There was resistance. Designers were hesitant to add more work to their plates, and our UX PM was worried about what it would mean for Jira. I argued that Jira is a great developer tool once requirements are set, but we didn’t have a place to manage our own work.
 
 So we started slow. The team had seen how it improved my own projects. I piloted it with my team, Web Experience, and after a month of adoption, we rolled it out to the greater team, with my manager helping with the initial push. All three teams adopted it: Growth, Web Experience and Design System.
