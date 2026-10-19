@@ -137,10 +137,6 @@ The Add and Edit Address modal was designed to be used throughout the entire sit
 
 The same thinking produced shared patterns for empty states, such as no orders yet or a brand new account, and for error and success feedback, so each Account page didn’t invent its own.
 
-**Account was the design system’s pressure test.** We built Account and the design system together. Real pages, real data and real edge cases showed where the system’s early decisions held and where they didn’t. We worked through those kinks on my project, developed patterns together, and I contributed major components and patterns back to the system along the way.
-
-I also advocated for the product designer inside the design system. Where did the system speed up product work, and where did it create friction? When should a product team extend a pattern, and how should that learning return to the system? Where the system helped, I leaned on it. Where it got in the way, I raised it, and when Account needed to extend a pattern, the change went back to the system instead of staying a one-off.
-
 ##### 4.3 Leave room for capabilities we hadn’t designed yet
 
 A useful foundation does not predict every future feature. It gives future teams better choices.
@@ -174,7 +170,21 @@ We knew Orders had room to become much more useful. I structured the foundation 
 
 I made and recorded the project’s decisions in Slack canvases, open to partners for comment before anything was final. That practice became a team template, and later how the whole UX team tracked its work. That story is its own case study: <a href="/work/zenni-working-docs/">UX Working Docs</a>.
 
-##### 4.4 Validation and launch
+##### 4.4 Design system collaboration
+
+I was one of the first designers to adopt the new design system.
+
+**Account was the design system’s pressure test.** We built Account and the design system together. Real pages, real data and real edge cases showed where the system’s early decisions held and where they didn’t, and they surfaced many gaps. I designed the missing components and contributed them back to the system:
+
+- Modals
+- Dropdowns
+- Navigation patterns
+- CRUD patterns, for creating, editing and deleting
+- Alert toasts
+
+I also advocated for the product designer inside the design system. Where did the system speed up product work, and where did it create friction? When should a product team extend a pattern, and how should that learning return to the system? Where the system helped, I leaned on it. Where it got in the way, I raised it, and when Account needed to extend a pattern, the change went back to the system instead of staying a one-off.
+
+##### 4.5 Validation and launch
 
 Tested with customers, reviewed across the business.
 
