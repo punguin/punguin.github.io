@@ -15,7 +15,8 @@ partners: [Product, Engineering, Content Design, Analytics, Customer Service]
 accent: tracking
 cover: /images/work/zenni-order-tracking/cover.webp
 hero: /images/work/zenni-order-tracking/hero.webp
-coverAlt: The shipped Zenni Order Details page in a browser window, with the Where is My Order card and the five-step milestone tracker floating beside it
+coverAlt: The shipped Zenni Order Details page in a laptop frame on mint, with the Where is My Order card floating beside it
+coverColor: "#8cf0d3"
 order: 3
 ---
 
@@ -35,7 +36,7 @@ Customers needed us less. The business held steady.
 <li><p class="case-impact__figure">−0.25<span class="case-impact__unit">pp</span></p><p class="case-impact__label">Chat initiation from Order Details</p><p class="case-impact__note">A drop of 0.25 percentage points against the legacy experience.</p><p class="case-impact__kind">50/50 A/B test</p></li>
 <li><p class="case-impact__figure">−0.10<span class="case-impact__unit">pp</span></p><p class="case-impact__label">Chat initiation from the Order List</p><p class="case-impact__note">A drop of 0.10 percentage points, in the same test.</p><p class="case-impact__kind">50/50 A/B test</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Stable</p><p class="case-impact__label">Conversion, average order value and add-to-cart</p><p class="case-impact__note">Exits to help pages decreased modestly.</p><p class="case-impact__kind">50/50 A/B test</p></li>
-<li><p class="case-impact__figure case-impact__figure--text">Every route</p><p class="case-impact__label">One messaging framework for all fulfillment paths</p><p class="case-impact__note">New origins and destinations don’t need a redesign. Thailand mirrored China’s logic.</p><p class="case-impact__kind">In the developer handoff</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">Every route</p><p class="case-impact__label">One messaging framework for all fulfillment paths</p><p class="case-impact__note">New origins and destinations don’t need a redesign. A new lab reuses the logic that’s already there.</p><p class="case-impact__kind">In the developer handoff</p></li>
 </ul>
 
 The new experience launched across the US and Canada, and was evaluated in a 50/50 A/B test against the legacy experience. The chat results are changes in percentage points, not relative percentages.
@@ -47,8 +48,8 @@ Make complexity useful, not visible.
 <ol class="case-decisions">
 <li><p class="case-decisions__title"><a href="#42-what-is-happening-a-tracker-for-every-shipment">Show the milestones customers care about, not the operational record</a></p><p>Every shipment gets five milestones, with the active step as the focal point and estimated delivery dates up front, in place of one internal status line and a shipping speed. <a class="case-decisions__more" href="#42-what-is-happening-a-tracker-for-every-shipment">4.2 ↓</a></p></li>
 <li><p class="case-decisions__title"><a href="#43-what-it-means-and-what-happens-next">Explain the step customers call about, where they see it</a></p><p>A “Where is my Order?” card changes with the milestone. At the en-route step, which gets the most customer service calls, it says what is happening and what comes next. <a class="case-decisions__more" href="#43-what-it-means-and-what-happens-next">4.3 ↓</a></p></li>
-<li><p class="case-decisions__title"><a href="#44-one-framework-for-every-route">One messaging framework for every route</a></p><p>The tracker keeps the same five slots, and two of them change with the item and the route, so new origins and destinations don’t need new design. <a class="case-decisions__more" href="#44-one-framework-for-every-route">4.4 ↓</a></p></li>
-<li><p class="case-decisions__title"><a href="#45-what-i-should-do-the-hard-paths">Design for holds, delays and errors, not only the happy path</a></p><p>Templates for orders on hold, data errors, older orders and routes with no delivered step tell customers what is needed and by when. <a class="case-decisions__more" href="#45-what-i-should-do-the-hard-paths">4.5 ↓</a></p></li>
+<li><p class="case-decisions__title"><a href="#44-one-framework-for-every-route">One messaging framework for every route</a></p><p>The tracker keeps the same five steps, and two of them change with the item and the route, so new origins and destinations don’t need new design. <a class="case-decisions__more" href="#44-one-framework-for-every-route">4.4 ↓</a></p></li>
+<li><p class="case-decisions__title"><a href="#45-plan-for-delays-and-issues">Design for holds, delays and errors, not only the happy path</a></p><p>Templates for orders on hold, data errors, older orders and routes with no delivered step tell customers what is needed and by when. <a class="case-decisions__more" href="#45-plan-for-delays-and-issues">4.5 ↓</a></p></li>
 </ol>
 
 <figure class="visual visual--wide">
@@ -92,11 +93,11 @@ Once an order shipped, customers were sent away to a carrier tracking page. It c
 <figcaption>Before: the carrier page a customer landed on. Tracking number hidden.</figcaption>
 </figure>
 
-The emails, the account status and what was actually happening didn’t line up. Customer service mapped a common scenario: on day 6, the glasses are in a bulk shipment from the lab to the US, the account says “Manufactured/en Route to Distribution Center”, and no email goes out at all. The customer is thinking “Why haven’t they shipped yet?”, and that is the common point for contacting support.
+The emails, the account status and what was actually happening didn’t line up. Working directly with the customer service team, we mapped a common scenario: on day 6, the glasses are in a bulk shipment from the lab to the US, the account says “Manufactured/en Route to Distribution Center”, and no email goes out at all. The customer is thinking “Why haven’t they shipped yet?”, and that is the common point for contacting support.
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-order-tracking/expectation-gap.webp" alt="A grid from day 0 to day 13 comparing order events, the Track My Order status, email notifications and customer expectations. On day 6, Transit to U.S., the email row shows a gap and the customer asks why it hasn't shipped yet, marked as the common point for contacting support." loading="lazy" />
-<figcaption>Customer service’s view of the expectation gap. Day 6 is where customers reach for support.</figcaption>
+<img src="/images/work/zenni-order-tracking/expectation-gap.webp" alt="Day 6 is when customers call. A timeline from day 0 to day 13 compares what is happening, what Track My Order says, the email sent and what the customer thinks. Day 6 is highlighted: the glasses are in a bulk shipment to the US facility, Track My Order says Manufactured/en Route to Distribution Center, no email goes out, and the customer thinks: why haven't they shipped yet? That is where Where is my order calls come in." loading="lazy" />
+<figcaption>The expectation gap, mapped with customer service. Day 6 is when “Where is my order?” calls come in.</figcaption>
 </figure>
 
 ##### 3.3 Gaps
@@ -125,18 +126,27 @@ A 20-minute design jam with the whole team.
 
 Before designing, I ran “The 20-Minute Order Tracking Design Jam”. The prompt: a week has gone by since you placed your order and it’s en route to the distribution center. Sketch a tracker. The goal was not a perfect design, but to explore as many ideas as possible and understand each other’s mental models, sketching as the customer.
 
-Ten teammates took part. The follow-up lived in a Slack canvas too: the goal, everyone’s sketches side by side, and an affinity map that grouped the ideas into four themes: information hierarchy and clarity, brand voice and delight, transparency and proactive communication, and friction in the interface. It also kept the open questions in view, like whether people care that something is en route to a distribution center, and how we talk about China.
+Ten teammates took part. The follow-up lived in a Slack canvas too: the goal, everyone’s sketches side by side, and an affinity map that grouped the ideas into four themes: information hierarchy and clarity, brand voice and delight, transparency and proactive communication, and friction in the interface. It also kept the open questions in view, like whether people care that something is en route to a distribution center.
 
-<figure class="visual" style="max-width: 640px">
-<img src="/images/work/zenni-order-tracking/design-jam-canvas.webp" alt="The Order Tracking UX Jam canvas in Slack: the goal of crowdsourcing the team's mental models of an ideal order tracking experience, the date October 14, 2025, and a Figma board with each participant's tracker sketches in a grid." loading="lazy" />
-<figcaption>The design jam’s follow-up canvas, October 2025. Participant names are hidden.</figcaption>
+<figure class="visual visual--wide">
+<div class="doc-pair">
+<div class="doc">
+<div class="doc__bar" aria-hidden="true"><span class="doc__dots"><i></i><i></i><i></i></span><span class="doc__title"><span>Order Tracking UX Jam</span></span><span class="doc__app">Slack canvas</span></div>
+<div class="doc__page"><img src="/images/work/zenni-order-tracking/design-jam-canvas.webp" alt="The Order Tracking UX Jam canvas in Slack: the goal of crowdsourcing the team's mental models of an ideal order tracking experience, the date October 14, 2025, and a Figma board with each participant's tracker sketches in a grid." loading="lazy" /></div>
+</div>
+<div class="doc">
+<div class="doc__bar" aria-hidden="true"><span class="doc__dots"><i></i><i></i><i></i></span><span class="doc__title"><span>Order Tracking UX Jam · Affinity map</span></span><span class="doc__app">Slack canvas</span></div>
+<div class="doc__page"><img src="/images/work/zenni-order-tracking/design-jam-affinity.webp" alt="The affinity map further down the same canvas: Order Tracking Brainstorm, the key themes and opportunities from the session. Theme 1, information hierarchy and clarity: users care most about the current status and a few key milestones, with opportunities to prioritize the current status, condense the timeline into four or five steps, clarify language and improve multi-item orders. Theme 2, brand voice, delight and cohesion, with opportunities to inject personality, add visual delights and keep emails consistent." loading="lazy" /></div>
+</div>
+</div>
+<figcaption>The design jam’s follow-up canvas, October 2025: the jam itself, and further down, the affinity map that turned everyone’s sketches into themes. Participant names are hidden.</figcaption>
 </figure>
 
 One insight shaped what came next: customers care most about the current status and a few key milestones, so the active step should be the focal point and the timeline should be four or five clear steps. I carried three directions forward: lead with the most important information and keep details a tap away, bring in the brand’s personality, and build trust during delays.
 
-<figure class="visual" style="max-width: 420px">
-<img src="/images/work/zenni-order-tracking/first-iteration.webp" alt="An early vertical tracker: Order Received, Crafting Your Glasses to Perfection with a last update about lenses being cut and fitted, Making The Journey, Shipped to You, and Delivered with Estimated TBD." loading="lazy" />
-<figcaption>An early iteration, October 2025: a vertical timeline with friendlier step names.</figcaption>
+<figure class="visual visual--wide">
+<img class="is-mockup" src="/images/work/zenni-order-tracking/first-iteration-mockup.webp" alt="The Order Details page we brainstormed from, in a browser window: order summary, shipping, payment, then a shipment called Crafting Your Glasses to Perfection with two pairs of glasses beside a vertical tracker. The tracker is shown enlarged: Order Received, Crafting Your Glasses to Perfection with a last update that lenses are being cut and fitted and a Learn More button, Making The Journey, Shipped to You, and Delivered, estimated TBD." loading="lazy" />
+<figcaption>The tracker we brainstormed from: a vertical timeline with friendlier step names, enlarged on the right.</figcaption>
 </figure>
 
 ##### 4.2 What is happening: a tracker for every shipment
@@ -185,34 +195,29 @@ The copy had to scale with the supply chain.
 
 <p class="label case-status">In the developer handoff</p>
 
-I recorded a walkthrough of the prototype and shared it with the squad on October 31, 2025. Ecommerce leadership pushed on scale: some products ship from China to the US, some from China to Canada, next year some would come from Thailand, and others ship from the US to Europe. The copy had to account for every combination.
+After one of my recorded demos, I received critical feedback from leadership: orders ship from overseas labs and from the US, to customers around the world, and new labs were planned. The copy had to work for every combination. I share early and often, gather feedback, and address it, so this came up two weeks before handoff instead of after launch.
 
 <p class="callout">How might we design a scalable messaging framework that adapts to complex, multi-origin logistics, so every customer feels confident and informed even when their items follow complex global routes?</p>
 
-I answered with a messaging framework I owned, built on three principles: new origins and destinations shouldn’t need a redesign, terminology must match the item’s actual status, and the long gap between manufacturing and last-mile shipping should stop being a black box. The tracker always has the same five slots. Two of them change with the order:
+My answer was a messaging framework built on three principles: new routes shouldn’t need a redesign, labels must match the item’s real status, and the gap between the lab and the last mile can’t be a black box. The tracker always has five steps, and only two of them change:
 
-- **Step 2, fulfillment.** “Manufacturing” for custom and prescription items being made in the lab, and “Order Processing” for stock items picked from inventory. A mixed shipment shows as custom.
-- **Step 3, the middle mile.** “En-route to US Facility” for imports to the US, “En-route to Regional Facility” for every other route, and hidden when the order ships directly within the US.
+| Step | What it shows |
+|---|---|
+| 1 | Order Received |
+| 2, fulfillment | Manufacturing for custom and prescription items, Order Processing for stock items |
+| 3, middle mile | En-route to US Facility for imports to the US, En-route to Regional Facility for other routes, hidden when the order ships within the US |
+| 4 | Shipped |
+| 5 | Delivered |
 
-| Route | Item | Step 2 | Step 3 |
-|---|---|---|---|
-| China or Thailand to USA | Custom / Rx | Manufacturing | En-route to US Facility |
-| USA to USA | Custom / Rx | Manufacturing | Hidden (direct ship) |
-| China or Thailand to Canada | Custom / Rx | Manufacturing | En-route to Regional Facility |
-| USA to global | Custom / Rx | Manufacturing | En-route to Regional Facility |
-| USA to USA | Stock / Plano | Order Processing | Hidden (direct ship) |
-| China or Thailand to USA | Stock / Plano | Order Processing | En-route to US Facility |
-| E-gift card | n/a | Hidden | Hidden |
+A new lab doesn’t need new design. It follows the same logic as the labs before it.
 
-Thailand didn’t need new design. Its logic mirrors China’s, which was the point.
+##### 4.5 Plan for delays and issues
 
-##### 4.5 What I should do: the hard paths
-
-The tracker had to work beyond the happy path.
+Known problems, designed for before launch.
 
 <p class="label case-status">In the developer handoff</p>
 
-The same review asked how the design handled issues and delays. The handoff on November 13, 2025 included templates for prescription and non-prescription items, e-gift cards, older orders, orders on hold, data errors and routes with no delivered step, across desktop, tablet and mobile, where the tracker turns vertical. On hold was the most consequential. California law requires a photo of the prescription, so an order on hold says exactly what is needed and by when: “Please upload Rx by April 5th.”
+I worked with my PM to identify the known issues and delays, and we captured how the framework would handle each one. The developer handoff included templates for prescription and non-prescription items, e-gift cards, older orders, orders on hold, data errors and routes with no delivered step, across desktop, tablet and mobile, where the tracker turns vertical. On hold mattered most. California law requires a photo of the prescription, so an order on hold says exactly what is needed and by when: “Please upload Rx by April 5th.”
 
 ##### 4.6 What we left for later
 
@@ -220,7 +225,7 @@ Some ideas were right, but not yet.
 
 <p class="label case-status">Direction for later phases</p>
 
-We discussed showing the China locations during manufacturing to ease anxiety, which raised its own questions about brand perception. Proactive delay messaging, a predictive delivery date once last-mile data could support it, and a state for orders with no estimated date were carried forward as later work.
+Proactive delay messaging, a predictive delivery date once last-mile data could support it, and a state for orders with no estimated date were carried forward as later work.
 
 #### 05 / What it enabled
 

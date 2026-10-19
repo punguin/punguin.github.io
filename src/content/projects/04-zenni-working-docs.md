@@ -16,7 +16,8 @@ accent: yellow
 tags: [Design Operations, Cross-functional Collaboration, Decision-Making & Alignment]
 cover: /images/work/zenni-working-docs/cover.webp
 hero: /images/work/zenni-working-docs/hero.webp
-coverAlt: Two Zenni Slack canvases in browser windows, a UX working doc with its tenets in front of the Knowledge Sharing Mechanism workshop doc and its tracker
+coverAlt: A Zenni UX working doc for enhanced order tracking, shown as a Slack canvas in a laptop frame on peach
+coverColor: "#ffd4a8"
 order: 4
 ---
 
@@ -82,7 +83,7 @@ No new tool, no new habit to learn first.
 
 I proposed a lightweight UX working documentation workflow that lived in Slack. A canvas sits next to the conversations a team is already having, so it can be shared with a link and found later. Partners didn’t need a Figma seat or a meeting invite to follow along.
 
-An added benefit was the threaded conversations. Partners commented directly on a tenet, a tradeoff or a decision, and the loop was closed right there in Slack, in a thread everyone could see.
+An added benefit was the threaded conversations. Partners commented directly on a tenet, a tradeoff or a decision, and the loop was closed right there in Slack, in a thread everyone could see. On Order Tracking, leadership pushed on how the tracker would scale across every shipping route. The feedback was addressed in the canvas, where everyone could follow it. <a href="/work/zenni-order-tracking/#44-one-framework-for-every-route">See the framework it led to</a>.
 
 I made a habit of keeping it that way. When feedback came in somewhere else, I added it to the doc as a comment, so the conversation lived with the decision. Then I posted the doc in our squad channel so everyone could see the change and weigh in. The canvas linked back to the related channels, so it was easy to move between the doc and the conversations around it.
 
@@ -103,16 +104,14 @@ I turned those canvases into a template the team could adopt. The idea was to gi
 Putting the purpose, background and tenets first made the understanding part of a problem hard to skip.
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-order-tracking/working-doc-canvas.webp" alt="The Enhanced Order Tracking UX Working Doc in Slack: a header illustration of glasses moving from lab to box to home, the purpose of the document, background with the squad's vision, and the UX tenets." loading="lazy" />
+<div class="doc">
+<div class="doc__bar" aria-hidden="true"><span class="doc__dots"><i></i><i></i><i></i></span><span class="doc__title"><span>WebEx: Enhanced Order Tracking UX Working Doc</span></span><span class="doc__app">Slack canvas</span></div>
+<div class="doc__page"><img src="/images/work/zenni-order-tracking/working-doc-canvas.webp" alt="The Enhanced Order Tracking UX Working Doc in Slack: a header illustration of glasses moving from lab to box to home, the purpose of the document, background with the squad's vision, and the UX tenets." loading="lazy" /></div>
+</div>
 <figcaption>The Order Tracking UX working doc, built from the template. Names are hidden.</figcaption>
 </figure>
 
-The same structure stretched to very different work. <a href="/work/zenni-order-tracking/">Order Tracking</a> used it for a launch: the working doc, the design jam and its follow-up, the messaging framework and a recorded prototype walkthrough. Multi-Profile Shopping used it for an idea that was little more than a goal, and the doc turned it into a north star, working tenets, and two tracks of UX work with desired outcomes, metrics and the evidence of success we’d look for.
-
-<figure class="visual" style="max-width: 720px">
-<img src="/images/work/zenni-account/multi-profile-canvas.webp" alt="The Multi-Profile Shopping working doc: a dual-track UX strategy, and a table for Track 1, validate customer demand through labeling, with focus areas Organization, Workflow Efficiency and Business Value, each with a desired outcome, KPIs and evidence of success." loading="lazy" />
-<figcaption>The template on an early, ambiguous idea: Multi-Profile Shopping, 2026.</figcaption>
-</figure>
+On <a href="/work/zenni-order-tracking/">Order Tracking</a>, the same structure carried a whole launch: the working doc, the design jam and its follow-up, the messaging framework and a recorded prototype walkthrough.
 
 ##### 4.3 Prove it, then pilot it
 
@@ -121,7 +120,10 @@ Adoption was the hard part, not the template.
 Before asking anyone else to change, I wanted to understand what the team actually struggled with. I co-facilitated a workshop with a UX colleague to co-build a knowledge sharing mechanism with the team, instead of handing one down. We introduced what a mechanism is, a tool plus adoption, inspection and iteration, then collected pain points, dug into the top ones with Five Whys, and sorted them into major time sinks and quick wins.
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-working-docs/knowledge-workshop-canvas.webp" alt="The Co-building a Knowledge Sharing Mechanism PT 1 Working Doc in Slack: facilitators, the purpose of the document, a workshop tracker with every task marked Done, the workshop goal, and the start of the agenda." loading="lazy" />
+<div class="doc">
+<div class="doc__bar" aria-hidden="true"><span class="doc__dots"><i></i><i></i><i></i></span><span class="doc__title"><span>Co-building a Knowledge Sharing Mechanism PT 1 Working Doc</span></span><span class="doc__app">Slack canvas</span></div>
+<div class="doc__page"><img src="/images/work/zenni-working-docs/knowledge-workshop-canvas.webp" alt="The Co-building a Knowledge Sharing Mechanism PT 1 Working Doc in Slack: facilitators, the purpose of the document, a workshop tracker with every task marked Done, the workshop goal, and the start of the agenda." loading="lazy" /></div>
+</div>
 <figcaption>The workshop was planned in a working doc of its own, late 2025. Names and links are hidden.</figcaption>
 </figure>
 
@@ -144,7 +146,10 @@ The same habit, on a bigger question.
 The reorganization came from leadership wanting to replace squads with teams organized by delivery speed. I wrote a discussion starter for the UX team and D2C leaders on organizing designers by strategic domain instead. It said up front what it was, a discussion starter, and what it was not, a proposal to throw away our current structure. Peer reviewers added their thinking directly in the doc. Writing the argument out, in the open, is how I bring people along before asking them to agree.
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-working-docs/org-discussion-canvas.webp" alt="The UX Organization Discussion: Optimizing Velocity via Strategic Domains canvas: author Pung Brooks, audience UX team and D2C leaders, stakeholders, peer reviewers, and the lines what this document is, a discussion starter, and what it is not, a proposal to throw away our current structure." loading="lazy" />
+<div class="doc">
+<div class="doc__bar" aria-hidden="true"><span class="doc__dots"><i></i><i></i><i></i></span><span class="doc__title"><span>UX Organization Discussion: Optimizing Velocity via Strategic Domains</span></span><span class="doc__app">Slack canvas</span></div>
+<div class="doc__page"><img src="/images/work/zenni-working-docs/org-discussion-canvas.webp" alt="The UX Organization Discussion: Optimizing Velocity via Strategic Domains canvas: author Pung Brooks, audience UX team and D2C leaders, stakeholders, peer reviewers, and the lines what this document is, a discussion starter, and what it is not, a proposal to throw away our current structure." loading="lazy" /></div>
+</div>
 <figcaption>A discussion starter written for the UX team and D2C leaders. Names are hidden.</figcaption>
 </figure>
 

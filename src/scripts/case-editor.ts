@@ -11,7 +11,7 @@ const DIR = 'src/content/projects';
 const API = 'https://api.github.com';
 const STORE = 'pung-brooks:editor';
 
-const KEYS = ['id', 'number', 'title', 'navLabel', 'company', 'context', 'project', 'domain', 'summary', 'role', 'timeline', 'platform', 'partners', 'accent', 'cover', 'coverAlt', 'hero', 'tags', 'featured', 'order'] as const;
+const KEYS = ['id', 'number', 'title', 'navLabel', 'company', 'context', 'project', 'domain', 'summary', 'role', 'timeline', 'platform', 'partners', 'accent', 'cover', 'coverAlt', 'hero', 'coverColor', 'tags', 'featured', 'order'] as const;
 type Value = string | number | boolean | string[];
 type Data = Record<string, Value>;
 type Item = { path: string; sha: string; data: Data; body: string };
@@ -218,6 +218,7 @@ async function save(e: SubmitEvent) {
     cover: current?.data.cover,
     coverAlt: current?.data.coverAlt,
     hero: current?.data.hero,
+    coverColor: current?.data.coverColor,
     tags: current?.data.tags,
     featured: field('featured')!.checked,
     order,

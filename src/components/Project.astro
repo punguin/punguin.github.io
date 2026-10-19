@@ -1,7 +1,7 @@
 ---
 import { render, type CollectionEntry } from 'astro:content';
 // standalone: the case study is the whole page (src/pages/work/[id].astro), so its title is the
-// page's h1 and the page's own sheet holds it.
+// page's h1, shown with the cover in the page's full-width hero band (src/pages/work/[id].astro).
 interface Props { entry: CollectionEntry<'projects'>; standalone?: boolean }
 const { entry, standalone = false } = Astro.props;
 const Title = standalone ? 'h1' : 'h3';
@@ -21,14 +21,16 @@ const meta: [string, string][] = [
   data-section={p.id}
   data-accent={p.accent}
   aria-labelledby={`${p.id}-title`}
-  style={`--accent: var(--accent-${p.accent})`}
+  style={`--accent: var(--accent-${p.accent}); --case-color: ${p.coverColor ?? `var(--accent-${p.accent})`}`}
 >
-  <header class="project__header">
-    <p class="eyebrow project__kicker" aria-hidden="true">{p.company} · {p.project}</p>
-    <Title class="project__title" id={`${p.id}-title`}>
-      <span class="visually-hidden">{p.title}: </span>{p.summary}
-    </Title>
-  </header>
+  {!standalone && (
+    <header class="project__header">
+      <p class="eyebrow project__kicker" aria-hidden="true">{p.company} · {p.project}</p>
+      <Title class="project__title" id={`${p.id}-title`}>
+        <span class="visually-hidden">{p.title}: </span>{p.summary}
+      </Title>
+    </header>
+  )}
 
   <dl class="project__meta">
     <div><dt class="label">Context</dt><dd>{p.context} · {p.domain}</dd></div>
@@ -36,12 +38,6 @@ const meta: [string, string][] = [
       <div><dt class="label">{k}</dt><dd class={isTodo(v) ? 'is-todo' : undefined}>{v}</dd></div>
     ))}
   </dl>
-
-  {standalone && p.hero && (
-    <figure class="project__hero">
-      <img src={p.hero} alt={p.coverAlt ?? ''} width="2400" height="1200" fetchpriority="high" />
-    </figure>
-  )}
 
   <div class="prose project__body">
     <Content />
@@ -54,15 +50,16 @@ const meta: [string, string][] = [
     position: relative;
     margin-top: var(--space-9);
   }
-  .project.project--page { margin: 0; padding: 0 0 var(--space-8); }
+  .project.project--page { margin: 0; padding: var(--space-4) 0 var(--space-8); }
 
   .project__header { padding-block: var(--space-8) 0; }
   .project__kicker { margin-bottom: 14px; }
   .project__title {
-    font-size: var(--text-hero);
-    line-height: 1.02;
+    font-size: var(--text-h2); /* same size as the homepage section headings */
+    line-height: 1.08;
     letter-spacing: var(--tracking-display);
-    max-width: 12em;
+    max-width: 15em;
+    text-wrap: balance;
   }
 
   .project__meta {
@@ -74,8 +71,6 @@ const meta: [string, string][] = [
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
-  .project__hero { margin: calc(-1 * var(--space-7) + 8px) 0 var(--space-8); }
-  .project__hero img { display: block; width: 100%; height: auto; border-radius: var(--radius-card); }
   .project__meta div { display: grid; gap: var(--space-1); align-content: start; min-width: 0; }
   .project__meta dd { margin: 0; font-size: 0.9375rem; line-height: 1.45; }
   .project__meta dd.is-todo { color: var(--placeholder); font-size: var(--text-small); }
@@ -288,5 +283,15 @@ const meta: [string, string][] = [
     line-height: 1.15;
     color: var(--text-primary);
     text-wrap: balance;
+  }
+
+  /* Case pages (Pung, 2026-10-19): every text block shares the prose measure and is centred in the
+     column; images, the hero and image panels run the full column width, a little beyond the text.
+     The width is the body text's measure in fixed units, so labels and headlines line up with it. */
+  :global(:root) { --case-measure: calc(40 * var(--text-body)); }
+  .project--page > .project__meta,
+  .project--page .project__body > :global(:not(.visual)) {
+    max-width: var(--case-measure);
+    margin-inline: auto;
   }
 </style>
