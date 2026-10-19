@@ -429,22 +429,27 @@ a.external::after {
 .prose > .visual { margin-top: var(--space-7); }
 .prose > .visual + * { margin-top: var(--space-7); }
 
+/* Each image sits on its case study's bright colour (--case-color, set on the article from
+   coverColor), like the homepage card and the hero. */
 .visual {
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-  background: #f0eee9;
+  padding: clamp(14px, 4.5%, 40px);
+  border-radius: 22px;
+  background: var(--case-color, #f0eee9);
 }
 .visual img, .visual__frame { width: 100%; margin-inline: auto; }
+.visual img {
+  display: block;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(22, 22, 22, 0.06), 0 24px 50px -28px rgba(20, 20, 50, 0.4);
+}
 .visual--inline { max-width: var(--measure); }
 
 .visual figcaption {
-  padding: 13px 16px;
-  border-top: 1px solid var(--line);
-  background: var(--surface);
+  padding: 14px 2px 0;
   font-size: 0.8125rem;
   line-height: 1.5;
-  color: var(--text-tertiary);
+  color: rgba(22, 22, 22, 0.78);
 }
 
 .is-placeholder .visual__frame {

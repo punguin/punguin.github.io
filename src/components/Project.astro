@@ -21,7 +21,7 @@ const meta: [string, string][] = [
   data-section={p.id}
   data-accent={p.accent}
   aria-labelledby={`${p.id}-title`}
-  style={`--accent: var(--accent-${p.accent})`}
+  style={`--accent: var(--accent-${p.accent}); --case-color: ${p.coverColor ?? `var(--accent-${p.accent})`}`}
 >
   <header class="project__header">
     <p class="eyebrow project__kicker" aria-hidden="true">{p.company} · {p.project}</p>
