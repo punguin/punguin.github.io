@@ -171,7 +171,6 @@ const meta: [string, string][] = [
   .project__body :global(.case-overview) {
     display: grid;
     max-width: var(--doc-max);
-    border-bottom: 1px solid var(--line);
   }
   .project__body :global(.case-overview > div) {
     display: grid;
@@ -216,7 +215,10 @@ const meta: [string, string][] = [
     font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem);
     line-height: 1;
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
   }
+  .project__body :global(.case-impact__unit) { font-size: 0.55em; margin-left: 0.12em; }
+  .project__body :global(.case-impact__figure--text) { white-space: normal; }
   .project__body :global(.case-impact__figure--text) { font-size: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem); line-height: 1.1; }
   .project__body :global(.case-impact__label) { font-weight: 600; font-size: 0.9375rem; line-height: 1.4; }
   .project__body :global(.case-impact__note) { font-size: var(--text-small); line-height: 1.5; color: var(--text-secondary); }
@@ -234,7 +236,6 @@ const meta: [string, string][] = [
     max-width: none;
     counter-reset: decision;
     display: grid;
-    border-bottom: 1px solid var(--line);
   }
   .project__body :global(.case-decisions > li) {
     margin: 0;

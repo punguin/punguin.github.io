@@ -70,6 +70,8 @@ Amazon Relay connects transportation carriers to the Amazon freight network and 
 
 The work had grown more complicated too. New programs added new facilities like third-party shipper warehouses, post offices, rail yards, ship yards and airports, and new types of drivers operating different equipment such as box trucks and containers. Five separate dev teams were now contributing to the driver experience. The app, originally designed for a narrow set of use cases and maintained by one product team, had outgrown itself. It needed a system that would let separate product teams contribute to the experience while maintaining consistency and standards.
 
+Leadership wanted Relay Mobile to serve carriers, dispatchers and other users, not only drivers. But the existing app was organized around one rigid sequence for executing a trip, and every new capability had to squeeze into it.
+
 The effort started with the dev team, who wanted to move the tech stack to a plugin federated model so multiple teams could own their own content on the home screen and develop those widgets independently. The ask was to design a dynamic home screen that could support any number of user types and use cases. I worked closely with my dev counterpart, driving each phase of the project from discovery to design, and brought my PM partners and stakeholders along the way through collaborative workshops and reviews.
 
 ##### 3.1 People
@@ -302,7 +304,7 @@ In a driver’s public video, the home screen still follows the same structure: 
 <figcaption>In the wild, from a driver’s public video: a new Find work card plugged into the same home screen.</figcaption>
 </figure>
 
-Not all of it shipped. The full vision was never built. Amazon was balancing driver needs and scalability against the existing business, and not every right decision for users makes it above the line. I don’t see that as wasted work. A vision that doesn’t ship can still change how an organization thinks, and this one changed how Relay thought about its architecture.
+Not all of it shipped. The full vision was never built. Amazon was balancing driver needs and scalability against the existing business, and not every right decision for users makes it above the line. The vision wasn’t throwaway, though. It showed the thinking behind the structure. I don’t see that as wasted work. A vision that doesn’t ship can still change how an organization thinks, and this one changed how Relay thought about its architecture.
 
 ##### Reflection
 

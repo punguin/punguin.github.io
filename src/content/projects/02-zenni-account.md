@@ -19,19 +19,39 @@ coverAlt: The redesigned Zenni My Account dashboard in a browser window, in fron
 order: 2
 ---
 
-<figure class="visual visual--wide">
-<img src="/images/work/zenni-account/after-dashboard.webp" alt="The redesigned My Account dashboard: a navigation panel grouped into Account, Rewards, Settings and Help and Support, a Zenni Rewards card with tier progress and points, and recent orders as cards with Order Details and Print FSA Receipt buttons." loading="lazy" />
-<figcaption>The redesigned My Account dashboard. Personal details are hidden.</figcaption>
-</figure>
-
 I modernized a fragmented account experience while establishing reusable product patterns and a healthier working relationship between product design and the design system. This was Phase 1. <a href="/work/zenni-order-tracking/">Phase 2, Enhanced Order Tracking</a>, was built on it.
 
-<aside class="case-aside">
-<p class="label">My role</p>
-<p>I was the lead, and only, UX designer on the redesign, partnered with a product manager, my UX manager, engineering and the design system team. The work wasn’t on a company roadmap when I started, so part of my job was showing leadership a new account experience that was worth investing in. I led it in the open, through shared Slack canvases where the decisions were made and recorded.</p>
-</aside>
+<dl class="case-overview">
+<div><dt>The problem</dt><dd>Zenni’s Account pages had grown one page at a time, organized around how the business built them, just as a new brand and a barely started design system arrived.</dd></div>
+<div><dt>My role</dt><dd>I was the lead, and only, UX designer on the redesign, partnered with a product manager, my UX manager, engineering and the design system team. The work wasn’t on a company roadmap when I started, so part of my job was showing leadership a new account experience that was worth investing in.</dd></div>
+<div><dt>What I did</dt><dd>I gave Account one structure and a set of reusable patterns, built them together with the design system while it was still forming, and led the project in the open, through shared Slack canvases where the decisions were made and recorded.</dd></div>
+</dl>
 
-#### 00 / Context
+#### 01 / Impact
+
+The redesign gave the team a foundation to build on rather than another one-off redesign.
+
+<ul class="case-impact" role="list">
+<li><p class="case-impact__figure case-impact__figure--text">One structure</p><p class="case-impact__label">for every Account page</p><p class="case-impact__note">One navigation, one structure and one set of patterns, in place of pages built at different times for different needs.</p><p class="case-impact__kind">Shipped</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">Phase 2</p><p class="case-impact__label">Enhanced Order Tracking built on it</p><p class="case-impact__note">The next phase used the foundation to tackle a deeper post-purchase problem.</p><p class="case-impact__kind">Capability enabled</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">Shared patterns</p><p class="case-impact__label">contributed back to the design system</p><p class="case-impact__note">Account pressure tested the system on a real product and gave it major components and patterns.</p><p class="case-impact__kind">Organizational outcome</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">Team templates</p><p class="case-impact__label">from my decision-making canvases</p><p class="case-impact__note">The team adopted them, and later projects started from them.</p><p class="case-impact__kind">Organizational outcome</p></li>
+</ul>
+
+Foundational work is often best measured by what becomes easier to build afterward.
+
+#### 02 / Key decisions
+
+Consistency was not the same thing as sameness.
+
+<ol class="case-decisions">
+<li><p class="case-decisions__title"><a href="#41-organize-account-around-what-customers-manage">Organize Account around what customers manage</a></p><p>Navigation grouped the way customers think, not the way the business had built the pages, and options that didn’t save customers time came out. <a class="case-decisions__more" href="#41-organize-account-around-what-customers-manage">4.1 ↓</a></p></li>
+<li><p class="case-decisions__title"><a href="#42-build-a-pattern-once-with-the-design-system">Build each pattern once, with the design system</a></p><p>Account and the barebones design system were built together. When Account needed to extend a pattern, the change went back to the system instead of staying a one-off. <a class="case-decisions__more" href="#42-build-a-pattern-once-with-the-design-system">4.2 ↓</a></p></li>
+<li><p class="case-decisions__title"><a href="#43-leave-room-for-capabilities-we-hadnt-designed-yet">Leave room for capabilities we hadn’t designed yet</a></p><p>Orders became a list and a detail with an item panel, a structure later work could grow into, from frame measurements to Enhanced Order Tracking. <a class="case-decisions__more" href="#43-leave-room-for-capabilities-we-hadnt-designed-yet">4.3 ↓</a></p></li>
+<li><p class="case-decisions__title"><a href="#44-make-decisions-in-the-open">Make decisions in the open</a></p><p>There was no shared place to make and track decisions, so I made one in Slack canvases, then turned them into templates the team adopted. <a class="case-decisions__more" href="#44-make-decisions-in-the-open">4.4 ↓</a></p></li>
+</ol>
+
+#### 03 / Understanding the problem
 
 Barebones account pages, a new brand, and a new priority.
 
@@ -46,9 +66,9 @@ Second, Zenni’s leadership changed. A new leader made a “best-in-class found
 <figcaption>The legacy dashboard, November 2024. Personal details are hidden.</figcaption>
 </figure>
 
-#### 01 / People
+##### 3.1 People
 
-Customers thought of Account as one place. The product did not.
+<p class="case-insight">Customers thought of Account as one place. The product did not.</p>
 
 Customers didn’t care that orders, prescriptions, payment methods and profile information came from different parts of the business. To them, Account was one thing.
 
@@ -64,17 +84,17 @@ What they came to do was concrete:
 
 Customer service added one more. A top customer request was to show frame size prominently in order history, so customers could use it as a reference when buying their next pair.
 
-#### 02 / System
+##### 3.2 System
 
-Account was a collection of pages, and the design system barely existed.
+<p class="case-insight">Account was a collection of pages, and the design system barely existed.</p>
 
 Account had evolved one page at a time, built at different times for different needs. Each page had its own structure, data, states, actions and technical history. The navigation showed it: pages were grouped under labels like Order Management and Personalization, alongside features such as TryOn, Shared Images and Vision Test. It described how the business had built Account, not what customers came to do.
 
 At the same time, the new design system was barebones. I was designing a system at the same time as the design system. Whatever patterns Account needed, such as navigation, hierarchy, cards, responsive layouts, status and actions, either didn’t exist yet or hadn’t been tested on a real product.
 
-#### 03 / Gaps
+##### 3.3 Gaps
 
-Modernizing the UI wasn’t enough.
+<p class="case-insight">Modernizing the UI wasn’t enough.</p>
 
 Individual pages worked, but the experience wasn’t operating as a coherent system. Simply reskinning the existing pages would have reproduced today’s constraints in tomorrow’s interface, on top of a design system that was still changing underneath them.
 
@@ -82,9 +102,9 @@ Individual pages worked, but the experience wasn’t operating as a coherent sys
 
 Not every gap belonged in the first release. The MVP focused on the structure and the patterns every Account page shared. Store credit, international support, enhanced order tracking and favorites were set aside as later work that the foundation needed to make room for.
 
-#### 04 / Design
+#### 04 / Making it work
 
-Consistency was not the same thing as sameness.
+Reusable foundations, with room for what each page needed.
 
 The organization needed reusable foundations without forcing every product problem into the same template. I established common structure and reusable interaction patterns while preserving room for domain-specific needs. The consequential decisions were not always visually dramatic: what became reusable, what stayed specific, and how the system could support capabilities we had not designed yet.
 
@@ -101,13 +121,34 @@ The new navigation panel groups Account into Account, Rewards, Settings, and Hel
 <figcaption>Account navigation before and after the redesign.</figcaption>
 </figure>
 
-##### 4.2 Turn order history into a list and a detail
+<figure class="visual visual--wide">
+<img src="/images/work/zenni-account/after-dashboard.webp" alt="The redesigned My Account dashboard: a navigation panel grouped into Account, Rewards, Settings and Help and Support, a Zenni Rewards card with tier progress and points, and recent orders as cards with Order Details and Print FSA Receipt buttons." loading="lazy" />
+<figcaption>The redesigned My Account dashboard. Personal details are hidden.</figcaption>
+</figure>
 
-Orders answer the most questions, so they got the most structure.
+**Remove what doesn’t save customers time.** Some decisions were removals: fewer options, when the options didn’t help. Customers can’t set PayPal, Google Pay or Apple Pay as a default payment method, because that doesn’t actually save them time at checkout. A “claim 50 points” button that wasn’t compliant came out of communication preferences. Confusing referral copy was rewritten, and when a customer deletes their default address, they are asked to choose a new one.
+
+##### 4.2 Build a pattern once, with the design system
+
+The address form was the clearest case.
 
 <p class="label case-status">Shipped in the first release</p>
 
-I started with a low-fidelity order history in which each order is a card and each item opens an item details panel, so customers can check status, track a shipment, buy again or start a return without losing their place.
+The Add and Edit Address modal was designed to be used throughout the entire site, not only in Account. I grounded it in Baymard’s checkout research: an address validator that customers can override and that highlights its suggested changes, a single full-name field, Address Line 2 behind a link, and city and state detected from the ZIP code.
+
+The same thinking produced shared patterns for empty states, such as no orders yet or a brand new account, and for error and success feedback, so each Account page didn’t invent its own.
+
+**Account was the design system’s pressure test.** We built Account and the design system together. Real pages, real data and real edge cases showed where the system’s early decisions held and where they didn’t. We worked through those kinks on my project, developed patterns together, and I contributed major components and patterns back to the system along the way.
+
+I also advocated for the product designer inside the design system. Where did the system speed up product work, and where did it create friction? When should a product team extend a pattern, and how should that learning return to the system? Where the system helped, I leaned on it. Where it got in the way, I raised it, and when Account needed to extend a pattern, the change went back to the system instead of staying a one-off.
+
+##### 4.3 Leave room for capabilities we hadn’t designed yet
+
+A useful foundation does not predict every future feature. It gives future teams better choices.
+
+<p class="label case-status">Shipped in the first release</p>
+
+Orders answer the most questions, so they got the most structure. I started with a low-fidelity order history in which each order is a card and each item opens an item details panel, so customers can check status, track a shipment, buy again or start a return without losing their place.
 
 <figure class="visual visual--wide">
 <img src="/images/work/zenni-account/wireframe-order-history.webp" alt="Low-fidelity wireframe: an order history with order cards grouped by estimated delivery date, each item with its status, and an item details drawer with Buy it again, Get help with this item, Start a return and Print return label." loading="lazy" />
@@ -126,41 +167,11 @@ The shipped Orders page and Order Details follow the same structure. The item de
 <figcaption>Order Details with the item details panel and frame measurements. Personal details are hidden.</figcaption>
 </figure>
 
-##### 4.3 Build a pattern once, then use it everywhere
-
-The address form was the clearest case.
-
-<p class="label case-status">Shipped in the first release</p>
-
-The Add and Edit Address modal was designed to be used throughout the entire site, not only in Account. I grounded it in Baymard’s checkout research: an address validator that customers can override and that highlights its suggested changes, a single full-name field, Address Line 2 behind a link, and city and state detected from the ZIP code.
-
-The same thinking produced shared patterns for empty states, such as no orders yet or a brand new account, and for error and success feedback, so each Account page didn’t invent its own.
-
-##### 4.4 Remove what doesn’t save customers time
-
-Fewer options, when the options didn’t help.
-
-<p class="label case-status">Shipped in the first release</p>
-
-Some decisions were removals. Customers can’t set PayPal, Google Pay or Apple Pay as a default payment method, because that doesn’t actually save them time at checkout. A “claim 50 points” button that wasn’t compliant came out of communication preferences. Confusing referral copy was rewritten, and when a customer deletes their default address, they are asked to choose a new one.
-
-##### 4.5 Leave room for capabilities we hadn’t designed yet
-
-A useful foundation does not predict every future feature. It gives future teams better choices.
-
 <p class="label case-status">Direction for later phases</p>
 
 We knew Orders had room to become much more useful. I structured the foundation so later iterations could support richer status, progressive information, contextual actions and more sophisticated post-purchase communication. Work after the MVP included store credit, frame measurements, international support and enhanced order tracking.
 
-#### Building with the design system
-
-Account was the design system’s pressure test.
-
-We built Account and the design system together. Real pages, real data and real edge cases showed where the system’s early decisions held and where they didn’t. We worked through those kinks on my project, developed patterns together, and I contributed major components and patterns back to the system along the way.
-
-I also advocated for the product designer inside the design system. Where did the system speed up product work, and where did it create friction? When should a product team extend a pattern, and how should that learning return to the system? Where the system helped, I leaned on it. Where it got in the way, I raised it, and when Account needed to extend a pattern, the change went back to the system instead of staying a one-off.
-
-#### Making decisions in the open
+##### 4.4 Make decisions in the open
 
 There was no shared place to make and track decisions, so I made one.
 
@@ -175,20 +186,14 @@ The template was most useful when an idea was still ambiguous. Multi-Profile Sho
 <figcaption>The same template on an early, ambiguous idea: Multi-Profile Shopping, 2026.</figcaption>
 </figure>
 
-#### Validation and launch
+##### 4.5 Validation and launch
 
 Tested with customers, reviewed across the business.
 
 In January 2025 I ran a usability test built on the customer scenarios above, then iterated through team reviews, a mobile team review and a customer service review before detail design. Developer handoff was organized by ticket, with one design page for each piece of work, and visual QA followed the build. The UX runway was three months, and implementation took four.
 
-#### 05 / Impact
+#### 05 / What it enabled
 
 The outcome was optionality.
 
-The redesign gave the team a foundation to build on rather than another one-off redesign.
-
-- Account’s pages now share one navigation, one structure and one set of patterns.
-- The design system was pressure tested on a real product, and gained major components and patterns from it.
-- The decision-making canvases became templates the team adopted.
-
-Foundational work is often best measured by what becomes easier to build afterward. This foundation didn’t remain theoretical: the next phase used it to tackle a deeper post-purchase problem. <a href="/work/zenni-order-tracking/">See Phase 2, Enhanced Order Tracking</a>.
+This foundation didn’t remain theoretical: the next phase used it to tackle a deeper post-purchase problem. Enhanced Order Tracking was possible because Account had established the structures and design-system patterns it could build on, and its working doc, messaging framework and prototype walkthrough started from the canvas templates. <a href="/work/zenni-order-tracking/">See Phase 2, Enhanced Order Tracking</a>.

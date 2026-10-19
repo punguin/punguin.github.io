@@ -19,19 +19,44 @@ coverAlt: The shipped Zenni Order Details page in a browser window, with the Whe
 order: 3
 ---
 
+With the Account foundation in place, I led the next phase: reframing order tracking around customer confidence, and reducing the need for support without sacrificing core commerce performance. This was Phase 2, and it was possible because <a href="/work/zenni-account/">Phase 1, the Account foundation</a>, had established the structures and design-system patterns it could build on.
+
+<dl class="case-overview">
+<div><dt>The problem</dt><dd>Order status and delivery questions were 12.3% of support contacts, about 17,000 a month. The status customers saw was technically accurate, but it didn’t tell them whether things were normal, what came next, or when their glasses would arrive.</dd></div>
+<div><dt>My role</dt><dd>I was the UX designer for the Customer Satisfaction squad, working with product managers, a technical program manager, a content designer, engineering, analytics and customer service. I set up the UX working doc and tenets, ran a design jam with the team, owned the messaging framework, and took the design through review and developer handoff.</dd></div>
+<div><dt>What I did</dt><dd>I turned the operational record behind every order into a few milestones customers could read at a glance, an explanation of the step they were in, and a messaging framework that works across fulfillment routes, then designed the paths for holds, delays and errors.</dd></div>
+</dl>
+
+#### 01 / Impact
+
+Customers needed us less. The business held steady.
+
+<ul class="case-impact" role="list">
+<li><p class="case-impact__figure">−0.25<span class="case-impact__unit">pp</span></p><p class="case-impact__label">Chat initiation from Order Details</p><p class="case-impact__note">A drop of 0.25 percentage points against the legacy experience.</p><p class="case-impact__kind">50/50 A/B test</p></li>
+<li><p class="case-impact__figure">−0.10<span class="case-impact__unit">pp</span></p><p class="case-impact__label">Chat initiation from the Order List</p><p class="case-impact__note">A drop of 0.10 percentage points, in the same test.</p><p class="case-impact__kind">50/50 A/B test</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">Stable</p><p class="case-impact__label">Conversion, average order value and add-to-cart</p><p class="case-impact__note">Exits to help pages decreased modestly.</p><p class="case-impact__kind">50/50 A/B test</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">Every route</p><p class="case-impact__label">One messaging framework for all fulfillment paths</p><p class="case-impact__note">New origins and destinations don’t need a redesign. Thailand mirrored China’s logic.</p><p class="case-impact__kind">In the developer handoff</p></li>
+</ul>
+
+The new experience launched across the US and Canada, and was evaluated in a 50/50 A/B test against the legacy experience. The chat results are changes in percentage points, not relative percentages.
+
+#### 02 / Key decisions
+
+Make complexity useful, not visible.
+
+<ol class="case-decisions">
+<li><p class="case-decisions__title"><a href="#42-what-is-happening-a-tracker-for-every-shipment">Show the milestones customers care about, not the operational record</a></p><p>Every shipment gets five milestones, with the active step as the focal point and estimated delivery dates up front, in place of one internal status line and a shipping speed. <a class="case-decisions__more" href="#42-what-is-happening-a-tracker-for-every-shipment">4.2 ↓</a></p></li>
+<li><p class="case-decisions__title"><a href="#43-what-it-means-and-what-happens-next">Explain the step customers call about, where they see it</a></p><p>A “Where is my Order?” card changes with the milestone. At the en-route step, which gets the most customer service calls, it says what is happening and what comes next. <a class="case-decisions__more" href="#43-what-it-means-and-what-happens-next">4.3 ↓</a></p></li>
+<li><p class="case-decisions__title"><a href="#44-one-framework-for-every-route">One messaging framework for every route</a></p><p>The tracker keeps the same five slots, and two of them change with the item and the route, so new origins and destinations don’t need new design. <a class="case-decisions__more" href="#44-one-framework-for-every-route">4.4 ↓</a></p></li>
+<li><p class="case-decisions__title"><a href="#45-what-i-should-do-the-hard-paths">Design for holds, delays and errors, not only the happy path</a></p><p>Templates for orders on hold, data errors, older orders and routes with no delivered step tell customers what is needed and by when. <a class="case-decisions__more" href="#45-what-i-should-do-the-hard-paths">4.5 ↓</a></p></li>
+</ol>
+
 <figure class="visual visual--wide">
 <img src="/images/work/zenni-order-tracking/shipped-order-details.webp" alt="The shipped Order Details page: a Delivered Thursday, May 14 header for Shipment 1 of 1, a five-step tracker from Order Placed through Manufacturing, En-route to Facility and Shipped to Delivered with a date under each, and a Where is My Order card saying your new specs are on their way, with a Track Order button." loading="lazy" />
 <figcaption>Order Details in production, May 2026: the milestone tracker, a layout built around each shipment, and the Where is my Order card. Personal details are hidden.</figcaption>
 </figure>
 
-With the Account foundation in place, I led the next phase: reframing order tracking around customer confidence, and reducing the need for support without sacrificing core commerce performance. This was Phase 2, and it was possible because <a href="/work/zenni-account/">Phase 1, the Account foundation</a>, had established the structures and design-system patterns it could build on.
-
-<aside class="case-aside">
-<p class="label">My role</p>
-<p>I was the UX designer for the Customer Satisfaction squad, working with product managers, a technical program manager, a content designer, engineering, analytics and customer service. I set up the UX working doc and tenets, ran a design jam with the team, owned the messaging framework, and took the design through review and developer handoff.</p>
-</aside>
-
-#### 00 / Context
+#### 03 / Understanding the problem
 
 The foundation was built. Now we could solve the harder problem.
 
@@ -39,9 +64,9 @@ The squad’s vision was “a frictionless customer experience where self-servic
 
 Customer service had already made the case. In early 2025, order status and delivery questions were 12.3% of support contacts, about 17,000 a month, and 8 to 10% of all customer feedback was dissatisfaction about order status.
 
-#### 01 / People
+##### 3.1 People
 
-Customers weren’t simply asking “Where is my order?”
+<p class="case-insight">Customers weren’t simply asking “Where is my order?”</p>
 
 They had just spent their money on a new pair, and they were excited but also anxious. Underneath the question, they were trying to understand whether what they were seeing was normal, what would happen next, and whether they needed to do something.
 
@@ -49,9 +74,9 @@ They had just spent their money on a new pair, and they were excited but also an
 
 The data showed the same anxiety: customers checked their order status multiple times. What they wanted first was when they would get their glasses, in plain human language, with no math and no further investigation needed.
 
-#### 02 / System
+##### 3.2 System
 
-Zenni had the data. The experience didn’t translate it.
+<p class="case-insight">Zenni had the data. The experience didn’t translate it.</p>
 
 Behind every order was a detailed operational record: lens processing, frame assembly and final quality checks in the lab, a bulk shipment to a US facility, then a carrier’s own scan events. The customer saw almost none of it. Order Details showed a single line such as “Manufactured/en Route To Distribution Center”, with “Not Yet Shipped” beside the item and only a shipping speed, not a date.
 
@@ -74,9 +99,9 @@ The emails, the account status and what was actually happening didn’t line up.
 <figcaption>Customer service’s view of the expectation gap. Day 6 is where customers reach for support.</figcaption>
 </figure>
 
-#### 03 / Gaps
+##### 3.3 Gaps
 
-A technically accurate status can still fail the customer.
+<p class="case-insight">A technically accurate status can still fail the customer.</p>
 
 When the product couldn’t provide enough confidence, customers had an obvious fallback: ask support. Modernizing Account in Phase 1 hadn’t solved that, because the problem wasn’t the interface. It was what the interface chose to say.
 
@@ -88,9 +113,9 @@ Every status needed to answer four questions, in order: what is happening, what 
 - **Protect the excitement, eliminate the anxiety.** Be radically transparent about delays, and explain the customization process, because production times vary.
 - **No dead ends, always provide value.** Every touchpoint anticipates what the customer needs next.
 
-#### 04 / Design
+#### 04 / Making it work
 
-Make complexity useful, not visible.
+Every status had to answer the customer’s next question.
 
 The challenge wasn’t how much information we could expose. It was deciding which information changed what a customer understood or did next. The work happened in the open, in Slack canvases built from the templates I had made for the team after Account: a UX working doc with the tenets and an iteration tracker, the messaging framework, and a recorded prototype walkthrough, each open for anyone to comment on.
 
@@ -202,18 +227,12 @@ Some ideas were right, but not yet.
 
 We discussed showing the China locations during manufacturing to ease anxiety, which raised its own questions about brand perception. Proactive delay messaging, a predictive delivery date once last-mile data could support it, and a state for orders with no estimated date were carried forward as later work.
 
-#### 05 / Impact
+#### 05 / What it enabled
 
-Customers needed us less. The business held steady.
-
-The new experience launched across the US and Canada, and was evaluated in a 50/50 A/B test against the legacy experience.
-
-- Chat initiation from Order Details fell by 0.25 percentage points.
-- Chat initiation from the Order List fell by 0.10 percentage points.
-- Conversion, average order value and add-to-cart held stable, and exits to help pages decreased modestly.
+The work also changed how the UX team worked.
 
 <p class="callout">When customers could understand what was happening with their order, they were less likely to need someone at Zenni to explain it.</p>
 
-The work also changed how the UX team worked. The working doc, the design jam and its follow-up, the messaging framework and the recorded walkthrough reinforced the canvas practice I started on Account, and became templated ways of working the UX team could reuse on its own projects.
+The working doc, the design jam and its follow-up, the messaging framework and the recorded walkthrough reinforced the canvas practice I started on Account, and became templated ways of working the UX team could reuse on its own projects.
 
 The interface was Phase 2. The architecture started earlier, in the <a href="/work/zenni-account/">Account foundation</a> that made it possible.
