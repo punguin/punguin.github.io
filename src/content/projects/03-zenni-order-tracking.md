@@ -195,7 +195,7 @@ The copy had to scale with the supply chain.
 
 <p class="label case-status">In the developer handoff</p>
 
-After one of my recorded demos, on October 31, 2025, I received critical feedback from leadership: orders ship from overseas labs and from the US, to customers around the world, and new labs were planned. The copy had to work for every combination. I share early and often, gather feedback, and address it, so this came up two weeks before handoff instead of after launch.
+After one of my recorded demos, I received critical feedback from leadership: orders ship from overseas labs and from the US, to customers around the world, and new labs were planned. The copy had to work for every combination. I share early and often, gather feedback, and address it, so this came up two weeks before handoff instead of after launch.
 
 <p class="callout">How might we design a scalable messaging framework that adapts to complex, multi-origin logistics, so every customer feels confident and informed even when their items follow complex global routes?</p>
 
