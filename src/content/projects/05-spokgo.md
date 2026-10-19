@@ -9,7 +9,7 @@ project: SpokGo clinical communications
 domain: Healthcare SaaS
 summary: Creating shared direction through discovery.
 role: UX Strategy lead
-timeline: 1 month of discovery, 2018
+timeline: 1 month
 platform: [iOS, Android]
 partners: [Stakeholders across the organization]
 accent: spokgo

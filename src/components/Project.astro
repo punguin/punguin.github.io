@@ -10,9 +10,8 @@ const { Content } = await render(entry);
 const isTodo = (v: string) => v.startsWith('[');
 const meta: [string, string][] = [
   ['Role', p.role],
-  ['Timing', p.timeline],
+  ['Duration', p.timeline],
   ['Platform', p.platform.join(', ')],
-  ['Partners', p.partners.join(', ')],
 ];
 ---
 <article
