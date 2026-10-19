@@ -97,7 +97,7 @@ The emails, the account status and what was actually happening didn’t line up.
 
 <figure class="visual visual--wide">
 <img class="is-mockup" src="/images/work/zenni-order-tracking/expectation-gap.webp" alt="A timeline from day 0 to day 13: order placed, being made, no email on day 6, shipped on day 7, delivered on day 13. Day 6 is highlighted as when Where is my order? calls come in." loading="lazy" />
-<figcaption>Mapping a typical order with customer service showed the expectation gap: on day 6 nothing reaches the customer, and that is when “Where is my order?” calls come in.</figcaption>
+<figcaption>Mapping a typical order with customer service showed the expectation gap: on day 6 no email goes out, and that is when “Where is my order?” calls come in.</figcaption>
 </figure>
 
 ##### 3.3 Gaps
