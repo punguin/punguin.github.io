@@ -13,6 +13,7 @@ timeline: Nov 2024 – 2026
 platform: [Slack canvases, Team practice]
 partners: [UX manager, UX team, UX PM, Product, Engineering]
 accent: yellow
+tags: [Design Operations, Cross-functional Collaboration, Decision-Making & Alignment]
 cover: /images/work/zenni-working-docs/cover.webp
 hero: /images/work/zenni-working-docs/hero.webp
 coverAlt: Two Zenni Slack canvases in browser windows, a UX working doc with its tenets in front of the Knowledge Sharing Mechanism workshop doc and its tracker
