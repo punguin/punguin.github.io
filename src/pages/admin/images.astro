@@ -1,0 +1,194 @@
+---
+// Image library (/admin/images): every image and SVG the site serves from public/, grouped by
+// where it lives, with the pages that use it. Each one can be swapped for a new file in place
+// (src/scripts/image-library.ts); viewing needs no token, swapping uses the editor's GitHub token.
+import fs from 'node:fs';
+import path from 'node:path';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/editor.css';
+
+const ROOT = process.cwd();
+const PUBLIC = path.join(ROOT, 'public');
+const IMAGE = /\.(png|jpe?g|webp|gif|svg|avif)$/i;
+const SOURCE = /\.(md|mdx|astro|json|ts|css|mjs)$/i;
+const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
+
+const walk = (dir: string): string[] =>
+  fs.readdirSync(dir, { withFileTypes: true }).flatMap((d) => {
+    const p = path.join(dir, d.name);
+    return d.isDirectory() ? walk(p) : [p];
+  });
+
+// Where each image is referenced: the site's own source files, read at build time.
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const sources = walk(path.join(ROOT, 'src'))
+  .filter((f) => SOURCE.test(f) && !f.includes(`${path.sep}pages${path.sep}admin`))
+  .map((f) => ({ file: path.relative(ROOT, f), text: fs.readFileSync(f, 'utf8') }));
+
+function place(file: string): { label: string; href?: string } {
+  const project = projects.find((p) => p.filePath && path.normalize(p.filePath) === file);
+  if (project) return { label: project.data.title, href: `/work/${project.data.id}/` };
+  if (file.startsWith('src/content/')) return { label: 'Homepage', href: '/' };
+  return { label: `Site layout (${path.basename(file)})` };
+}
+
+const assets = walk(PUBLIC)
+  .filter((f) => IMAGE.test(f))
+  .map((f) => {
+    const url = '/' + path.relative(PUBLIC, f).split(path.sep).join('/');
+    const usedIn = sources.filter((s) => s.text.includes(url)).map((s) => place(s.file));
+    const unique = usedIn.filter((u, i) => usedIn.findIndex((v) => v.label === u.label) === i);
+    const folder = path.dirname(url);
+    return { url, repoPath: `public${url}`, name: path.basename(url), folder, bytes: fs.statSync(f).size, usedIn: unique };
+  })
+  .sort((a, b) => a.url.localeCompare(b.url));
+
+const NAMES: Record<string, string> = {
+  '/': 'Site icon and sharing image',
+  '/images': 'Portrait',
+  '/illustrations': 'How I work illustrations',
+  '/illustrations/brain': 'Brain puzzle pieces',
+};
+
+// One group per folder; case study folders take the case's title and colour.
+const groups = [...new Set(assets.map((a) => a.folder))].map((folder) => {
+  const project = projects.find((p) => folder === `/images/work/${p.data.id}`);
+  return {
+    folder,
+    id: folder.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '') || 'site',
+    title: project ? project.data.title : NAMES[folder] ?? folder.replace(/^\//, ''),
+    color: project?.data.coverColor ?? '#c2ffa8',
+    items: assets.filter((a) => a.folder === folder),
+  };
+}).sort((a, b) => {
+  const rank = (g: typeof a) => { const i = projects.findIndex((p) => g.folder === `/images/work/${p.data.id}`); return i < 0 ? 100 : i; };
+  return rank(a) - rank(b) || a.folder.localeCompare(b.folder);
+});
+
+const size = (n: number) => (n > 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(1)} MB` : `${Math.max(1, Math.round(n / 1024))} KB`);
+const kind = (name: string) => name.split('.').pop()!.toUpperCase().replace('JPEG', 'JPG');
+const unused = assets.filter((a) => !a.usedIn.length).length;
+---
+<BaseLayout title="Images — Pung Brooks" description="View and swap the images on Pung Brooks's site." noindex>
+  <main class="ed">
+    <header class="ed-top">
+      <a class="ed-top__home" href="/">Pung Brooks</a>
+      <a class="ed-top__name" href="/admin/">Site editor</a>
+      <span class="ed-top__name">/ Images</span>
+    </header>
+
+    <p class="ed-status" role="status" aria-live="polite" data-status></p>
+
+    <div class="lib-head">
+      <h1>Images</h1>
+      <p class="ed-hint">{assets.length} images and SVGs, {unused} not used on any page. To swap one, click <b>Replace</b> or drop a file onto it. The new file keeps the same name and spot, so every page using it updates on the next build.</p>
+    </div>
+
+    <form class="ed-connect lib-connect" data-connect hidden>
+      <p><b>Connect to GitHub to replace images.</b> Viewing works without it. Use the same token as the site editor (<a href={TOKEN_URL} target="_blank" rel="noopener">fine-grained token</a>, this repository only, Contents: Read and write).</p>
+      <div class="ed-row">
+        <label>Token <input name="token" type="password" autocomplete="off" required spellcheck="false" /></label>
+        <label>Branch <input name="branch" value="main" required spellcheck="false" /></label>
+      </div>
+      <label class="ed-check"><input name="remember" type="checkbox" /> Remember on this device</label>
+      <button class="ed-btn ed-btn--primary" type="submit">Connect</button>
+    </form>
+    <p class="ed-side__meta lib-conn" data-connected hidden>Replacing on <code data-branch></code> · <button class="ed-link" type="button" data-disconnect>Disconnect</button></p>
+
+    <div class="lib-bar">
+      <label class="lib-search">Find <input type="search" placeholder="File name or page" data-search /></label>
+      <fieldset class="lib-seg">
+        <legend>Background</legend>
+        <label><input type="radio" name="bg" value="case" checked /> Case colour</label>
+        <label><input type="radio" name="bg" value="checker" /> Transparency</label>
+        <label><input type="radio" name="bg" value="white" /> White</label>
+      </fieldset>
+      <fieldset class="lib-seg">
+        <legend>Show</legend>
+        <label><input type="radio" name="show" value="all" checked /> All</label>
+        <label><input type="radio" name="show" value="svg" /> SVG only</label>
+        <label><input type="radio" name="show" value="unused" /> Not used</label>
+      </fieldset>
+    </div>
+
+    <nav class="lib-jump" aria-label="Folders">
+      {groups.map((g) => <a href={`#${g.id}`}>{g.title} <span>{g.items.length}</span></a>)}
+    </nav>
+
+    <input type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml,image/avif" data-file hidden />
+
+    {groups.map((g) => (
+      <section class="lib-group" id={g.id} style={`--case: ${g.color}`} data-group>
+        <h2>{g.title} <code>{g.folder}</code></h2>
+        <ul class="lib-grid">
+          {g.items.map((a) => (
+            <li class="lib-card" data-asset data-path={a.repoPath} data-url={a.url} data-svg={a.name.endsWith('.svg') ? '' : undefined} data-unused={a.usedIn.length ? undefined : ''} data-search-text={`${a.name} ${a.usedIn.map((u) => u.label).join(' ')}`.toLowerCase()}>
+              <div class="lib-card__view">
+                <img src={a.url} alt="" loading="lazy" decoding="async" data-preview />
+              </div>
+              <div class="lib-card__info">
+                <p class="lib-card__name" title={a.url}>{a.name}</p>
+                <p class="lib-card__meta"><span class="lib-tag">{kind(a.name)}</span> <span data-dims></span> · {size(a.bytes)}</p>
+                <p class="lib-card__used">
+                  {a.usedIn.length
+                    ? <>Used in {a.usedIn.map((u, i) => <>{i > 0 && ', '}{u.href ? <a href={u.href}>{u.label}</a> : u.label}</>)}</>
+                    : <span class="lib-card__unused">Not used on any page</span>}
+                </p>
+                <p class="lib-card__done" data-done hidden></p>
+                <div class="lib-card__actions">
+                  <button class="ed-btn ed-btn--primary" type="button" data-replace>Replace</button>
+                  <a class="ed-btn" href={a.url} download={a.name}>Download</a>
+                  <button class="ed-link" type="button" data-copy>Copy path</button>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </main>
+
+  <script>
+    import '../../scripts/image-library.ts';
+  </script>
+</BaseLayout>
+
+<style is:global>
+  .lib-head { display: grid; gap: var(--space-3); margin-bottom: var(--space-5); }
+  .lib-connect { max-width: 46em; margin: 0 0 var(--space-5); padding: var(--space-5); border: 1px solid var(--border-subtle); border-radius: var(--radius-card); background: var(--surface); }
+  .lib-conn { margin-bottom: var(--space-4); }
+  .lib-bar { display: flex; flex-wrap: wrap; align-items: end; gap: var(--space-4); margin-bottom: var(--space-4); }
+  .lib-search { flex: 1 1 260px; }
+  .ed .lib-seg { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: var(--radius-button); }
+  .ed .lib-seg legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .ed .lib-seg label { display: flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: var(--radius-button); font-weight: 400; cursor: pointer; }
+  .ed .lib-seg label:has(input:checked) { background: var(--forest-ink); color: #fff; }
+  .lib-seg input { position: absolute; opacity: 0; pointer-events: none; }
+  .ed .lib-seg label:has(input:focus-visible) { outline: 2px solid var(--forest-ink); outline-offset: 2px; }
+  .lib-jump { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-6); }
+  .lib-jump a { padding: 6px 12px; border-radius: var(--radius-button); background: var(--surface); border: 1px solid var(--border-strong); font-size: 0.875rem; text-decoration: none; color: var(--forest-ink); }
+  .lib-jump a span { color: var(--text-tertiary); }
+  .lib-group { margin-bottom: var(--space-8); scroll-margin-top: var(--space-5); }
+  .lib-group[hidden] { display: none; }
+  .lib-group h2 { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3); margin-bottom: var(--space-4); font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; }
+  .lib-group h2 code { font-size: 0.8125rem; color: var(--text-tertiary); }
+  .lib-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-4); }
+  .lib-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border-strong); border-radius: 16px; background: var(--surface); }
+  .lib-card[hidden] { display: none; }
+  .lib-card.is-drop { outline: 3px dashed var(--forest-ink); outline-offset: 2px; }
+  .lib-card.is-busy { opacity: 0.6; pointer-events: none; }
+  .lib-card__view { position: relative; aspect-ratio: 4 / 3; background: var(--case); }
+  body[data-bg='checker'] .lib-card__view { background: repeating-conic-gradient(#e6e6e6 0 25%, #fff 0 50%) 0 0 / 16px 16px; }
+  body[data-bg='white'] .lib-card__view { background: #fff; }
+  .lib-card__view img { position: absolute; inset: var(--space-4); width: calc(100% - 2 * var(--space-4)); height: calc(100% - 2 * var(--space-4)); object-fit: contain; }
+  .lib-card__info { display: grid; gap: 6px; padding: var(--space-4); flex: 1; align-content: start; }
+  .lib-card__name { font-weight: 600; font-size: 0.9375rem; overflow-wrap: anywhere; }
+  .lib-card__meta { font-size: 0.8125rem; color: var(--text-tertiary); }
+  .lib-tag { padding: 1px 6px; border-radius: 4px; background: var(--hover-bg); font-family: var(--font-mono); font-size: 0.75rem; color: var(--forest-ink); }
+  .lib-card__used { font-size: 0.8125rem; color: var(--text-secondary); }
+  .lib-card__unused { color: #a8461a; }
+  .lib-card__done { font-size: 0.8125rem; font-weight: 600; color: #1f6b3a; }
+  .lib-card__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin-top: var(--space-2); }
+  .lib-card__actions .ed-btn { font-size: 0.875rem; padding: 6px 14px; text-decoration: none; }
+</style>
