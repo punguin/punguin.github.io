@@ -157,4 +157,6 @@ Soon the entire UX team was tracking its work in Slack, which gave everyone visi
 
 ##### Reflection
 
-<p class="todo"><span class="todo-tag">To write</span> Two or three sentences in your own words: what you learned about driving adoption without authority, and what you would do differently.</p>
+I saw firsthand that you don’t need authority to drive better outcomes for a team, but you do need partners. My closest was our UX PM. She had been a designer on the team and was new to program management, and most of her focus was on how UX worked with other teams, not how we worked internally. I was careful to respect that boundary and not add to her plate. Regular 1:1s kept us on the same page, and we worked through adoption the way we would work through a design problem.
+
+My manager had watched me work this way since I joined Zenni, and she pushed me to double down and share it with the rest of the team. I hesitated. UX maturity at the company wasn’t where we wanted it to be, and on my own, I was just another designer asking other designers to work my way. What I should have done sooner was ask for her support in making new ways of working a team goal. When she did make it one, I was glad to lead it.
