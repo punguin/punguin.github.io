@@ -8,11 +8,11 @@ const Title = standalone ? 'h1' : 'h3';
 const p = entry.data;
 const { Content } = await render(entry);
 const isTodo = (v: string) => v.startsWith('[');
-const meta: [string, string][] = [
+const meta = ([
   ['Role', p.role],
   ['Duration', p.timeline],
   ['Platform', p.platform.join(', ')],
-];
+] as [string, string | undefined][]).filter((m): m is [string, string] => !!m[1]);
 ---
 <article
   class:list={['project', { 'project--page': standalone }]}

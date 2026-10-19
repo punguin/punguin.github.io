@@ -32,7 +32,7 @@ const projects = defineCollection({
     domain: z.string(),
     summary: z.string(),
     role: z.string(),
-    timeline: z.string(),
+    timeline: z.string().optional(),
     platform: z.array(z.string()),
     partners: z.array(z.string()),
     // Named after the first case study to use each colour; yellow and lilac are spares for new ones.

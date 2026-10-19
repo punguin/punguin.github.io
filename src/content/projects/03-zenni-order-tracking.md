@@ -9,7 +9,7 @@ project: Enhanced Order Tracking
 domain: Ecommerce, post-purchase
 summary: Make order status feel like an answer, not a clue.
 role: Senior Product Designer, design lead
-timeline: Oct 2025 – launch Q1 2026
+timeline: 3 months
 platform: [Responsive web]
 partners: [Product, Engineering, Content Design, Analytics, Customer Service]
 accent: tracking
