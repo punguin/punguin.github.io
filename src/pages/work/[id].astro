@@ -29,8 +29,9 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
     <main class="document" id="main">
       <div class="case-layout" id="top">
           <div class="case-layout__body">
-            <p class="case-top"><a class="case-top__back" href="/#selected-work"><span aria-hidden="true">←</span> All work</a></p>
-            <Project entry={entry} standalone />
+            <Project entry={entry} standalone>
+              <p class="case-top" slot="top"><a class="case-top__back" href="/#selected-work"><span aria-hidden="true">←</span> All work</a></p>
+            </Project>
 
             <nav class="case-next" aria-label="Next case study">
               <a href={`/work/${next.data.id}/`}>

@@ -23,6 +23,13 @@ const meta: [string, string][] = [
   aria-labelledby={`${p.id}-title`}
   style={`--accent: var(--accent-${p.accent}); --case-color: ${p.coverColor ?? `var(--accent-${p.accent})`}`}
 >
+  {standalone && p.hero && (
+    <figure class="project__hero">
+      <img src={p.hero} alt={p.coverAlt ?? ''} width="2400" height="1200" fetchpriority="high" />
+    </figure>
+  )}
+  <slot name="top" />
+
   <header class="project__header">
     <p class="eyebrow project__kicker" aria-hidden="true">{p.company} · {p.project}</p>
     <Title class="project__title" id={`${p.id}-title`}>
@@ -36,12 +43,6 @@ const meta: [string, string][] = [
       <div><dt class="label">{k}</dt><dd class={isTodo(v) ? 'is-todo' : undefined}>{v}</dd></div>
     ))}
   </dl>
-
-  {standalone && p.hero && (
-    <figure class="project__hero">
-      <img src={p.hero} alt={p.coverAlt ?? ''} width="2400" height="1200" fetchpriority="high" />
-    </figure>
-  )}
 
   <div class="prose project__body">
     <Content />
@@ -75,7 +76,7 @@ const meta: [string, string][] = [
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
-  .project__hero { margin: calc(-1 * var(--space-7) + 8px) 0 var(--space-8); }
+  .project__hero { margin: var(--space-6) 0 0; }
   .project__hero img { display: block; width: 100%; height: auto; border-radius: 22px; }
   .project__meta div { display: grid; gap: var(--space-1); align-content: start; min-width: 0; }
   .project__meta dd { margin: 0; font-size: 0.9375rem; line-height: 1.45; }
