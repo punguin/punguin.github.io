@@ -84,27 +84,6 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 resolveActive();
 
-// ---------- Contents over the dark band ----------
-// Each contents link checks whether it sits over a full-bleed dark section and switches to light text.
-const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.toc a'));
-const darkBands = Array.from(document.querySelectorAll<HTMLElement>('.doc-section--dark'));
-if (tocLinks.length && darkBands.length) {
-  let toneFrame = 0;
-  const updateTone = () => {
-    toneFrame = 0;
-    const bands = darkBands.map((b) => b.getBoundingClientRect());
-    for (const a of tocLinks) {
-      const r = a.getBoundingClientRect();
-      const mid = r.top + r.height / 2;
-      a.classList.toggle('is-on-dark', bands.some((b) => mid >= b.top && mid <= b.bottom));
-    }
-  };
-  const queue = () => { if (!toneFrame) toneFrame = requestAnimationFrame(updateTone); };
-  window.addEventListener('scroll', queue, { passive: true });
-  window.addEventListener('resize', queue);
-  updateTone();
-}
-
 // ---------- Sticky project headers ----------
 // Checked on scroll (rAF-throttled) rather than by IntersectionObserver alone: an instant jump
 // from above a project to inside it never changes the sentinel's intersection, so no entry fires.

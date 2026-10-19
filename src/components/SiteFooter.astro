@@ -12,10 +12,12 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
-  /* Full-width dark gray band; the content lines up with the header. */
+  /* Same inset panel as the homepage hero; the content lines up with the header bar. */
   .site-footer {
-    background: #26282c;
-    color: #b9bcc2;
+    margin: 0 var(--frame) var(--frame);
+    background: var(--hero-bg);
+    border-radius: 22px;
+    color: var(--text-secondary);
     font-size: 0.8125rem;
   }
   .site-footer__inner {
@@ -27,6 +29,6 @@ const year = new Date().getFullYear();
     margin-inline: auto;
     padding-block: 42px 60px;
   }
-  .site-footer a { color: #fff; }
+  .site-footer a { color: var(--ink); }
   .site-footer__credit { display: grid; gap: var(--space-1); }
 </style>
