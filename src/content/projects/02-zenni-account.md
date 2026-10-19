@@ -20,7 +20,7 @@ coverColor: "#dcf774"
 order: 2
 ---
 
-I modernized a fragmented account experience while establishing reusable product patterns and a healthier working relationship between product design and the design system. This was Phase 1. <a href="/work/zenni-order-tracking/">Phase 2, Enhanced Order Tracking</a>, was built on it.
+I modernized a fragmented account experience, established reusable product patterns, and set a new model for how product designers work with the design system. This was Phase 1. <a href="/work/zenni-order-tracking/">Phase 2, Enhanced Order Tracking</a>, was built on it.
 
 <dl class="case-overview">
 <div><dt>The problem</dt><dd>Zenni’s Account pages had grown one page at a time, organized around how the business built them, just as a new brand and a barely started design system arrived.</dd></div>
