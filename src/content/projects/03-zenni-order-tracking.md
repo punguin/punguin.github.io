@@ -217,7 +217,7 @@ The tracker had to work beyond the happy path.
 
 <p class="label case-status">In the developer handoff</p>
 
-The same review asked how the design handled issues and delays. The handoff on November 13, 2025 included templates for prescription and non-prescription items, e-gift cards, older orders, orders on hold, data errors and routes with no delivered step, across desktop, tablet and mobile, where the tracker turns vertical. On hold was the most consequential. California law requires a photo of the prescription, so an order on hold says exactly what is needed and by when: “Please upload Rx by April 5th.”
+Sharing the work early also put issues and delays in front of everyone. They were already part of the work, and the model supports them. The handoff included templates for prescription and non-prescription items, e-gift cards, older orders, orders on hold, data errors and routes with no delivered step, across desktop, tablet and mobile, where the tracker turns vertical. On hold mattered most. California law requires a photo of the prescription, so an order on hold says exactly what is needed and by when: “Please upload Rx by April 5th.”
 
 ##### 4.6 What we left for later
 
