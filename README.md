@@ -1,19 +1,23 @@
 # Pung Brooks — Design Practice
 
-A long-form, document-style portfolio. One page, numbered sections, a persistent table of contents, and four case studies as chapters.
+Portfolio site for Pung Brooks, live at https://pungbrooksdesign.com. A homepage with numbered sections (Selected work, How I work, Values, Experience, Contact) and one page per case study at `/work/<id>/`.
 
-Built with Astro + TypeScript, vanilla CSS, and plain Markdown. The only client JavaScript is one small module (`src/scripts/document-nav.ts`, about 3 KB) for the scroll spy, sticky project headers, mobile menu, and mobile scroll indicator.
+Built with Astro + TypeScript, vanilla CSS, and Markdown content collections. Client JavaScript is limited to small modules in `src/scripts/`: scroll spy for the contents lists, the How I work reveal animation, the case-study image viewer, and the `/admin/` editor.
 
 ## Commands
 
 ```sh
-npm install
+npm ci            # install (includes @vercel/analytics)
 npm run dev       # local dev server at http://localhost:4321
 npm run build     # static output in dist/
 npm run preview   # serve the built site
 ```
 
-Every push to `main` builds the site and deploys it to GitHub Pages at https://punguin.github.io (`.github/workflows/deploy.yml`). Pull requests run the build only. Vercel is also connected to this repository: every pull request gets a preview deployment, and Vercel protects preview URLs so only people signed in to the Vercel team can open them. In the repository's Settings → Pages, "Source" must be set to "GitHub Actions". If a custom domain is added later, update `site` in `astro.config.mjs` so the canonical and Open Graph URLs match.
+## Hosting
+
+- The domain pungbrooksdesign.com points at Vercel, which builds `main` for production and gives every pull request a preview deployment. Preview URLs are protected, so only people signed in to the Vercel team can open them.
+- `.github/workflows/deploy.yml` also builds every push to `main` and deploys it to GitHub Pages; pull requests run the build only.
+- `site` in `astro.config.mjs` and `public/CNAME` are set to pungbrooksdesign.com, so canonical and Open Graph URLs use the domain. `src/pages/sitemap.xml.ts` and `public/robots.txt` cover search engines.
 
 ## Editing content
 
@@ -21,84 +25,106 @@ All copy lives in `src/content/`. Components hold no portfolio copy.
 
 | What | Where |
 | --- | --- |
-| Hero | `src/content/hero.json` |
-| Sections 01–06 | `src/content/sections/*.md` (frontmatter: `id`, `number`, `title`, `navLabel`, `order`, optional `lead`) |
-| Case studies 01.1–01.4 | `src/content/projects/*.md` (frontmatter: number, company, summary/thesis, role, timing, platform, partners, accent, order, and optional `cover` + `coverAlt` for the homepage card image; a placeholder shows until `cover` is set) |
+| Hero (greeting, portrait, headline, supporting copy) | `src/content/hero.json` |
+| Homepage sections 01–05 | `src/content/sections/*.md` (frontmatter: `id`, `number`, `title`, `navLabel`, `order`, optional `lead`) |
+| Case studies 01.1–01.4 | `src/content/projects/*.md` (see below) |
 | Experience timeline | `src/content/experience.json` |
-| Email, LinkedIn, résumé | `src/content/contact.json` |
+| Email, LinkedIn, résumé | `src/content/contact.json` (the résumé PDF is `public/Pung-Brooks-Resume.pdf`) |
 
-The table of contents, mobile menu, selected-work index and scroll spy are all generated from the frontmatter. To add a project, add a Markdown file to `src/content/projects/` with the next `number` and `order`. Nothing else needs to change.
+The homepage contents list, the Selected work cards and each case study's contents list are generated from the content. To add a case study, add a Markdown file to `src/content/projects/` with the next `number` and `order`.
 
-### Heading levels
+### Case study frontmatter
 
-Section bodies use `###` for subheads. Case-study bodies use `#### 00 / Context` for sections (the paragraph right after it is styled as the section headline) and `##### 4.1 Title` for numbered steps; both feed the sticky contents list beside each case study (`src/components/CaseContents.astro`). Unnumbered `#####` headings stay out of that list.
+`id` (the URL), `number`, `title`, `navLabel`, `company`, `context`, `project`, `domain`, `summary` (the page headline), `role`, `timeline`, `platform`, `partners`, `accent`, `order`, and optional:
+
+- `cover` and `coverAlt`: the homepage card image (`public/images/work/<id>/cover.webp`, 1600×1200). A placeholder shows until `cover` is set. `coverAlt` is also the alt text for `hero`.
+- `hero`: the wide mockup at the top of the case page (`hero.webp`, 2400×1200).
+- `featured: false`: hides the case study everywhere (homepage, `/work/` pages, next links, sitemap) without deleting it. SpokGo is hidden this way until its content exists.
+
+### Case study structure
+
+Every published case study follows the same impact-first outline, so its significance is clear in the first minute and the full reasoning is still there for anyone who keeps reading:
+
+| Section | Markdown |
+| --- | --- |
+| Overview | The opening paragraph (styled as the lede), then a `<dl class="case-overview">` with *The problem*, *My role* and *What I did* rows |
+| 01 / Impact | `#### 01 / Impact`, a headline line, then `<ul class="case-impact">` with 3–4 items |
+| 02 / Key decisions | `#### 02 / Key decisions`, a headline line, then `<ol class="case-decisions">` linking to the 4.x sections |
+| 03 / Understanding the problem | `#### 03 / Understanding the problem`, then `##### 3.1 People`, `##### 3.2 System`, `##### 3.3 Gaps`, each followed by `<p class="case-insight">` with its insight headline |
+| 04 / Making it work | `#### 04 / Making it work`, then one `##### 4.x` per key decision, plus validation and launch |
+| 05 / What it enabled | `#### 05 / What it enabled`, optionally followed by an unnumbered `##### Reflection` |
+
+An impact item:
+
+```html
+<li>
+  <p class="case-impact__figure">−46%</p>   <!-- add case-impact__figure--text for a word or phrase -->
+  <p class="case-impact__label">Searches per carrier in the US</p>
+  <p class="case-impact__note">While loads per carrier remained relatively flat.</p>
+  <p class="case-impact__kind">Measured in production</p>
+</li>
+```
+
+`case-impact__kind` says what kind of evidence it is: measured in production or after launch, A/B test, measured adoption, research finding, capability enabled, organizational outcome, shipped, or in the developer handoff. Use only documented results, and keep units as they were reported (percentage points stay percentage points; wrap a unit in `<span class="case-impact__unit">`).
+
+A key decision:
+
+```html
+<li>
+  <p class="case-decisions__title"><a href="#41-separate-primary-search-from-secondary-filtering">Separate viable-work search from secondary filtering</a></p>
+  <p>What changed and why it mattered. <a class="case-decisions__more" href="#41-separate-primary-search-from-secondary-filtering">4.1 ↓</a></p>
+</li>
+```
+
+Decision links point at the slug Astro generates from the `#####` heading (`4.1 Separate primary…` becomes `#41-separate-primary…`), so renaming a heading means updating its links.
+
+Inside sections, the line right after a `####` heading is styled as the section headline, and the line after a numbered `#####` is its subhead. Numbered `####` and `#####` headings feed the sticky contents list beside the story (`src/components/CaseContents.astro`); unnumbered `#####` headings stay out of it. Label what shipped and what was direction with `<p class="label case-status">Shipped in the first release</p>` or `Direction for later phases`. Styles for all of these live in `src/components/Project.astro`.
 
 ### Adding an image
 
-Put the file in `public/images/` (or `src/assets/` if you want Astro to optimize it). Then replace a placeholder figure in the Markdown:
+Put the file in `public/images/work/<id>/` and add a figure to the Markdown:
 
 ```html
 <figure class="visual visual--wide">
-  <img src="/images/relay-before-after.webp" width="1600" height="900" loading="lazy" decoding="async"
-       alt="Old Relay home screen beside the redesigned one, showing …" />
+  <img src="/images/work/amazon-relay/before-after.webp" loading="lazy"
+       alt="Before: the old Relay trips screen … After: the redesigned home screen …" />
   <figcaption>Why this evidence matters, not what it is.</figcaption>
 </figure>
 ```
 
-Sizes: `visual--inline` (reading width), `visual--wide` (extends up to 120px left on large screens), `visual--full` (up to 160px; use sparingly). Always set `width` and `height` to prevent layout shift. Use WebP or AVIF, and keep screenshots with text legible.
-
-### Pick My Brain
-
-The illustration at the top of the page ("Pick My Brain" in the code) reads like a page from a sketchbook (on screens 1024px and wider it sits to the right of the hero text; narrower, it comes first, above the text): a loose cloud of marker orbs, one for each complex domain or problem space in the work, each with a pencil doodle and a handwritten label: freight marketplace (Relay Load Board), drivers on the road (Relay mobile), clinical messaging (Spok, SpokGo), order status (Zenni Order Tracking), customer accounts (Zenni Account), design systems (Meridian, Zenni), real estate (Lone Wolf) and greenfield (SpokGo). Every orb drifts on its own slow, lopsided loop (12 to 17 seconds, each starting at a different point), so the cloud never moves in step. With reduced motion the orbs stay still. To change an orb, edit `ORBS` in the script.
-
-How it is made:
-
-1. `scripts/brain_sketch.py` draws everything as pencil (variable-width strokes, second passes, overshoots, faint construction rings) with marker colour underneath. It writes `src/assets/brain/`: `paper.svg` (the still drawing), `piece-<id>.svg` (one per orb), `layout.json` and `motion.css` (each orb's drift).
-2. `scripts/bake_brain.mjs` renders `paper.svg` and the pieces to WebP in `public/illustrations/brain/`. The pencil grain is an SVG filter that browsers re-run every animation frame, so the page shows these images and CSS only moves them. It needs Playwright with Chromium and Python Pillow.
-
-After changing the drawing: `cd scripts && python3 brain_sketch.py && cd .. && node scripts/bake_brain.mjs`. Handwriting uses Caveat, self-hosted like the other fonts.
-
-### How I work sketches
-
-The five hand-drawn sketches in How I work live in `public/illustrations/`. They are generated by `scripts/sketches.py` (plain Python, no dependencies), so you can tweak a drawing and rerun `python3 scripts/sketches.py`. Each step is a coloured card that leads with its question, with its sketch beside the step's tag; people and system share the first row on wider screens. The sketches are decorative, so they have empty alt text.
+Sizes: `visual--inline` (reading width), `visual--wide`, `visual--full` (use sparingly). Use WebP, keep screenshots legible, and hide personal details (names, addresses, order and tracking numbers) before publishing. On case pages, clicking an image opens it larger (`src/scripts/image-viewer.ts`).
 
 ### Placeholders
 
 Anything not yet written is marked so it is easy to find:
 
-- `<p class="todo">…</p>` with a "To write" tag: case-study narrative still needed.
-- `<figure class="visual … is-placeholder">`: evidence still needed.
+- `<p class="todo">…</p>` with a "To write" tag: narrative still needed.
+- `<figure class="visual … is-placeholder">`: evidence still needed (the Load Board case study has several).
 - `"[To confirm]"` in project frontmatter: role, timing, platform, partners.
-- `"placeholder": true` in `contact.json`.
 
-Search for `todo`, `is-placeholder`, `[To confirm]` and `placeholder` to find them all.
+Search for `todo`, `is-placeholder` and `[To confirm]` to find them all.
+
+## Editing the site in the browser
+
+Open `/admin/` on the site for a small editor (`src/pages/admin.astro`, `src/scripts/case-editor.ts`).
+
+- Homepage: the hero, each section's heading, contents label and text (the number and position stay fixed), the Experience timeline and the Contact links. The JSON forms are built from each file's own shape.
+- Case studies: lists `src/content/projects/`, edits details and story, adds new ones, uploads images to `public/images/work/<id>/`, and saves each change as a commit through the GitHub API. It needs a fine-grained GitHub token limited to this repository with Contents: Read and write; the token stays in the browser. "Show on site" off sets `featured: false`.
+- Known gap: the editor's frontmatter list doesn't include `hero`, so saving a case study from `/admin/` drops its hero image. Edit `hero` in the Markdown file directly until that is fixed.
 
 ## Architecture
 
-- `src/pages/index.astro` renders the whole document from the content collections.
-- `src/lib/outline.ts` derives the numbered outline used by every navigation surface.
+- `src/pages/index.astro` renders the homepage from the content collections; `src/pages/work/[id].astro` renders each case study, with a "Next case study" link.
+- `src/lib/outline.ts` sorts sections and the featured case studies.
 - `src/styles/global.css` holds all tokens (color, type, spacing, layout) at the top, then base and layout rules. Component styles are scoped in each `.astro` file.
-- `src/styles/fonts.css` self-hosts latin subsets of Caprasimo (400, display headlines only), Inter (400–700) and Roboto Mono (400, numbers and labels). The two faces used above the fold are preloaded.
-- The visual system follows the "Say Briefly" style reference: Cream Paper canvas, Forest Ink for text and structure, Highlighter Yellow as a `<mark>` wash on a few key phrases, and one sticky-note pastel per case study (`--accent-*` in `global.css`). Buttons use 6px corners, cards 12px, navigation 16px.
+- `src/styles/fonts.css` self-hosts latin subsets of Caprasimo (display headlines), Inter (body, 400–700) and Roboto Mono (small labels). Caprasimo and Inter 400 are preloaded.
+- Visual system: warm paper (`#faf9f6`) with a dot-grid background, near-black ink for text and every rule, Caprasimo headlines, sentence-case mono labels, and one teal accent (`--violet`, `#14b3a6`, named for an earlier color) used only as a fill, never for small text. Each case study also has a pastel `--accent-*`. Only clickable things (work cards, the next-case link) get a white outlined box; everything else is separated by thin dividers.
+- How I work illustrations are inline SVG in `src/content/sections/02-how-i-work.md` and animate in once as they scroll into view (`src/scripts/reveal.ts`, off under reduced motion). `public/illustrations/*.svg` are static copies.
+- Legacy files no page uses: `src/components/PickMyBrain.astro`, `src/assets/brain/`, `scripts/brain_sketch.py` and `scripts/bake_brain.mjs` (the old hero illustration), and `scripts/sketches.py` (the old hand-drawn How I work sketches; rerunning it overwrites `public/illustrations/*.svg`).
 
 ### Navigation behaviour
 
-- Layout (1024px and up): the page is centred. Sections 01 onward sit on a white page (`.sheet`) below the cream hero; each case study has its own page at `/work/<id>/` (`src/pages/work/[id].astro`), linked from the Selected work list. The first time the reader scrolls the page a quarter of the way up the screen, the page is set down once: it drops in turned a little and straightens as it lands (`src/scripts/sheet-stack.ts`; without JS or with reduced motion it is simply there); the TOC sits inside that page, in a column right of the text, and sticks 24px from the top. Active state uses a mint fill and weight; hover is a faint background only.
-- Below 1024px: the TOC is replaced by a sticky bar showing the current section number and name, with a MENU button that opens the full numbered list. A thin scroll indicator on the right edge shows a section tooltip while scrolling, then fades.
-- Scroll spy: an `IntersectionObserver` watches a 1px line 30% down the viewport, so nothing is measured on raw scroll events. The last section whose top has crossed that line is active, which makes nested case studies win while you are inside them. "Top of document" is active at the hero.
+- Homepage, 1200px and up: a sticky contents list hangs in the left margin; its links turn light over the dark Values band.
+- Case pages, 1100px and up: a sticky contents list sits to the right of the story, starting with "00 Overview" and nesting the 3.x and 4.x subsections. Below those widths the lists are hidden and the page reads top to bottom.
+- Scroll spy (`src/scripts/document-nav.ts`): the last heading whose top has crossed a line 30% down the viewport is active.
 - Links are real anchors, so hashes, direct links, and Back/Forward are native browser behaviour. Smooth scrolling is CSS and is turned off under `prefers-reduced-motion`.
-- Each case study has an identifier bar ("03.2 · Zenni Optical") that becomes a compact sticky header ("03.2 · Zenni Account") while you read that project on desktop.
-
-## Verified
-
-Tested at 320, 375, 390, 768, 1024, 1280, 1440, 1728 and 2200px: no horizontal overflow. axe-core (WCAG 2.2 AA plus best practices) reports no violations at 375 and 1440px. Lighthouse: Performance 97 on mobile and 100 on desktop; Accessibility, Best Practices and SEO 100. Scores will change once real images are added.
-
-## Editing the site
-
-Open `/admin/` on the site for a small site editor (`src/pages/admin.astro`, `src/scripts/case-editor.ts`).
-
-Under Homepage it edits the hero (`src/content/hero.json`), each homepage section's heading, contents label and text (`src/content/sections/*.md`; the number and position stay fixed), the Experience timeline (`experience.json`, with add and remove for roles) and the Contact links (`contact.json`). The JSON forms are built from each file's own shape, so a field added to one of those files appears in the editor on its own. Saving the hero checks that the highlighted words appear in the headline.
-
-Under Case studies it lists the files in `src/content/projects/`, edits their details and story, adds new ones, uploads images to `public/images/work/<id>/`, and saves each change as a commit through the GitHub API. It needs a fine-grained GitHub token limited to this repository with Contents: Read and write; the token stays in the browser. Saves go to the branch typed on the connect screen (the preview branch for now, `main` once the site is live). "Show on site" off sets `featured: false`, which hides a case study without deleting it.
-
-Images: Add image (or dropping or pasting one into the text) uploads it and inserts a figure at the cursor, in case studies and in homepage sections (`public/images/home/<section>/`). Each "Evidence to add" placeholder in the text is listed as a slot; uploading to a slot swaps the placeholder for the image and keeps its size, using the slot's title as the description and caption.
