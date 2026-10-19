@@ -73,7 +73,7 @@ const description =
   .hero-panel__inner { width: min(calc(100% - 2 * var(--gutter)), var(--doc-max)); margin-inline: auto; }
   /* The sections stay centered exactly as before; the contents list hangs in the left margin beside them.
      On wide screens the page narrows only as much as it must to leave that margin room (toc + gap + gutter on both sides, so it stays centered). */
-  .home-layout { --toc-top: calc(var(--header-h) + 24px); --toc-w: 150px; --toc-space: 48px; position: relative; }
+  .home-layout { --toc-top: calc(var(--bar-top) + var(--header-h) + 24px); --toc-w: 150px; --toc-space: 48px; position: relative; }
   .home-layout :global(.toc) { display: none; }
   @media (min-width: 1200px) {
     :global(:root) { --doc-max: min(1120px, 100vw - 2 * (150px + 48px + 24px)); }
