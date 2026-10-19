@@ -129,7 +129,10 @@ Before designing, I ran “The 20-Minute Order Tracking Design Jam”. The promp
 Ten teammates took part. The follow-up lived in a Slack canvas too: the goal, everyone’s sketches side by side, and an affinity map that grouped the ideas into four themes: information hierarchy and clarity, brand voice and delight, transparency and proactive communication, and friction in the interface. It also kept the open questions in view, like whether people care that something is en route to a distribution center, and how we talk about China.
 
 <figure class="visual">
-<img style="max-width: 640px" src="/images/work/zenni-order-tracking/design-jam-canvas.webp" alt="The Order Tracking UX Jam canvas in Slack: the goal of crowdsourcing the team's mental models of an ideal order tracking experience, the date October 14, 2025, and a Figma board with each participant's tracker sketches in a grid." loading="lazy" />
+<div class="doc" style="max-width: 640px">
+<div class="doc__bar" aria-hidden="true"><span class="doc__dots"><i></i><i></i><i></i></span><span class="doc__title"><span>Order Tracking UX Jam</span></span><span class="doc__app">Slack canvas</span></div>
+<div class="doc__page"><img src="/images/work/zenni-order-tracking/design-jam-canvas.webp" alt="The Order Tracking UX Jam canvas in Slack: the goal of crowdsourcing the team's mental models of an ideal order tracking experience, the date October 14, 2025, and a Figma board with each participant's tracker sketches in a grid." loading="lazy" /></div>
+</div>
 <figcaption>The design jam’s follow-up canvas, October 2025. Participant names are hidden.</figcaption>
 </figure>
 

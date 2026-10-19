@@ -104,14 +104,20 @@ I turned those canvases into a template the team could adopt. The idea was to gi
 Putting the purpose, background and tenets first made the understanding part of a problem hard to skip.
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-order-tracking/working-doc-canvas.webp" alt="The Enhanced Order Tracking UX Working Doc in Slack: a header illustration of glasses moving from lab to box to home, the purpose of the document, background with the squad's vision, and the UX tenets." loading="lazy" />
+<div class="doc">
+<div class="doc__bar" aria-hidden="true"><span class="doc__dots"><i></i><i></i><i></i></span><span class="doc__title"><span>WebEx: Enhanced Order Tracking UX Working Doc</span></span><span class="doc__app">Slack canvas</span></div>
+<div class="doc__page"><img src="/images/work/zenni-order-tracking/working-doc-canvas.webp" alt="The Enhanced Order Tracking UX Working Doc in Slack: a header illustration of glasses moving from lab to box to home, the purpose of the document, background with the squad's vision, and the UX tenets." loading="lazy" /></div>
+</div>
 <figcaption>The Order Tracking UX working doc, built from the template. Names are hidden.</figcaption>
 </figure>
 
 The same structure stretched to very different work. <a href="/work/zenni-order-tracking/">Order Tracking</a> used it for a launch: the working doc, the design jam and its follow-up, the messaging framework and a recorded prototype walkthrough. Multi-Profile Shopping used it for an idea that was little more than a goal, and the doc turned it into a north star, working tenets, and two tracks of UX work with desired outcomes, metrics and the evidence of success we’d look for.
 
 <figure class="visual">
-<img style="max-width: 720px" src="/images/work/zenni-account/multi-profile-canvas.webp" alt="The Multi-Profile Shopping working doc: a dual-track UX strategy, and a table for Track 1, validate customer demand through labeling, with focus areas Organization, Workflow Efficiency and Business Value, each with a desired outcome, KPIs and evidence of success." loading="lazy" />
+<div class="doc" style="max-width: 720px">
+<div class="doc__bar" aria-hidden="true"><span class="doc__dots"><i></i><i></i><i></i></span><span class="doc__title"><span>Multi-Profile Shopping</span></span><span class="doc__app">Slack canvas</span></div>
+<div class="doc__page"><img src="/images/work/zenni-account/multi-profile-canvas.webp" alt="The Multi-Profile Shopping working doc: a dual-track UX strategy, and a table for Track 1, validate customer demand through labeling, with focus areas Organization, Workflow Efficiency and Business Value, each with a desired outcome, KPIs and evidence of success." loading="lazy" /></div>
+</div>
 <figcaption>The template on an early, ambiguous idea: Multi-Profile Shopping, 2026.</figcaption>
 </figure>
 
@@ -122,7 +128,10 @@ Adoption was the hard part, not the template.
 Before asking anyone else to change, I wanted to understand what the team actually struggled with. I co-facilitated a workshop with a UX colleague to co-build a knowledge sharing mechanism with the team, instead of handing one down. We introduced what a mechanism is, a tool plus adoption, inspection and iteration, then collected pain points, dug into the top ones with Five Whys, and sorted them into major time sinks and quick wins.
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-working-docs/knowledge-workshop-canvas.webp" alt="The Co-building a Knowledge Sharing Mechanism PT 1 Working Doc in Slack: facilitators, the purpose of the document, a workshop tracker with every task marked Done, the workshop goal, and the start of the agenda." loading="lazy" />
+<div class="doc">
+<div class="doc__bar" aria-hidden="true"><span class="doc__dots"><i></i><i></i><i></i></span><span class="doc__title"><span>Co-building a Knowledge Sharing Mechanism PT 1 Working Doc</span></span><span class="doc__app">Slack canvas</span></div>
+<div class="doc__page"><img src="/images/work/zenni-working-docs/knowledge-workshop-canvas.webp" alt="The Co-building a Knowledge Sharing Mechanism PT 1 Working Doc in Slack: facilitators, the purpose of the document, a workshop tracker with every task marked Done, the workshop goal, and the start of the agenda." loading="lazy" /></div>
+</div>
 <figcaption>The workshop was planned in a working doc of its own, late 2025. Names and links are hidden.</figcaption>
 </figure>
 
@@ -145,7 +154,10 @@ The same habit, on a bigger question.
 The reorganization came from leadership wanting to replace squads with teams organized by delivery speed. I wrote a discussion starter for the UX team and D2C leaders on organizing designers by strategic domain instead. It said up front what it was, a discussion starter, and what it was not, a proposal to throw away our current structure. Peer reviewers added their thinking directly in the doc. Writing the argument out, in the open, is how I bring people along before asking them to agree.
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-working-docs/org-discussion-canvas.webp" alt="The UX Organization Discussion: Optimizing Velocity via Strategic Domains canvas: author Pung Brooks, audience UX team and D2C leaders, stakeholders, peer reviewers, and the lines what this document is, a discussion starter, and what it is not, a proposal to throw away our current structure." loading="lazy" />
+<div class="doc">
+<div class="doc__bar" aria-hidden="true"><span class="doc__dots"><i></i><i></i><i></i></span><span class="doc__title"><span>UX Organization Discussion: Optimizing Velocity via Strategic Domains</span></span><span class="doc__app">Slack canvas</span></div>
+<div class="doc__page"><img src="/images/work/zenni-working-docs/org-discussion-canvas.webp" alt="The UX Organization Discussion: Optimizing Velocity via Strategic Domains canvas: author Pung Brooks, audience UX team and D2C leaders, stakeholders, peer reviewers, and the lines what this document is, a discussion starter, and what it is not, a proposal to throw away our current structure." loading="lazy" /></div>
+</div>
 <figcaption>A discussion starter written for the UX team and D2C leaders. Names are hidden.</figcaption>
 </figure>
 

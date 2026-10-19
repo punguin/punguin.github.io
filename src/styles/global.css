@@ -448,6 +448,70 @@ a.external::after {
 }
 .visual--inline img { max-width: var(--measure); }
 
+/* Document screenshots (Slack canvases) sit in an app window with a title bar and a white
+   page, so they read as documents rather than UI. The page is an excerpt: it is capped in height
+   and fades out at the bottom, the way a document continues below the fold. */
+.doc {
+  width: 100%;
+  margin-inline: auto;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(22, 22, 22, 0.08), 0 30px 60px -30px rgba(20, 20, 50, 0.45);
+}
+.doc__bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(22, 22, 22, 0.08);
+  background: #f4f3f1;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  color: rgba(22, 22, 22, 0.72);
+}
+.doc__dots { display: flex; flex: none; gap: 6px; }
+.doc__dots i { width: 10px; height: 10px; border-radius: 50%; background: #d9d7d3; }
+.doc__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-weight: 600;
+  color: var(--ink);
+}
+.doc__title::before {
+  content: "";
+  flex: none;
+  width: 12px;
+  height: 15px;
+  border-radius: 2px;
+  background: linear-gradient(#fff 0 0) 3px 4px / 6px 1.5px no-repeat,
+    linear-gradient(#fff 0 0) 3px 7.5px / 6px 1.5px no-repeat,
+    linear-gradient(#fff 0 0) 3px 11px / 4px 1.5px no-repeat, #4a6cf7;
+}
+.doc__title span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.doc__app { flex: none; margin-left: auto; font-family: var(--font-mono); font-size: 0.6875rem; }
+.doc__page {
+  position: relative;
+  max-height: 860px;
+  overflow: hidden;
+  padding: clamp(12px, 4%, 40px) clamp(12px, 5%, 56px) 0;
+}
+.doc__page::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 90px;
+  background: linear-gradient(rgba(255, 255, 255, 0), #fff);
+}
+.visual .doc__page img { border-radius: 0; box-shadow: none; max-width: none; }
+@media (max-width: 599px) {
+  .doc__app { display: none; }
+  .doc__page { max-height: 520px; padding: 8px 6px 0; }
+  .doc__page::after { height: 60px; }
+}
+
 .visual figcaption {
   max-width: var(--measure);
   margin-inline: auto;
