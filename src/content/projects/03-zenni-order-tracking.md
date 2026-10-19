@@ -36,7 +36,7 @@ Customers needed us less. The business held steady.
 <li><p class="case-impact__figure">−0.25<span class="case-impact__unit">pp</span></p><p class="case-impact__label">Chat initiation from Order Details</p><p class="case-impact__note">A drop of 0.25 percentage points against the legacy experience.</p><p class="case-impact__kind">50/50 A/B test</p></li>
 <li><p class="case-impact__figure">−0.10<span class="case-impact__unit">pp</span></p><p class="case-impact__label">Chat initiation from the Order List</p><p class="case-impact__note">A drop of 0.10 percentage points, in the same test.</p><p class="case-impact__kind">50/50 A/B test</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Stable</p><p class="case-impact__label">Conversion, average order value and add-to-cart</p><p class="case-impact__note">Exits to help pages decreased modestly.</p><p class="case-impact__kind">50/50 A/B test</p></li>
-<li><p class="case-impact__figure case-impact__figure--text">Every route</p><p class="case-impact__label">One messaging framework for all fulfillment paths</p><p class="case-impact__note">New origins and destinations don’t need a redesign. Thailand mirrored China’s logic.</p><p class="case-impact__kind">In the developer handoff</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">Every route</p><p class="case-impact__label">One messaging framework for all fulfillment paths</p><p class="case-impact__note">New origins and destinations don’t need a redesign. A new lab reuses the logic that’s already there.</p><p class="case-impact__kind">In the developer handoff</p></li>
 </ul>
 
 The new experience launched across the US and Canada, and was evaluated in a 50/50 A/B test against the legacy experience. The chat results are changes in percentage points, not relative percentages.
@@ -126,7 +126,7 @@ A 20-minute design jam with the whole team.
 
 Before designing, I ran “The 20-Minute Order Tracking Design Jam”. The prompt: a week has gone by since you placed your order and it’s en route to the distribution center. Sketch a tracker. The goal was not a perfect design, but to explore as many ideas as possible and understand each other’s mental models, sketching as the customer.
 
-Ten teammates took part. The follow-up lived in a Slack canvas too: the goal, everyone’s sketches side by side, and an affinity map that grouped the ideas into four themes: information hierarchy and clarity, brand voice and delight, transparency and proactive communication, and friction in the interface. It also kept the open questions in view, like whether people care that something is en route to a distribution center, and how we talk about China.
+Ten teammates took part. The follow-up lived in a Slack canvas too: the goal, everyone’s sketches side by side, and an affinity map that grouped the ideas into four themes: information hierarchy and clarity, brand voice and delight, transparency and proactive communication, and friction in the interface. It also kept the open questions in view, like whether people care that something is en route to a distribution center.
 
 <figure class="visual visual--wide">
 <div class="doc-pair">
@@ -195,7 +195,7 @@ The copy had to scale with the supply chain.
 
 <p class="label case-status">In the developer handoff</p>
 
-I recorded a walkthrough of the prototype and shared it with the squad on October 31, 2025. Ecommerce leadership pushed on scale: some products ship from China to the US, some from China to Canada, next year some would come from Thailand, and others ship from the US to Europe. The copy had to account for every combination.
+I recorded a walkthrough of the prototype and shared it with the squad on October 31, 2025. Ecommerce leadership pushed on scale: orders ship from overseas labs and from the US, to customers in the US and around the world, and new lab locations were planned. The copy had to account for every combination.
 
 <p class="callout">How might we design a scalable messaging framework that adapts to complex, multi-origin logistics, so every customer feels confident and informed even when their items follow complex global routes?</p>
 
@@ -206,15 +206,15 @@ I answered with a messaging framework I owned, built on three principles: new or
 
 | Route | Item | Step 2 | Step 3 |
 |---|---|---|---|
-| China or Thailand to USA | Custom / Rx | Manufacturing | En-route to US Facility |
-| USA to USA | Custom / Rx | Manufacturing | Hidden (direct ship) |
-| China or Thailand to Canada | Custom / Rx | Manufacturing | En-route to Regional Facility |
-| USA to global | Custom / Rx | Manufacturing | En-route to Regional Facility |
-| USA to USA | Stock / Plano | Order Processing | Hidden (direct ship) |
-| China or Thailand to USA | Stock / Plano | Order Processing | En-route to US Facility |
+| Overseas lab to US | Custom / Rx | Manufacturing | En-route to US Facility |
+| US to US | Custom / Rx | Manufacturing | Hidden (direct ship) |
+| Overseas lab to another country | Custom / Rx | Manufacturing | En-route to Regional Facility |
+| US to another country | Custom / Rx | Manufacturing | En-route to Regional Facility |
+| US to US | Stock / Plano | Order Processing | Hidden (direct ship) |
+| Overseas to US | Stock / Plano | Order Processing | En-route to US Facility |
 | E-gift card | n/a | Hidden | Hidden |
 
-Thailand didn’t need new design. Its logic mirrors China’s, which was the point.
+A new lab doesn’t need new design. It follows the same logic as the labs before it, which was the point.
 
 ##### 4.5 What I should do: the hard paths
 
@@ -230,7 +230,7 @@ Some ideas were right, but not yet.
 
 <p class="label case-status">Direction for later phases</p>
 
-We discussed showing the China locations during manufacturing to ease anxiety, which raised its own questions about brand perception. Proactive delay messaging, a predictive delivery date once last-mile data could support it, and a state for orders with no estimated date were carried forward as later work.
+Proactive delay messaging, a predictive delivery date once last-mile data could support it, and a state for orders with no estimated date were carried forward as later work.
 
 #### 05 / What it enabled
 
