@@ -117,12 +117,7 @@ Every status needed to answer four questions, in order: what is happening, what 
 
 Every status had to answer the customer’s next question.
 
-The challenge wasn’t how much information we could expose. It was deciding which information changed what a customer understood or did next. The work happened in the open, in Slack canvases built from the templates I had made for the team after Account: a UX working doc with the tenets and an iteration tracker, the messaging framework, and a recorded prototype walkthrough, each open for anyone to comment on.
-
-<figure class="visual" style="max-width: 640px">
-<img src="/images/work/zenni-order-tracking/working-doc-canvas.webp" alt="The Enhanced Order Tracking UX Working Doc in Slack: a header illustration of glasses moving from lab to box to home, the purpose of the document, background with the squad's vision, and the UX tenets." loading="lazy" />
-<figcaption>The UX working doc, a Slack canvas built from my team template. Names are hidden.</figcaption>
-</figure>
+The challenge wasn’t how much information we could expose. It was deciding which information changed what a customer understood or did next. The work happened in the open, in a UX working doc built from the template I made for the team, with the tenets, an iteration tracker, the messaging framework and recorded walkthroughs. More on that practice in <a href="/work/zenni-working-docs/">UX Working Docs</a>.
 
 ##### 4.1 Start with everyone’s mental model
 
@@ -229,10 +224,8 @@ We discussed showing the China locations during manufacturing to ease anxiety, w
 
 #### 05 / What it enabled
 
-The work also changed how the UX team worked.
+An answer customers could act on.
 
 <p class="callout">When customers could understand what was happening with their order, they were less likely to need someone at Zenni to explain it.</p>
-
-The working doc, the design jam and its follow-up, the messaging framework and the recorded walkthrough reinforced the canvas practice I started on Account, and became templated ways of working the UX team could reuse on its own projects.
 
 The interface was Phase 2. The architecture started earlier, in the <a href="/work/zenni-account/">Account foundation</a> that made it possible.
