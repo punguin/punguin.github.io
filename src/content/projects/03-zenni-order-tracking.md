@@ -128,19 +128,25 @@ Before designing, I ran “The 20-Minute Order Tracking Design Jam”. The promp
 
 Ten teammates took part. The follow-up lived in a Slack canvas too: the goal, everyone’s sketches side by side, and an affinity map that grouped the ideas into four themes: information hierarchy and clarity, brand voice and delight, transparency and proactive communication, and friction in the interface. It also kept the open questions in view, like whether people care that something is en route to a distribution center, and how we talk about China.
 
-<figure class="visual">
-<div class="doc" style="max-width: 640px">
+<figure class="visual visual--wide">
+<div class="doc-pair">
+<div class="doc">
 <div class="doc__bar" aria-hidden="true"><span class="doc__dots"><i></i><i></i><i></i></span><span class="doc__title"><span>Order Tracking UX Jam</span></span><span class="doc__app">Slack canvas</span></div>
 <div class="doc__page"><img src="/images/work/zenni-order-tracking/design-jam-canvas.webp" alt="The Order Tracking UX Jam canvas in Slack: the goal of crowdsourcing the team's mental models of an ideal order tracking experience, the date October 14, 2025, and a Figma board with each participant's tracker sketches in a grid." loading="lazy" /></div>
 </div>
-<figcaption>The design jam’s follow-up canvas, October 2025. Participant names are hidden.</figcaption>
+<div class="doc">
+<div class="doc__bar" aria-hidden="true"><span class="doc__dots"><i></i><i></i><i></i></span><span class="doc__title"><span>Order Tracking UX Jam · Affinity map</span></span><span class="doc__app">Slack canvas</span></div>
+<div class="doc__page"><img src="/images/work/zenni-order-tracking/design-jam-affinity.webp" alt="The affinity map further down the same canvas: Order Tracking Brainstorm, the key themes and opportunities from the session. Theme 1, information hierarchy and clarity: users care most about the current status and a few key milestones, with opportunities to prioritize the current status, condense the timeline into four or five steps, clarify language and improve multi-item orders. Theme 2, brand voice, delight and cohesion, with opportunities to inject personality, add visual delights and keep emails consistent." loading="lazy" /></div>
+</div>
+</div>
+<figcaption>The design jam’s follow-up canvas, October 2025: the jam itself, and further down, the affinity map that turned everyone’s sketches into themes. Participant names are hidden.</figcaption>
 </figure>
 
 One insight shaped what came next: customers care most about the current status and a few key milestones, so the active step should be the focal point and the timeline should be four or five clear steps. I carried three directions forward: lead with the most important information and keep details a tap away, bring in the brand’s personality, and build trust during delays.
 
-<figure class="visual">
-<img style="max-width: 420px" src="/images/work/zenni-order-tracking/first-iteration.webp" alt="An early vertical tracker: Order Received, Crafting Your Glasses to Perfection with a last update about lenses being cut and fitted, Making The Journey, Shipped to You, and Delivered with Estimated TBD." loading="lazy" />
-<figcaption>An early iteration, October 2025: a vertical timeline with friendlier step names.</figcaption>
+<figure class="visual visual--wide">
+<img class="is-mockup" src="/images/work/zenni-order-tracking/first-iteration-mockup.webp" alt="The Order Details page we brainstormed from, in a browser window: order summary, shipping, payment, then a shipment called Crafting Your Glasses to Perfection with two pairs of glasses beside a vertical tracker. The tracker is shown enlarged: Order Received, Crafting Your Glasses to Perfection with a last update that lenses are being cut and fitted and a Learn More button, Making The Journey, Shipped to You, and Delivered, estimated TBD." loading="lazy" />
+<figcaption>The tracker we brainstormed from: a vertical timeline with friendlier step names, enlarged on the right.</figcaption>
 </figure>
 
 ##### 4.2 What is happening: a tracker for every shipment

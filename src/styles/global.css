@@ -505,6 +505,14 @@ a.external::after {
   height: 90px;
   background: linear-gradient(rgba(255, 255, 255, 0), #fff);
 }
+.doc-pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 3%, 32px); align-items: start; }
+.doc-pair > .doc + .doc { margin-top: 48px; }
+@media (max-width: 699px) {
+  .doc-pair { grid-template-columns: 1fr; }
+  .doc-pair > .doc + .doc { margin-top: 0; }
+}
+/* Composed mockups carry their own frames and shadows. */
+.visual img.is-mockup { border-radius: 0; background: none; box-shadow: none; }
 .visual .doc__page img { border-radius: 0; box-shadow: none; max-width: none; }
 @media (max-width: 599px) {
   .doc__app { display: none; }
