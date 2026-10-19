@@ -8,12 +8,11 @@ const Title = standalone ? 'h1' : 'h3';
 const p = entry.data;
 const { Content } = await render(entry);
 const isTodo = (v: string) => v.startsWith('[');
-const meta: [string, string][] = [
+const meta = ([
   ['Role', p.role],
-  ['Timing', p.timeline],
+  ['Duration', p.timeline],
   ['Platform', p.platform.join(', ')],
-  ['Partners', p.partners.join(', ')],
-];
+] as [string, string | undefined][]).filter((m): m is [string, string] => !!m[1]);
 ---
 <article
   class:list={['project', { 'project--page': standalone }]}
@@ -68,8 +67,6 @@ const meta: [string, string][] = [
     gap: 18px;
     margin-block: 44px var(--space-7);
     padding-block: 20px;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
   }
   .project__meta div { display: grid; gap: var(--space-1); align-content: start; min-width: 0; }
   .project__meta dd { margin: 0; font-size: 0.9375rem; line-height: 1.45; }

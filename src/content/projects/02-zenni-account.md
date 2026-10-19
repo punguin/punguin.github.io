@@ -20,7 +20,7 @@ coverColor: "#dcf774"
 order: 2
 ---
 
-I modernized a fragmented account experience while establishing reusable product patterns and a healthier working relationship between product design and the design system. This was Phase 1. <a href="/work/zenni-order-tracking/">Phase 2, Enhanced Order Tracking</a>, was built on it.
+I modernized a fragmented account experience, established reusable product patterns, and set a new model for how product designers work with the design system. This was Phase 1. <a href="/work/zenni-order-tracking/">Phase 2, Enhanced Order Tracking</a>, was built on it.
 
 <dl class="case-overview">
 <div><dt>The problem</dt><dd>Zenni’s Account pages had grown one page at a time, organized around how the business built them, just as a new brand and a barely started design system arrived.</dd></div>
@@ -116,7 +116,7 @@ One navigation, grouped the way customers think.
 The new navigation panel groups Account into Account, Rewards, Settings, and Help and Support. On desktop it is visible on every Account page, so customers always know where they are and can move between orders, prescriptions and settings without starting over. Shared Images was hidden from the interface.
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-account/navigation-ia.svg" alt="Two lists side by side. Before: My Account, Zenni Rewards, Order Management and Personalization groups, with TryOn, Shared Images and Vision Test, then loose links. After: Account, Rewards, Settings, and Help and Support groups." loading="lazy" />
+<img class="is-mockup" src="/images/work/zenni-account/navigation-ia.svg" alt="Two lists side by side. Before: My Account, Zenni Rewards, Order Management and Personalization groups, with TryOn, Shared Images and Vision Test, then loose links. After: Account, Rewards, Settings, and Help and Support groups." loading="lazy" />
 <figcaption>Account navigation before and after the redesign.</figcaption>
 </figure>
 
@@ -137,10 +137,6 @@ The Add and Edit Address modal was designed to be used throughout the entire sit
 
 The same thinking produced shared patterns for empty states, such as no orders yet or a brand new account, and for error and success feedback, so each Account page didn’t invent its own.
 
-**Account was the design system’s pressure test.** We built Account and the design system together. Real pages, real data and real edge cases showed where the system’s early decisions held and where they didn’t. We worked through those kinks on my project, developed patterns together, and I contributed major components and patterns back to the system along the way.
-
-I also advocated for the product designer inside the design system. Where did the system speed up product work, and where did it create friction? When should a product team extend a pattern, and how should that learning return to the system? Where the system helped, I leaned on it. Where it got in the way, I raised it, and when Account needed to extend a pattern, the change went back to the system instead of staying a one-off.
-
 ##### 4.3 Leave room for capabilities we hadn’t designed yet
 
 A useful foundation does not predict every future feature. It gives future teams better choices.
@@ -150,7 +146,7 @@ A useful foundation does not predict every future feature. It gives future teams
 Orders answer the most questions, so they got the most structure. I started with a low-fidelity order history in which each order is a card and each item opens an item details panel, so customers can check status, track a shipment, buy again or start a return without losing their place.
 
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-account/wireframe-order-history.webp" alt="Low-fidelity wireframe: an order history with order cards grouped by estimated delivery date, each item with its status, and an item details drawer with Buy it again, Get help with this item, Start a return and Print return label." loading="lazy" />
+<img class="is-mockup" src="/images/work/zenni-account/wireframe-order-history.webp" alt="Low-fidelity wireframe: an order history with order cards grouped by estimated delivery date, each item with its status, and an item details drawer with Buy it again, Get help with this item, Start a return and Print return label." loading="lazy" />
 <figcaption>An early wireframe of order history and the item details panel, November 2024.</figcaption>
 </figure>
 
@@ -174,7 +170,21 @@ We knew Orders had room to become much more useful. I structured the foundation 
 
 I made and recorded the project’s decisions in Slack canvases, open to partners for comment before anything was final. That practice became a team template, and later how the whole UX team tracked its work. That story is its own case study: <a href="/work/zenni-working-docs/">UX Working Docs</a>.
 
-##### 4.4 Validation and launch
+##### 4.4 Design system collaboration
+
+I was one of the first designers to adopt the new design system.
+
+**Account was the design system’s pressure test.** We built Account and the design system together. Real pages, real data and real edge cases showed where the system’s early decisions held and where they didn’t, and they surfaced many gaps. I designed the missing components and contributed them back to the system:
+
+- Modals
+- Dropdowns
+- Navigation patterns
+- CRUD patterns, for creating, editing and deleting
+- Alert toasts
+
+I also advocated for the product designer inside the design system. Where did the system speed up product work, and where did it create friction? When should a product team extend a pattern, and how should that learning return to the system? Where the system helped, I leaned on it. Where it got in the way, I raised it, and when Account needed to extend a pattern, the change went back to the system instead of staying a one-off.
+
+##### 4.5 Validation and launch
 
 Tested with customers, reviewed across the business.
 

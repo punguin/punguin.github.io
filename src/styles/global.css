@@ -54,7 +54,7 @@
   --accent-lilac: #ebe7fb;
 
   /* Shape + elevation */
-  --radius-button: 4px;
+  --radius-button: 999px;          /* every button is a full pill, like the header Contact button */
   --radius-card: 6px;
   --radius-nav: 6px;
   --radius-pill: 4px;
@@ -98,11 +98,15 @@
   --gutter: 20px;
   --doc-max: 1120px;
   --header-h: 64px;
+  --frame: clamp(8px, 1.2vw, 16px);          /* margin around the homepage hero panel */
+  --bar-side: calc(var(--frame) + clamp(8px, 1.4vw, 20px)); /* header bar inset from the page edge */
+  --bar-top: calc(var(--frame) + clamp(8px, 1vw, 14px));
+  --hero-bg: #c2ffa8;                        /* bright green (Pung, 2026-10-19); all hero text passes AA on it */
   --toc-width: 210px;
   --toc-gap: 64px;
   --toc-top: 24px;
   --sheet-pad: 20px;               /* inner margin of the white page that holds sections 01 onward */                 /* where the TOC sticks once it reaches the top */
-  --anchor-offset: 88px;
+  --anchor-offset: calc(var(--bar-top) + var(--header-h) + 24px); /* clears the floating header bar */
   --mobile-nav-h: 0px;
 
   /* Motion */
@@ -118,7 +122,6 @@
   :root {
     --text-body: 1.0625rem;         /* 17px */
     --mobile-nav-h: 52px;
-    --anchor-offset: 76px;
   }
 }
 
@@ -301,22 +304,28 @@ a.external::after {
 /* ---------- Site header ---------- */
 
 .site-header {
+  /* A floating white bar, inset from the page edge; on the homepage it sits on top of the hero panel. */
   position: sticky;
-  top: 0;
+  top: var(--bar-top);
   z-index: 50;
-  background: rgb(250 249 246 / 0.92);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line);
+  margin: var(--bar-top) var(--bar-side) 0;
+  pointer-events: none;
 }
 .site-header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  width: min(calc(100% - 2 * var(--gutter)), var(--doc-max));
-  height: var(--header-h);
+  max-width: var(--doc-max);            /* edges line up with the page content */
   margin-inline: auto;
+  height: var(--header-h);
+  padding-inline: clamp(22px, 2.4vw, 30px) clamp(10px, 1vw, 12px);
+  background: rgb(255 255 255 / 0.7);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.5) inset, 0 8px 24px -12px rgba(22, 22, 22, 0.18);
+  pointer-events: auto;
 }
 .site-header__brand { display: flex; align-items: baseline; gap: 0.6em; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; white-space: nowrap; }
 .site-header__title { font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 400; color: var(--eyebrow); letter-spacing: 0; } /* same as .eyebrow */
@@ -325,12 +334,12 @@ a.external::after {
 .site-header__end { display: flex; align-items: center; gap: var(--space-5); }
 .site-header__status { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 0.875rem; color: var(--text-secondary); white-space: nowrap; }
 .site-header__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 0 3px rgb(20 179 166 / 0.2); }
-.site-header__contact { padding: 8px 14px; border-radius: var(--radius-button); background: var(--ink); color: #faf9f6; font-size: 0.875rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.site-header__contact { padding: 10px 18px; border-radius: var(--radius-button); background: var(--ink); color: #faf9f6; font-size: 0.875rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
 .site-header__contact:hover { background: #333; }
 /* Phones and tablets: name and Contact on the first row, availability on a slim second row. */
 @media (max-width: 899px) {
-  :root { --anchor-offset: 100px; }
-  .site-header__inner { flex-wrap: wrap; row-gap: 2px; height: auto; min-height: var(--header-h); padding-block: 10px; }
+  :root { --header-h: 78px; }
+  .site-header__inner { flex-wrap: wrap; align-content: center; row-gap: 2px; padding-block: 10px; padding-inline: 32px 16px; }
   .site-header__end { display: contents; }
   .site-header__contact { order: 2; }
   .site-header__status { order: 3; flex-basis: 100%; gap: 7px; font-size: 0.8125rem; }
@@ -507,8 +516,11 @@ a.external::after {
 }
 .doc-pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 3%, 32px); align-items: start; }
 .doc-pair > .doc + .doc { margin-top: 48px; }
+.visual .img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 3%, 32px); align-items: start; }
+.visual .img-grid--3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 699px) {
   .doc-pair { grid-template-columns: 1fr; }
+  .visual .img-grid--3 { grid-template-columns: 1fr; }
   .doc-pair > .doc + .doc { margin-top: 0; }
 }
 /* Composed mockups carry their own frames and shadows. */
@@ -596,7 +608,7 @@ html.has-viewer { overflow: hidden; }
   max-width: min(100%, 1600px);
   max-height: calc(100dvh - 180px);
   object-fit: contain;
-  border-radius: var(--radius-button);
+  border-radius: var(--radius-card);
   background: var(--surface);
 }
 .viewer__caption { max-width: 60ch; font-size: var(--text-small); line-height: 1.5; text-align: center; }
@@ -607,7 +619,7 @@ html.has-viewer { overflow: hidden; }
   width: 44px;
   height: 44px;
   border: 1px solid rgb(252 250 245 / 0.5);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-button);
   background: rgb(16 16 16 / 0.6);
   color: var(--cream-paper);
   font-size: 1.25rem;

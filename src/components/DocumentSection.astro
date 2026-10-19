@@ -11,7 +11,7 @@ const { id, number, label, title, lead, tone } = Astro.props;
 <style>
   .doc-section { padding-block: 72px; }
   @media (max-width: 720px) { .doc-section { padding-block: 52px; } }
-  /* Full-bleed dark band: the shadow paints the background out to the viewport edges, the clip keeps it from bleeding vertically. */
+  /* Dark panel at the content width, with the same corner radius as the hero and case cards. */
   .doc-section--dark {
     --text-primary: #faf9f6;
     --text-secondary: #cfe0dd;
@@ -22,9 +22,10 @@ const { id, number, label, title, lead, tone } = Astro.props;
     --text-tertiary: #a9c9c4;
     color: var(--text-primary);
     background: var(--dark-bg);
-    box-shadow: 0 0 0 100vmax var(--dark-bg);
-    clip-path: inset(0 -100vmax);
+    border-radius: 22px;
+    padding-inline: clamp(24px, 5vw, 64px);
+    margin-block: var(--space-6);
   }
-  :global(.sections) > .doc-section--dark { border-top-color: #0f3532; }
+  :global(.sections) > .doc-section--dark { border-top-color: transparent; }
   :global(.sections) > .doc-section--dark + :global(.doc-section) { border-top-color: transparent; }
 </style>

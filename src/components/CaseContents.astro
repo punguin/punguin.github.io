@@ -47,9 +47,8 @@ if (!given) for (const h of headings) {
 <style>
   .toc__inner {
     position: sticky;
-    z-index: 1; /* stay above the full-bleed dark band, which paints out under this column */
     top: var(--toc-top);
-    max-height: calc(100vh - 2 * var(--toc-top));
+    max-height: calc(100vh - var(--toc-top) - 24px);
     overflow-y: auto;
     margin-inline: calc(-1 * var(--space-2));
     padding-bottom: var(--space-5);
@@ -66,7 +65,7 @@ if (!given) for (const h of headings) {
     line-height: 1.4;
     color: var(--text-secondary);
     text-decoration: none;
-    border-radius: var(--radius-button);
+    border-radius: var(--radius-nav);
     transition: background-color var(--t-hover) ease, color var(--t-hover) ease;
   }
   .toc__sub a { font-size: 0.8125rem; padding-left: calc(var(--space-2) + 0.9em); grid-template-columns: 2.6em 1fr; }
@@ -81,9 +80,4 @@ if (!given) for (const h of headings) {
   .toc a:hover { background: var(--hover-bg); color: var(--text-primary); }
   .toc a[aria-current] { background: var(--selected-bg); color: var(--text-primary); font-weight: 600; }
   .toc a[aria-current] .toc__num { color: var(--text-primary); }
-  /* Links sitting over the full-bleed dark band (homepage Values) switch to light text. */
-  .toc a.is-on-dark { color: #cfe0dd; }
-  .toc a.is-on-dark .toc__num { color: #a9c9c4; }
-  .toc a.is-on-dark:hover, .toc a.is-on-dark[aria-current] { background: rgba(255, 255, 255, 0.1); color: #faf9f6; }
-  .toc a.is-on-dark[aria-current] .toc__num { color: #faf9f6; }
 </style>

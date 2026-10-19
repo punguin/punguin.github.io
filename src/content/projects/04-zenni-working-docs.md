@@ -9,7 +9,6 @@ project: UX working docs in Slack
 domain: Design practice, knowledge sharing
 summary: Make the thinking as visible as the design.
 role: Senior Product Designer, initiative lead
-timeline: Nov 2024 – 2026
 platform: [Slack canvases, Team practice]
 partners: [UX manager, UX team, UX PM, Product, Engineering]
 accent: yellow

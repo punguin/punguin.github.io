@@ -24,9 +24,13 @@ const description =
   <a class="skip-link" href="#main">Skip to content</a>
   <SiteHeader />
 
+  <main id="main">
+  <div class="hero-panel">
+    <div class="hero-panel__inner"><Hero /></div>
+  </div>
+
   <div class="page-shell">
-    <main class="document" id="main">
-      <Hero />
+    <div class="document">
 
       <div class="home-layout">
       <CaseContents items={contents} title="Pung Brooks" top={false} />
@@ -45,8 +49,9 @@ const description =
       </div>
       </div>
 
-    </main>
+    </div>
   </div>
+  </main>
 
   <SiteFooter />
 
@@ -57,9 +62,18 @@ const description =
 </BaseLayout>
 
 <style>
+  /* Solid colour hero, inset from the page edge, with the header bar floating on its top edge. */
+  .hero-panel {
+    margin: calc(-1 * (var(--header-h) + var(--bar-top)) + var(--frame)) var(--frame) 0;
+    padding-top: calc(var(--header-h) + var(--bar-top) - var(--frame));
+    background: var(--hero-bg);
+    border-radius: 22px;
+  }
+  .sections > :global(:first-child) { border-top: 0; }
+  .hero-panel__inner { width: min(calc(100% - 2 * var(--gutter)), var(--doc-max)); margin-inline: auto; }
   /* The sections stay centered exactly as before; the contents list hangs in the left margin beside them.
      On wide screens the page narrows only as much as it must to leave that margin room (toc + gap + gutter on both sides, so it stays centered). */
-  .home-layout { --toc-top: calc(var(--header-h) + 24px); --toc-w: 150px; --toc-space: 48px; position: relative; }
+  .home-layout { --toc-top: calc(var(--bar-top) + var(--header-h) + 24px); --toc-w: 150px; --toc-space: 48px; position: relative; }
   .home-layout :global(.toc) { display: none; }
   @media (min-width: 1200px) {
     :global(:root) { --doc-max: min(1120px, 100vw - 2 * (150px + 48px + 24px)); }

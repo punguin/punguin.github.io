@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" font-family="Inter, system-ui, sans-serif">
-<rect width="1600" height="1100" fill="#faf9f6"/>
+
 <text x="80" y="90" font-size="17" font-weight="700" letter-spacing="2" fill="#666666">BEFORE</text>
 <text x="80" y="128" font-size="30" font-weight="700" fill="#161616" letter-spacing="-0.6">Grouped by internal function</text>
 <rect x="80" y="190" width="660" height="134" rx="16" fill="#fff" stroke="#dedbd3" stroke-width="2"/>
