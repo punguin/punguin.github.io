@@ -317,6 +317,8 @@ a.external::after {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
+  max-width: var(--doc-max);            /* edges line up with the page content */
+  margin-inline: auto;
   height: var(--header-h);
   padding-inline: clamp(22px, 2.4vw, 30px) clamp(10px, 1vw, 12px);
   background: rgb(255 255 255 / 0.7);
