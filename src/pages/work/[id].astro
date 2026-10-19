@@ -21,7 +21,7 @@ const p = entry.data;
 const { headings } = await render(entry);
 const title = `${p.title}: ${p.summary} — Pung Brooks`;
 ---
-<BaseLayout title={title} description={`${p.title}. ${p.summary} ${p.project}.`}>
+<BaseLayout title={title} description={`${p.title}. ${p.summary} ${p.project}.`} ogImage={`/og/${p.id}.png`}>
   <a class="skip-link" href="#main">Skip to content</a>
   <SiteHeader />
 
