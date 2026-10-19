@@ -101,7 +101,7 @@
   --frame: clamp(8px, 1.2vw, 16px);          /* margin around the homepage hero panel */
   --bar-side: calc(var(--frame) + clamp(8px, 1.4vw, 20px)); /* header bar inset from the page edge */
   --bar-top: calc(var(--frame) + clamp(8px, 1vw, 14px));
-  --hero-bg: #ffb3dc;                        /* bright pink: the one hue the case colours (lilac, aqua, lime, mint, peach, yellow) leave out */
+  --hero-bg: #c2ffa8;                        /* bright green (Pung, 2026-10-19); all hero text passes AA on it */
   --toc-width: 210px;
   --toc-gap: 64px;
   --toc-top: 24px;
