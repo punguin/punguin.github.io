@@ -53,7 +53,7 @@ The final UI looks straightforward. Getting there required a series of deliberat
 </ol>
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay-load-board/comparison-row-mv8kmzss.png" alt="Before: the old Load Board, with rows of search fields and filters across the top and a Book button in every result row. After: a short search bar with origin, radius and equipment, a filter panel beside the results, search tabs, and a load details panel with the Book button." loading="lazy" />
+<img src="/images/work/amazon-relay-load-board/comparison.webp" alt="Before: the old Load Board, with rows of search fields and filters across the top and a Book button in every result row. After: a short search bar with origin, radius and equipment, a filter panel beside the results, search tabs, and a load details panel with the Book button." loading="lazy" />
 <figcaption>Before and after. The old Load Board stacked search fields across the top and put Book in every result row. The redesign has a short search bar, a filter panel beside the results, search tabs and a load details panel.</figcaption>
 </figure>
 
@@ -84,7 +84,7 @@ The default experience, however, often dropped carriers into a generic or incons
 <p class="callout">Help carriers express the work they are actually available for first, then make the remaining options easier to evaluate.</p>
 
 <figure class="visual visual--inline">
-<img src="/images/work/amazon-relay-load-board/placeholder-carrier-behavior.svg" alt="Diagram of four carrier behaviors from research: multiple saved searches through the day, booking for multiple drivers, several browser tabs open at once, and default results that had to be filtered before they were useful." loading="lazy" />
+<img src="/images/work/amazon-relay-load-board/carrier-behavior.webp" alt="Four cards of carrier behaviors from research: multiple saved searches, booking for several drivers, several browser tabs, and filtering default results." loading="lazy" />
 <figcaption>What carriers were already doing before the redesign: repeating saved searches, booking for several drivers, holding searches in browser tabs, and filtering generic results.</figcaption>
 </figure>
 
@@ -113,7 +113,7 @@ For example, I explored a cleaner top-level navigation model before learning whi
 That pattern repeated throughout the work: explore far enough to understand the better model, then determine what was technically feasible, what was worth changing, and what belonged in later scope.
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay-load-board/placeholder-boundary-discovery.svg" alt="An early Load Board concept with its own simplified navigation, next to the adapted design that keeps the existing Relay navigation, with notes on which structures stayed." loading="lazy" />
+<img src="/images/work/amazon-relay-load-board/boundary-discovery.webp" alt="Early concept: a Load Board with a simpler top navigation. Adapted design: the same results inside the existing Relay side navigation, with the navigation and the Post A Truck tab outlined as constraints." loading="lazy" />
 <figcaption>An early concept next to the adapted design. The existing Relay navigation stayed, and Post A Truck became a scope boundary with its own future redesign.</figcaption>
 </figure>
 
@@ -130,7 +130,7 @@ The design problem was therefore not one feature. It was how the landing experie
 <p class="callout">How might we support increasing marketplace complexity without making the experience increasingly complicated?</p>
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay-load-board/placeholder-impact-map.svg" alt="Impact map with three columns: carrier outcomes (speed, confidence, flexibility, scalability), carrier user stories, and deliverables (landing and zero state, global search, multi-search, search layout, trip cards and details, booking flow)." loading="lazy" />
+<img src="/images/work/amazon-relay-load-board/impact-map.webp" alt="Impact map with three columns: carrier outcomes (speed, confidence, flexibility, scalability), carrier user stories, and deliverables (landing state, global search, multi-search, search layout, trip details, booking flow)." loading="lazy" />
 <figcaption>The impact map, simplified: carrier outcomes connected through user stories to six deliverables, from the landing state to the booking flow.</figcaption>
 </figure>
 
@@ -162,7 +162,7 @@ The structure was intentionally extensible. New criteria such as certifications,
 All five carriers in high-fidelity testing preferred the sidebar filter pattern and found it easier to discover and customize.
 
 <figure class="visual visual--full">
-<img src="/images/work/amazon-relay-load-board/placeholder-search-vs-filters.svg" alt="The redesigned Load Board with a short global search for origin, radius and equipment across the top, and a vertical filter panel beside the results for work type, driver type, equipment, trip length and certifications." loading="lazy" />
+<img src="/images/work/amazon-relay-load-board/search-vs-filters.webp" alt="The redesigned Load Board with a short search for origin, radius and equipment across the top, labelled primary search: what could fit? A filter panel beside the results for work type, driver type and equipment is labelled: how do I narrow it?" loading="lazy" />
 <figcaption>Search answers “What work could fit my operation?” The filter panel beside the results answers “How do I narrow it?”, and new criteria can be added there without breaking search.</figcaption>
 </figure>
 
@@ -179,7 +179,7 @@ This became one of the deliberately custom patterns in the redesign. By launch, 
 The interaction also had real technical cost. Multi-search increased expected transaction load, so engineering reduced results per page from 100 to 50 after data showed that more than 95% of searches returned fewer than 50 results. We preserved the workflow value while making a data-backed implementation tradeoff.
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay-load-board/placeholder-multi-search.svg" alt="The Load Board with three search tabs, Outbound MSP to Midwest, Backhaul Chicago to MSP, and Second truck MSP box truck, above the shared search bar, filters and results." loading="lazy" />
+<img src="/images/work/amazon-relay-load-board/multi-search.webp" alt="The Load Board with three search tabs, Outbound, Backhaul and Second truck, above the search bar, filters and results. Notes: multi-search holds up to five searches, and tabs are restored for 24 hours." loading="lazy" />
 <figcaption>Multi-search: one tab per work context, such as an outbound run, its backhaul and a second truck. Carriers can keep up to five searches open, and recent tabs come back when they return within 24 hours.</figcaption>
 </figure>
 
@@ -196,7 +196,7 @@ All five usability participants preferred reviewing load details in the side pan
 That extensibility later became visible publicly: newer Relay workflows, including spot-rate negotiation, use the same split-view idea to introduce new actions while route, payout, stops, map, and load information remain in context.
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay-load-board/placeholder-split-view.svg" alt="Two Load Board screens: at launch, a split view with the result list beside a trip details drawer showing stops, requirements and Book; later, the same split view used for spot-rate negotiation." loading="lazy" />
+<img src="/images/work/amazon-relay-load-board/split-view.webp" alt="Two Load Board screens: at launch, a split view with the result list beside a trip details drawer showing the route, payout, map, stops and Book; later, the same drawer with a make an offer field for spot-rate offers." loading="lazy" />
 <figcaption>The split-view drawer at launch, and a later spot-rate negotiation workflow built on it. New actions fit into the same drawer while route, payout and stops stay in view.</figcaption>
 </figure>
 
@@ -207,7 +207,7 @@ Moving Book into the detail panel was debated because speed mattered greatly in 
 Carrier feedback leaned toward the new placement: users valued confirming the correct load before committing, and several specifically called out accidental bookings in the existing model. In this case, booking confidence took precedence over absolute minimum interaction count.
 
 <figure class="visual visual--wide">
-<img src="/images/work/amazon-relay-load-board/placeholder-speed-vs-confidence.svg" alt="Before: a result list with a Book button on every row, marked as a risk of accidental bookings. After: three steps, select a load in the list, inspect stops, map, payout and requirements in the drawer, then book from the detail panel." loading="lazy" />
+<img src="/images/work/amazon-relay-load-board/speed-vs-confidence.webp" alt="Before: a result list with a Book button on every row, marked as a risk because an accidental booking hurts carriers. After: three steps, select, inspect, then book, chosen to confirm the load before committing." loading="lazy" />
 <figcaption>Before, Book sat on every row of lookalike loads, and an accidental booking hurt carrier performance. After, carriers select a load, inspect it, then book from the detail panel.</figcaption>
 </figure>
 
