@@ -96,8 +96,8 @@ Once an order shipped, customers were sent away to a carrier tracking page. It c
 The emails, the account status and what was actually happening didn’t line up. Working directly with the customer service team, we mapped a common scenario: on day 6, the glasses are in a bulk shipment from the lab to the US, the account says “Manufactured/en Route to Distribution Center”, and no email goes out at all. The customer is thinking “Why haven’t they shipped yet?”, and that is the common point for contacting support.
 
 <figure class="visual visual--wide">
-<img class="is-mockup" src="/images/work/zenni-order-tracking/expectation-gap.webp" alt="Day 6 is when customers call. A timeline from day 0 to day 13 compares what is happening, what Track My Order says, the email sent and what the customer thinks. Day 6 is highlighted: the glasses are in a bulk shipment to the US facility, Track My Order says Manufactured/en Route to Distribution Center, no email goes out, and the customer thinks: why haven't they shipped yet? That is where Where is my order calls come in." loading="lazy" />
-<figcaption>The expectation gap, mapped with customer service. Day 6 is when “Where is my order?” calls come in.</figcaption>
+<img class="is-mockup" src="/images/work/zenni-order-tracking/expectation-gap.webp" alt="A timeline from day 0 to day 13: order placed, being made, no email on day 6, shipped on day 7, delivered on day 13. Day 6 is highlighted as when Where is my order? calls come in." loading="lazy" />
+<figcaption>Mapping a typical order with customer service showed the expectation gap: on day 6 nothing reaches the customer, and that is when “Where is my order?” calls come in.</figcaption>
 </figure>
 
 ##### 3.3 Gaps
