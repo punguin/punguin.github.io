@@ -182,6 +182,8 @@ In January 2025 I ran a usability test built on the customer scenarios above, th
 
 #### 05 / What it enabled
 
-The outcome was optionality.
+We could build on the foundation instead of starting over.
 
-This foundation didn’t remain theoretical: the next phase used it to tackle a deeper post-purchase problem. Enhanced Order Tracking was possible because Account had established the structures and design-system patterns it could build on. <a href="/work/zenni-order-tracking/">See Phase 2, Enhanced Order Tracking</a>.
+The redesigned Account experience established a shared structure and reusable patterns for future improvements. When we moved into Enhanced Order Tracking, we could focus on the harder problem of helping customers understand their orders rather than rebuilding the experience around them.
+
+<a href="/work/zenni-order-tracking/">See Phase 2, Enhanced Order Tracking</a>.
