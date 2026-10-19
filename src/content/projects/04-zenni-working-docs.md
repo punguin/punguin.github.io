@@ -83,7 +83,7 @@ No new tool, no new habit to learn first.
 
 I proposed a lightweight UX working documentation workflow that lived in Slack. A canvas sits next to the conversations a team is already having, so it can be shared with a link and found later. Partners didn’t need a Figma seat or a meeting invite to follow along.
 
-An added benefit was the threaded conversations. Partners commented directly on a tenet, a tradeoff or a decision, and the loop was closed right there in Slack, in a thread everyone could see. On Order Tracking, my manager’s leadership team pushed on how the tracker would scale across every shipping route. The feedback made it back to the canvas, so they could watch it being addressed instead of waiting for the next meeting. <a href="/work/zenni-order-tracking/#44-one-framework-for-every-route">See the framework it led to</a>.
+An added benefit was the threaded conversations. Partners commented directly on a tenet, a tradeoff or a decision, and the loop was closed right there in Slack, in a thread everyone could see. On Order Tracking, leadership pushed on how the tracker would scale across every shipping route. The feedback was addressed in the canvas, where everyone could follow it. <a href="/work/zenni-order-tracking/#44-one-framework-for-every-route">See the framework it led to</a>.
 
 I made a habit of keeping it that way. When feedback came in somewhere else, I added it to the doc as a comment, so the conversation lived with the decision. Then I posted the doc in our squad channel so everyone could see the change and weigh in. The canvas linked back to the related channels, so it was easy to move between the doc and the conversations around it.
 

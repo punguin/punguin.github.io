@@ -195,9 +195,9 @@ The copy had to scale with the supply chain.
 
 <p class="label case-status">In the developer handoff</p>
 
-I recorded a walkthrough of the prototype and shared it with the squad on October 31, 2025. The pushback on scale came from my manager’s leadership team: orders ship from overseas labs and from the US, to customers in the US and around the world, and new lab locations were planned. The copy had to account for every combination.
+I recorded a walkthrough of the prototype and shared it with the squad on October 31, 2025. Leadership pushed on scale: orders ship from overseas labs and from the US, to customers in the US and around the world, and new lab locations were planned. The copy had to account for every combination.
 
-The feedback came back to the working doc, and that’s where the decision was managed. Leadership could follow the work in progress of addressing it, right in the Slack canvas, instead of waiting for the next review.
+I share early and often, gather feedback, and address it. Sharing early meant the scale question came up two weeks before handoff, not after launch, and the answer was worked out in the working doc, where everyone could follow it.
 
 <p class="callout">How might we design a scalable messaging framework that adapts to complex, multi-origin logistics, so every customer feels confident and informed even when their items follow complex global routes?</p>
 
