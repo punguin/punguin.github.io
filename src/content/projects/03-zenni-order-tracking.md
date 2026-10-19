@@ -49,7 +49,7 @@ Make complexity useful, not visible.
 <li><p class="case-decisions__title"><a href="#42-what-is-happening-a-tracker-for-every-shipment">Show the milestones customers care about, not the operational record</a></p><p>Every shipment gets five milestones, with the active step as the focal point and estimated delivery dates up front, in place of one internal status line and a shipping speed. <a class="case-decisions__more" href="#42-what-is-happening-a-tracker-for-every-shipment">4.2 ↓</a></p></li>
 <li><p class="case-decisions__title"><a href="#43-what-it-means-and-what-happens-next">Explain the step customers call about, where they see it</a></p><p>A “Where is my Order?” card changes with the milestone. At the en-route step, which gets the most customer service calls, it says what is happening and what comes next. <a class="case-decisions__more" href="#43-what-it-means-and-what-happens-next">4.3 ↓</a></p></li>
 <li><p class="case-decisions__title"><a href="#44-one-framework-for-every-route">One messaging framework for every route</a></p><p>The tracker keeps the same five steps, and two of them change with the item and the route, so new origins and destinations don’t need new design. <a class="case-decisions__more" href="#44-one-framework-for-every-route">4.4 ↓</a></p></li>
-<li><p class="case-decisions__title"><a href="#45-what-i-should-do-the-hard-paths">Design for holds, delays and errors, not only the happy path</a></p><p>Templates for orders on hold, data errors, older orders and routes with no delivered step tell customers what is needed and by when. <a class="case-decisions__more" href="#45-what-i-should-do-the-hard-paths">4.5 ↓</a></p></li>
+<li><p class="case-decisions__title"><a href="#45-what-i-should-do-delays-and-issues">Design for holds, delays and errors, not only the happy path</a></p><p>Templates for orders on hold, data errors, older orders and routes with no delivered step tell customers what is needed and by when. <a class="case-decisions__more" href="#45-what-i-should-do-delays-and-issues">4.5 ↓</a></p></li>
 </ol>
 
 <figure class="visual visual--wide">
@@ -211,13 +211,13 @@ My answer was a messaging framework built on three principles: new routes should
 
 A new lab doesn’t need new design. It follows the same logic as the labs before it.
 
-##### 4.5 What I should do: the hard paths
+##### 4.5 What I should do: delays and issues
 
-The tracker had to work beyond the happy path.
+Known problems, designed for before launch.
 
 <p class="label case-status">In the developer handoff</p>
 
-Sharing the work early also put issues and delays in front of everyone. They were already part of the work, and the model supports them. The handoff included templates for prescription and non-prescription items, e-gift cards, older orders, orders on hold, data errors and routes with no delivered step, across desktop, tablet and mobile, where the tracker turns vertical. On hold mattered most. California law requires a photo of the prescription, so an order on hold says exactly what is needed and by when: “Please upload Rx by April 5th.”
+I worked with my PM to identify the known issues and delays, and we captured how the framework would handle each one. The developer handoff included templates for prescription and non-prescription items, e-gift cards, older orders, orders on hold, data errors and routes with no delivered step, across desktop, tablet and mobile, where the tracker turns vertical. On hold mattered most. California law requires a photo of the prescription, so an order on hold says exactly what is needed and by when: “Please upload Rx by April 5th.”
 
 ##### 4.6 What we left for later
 
