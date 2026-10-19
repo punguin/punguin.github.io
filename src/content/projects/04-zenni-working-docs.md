@@ -35,7 +35,7 @@ A habit on my projects became how the team worked.
 <li><p class="case-impact__figure">3<span class="case-impact__unit">of 3</span></p><p class="case-impact__label">UX teams adopted it</p><p class="case-impact__note">Growth, Web Experience and Design System all tracked their work in Slack.</p><p class="case-impact__kind">Organizational outcome</p></li>
 <li><p class="case-impact__figure">1<span class="case-impact__unit">month</span></p><p class="case-impact__label">pilot with my team before rollout</p><p class="case-impact__note">We started slow on my own projects, then piloted it with Web Experience before rolling it out to the greater team.</p><p class="case-impact__kind">Organizational outcome</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Replaced</p><p class="case-impact__label">the Monday top-priorities message</p><p class="case-impact__note">A weekly automated prompt to type what you were working on, with no links or context, gave way to live trackers anyone could open.</p><p class="case-impact__kind">Organizational outcome</p></li>
-<li><p class="case-impact__figure case-impact__figure--text">Open by default</p><p class="case-impact__label">decisions visible outside the meeting</p><p class="case-impact__note">Anyone could see what was decided and why, comment in a thread on the doc, and see the loop closed.</p><p class="case-impact__kind">Capability</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">Open by default</p><p class="case-impact__label">decisions visible outside the meeting</p><p class="case-impact__note">Partners commented directly on the docs, and the threads kept those conversations where everyone could see them.</p><p class="case-impact__kind">Capability</p></li>
 </ul>
 
 #### 02 / Key decisions
@@ -81,7 +81,9 @@ No new tool, no new habit to learn first.
 
 I proposed a lightweight UX working documentation workflow that lived in Slack. A canvas sits next to the conversations a team is already having, so it can be shared with a link and found later. Partners didn’t need a Figma seat or a meeting invite to follow along.
 
-An added benefit was the threaded conversations. Anyone could comment directly on a tenet, a tradeoff or a decision, and the loop was closed right there in Slack, in a thread everyone could see.
+An added benefit was the threaded conversations. Partners commented directly on a tenet, a tradeoff or a decision, and the loop was closed right there in Slack, in a thread everyone could see.
+
+I made a habit of keeping it that way. When feedback came in somewhere else, I added it to the doc as a comment, so the conversation lived with the decision. Then I posted the doc in our squad channel so everyone could see the change and weigh in. The canvas linked back to the related channels, so it was easy to move between the doc and the conversations around it.
 
 I led my own projects this way first. On <a href="/work/zenni-account/">Zenni Account</a>, the canvases became where the decisions happened, and where anyone could see what was decided and why before it was final.
 
@@ -132,7 +134,7 @@ One view of all the work, still in Slack.
 
 My manager didn’t have a way to see a bird’s-eye view of all her team’s work, so the working docs were a natural solution for her too. We built on top of the project documentation by creating team trackers that housed each project’s doc and its work. Because they lived in Slack, they were visible to anyone.
 
-The trackers replaced the Monday morning top-priorities message, an automated prompt where each designer typed in what they were working on that week, with no links or further context. Instead of a weekly snapshot, anyone could open a tracker, follow a link to a project’s working doc, and see the decisions behind it.
+The trackers replaced the Monday morning top-priorities message, an automated prompt where each designer typed in what they were working on that week, with no links or further context. Instead of a weekly snapshot, anyone could open a tracker, follow a link to a project’s working doc, and see the decisions behind it. My manager thanked me for making it easier to see what everyone was working on.
 
 ##### Writing to bring people along
 
@@ -151,8 +153,8 @@ After I left, I learned the organization had reversed course and returned to dom
 
 Visibility into our work, for the first time.
 
-Soon the entire UX team was tracking its work in Slack, which gave everyone visibility into what we were doing and why. It started as a template for my own projects, and became a shared way of working that three teams and our manager relied on.
+Soon the entire UX team was tracking its work in Slack, which gave everyone visibility into what we were doing and why. It started as a template for my own projects, and became a shared way of working across three teams. I left Zenni shortly after the rollout, so I didn’t get to see its longer-term effects.
 
 ##### Reflection
 
-You don’t need authority to start changing how a team works, but you do need it to scale. I proved the practice on my own projects and with my team, partnering closely with our UX PM, who was new to the role and whose focus was mostly on how UX worked with other teams. My manager had watched me work this way since I joined, and pushed me to spread it. I hesitated, because without a mandate it looked like one designer’s preference. What I should have done sooner was ask her to make new ways of working a team goal. Once she did, adoption stopped being a favor and became part of the job, and I was glad to lead it.
+You don’t need authority to start changing how a team works, but you do need it to scale. I proved the practice on my own projects and with my team, partnering closely with our UX PM, who was new to the role and whose focus was mostly on how UX worked with other teams. My manager had watched me work this way since I joined, and pushed me to spread it. I hesitated, because without a mandate it looked like one designer’s preference. Looking back, I wish I had asked her for more support early on, to help the team adopt it. Once we made it a team objective, I was happy to lead the adoption.

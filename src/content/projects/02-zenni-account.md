@@ -24,7 +24,7 @@ I modernized a fragmented account experience while establishing reusable product
 <dl class="case-overview">
 <div><dt>The problem</dt><dd>Zenni’s Account pages had grown one page at a time, organized around how the business built them, just as a new brand and a barely started design system arrived.</dd></div>
 <div><dt>My role</dt><dd>I was the lead, and only, UX designer on the redesign, partnered with a product manager, my UX manager, engineering and the design system team. The work wasn’t on a company roadmap when I started, so part of my job was showing leadership a new account experience that was worth investing in.</dd></div>
-<div><dt>What I did</dt><dd>I gave Account one structure and a set of reusable patterns, built them together with the design system while it was still forming, and led the project in the open, through shared Slack canvases where the decisions were made and recorded.</dd></div>
+<div><dt>What I did</dt><dd>I gave Account one structure and a set of reusable patterns, built them together with the design system while it was still forming, and led the project in the open, in shared Slack canvases where the decisions were made and recorded.</dd></div>
 </dl>
 
 #### 01 / Impact
@@ -35,7 +35,6 @@ The redesign gave the team a foundation to build on rather than another one-off 
 <li><p class="case-impact__figure case-impact__figure--text">One structure</p><p class="case-impact__label">for every Account page</p><p class="case-impact__note">One navigation, one structure and one set of patterns, in place of pages built at different times for different needs.</p><p class="case-impact__kind">Shipped</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Phase 2</p><p class="case-impact__label">Enhanced Order Tracking built on it</p><p class="case-impact__note">The next phase used the foundation to tackle a deeper post-purchase problem.</p><p class="case-impact__kind">Capability enabled</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Shared patterns</p><p class="case-impact__label">contributed back to the design system</p><p class="case-impact__note">Account pressure tested the system on a real product and gave it major components and patterns.</p><p class="case-impact__kind">Organizational outcome</p></li>
-<li><p class="case-impact__figure case-impact__figure--text">Team templates</p><p class="case-impact__label">from my decision-making canvases</p><p class="case-impact__note">The team adopted them, and later projects started from them.</p><p class="case-impact__kind">Organizational outcome</p></li>
 </ul>
 
 Foundational work is often best measured by what becomes easier to build afterward.
@@ -48,7 +47,6 @@ Consistency was not the same thing as sameness.
 <li><p class="case-decisions__title"><a href="#41-organize-account-around-what-customers-manage">Organize Account around what customers manage</a></p><p>Navigation grouped the way customers think, not the way the business had built the pages, and options that didn’t save customers time came out. <a class="case-decisions__more" href="#41-organize-account-around-what-customers-manage">4.1 ↓</a></p></li>
 <li><p class="case-decisions__title"><a href="#42-build-a-pattern-once-with-the-design-system">Build each pattern once, with the design system</a></p><p>Account and the barebones design system were built together. When Account needed to extend a pattern, the change went back to the system instead of staying a one-off. <a class="case-decisions__more" href="#42-build-a-pattern-once-with-the-design-system">4.2 ↓</a></p></li>
 <li><p class="case-decisions__title"><a href="#43-leave-room-for-capabilities-we-hadnt-designed-yet">Leave room for capabilities we hadn’t designed yet</a></p><p>Orders became a list and a detail with an item panel, a structure later work could grow into, from frame measurements to Enhanced Order Tracking. <a class="case-decisions__more" href="#43-leave-room-for-capabilities-we-hadnt-designed-yet">4.3 ↓</a></p></li>
-<li><p class="case-decisions__title"><a href="#44-make-decisions-in-the-open">Make decisions in the open</a></p><p>There was no shared place to make and track decisions, so I made one in Slack canvases, then turned them into templates the team adopted. <a class="case-decisions__more" href="#44-make-decisions-in-the-open">4.4 ↓</a></p></li>
 </ol>
 
 #### 03 / Understanding the problem
@@ -171,22 +169,11 @@ The shipped Orders page and Order Details follow the same structure. The item de
 
 We knew Orders had room to become much more useful. I structured the foundation so later iterations could support richer status, progressive information, contextual actions and more sophisticated post-purchase communication. Work after the MVP included store credit, frame measurements, international support and enhanced order tracking.
 
-##### 4.4 Make decisions in the open
+##### Working in the open
 
-There was no shared place to make and track decisions, so I made one.
+I made and recorded the project’s decisions in Slack canvases, open to partners for comment before anything was final. That practice became a team template, and later how the whole UX team tracked its work. That story is its own case study: <a href="/work/zenni-working-docs/">UX Working Docs</a>.
 
-I led the project through collaborative documentation in Slack canvases. That is where the decisions happened. Partners, and really anyone, could see what was decided and why, and offer feedback before it was final. There was no existing mechanism to track decisions or collaborate this way, and it became how my team saw me lead my projects.
-
-The practice outlasted the project. I turned the canvases into templates the team could adopt and structure however they needed. The working doc, the messaging framework and the prototype walkthrough on <a href="/work/zenni-order-tracking/">Order Tracking</a> all started from them.
-
-The template was most useful when an idea was still ambiguous. Multi-Profile Shopping, a later initiative to support households buying glasses for the whole family, started as little more than a goal. Its working doc turned that into things the team could start to understand together: a north star, working tenets, and two tracks of UX work. One validated demand quickly by letting customers label prescriptions, favorites and saved searches. The other designed the long-term household experience. Each track named its desired outcomes, its metrics and the evidence of success we’d look for.
-
-<figure class="visual" style="max-width: 720px">
-<img src="/images/work/zenni-account/multi-profile-canvas.webp" alt="The Multi-Profile Shopping working doc: a dual-track UX strategy, and a table for Track 1, validate customer demand through labeling, with focus areas Organization, Workflow Efficiency and Business Value, each with a desired outcome, KPIs and evidence of success." loading="lazy" />
-<figcaption>The same template on an early, ambiguous idea: Multi-Profile Shopping, 2026.</figcaption>
-</figure>
-
-##### 4.5 Validation and launch
+##### 4.4 Validation and launch
 
 Tested with customers, reviewed across the business.
 
@@ -196,4 +183,4 @@ In January 2025 I ran a usability test built on the customer scenarios above, th
 
 The outcome was optionality.
 
-This foundation didn’t remain theoretical: the next phase used it to tackle a deeper post-purchase problem. Enhanced Order Tracking was possible because Account had established the structures and design-system patterns it could build on, and its working doc, messaging framework and prototype walkthrough started from the canvas templates. <a href="/work/zenni-order-tracking/">See Phase 2, Enhanced Order Tracking</a>.
+This foundation didn’t remain theoretical: the next phase used it to tackle a deeper post-purchase problem. Enhanced Order Tracking was possible because Account had established the structures and design-system patterns it could build on. <a href="/work/zenni-order-tracking/">See Phase 2, Enhanced Order Tracking</a>.
