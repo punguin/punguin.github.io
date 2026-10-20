@@ -786,3 +786,38 @@ img[data-old-image] { outline: 3px dashed #e0007a; outline-offset: -3px; }
   font: 700 0.75rem/1.2 var(--font-body, Inter, sans-serif); letter-spacing: 0.04em; text-transform: uppercase;
   box-shadow: 0 1px 4px rgb(0 0 0 / 0.25);
 }
+
+/* ---------- Rating table (case studies) ----------
+   Replaces brainstorm scatter plots with a compact concept × criteria table (Pung, 2026-10-20). */
+.rating-table {
+  padding: var(--space-5);
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  border-radius: 16px;
+  background: #fff;
+}
+.rating-table__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--space-2) var(--space-4); margin-bottom: var(--space-4); }
+.prose .rating-table__head p { margin: 0; }
+.rating-table__title { font-weight: 600; font-size: 1.25rem; color: var(--ink); }
+.rating-table__kind { color: var(--text-secondary); font-size: var(--text-small); }
+.project__body .rating-table.visual table { display: table; width: 100%; max-width: none; margin: 0; border: 0; border-radius: 0; background: none; overflow: visible; border-collapse: collapse; font-size: 1rem; }
+.project__body .rating-table.visual th, .project__body .rating-table.visual td { min-width: 0; padding: var(--space-3) var(--space-3) var(--space-3) 0; text-align: left; vertical-align: top; border: 0; border-bottom: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); }
+.project__body .rating-table.visual tbody tr:last-child > * { border-bottom: 0; }
+.project__body .rating-table.visual thead th { font-size: var(--text-small); font-weight: 400; color: var(--text-secondary); padding-top: 0; }
+.project__body .rating-table.visual tbody th { font-size: 1rem; font-weight: 400; color: var(--ink); }
+.rating-table tbody th strong { font-weight: 600; }
+.rating-table__pick { display: block; margin-top: 2px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); }
+.rating-table__pick::before { content: ""; display: inline-block; width: 0.55em; height: 0.55em; margin-right: 0.5em; background: var(--violet); vertical-align: 0.05em; }
+.rating { display: inline-flex; gap: 4px; padding-top: 0.35em; }
+.rating i { display: block; width: 28px; height: 16px; border-radius: 4px; background: color-mix(in srgb, var(--ink) 8%, transparent); }
+.rating[data-level="1"] i:nth-of-type(-n+1),
+.rating[data-level="2"] i:nth-of-type(-n+2),
+.rating[data-level="3"] i { background: var(--violet); }
+.rating-table.visual figcaption { margin-top: var(--space-4); max-width: none; text-align: left; }
+@media (max-width: 600px) {
+  .rating-table { padding: var(--space-4); }
+  .project__body .rating-table.visual table, .project__body .rating-table.visual tbody th { font-size: 0.875rem; }
+  .project__body .rating-table.visual thead th { font-size: 0.75rem; }
+  .project__body .rating-table.visual th, .project__body .rating-table.visual td { padding-right: var(--space-2); }
+  .rating { gap: 3px; }
+  .rating i { width: 14px; height: 12px; border-radius: 3px; }
+}

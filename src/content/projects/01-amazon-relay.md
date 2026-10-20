@@ -159,9 +159,18 @@ Extensibility mattered as much as feasibility.
 
 In a team brainstorm, we plotted ideas by user value against feasibility and extensibility, and chose one to explore.
 
-<figure class="visual visual--wide">
-<img class="is-mockup" src="/images/work/amazon-relay/brainstorm.webp" alt="Two charts plotting concept sketches by user value against feasibility and against extensibility, with the selected approach circled." loading="lazy" />
-<figcaption>Brainstorm concepts, plotted by user value against feasibility and extensibility.</figcaption>
+<figure class="visual rating-table">
+<div class="rating-table__head"><p class="rating-table__title">Evaluating four approaches</p><p class="rating-table__kind">Qualitative ratings</p></div>
+<table>
+<thead><tr><th scope="col">Concept</th><th scope="col">User value</th><th scope="col">Feasibility</th><th scope="col">Extensibility</th></tr></thead>
+<tbody>
+<tr><th scope="row">Generic cards</th><td><span class="rating" data-level="3"><span class="visually-hidden">High</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="1"><span class="visually-hidden">Low</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="2"><span class="visually-hidden">Medium</span><i></i><i></i><i></i></span></td></tr>
+<tr class="is-selected"><th scope="row"><strong>Persona-specific cards</strong><span class="rating-table__pick">Selected</span></th><td><span class="rating" data-level="3"><span class="visually-hidden">High</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="2"><span class="visually-hidden">Medium</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="3"><span class="visually-hidden">High</span><i></i><i></i><i></i></span></td></tr>
+<tr><th scope="row">Dynamic cards</th><td><span class="rating" data-level="2"><span class="visually-hidden">Medium</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="1"><span class="visually-hidden">Low</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="1"><span class="visually-hidden">Low</span><i></i><i></i><i></i></span></td></tr>
+<tr><th scope="row">Schedule-based</th><td><span class="rating" data-level="1"><span class="visually-hidden">Low</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="2"><span class="visually-hidden">Medium</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="2"><span class="visually-hidden">Medium</span><i></i><i></i><i></i></span></td></tr>
+</tbody>
+</table>
+<figcaption>Low to high. Ratings show where each concept sat on the team's brainstorm charts, not measured scores.</figcaption>
 </figure>
 
 ##### 4.1 Organize the app around information, not steps
