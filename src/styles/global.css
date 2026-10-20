@@ -438,14 +438,8 @@ a.external::after {
 .prose > .visual { margin-top: var(--space-7); }
 .prose > .visual + * { margin-top: var(--space-7); }
 
-/* Each image sits on its case study's bright colour (--case-color, set on the article from
-   coverColor), like the homepage card and the hero. */
-.visual {
-  width: 100%;
-  padding: clamp(14px, 4.5%, 40px);
-  border-radius: 22px;
-  background: var(--case-color, #f0eee9);
-}
+/* Images sit straight on the page, with no coloured panel behind them (Pung, 2026-10-20). */
+.visual { width: 100%; }
 /* Every panel spans the content column; the image is centred in it. Inline images keep a narrower
    size (the measure, or a max-width set on the img itself). */
 .visual img, .visual__frame { width: 100%; margin-inline: auto; }
