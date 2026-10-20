@@ -771,3 +771,12 @@ section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset);
 }
 .value > * + * { margin-top: var(--space-3); }
 .prose .ai-note p { max-width: 52em; }
+
+/* Image audit (src/lib/old-images.ts): images not replaced yet get a dashed outline and an "Old" tag. */
+img[data-old-image] { outline: 3px dashed #e0007a; outline-offset: -3px; }
+.old-image-tag {
+  position: absolute; z-index: 5; pointer-events: none;
+  padding: 3px 8px; border-radius: 4px; background: #e0007a; color: #fff;
+  font: 700 0.75rem/1.2 var(--font-body, Inter, sans-serif); letter-spacing: 0.04em; text-transform: uppercase;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.25);
+}

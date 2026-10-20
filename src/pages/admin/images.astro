@@ -7,6 +7,7 @@ import path from 'node:path';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import '../../styles/editor.css';
+import { oldImages } from '../../lib/old-images';
 
 const ROOT = process.cwd();
 const PUBLIC = path.join(ROOT, 'public');
@@ -23,7 +24,7 @@ const walk = (dir: string): string[] =>
 // Where each image is referenced: the site's own source files, read at build time.
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 const sources = walk(path.join(ROOT, 'src'))
-  .filter((f) => SOURCE.test(f) && !f.includes(`${path.sep}pages${path.sep}admin`))
+  .filter((f) => SOURCE.test(f) && !f.includes(`${path.sep}pages${path.sep}admin`) && !f.endsWith('image-audit.json'))
   .map((f) => ({ file: path.relative(ROOT, f), text: fs.readFileSync(f, 'utf8') }));
 
 function place(file: string): { label: string; href?: string } {
@@ -68,6 +69,7 @@ const groups = [...new Set(assets.map((a) => a.folder))].map((folder) => {
 
 const size = (n: number) => (n > 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(1)} MB` : `${Math.max(1, Math.round(n / 1024))} KB`);
 const kind = (name: string) => name.split('.').pop()!.toUpperCase().replace('JPEG', 'JPG');
+const old = new Set(oldImages());
 const unused = assets.filter((a) => !a.usedIn.length).length;
 ---
 <BaseLayout title="Images — Pung Brooks" description="View and swap the images on Pung Brooks's site." noindex>
@@ -82,7 +84,7 @@ const unused = assets.filter((a) => !a.usedIn.length).length;
 
     <div class="lib-head">
       <h1>Images</h1>
-      <p class="ed-hint">{assets.length} images and SVGs, {unused} not used on any page. To swap one, click <b>Replace</b> or drop a file onto it. The new file keeps the same name and spot, so every page using it updates on the next build.</p>
+      <p class="ed-hint">{assets.length} images and SVGs, {unused} not used on any page.{old.size > 0 && <> <b>{old.size} still need updating</b> (tagged Old here and on the site).</>} To swap one, click <b>Replace</b> or drop a file onto it. The new file keeps the same name and spot, so every page using it updates on the next build.</p>
     </div>
 
     <form class="ed-connect lib-connect" data-connect hidden>
@@ -109,6 +111,7 @@ const unused = assets.filter((a) => !a.usedIn.length).length;
         <label><input type="radio" name="show" value="all" checked /> All</label>
         <label><input type="radio" name="show" value="svg" /> SVG only</label>
         <label><input type="radio" name="show" value="unused" /> Not used</label>
+        {old.size > 0 && <label><input type="radio" name="show" value="old" /> Needs update</label>}
       </fieldset>
     </div>
 
@@ -123,7 +126,7 @@ const unused = assets.filter((a) => !a.usedIn.length).length;
         <h2>{g.title} <code>{g.folder}</code></h2>
         <ul class="lib-grid">
           {g.items.map((a) => (
-            <li class="lib-card" data-asset data-path={a.repoPath} data-url={a.url} data-svg={a.name.endsWith('.svg') ? '' : undefined} data-unused={a.usedIn.length ? undefined : ''} data-search-text={`${a.name} ${a.usedIn.map((u) => u.label).join(' ')}`.toLowerCase()}>
+            <li class="lib-card" data-asset data-path={a.repoPath} data-url={a.url} data-svg={a.name.endsWith('.svg') ? '' : undefined} data-unused={a.usedIn.length ? undefined : ''} data-old={old.has(a.url) ? '' : undefined} data-search-text={`${a.name} ${a.usedIn.map((u) => u.label).join(' ')}`.toLowerCase()}>
               <div class="lib-card__view">
                 <img src={a.url} alt="" loading="lazy" decoding="async" data-preview />
               </div>
