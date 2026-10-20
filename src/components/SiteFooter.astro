@@ -14,9 +14,9 @@ const year = new Date().getFullYear();
 <style>
   /* Same inset panel as the homepage hero; the content lines up with the header bar. */
   .site-footer {
-    margin: 0 var(--frame) var(--frame);
+    margin: 0 var(--frame);               /* touches the bottom of the page, like the hero touches the top */
     background: var(--hero-bg);
-    border-radius: 22px;
+    border-radius: 22px 22px 0 0;
     color: var(--text-secondary);
     font-size: 0.8125rem;
   }
