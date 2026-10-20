@@ -2,9 +2,11 @@
 import Analytics from '@vercel/analytics/astro';
 import '../styles/fonts.css';
 import '../styles/global.css';
+import { oldImages } from '../lib/old-images';
 interface Props { title: string; description: string; ogImage?: string; noindex?: boolean }
 const { title, description, ogImage = '/og-image.png', noindex = false } = Astro.props;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const old = oldImages();
 const ogUrl = Astro.site ? new URL(ogImage, Astro.site).href : ogImage;
 ---
 <!doctype html>
@@ -39,5 +41,42 @@ const ogUrl = Astro.site ? new URL(ogImage, Astro.site).href : ogImage;
   </head>
   <body>
     <slot />
+    {old.length > 0 && (
+      <script is:inline define:vars={{ old }}>
+        // Image audit: tag every image that hasn't been replaced yet (src/lib/old-images.ts).
+        const oldSet = new Set(old);
+        const tags = new Map();
+        const place = (img, tag) => {
+          const box = img.offsetParent;
+          if (!box) { tag.hidden = true; return; }
+          tag.hidden = false;
+          if (tag.parentNode !== box) box.appendChild(tag);
+          tag.style.top = `${img.offsetTop + 8}px`;
+          tag.style.left = `${img.offsetLeft + 8}px`;
+        };
+        const scan = () => {
+          for (const img of document.querySelectorAll('img[src]')) {
+            if (img.closest('[data-no-audit]')) continue;
+            const url = decodeURI(new URL(img.getAttribute('src'), location.href).pathname);
+            if (!oldSet.has(url)) continue;
+            img.setAttribute('data-old-image', '');
+            let tag = tags.get(img);
+            if (!tag) {
+              tag = document.createElement('span');
+              tag.className = 'old-image-tag';
+              tag.setAttribute('aria-hidden', 'true');
+              tag.textContent = 'Old';
+              tags.set(img, tag);
+              img.addEventListener('load', () => place(img, tag));
+            }
+            place(img, tag);
+          }
+        };
+        scan();
+        addEventListener('load', scan);
+        addEventListener('resize', scan);
+        new ResizeObserver(scan).observe(document.body);
+      </script>
+    )}
   </body>
 </html>

@@ -150,6 +150,10 @@ async function replace(card: HTMLElement, file: File) {
     const done = $<HTMLElement>('[data-done]', card);
     done.textContent = `Replaced on ${branch}. Pages update after the next build.`;
     done.hidden = false;
+    card.removeAttribute('data-old');
+    card.setAttribute('data-no-audit', '');
+    preview.removeAttribute('data-old-image');
+    preview.parentElement?.querySelector('.old-image-tag')?.remove();
     setStatus(`Replaced ${name} on ${branch}.${note} The site picks it up after its next build, usually about a minute.`, 'ok');
   } catch (err) {
     setStatus(`Couldn't replace ${name}. ${(err as Error).message}`, 'error');
@@ -197,7 +201,7 @@ function filter() {
   const show = (document.querySelector<HTMLInputElement>('input[name="show"]:checked')?.value) || 'all';
   for (const card of cards) {
     const match = (!q || card.dataset.searchText!.includes(q))
-      && (show === 'all' || (show === 'svg' && card.hasAttribute('data-svg')) || (show === 'unused' && card.hasAttribute('data-unused')));
+      && (show === 'all' || (show === 'svg' && card.hasAttribute('data-svg')) || (show === 'unused' && card.hasAttribute('data-unused')) || (show === 'old' && card.hasAttribute('data-old')));
     card.hidden = !match;
   }
   for (const group of document.querySelectorAll<HTMLElement>('[data-group]')) {
