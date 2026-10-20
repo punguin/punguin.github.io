@@ -316,7 +316,7 @@ a.external::after {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  max-width: var(--doc-max);            /* edges line up with the page content */
+  max-width: 820px;                     /* one width on every page, about 300px narrower than the content (Pung, 2026-10-20) */
   margin-inline: auto;
   height: var(--header-h);
   padding-inline: clamp(22px, 2.4vw, 30px) clamp(10px, 1vw, 12px);
