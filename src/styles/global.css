@@ -575,11 +575,12 @@ html.has-viewer { overflow: hidden; }
   padding: 0;
   border: 0;
   background: transparent;
-  color: var(--cream-paper);
+  color: var(--ink);
   overflow: hidden;
   overscroll-behavior: contain;
 }
-.viewer::backdrop { background: rgb(16 16 16); }
+/* Light so transparent mockups and diagrams read the way they do on the page (Pung, 2026-10-20). */
+.viewer::backdrop { background: var(--paper); }
 .viewer[open] { display: grid; grid-template-rows: auto 1fr; animation: viewer-in 160ms ease-out; }
 @keyframes viewer-in { from { opacity: 0; } }
 
@@ -627,16 +628,16 @@ html.has-viewer { overflow: hidden; }
   place-items: center;
   width: 44px;
   height: 44px;
-  border: 1px solid rgb(252 250 245 / 0.5);
+  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
   border-radius: var(--radius-button);
-  background: rgb(16 16 16 / 0.6);
-  color: var(--cream-paper);
+  background: rgb(255 255 255 / 0.85);
+  color: var(--ink);
   font-size: 1.25rem;
   line-height: 1;
   cursor: pointer;
 }
-.viewer__btn:hover { background: var(--cream-paper); color: var(--forest-ink); }
-.viewer__btn:focus-visible { outline: 3px solid var(--cream-paper); outline-offset: 3px; }
+.viewer__btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.viewer__btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 .viewer__close { font-size: 1.75rem; }
 
 .viewer__nav { position: fixed; bottom: var(--space-4); }
