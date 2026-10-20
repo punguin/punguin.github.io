@@ -72,10 +72,10 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
   .case-hero {
     position: relative;
     overflow: hidden;
-    margin: calc(-1 * (var(--header-h) + var(--bar-top)) + var(--frame)) var(--frame) 0;
-    padding-top: calc(var(--header-h) + var(--bar-top) - var(--frame));
+    margin: calc(-1 * (var(--header-h) + var(--bar-top))) var(--frame) 0; /* touches the top of the page */
+    padding-top: calc(var(--header-h) + var(--bar-top));
     background: var(--case-color);
-    border-radius: 22px;
+    border-radius: 0 0 22px 22px;
   }
   .case-hero__inner {
     display: flex;
