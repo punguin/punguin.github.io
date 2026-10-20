@@ -1,5 +1,4 @@
 {
-  "/images/pung-brooks.webp": "136581efddc1a93a7047e4a11e817347630e72de",
   "/images/work/amazon-relay-load-board/boundary-discovery.webp": "3eab7781deb2f1d80a4b71d77f936a3a2dfadf46",
   "/images/work/amazon-relay-load-board/carrier-behavior.webp": "1c8aa491a4863355a9e98f8e693b11e3a3b57d47",
   "/images/work/amazon-relay-load-board/comparison.webp": "bda0fb59aec24561b295247ac3d8626d07c36850",
@@ -89,10 +88,5 @@
   "/illustrations/brain/piece-greenfield.webp": "e6856f82d27a7ef291e3853e058daea9c35f16fc",
   "/illustrations/brain/piece-orders.webp": "5b9c330c2d4aa2c6a10245689ad1bc21809e6741",
   "/illustrations/brain/piece-realestate.webp": "755ca0a050a30e4754208ae1dd369de533bb3deb",
-  "/illustrations/brain/piece-systems.webp": "559df0534e73052a46236e4a23889109719ff9bd",
-  "/illustrations/close-the-gaps.svg": "19f5d1819c85caf38c2199ff41529072bba8a2f1",
-  "/illustrations/find-the-gaps.svg": "b45ebb5fd34cfb958ede585384ebdd80d5539cf8",
-  "/illustrations/see-what-changed.svg": "20b545c34ecae6f943e8ce49859963a36b8bcc68",
-  "/illustrations/understand-people.svg": "c5dd15f16c266ce31b684c3237c2ab82e63753bf",
-  "/illustrations/understand-the-system.svg": "46b8113606ecafb3204c1eadeec3b0364a94db19"
+  "/illustrations/brain/piece-systems.webp": "559df0534e73052a46236e4a23889109719ff9bd"
 }
