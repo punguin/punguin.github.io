@@ -15,7 +15,7 @@
 .ed small { font-weight: 400; color: var(--text-tertiary); font-size: 0.8125rem; }
 .ed input:not([type='checkbox']):not([type='radio']), .ed textarea, .ed select {
   font: inherit; font-weight: 400; font-size: 1rem; color: var(--forest-ink);
-  padding: 10px 12px; border: 1px solid var(--border-strong); border-radius: var(--radius-button); background: var(--surface);
+  padding: 10px 12px; border: 1px solid var(--border-strong); border-radius: var(--radius-card); background: var(--surface);
 }
 .ed textarea { font-family: var(--font-mono); font-size: 0.875rem; line-height: 1.6; resize: vertical; }
 .ed input:focus-visible, .ed textarea:focus-visible, .ed select:focus-visible { outline: 2px solid var(--forest-ink); outline-offset: 1px; }
@@ -39,7 +39,7 @@
 .ed-side__label { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-tertiary); }
 .ed-side__meta { font-size: 0.8125rem; color: var(--text-tertiary); }
 .ed-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; }
-.ed-list .ed-list__item { display: flex; gap: var(--space-3); align-items: baseline; width: 100%; padding: 8px 10px; border: 0; border-radius: var(--radius-button); background: none; font: inherit; color: var(--forest-ink); text-align: left; cursor: pointer; }
+.ed-list .ed-list__item { display: flex; gap: var(--space-3); align-items: baseline; width: 100%; padding: 8px 10px; border: 0; border-radius: var(--radius-nav); background: none; font: inherit; color: var(--forest-ink); text-align: left; cursor: pointer; }
 .ed-list .ed-list__item:hover { background: var(--hover-bg); }
 .ed-list .ed-list__item[aria-current='true'] { background: var(--selected-bg); font-weight: 600; }
 .ed-list .ed-list__num { padding: 0 6px; border-radius: var(--radius-pill); background: var(--accent); font-family: var(--font-mono); font-size: 0.75rem; }
