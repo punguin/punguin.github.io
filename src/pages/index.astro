@@ -64,10 +64,10 @@ const description =
 <style>
   /* Solid colour hero, inset from the page edge, with the header bar floating on its top edge. */
   .hero-panel {
-    margin: calc(-1 * (var(--header-h) + var(--bar-top)) + var(--frame)) var(--frame) 0;
-    padding-top: calc(var(--header-h) + var(--bar-top) - var(--frame));
+    margin: calc(-1 * (var(--header-h) + var(--bar-top))) var(--frame) 0; /* touches the top of the page */
+    padding-top: calc(var(--header-h) + var(--bar-top));
     background: var(--hero-bg);
-    border-radius: 22px;
+    border-radius: 0 0 22px 22px;
   }
   .sections > :global(:first-child) { border-top: 0; }
   .hero-panel__inner { width: min(calc(100% - 2 * var(--gutter)), var(--doc-max)); margin-inline: auto; }
