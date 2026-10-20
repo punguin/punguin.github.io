@@ -446,7 +446,6 @@ a.external::after {
 .visual img {
   display: block;
   border-radius: 10px;
-  background: #fff;
   box-shadow: 0 0 0 1px rgba(22, 22, 22, 0.06), 0 24px 50px -28px rgba(20, 20, 50, 0.4);
 }
 .visual--inline img { max-width: var(--measure); }
@@ -603,7 +602,6 @@ html.has-viewer { overflow: hidden; }
   max-height: calc(100dvh - 180px);
   object-fit: contain;
   border-radius: var(--radius-card);
-  background: var(--surface);
 }
 .viewer__caption { max-width: 60ch; font-size: var(--text-small); line-height: 1.5; text-align: center; }
 
