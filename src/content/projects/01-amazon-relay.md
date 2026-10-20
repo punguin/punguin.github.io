@@ -157,21 +157,34 @@ Extensibility mattered as much as feasibility.
 - **Scalability.** A foundation that onboards new programs and use cases easily.
 - **Parity.** Drivers execute loads at the same rate.
 
-In a team brainstorm, we plotted ideas by user value against feasibility and extensibility, and chose one to explore.
+<p class="label">Concept evaluation</p>
+<p class="concept-eval__title">We chose flexibility over the easiest path to implementation.</p>
+
+In a team brainstorm, we explored four concepts and evaluated them against user value, feasibility, and extensibility. Persona-specific cards weren’t the easiest to build, but offered the strongest long-term flexibility for the app to grow.
 
 <figure class="visual rating-table">
-<div class="rating-table__head"><p class="rating-table__title">Evaluating four approaches</p><p class="rating-table__kind">Qualitative ratings</p></div>
+<p class="rating-table__title">Concept comparison</p>
 <table>
-<thead><tr><th scope="col">Concept</th><th scope="col">User value</th><th scope="col">Feasibility</th><th scope="col">Extensibility</th></tr></thead>
+<thead><tr><th scope="col">Concept</th><th scope="col">User value<span>How well it meets drivers' needs</span></th><th scope="col">Feasibility<span>Relative effort to implement</span></th><th scope="col">Extensibility<span>Ability to support future capability</span></th></tr></thead>
 <tbody>
-<tr><th scope="row">Generic cards</th><td><span class="rating" data-level="3"><span class="visually-hidden">High</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="1"><span class="visually-hidden">Low</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="2"><span class="visually-hidden">Medium</span><i></i><i></i><i></i></span></td></tr>
-<tr class="is-selected"><th scope="row"><strong>Persona-specific cards</strong><span class="rating-table__pick">Selected</span></th><td><span class="rating" data-level="3"><span class="visually-hidden">High</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="2"><span class="visually-hidden">Medium</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="3"><span class="visually-hidden">High</span><i></i><i></i><i></i></span></td></tr>
-<tr><th scope="row">Dynamic cards</th><td><span class="rating" data-level="2"><span class="visually-hidden">Medium</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="1"><span class="visually-hidden">Low</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="1"><span class="visually-hidden">Low</span><i></i><i></i><i></i></span></td></tr>
-<tr><th scope="row">Schedule-based</th><td><span class="rating" data-level="1"><span class="visually-hidden">Low</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="2"><span class="visually-hidden">Medium</span><i></i><i></i><i></i></span></td><td><span class="rating" data-level="2"><span class="visually-hidden">Medium</span><i></i><i></i><i></i></span></td></tr>
+<tr><th scope="row"><div class="rating-table__concept"><img src="/images/work/amazon-relay/concept-generic.webp" alt="" width="102" height="162" loading="lazy" /><div><strong>Generic cards</strong><span class="rating-table__desc">Same card structure for all drivers.</span></div></div></th><td data-label="User value"><span class="rating" data-level="2"><span class="visually-hidden">2 of 3</span><i></i><i></i><i></i></span></td><td data-label="Feasibility"><span class="rating" data-level="1"><span class="visually-hidden">1 of 3</span><i></i><i></i><i></i></span></td><td data-label="Extensibility"><span class="rating" data-level="2"><span class="visually-hidden">2 of 3</span><i></i><i></i><i></i></span></td></tr>
+<tr class="is-selected"><th scope="row"><div class="rating-table__concept"><img src="/images/work/amazon-relay/concept-persona.webp" alt="" width="102" height="162" loading="lazy" /><div><strong>Persona-specific cards</strong><span class="rating-table__desc">Cards tailored to different driver needs and contexts.</span><span class="rating-table__pick">Selected</span></div></div></th><td data-label="User value"><span class="rating" data-level="3"><span class="visually-hidden">3 of 3</span><i></i><i></i><i></i></span></td><td data-label="Feasibility"><span class="rating" data-level="2"><span class="visually-hidden">2 of 3</span><i></i><i></i><i></i></span></td><td data-label="Extensibility"><span class="rating" data-level="3"><span class="visually-hidden">3 of 3</span><i></i><i></i><i></i></span></td></tr>
+<tr><th scope="row"><div class="rating-table__concept"><img src="/images/work/amazon-relay/concept-dynamic.webp" alt="" width="102" height="162" loading="lazy" /><div><strong>Dynamic cards</strong><span class="rating-table__desc">Content adapts based on real-time conditions.</span></div></div></th><td data-label="User value"><span class="rating" data-level="2"><span class="visually-hidden">2 of 3</span><i></i><i></i><i></i></span></td><td data-label="Feasibility"><span class="rating" data-level="1"><span class="visually-hidden">1 of 3</span><i></i><i></i><i></i></span></td><td data-label="Extensibility"><span class="rating" data-level="1"><span class="visually-hidden">1 of 3</span><i></i><i></i><i></i></span></td></tr>
+<tr><th scope="row"><div class="rating-table__concept"><img src="/images/work/amazon-relay/concept-schedule.webp" alt="" width="102" height="162" loading="lazy" /><div><strong>Schedule-based</strong><span class="rating-table__desc">Organized around a driver’s scheduled timeline.</span></div></div></th><td data-label="User value"><span class="rating" data-level="1"><span class="visually-hidden">1 of 3</span><i></i><i></i><i></i></span></td><td data-label="Feasibility"><span class="rating" data-level="3"><span class="visually-hidden">3 of 3</span><i></i><i></i><i></i></span></td><td data-label="Extensibility"><span class="rating" data-level="2"><span class="visually-hidden">2 of 3</span><i></i><i></i><i></i></span></td></tr>
 </tbody>
 </table>
-<figcaption>Low to high. Ratings show where each concept sat on the team's brainstorm charts, not measured scores.</figcaption>
 </figure>
+
+<aside class="decision-callout">
+<span class="decision-callout__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/><path d="M12 1v0M4 4l1 1M20 4l-1 1M2 11h1M21 11h1"/></svg></span>
+<div>
+<p class="decision-callout__label">Design decision</p>
+<p class="decision-callout__title">Invest in a more extensible foundation now to support product growth later.</p>
+<p>Persona-specific cards gave us a way to surface the most relevant information for different driver needs, while creating a foundation that could support new capabilities without reworking the homepage.</p>
+</div>
+</aside>
+
+<p class="case-note">The scores above are transcribed from the mockup, which used illustrative ratings rather than validated quantitative measurements.</p>
 
 ##### 4.1 Organize the app around information, not steps
 

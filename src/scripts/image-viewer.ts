@@ -6,7 +6,7 @@
 
 const images = Array.from(
   document.querySelectorAll<HTMLImageElement>('.project__body img'),
-).filter((img) => !img.closest('a'));
+).filter((img) => !img.closest('a, .rating-table'));
 
 if (images.length) {
   const many = images.length > 1;
