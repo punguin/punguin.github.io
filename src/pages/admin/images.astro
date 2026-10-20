@@ -58,7 +58,7 @@ const groups = [...new Set(assets.map((a) => a.folder))].map((folder) => {
     folder,
     id: folder.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '') || 'site',
     title: project ? project.data.title : NAMES[folder] ?? folder.replace(/^\//, ''),
-    color: project?.data.coverColor ?? '#c2ffa8',
+    color: project?.data.coverColor ?? '#a8ffd5',
     items: assets.filter((a) => a.folder === folder),
   };
 }).sort((a, b) => {
