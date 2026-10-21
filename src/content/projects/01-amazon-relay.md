@@ -194,14 +194,43 @@ Planning and executing work are not linear. They happen at the same time.
 
 The object map became the structure. Drivers used to see one trip at a time. Now one schedule shows the current trip, upcoming work and any stop’s details.
 
-Stop details holds the “all the time” information: what, where and when, pick-up and drop-off, load IDs, contacts and requirements such as safety equipment. The first release matched the existing trips experience, with room for carrier details and programs like Global Mile and Amazon Freight.
+<p class="concept-eval__title">Stop details became the home for always-needed information.</p>
 
-<figure class="visual visual--inline">
-<img class="is-mockup" src="/images/work/amazon-relay/stop-details-vision.webp" alt="Stop details wireframes for a driver and a carrier, organized by what, where and when, with a sticky task and carrier-specific sections." loading="lazy" />
-<figcaption>Stop details for a driver and a carrier: the same structure, with persona-specific content.</figcaption>
+Stop details held the information drivers needed again and again: what, where, and when, plus pickup and drop-off details, load IDs, contacts, and site requirements. The first release stayed close to the existing trips experience, while leaving room to expand for carrier details and programs like Global Mile and Amazon Freight.
+
+<figure class="visual screen-compare">
+<div class="screen-compare__grid">
+<div class="screen-compare__col">
+<p class="screen-compare__pill">MVP</p>
+<p class="screen-compare__title">Stop details</p>
+<p class="screen-compare__sub">Feature parity</p>
+<div class="screen-compare__phone"><img src="/images/work/amazon-relay/stop-details-mvp.webp" alt="MVP stop details: current stop MIA 1 with address, in transit status, arrive by and depart by times, then pick up type and load ID, and a Resume work button." width="375" height="763" loading="lazy" /></div>
+</div>
+<span class="screen-compare__arrow" aria-hidden="true"></span>
+<div class="screen-compare__col">
+<p class="screen-compare__pill is-future">Future</p>
+<p class="screen-compare__title">Stop details</p>
+<p class="screen-compare__sub">Enhanced details + sticky task</p>
+<div class="screen-compare__shot">
+<div class="screen-compare__phone"><img src="/images/work/amazon-relay/stop-details-future.webp" alt="Future stop details: a photo of the site, address and times, a road construction notice, Details, Documents and Notes tabs with check in, pick up trailer and check out sections, and a sticky task card at the bottom with Drive to MIA1 and Get directions." width="428" height="1264" loading="lazy" /></div>
+<ol class="screen-compare__notes">
+<li style="--at: 10%"><strong>Richer context</strong> Photos, map and on-site notes help drivers prepare.</li>
+<li style="--at: 45%"><strong>Tabs for deeper details</strong> Organized sections for details, documents and notes.</li>
+<li style="--at: 88%"><strong>Persistent next action</strong> A sticky task keeps the next step in reach as drivers scroll.</li>
+</ol>
+</div>
+</div>
+</div>
+<figcaption>Stop details for drivers and carriers used the same structure, with persona-specific content.</figcaption>
 </figure>
 
-After launch, a contextual inquiry showed drivers using pick-up and drop-off IDs from stop details at check-in. Load IDs and check-in information had been among the reasons drivers called support.
+<aside class="decision-callout">
+<span class="decision-callout__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><rect x="5" y="13" width="3.2" height="6" rx="1.2"/><rect x="10.4" y="9" width="3.2" height="10" rx="1.2"/><rect x="15.8" y="5" width="3.2" height="14" rx="1.2"/></svg></span>
+<div>
+<p class="decision-callout__label">After launch</p>
+<p>A contextual inquiry later showed drivers referencing pick-up and drop-off IDs from stop details at check-in. Load IDs and check-in information were among the reasons drivers called support.</p>
+</div>
+</aside>
 
 ##### 4.2 Keep one stable structure instead of a home screen that reshuffles itself
 

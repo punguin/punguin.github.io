@@ -862,3 +862,43 @@ img[data-old-image] { outline: 3px dashed #e0007a; outline-offset: -3px; }
   .decision-callout { flex-direction: column; gap: var(--space-3); padding: var(--space-4); }
   .decision-callout__icon { width: 48px; height: 48px; }
 }
+
+/* ---------- Screen comparison (case studies) ----------
+   MVP vs Future screens side by side, with notes pinned to the Future screen (Pung, 2026-10-21). */
+.screen-compare__grid { display: grid; grid-template-columns: minmax(0, 300px) 64px minmax(0, 540px); justify-content: center; align-items: start; gap: var(--space-4); }
+.prose .screen-compare p { margin: 0; }
+.prose .screen-compare__pill { display: inline-block; padding: 4px 16px; border-radius: 999px; background: color-mix(in srgb, var(--ink) 7%, #fff); font-weight: 600; font-size: 1rem; color: var(--ink); }
+.prose .screen-compare__pill.is-future { background: color-mix(in srgb, var(--violet) 22%, #fff); }
+.prose .screen-compare__title { margin-top: var(--space-2); font-family: var(--font-display); font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem); line-height: 1.15; color: var(--ink); }
+.prose .screen-compare__sub { margin-bottom: var(--space-5); color: var(--text-secondary); }
+.screen-compare__phone { overflow: hidden; border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent); border-radius: 22px; background: #fff; padding: 10px 8px; }
+.project__body .screen-compare__phone img { display: block; width: 100%; height: auto; margin: 0; border-radius: 0; }
+.screen-compare__col:first-child .screen-compare__phone { max-width: 300px; }
+.screen-compare__shot { position: relative; max-width: 300px; }
+.screen-compare__arrow { align-self: center; height: 2px; margin-top: 40%; background: repeating-linear-gradient(90deg, var(--violet) 0 4px, transparent 4px 9px); position: relative; }
+.screen-compare__arrow::after { content: ""; position: absolute; right: -2px; top: -5px; width: 10px; height: 10px; border-top: 2px solid var(--violet); border-right: 2px solid var(--violet); transform: rotate(45deg); }
+.screen-compare__notes { list-style: none; margin: 0; padding: 0; }
+.screen-compare__notes li { font-size: var(--text-small); line-height: 1.4; color: var(--text-secondary); }
+.screen-compare__notes strong { display: block; margin-bottom: 2px; font-weight: 600; color: var(--ink); }
+@media (min-width: 900px) {
+  .screen-compare__notes li {
+    position: absolute;
+    top: var(--at);
+    left: calc(100% + 40px);
+    width: 200px;
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--violet) 10%, #fff);
+    translate: 0 -50%;
+  }
+  /* Leader line and dot from the screen edge to the note. */
+  .screen-compare__notes li::before { content: ""; position: absolute; right: 100%; top: 50%; width: 32px; height: 1px; background: var(--violet); }
+  .screen-compare__notes li::after { content: ""; position: absolute; left: -40px; top: calc(50% - 4px); width: 8px; height: 8px; border-radius: 50%; background: var(--violet); }
+}
+@media (max-width: 899px) {
+  .screen-compare__grid { grid-template-columns: 1fr; gap: var(--space-6); }
+  .screen-compare__arrow { display: none; }
+  .screen-compare__notes { counter-reset: note; display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+  .screen-compare__notes li { padding: var(--space-3) var(--space-4); border-radius: 12px; background: color-mix(in srgb, var(--violet) 10%, #fff); }
+}
