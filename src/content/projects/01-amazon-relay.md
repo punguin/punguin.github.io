@@ -8,15 +8,17 @@ context: Amazon Middle Mile, Relay
 project: Mobile App Redesign
 domain: Middle Mile Operations
 summary: Helping truck drivers execute loads more efficiently and confidently
+cardLine: Amazon Relay’s driver app, where truck drivers plan and run their loads, on iOS and Android.
 role: Design Lead
 timeline: 4 Months
-platform: [iOS, Android, Meridian Design System]
+platform: [iOS, Android, Design system]
 partners: [Senior Software Engineer, Product Manager, UX Research]
 accent: relay
 cover: /images/work/amazon-relay/cover.webp
 coverAlt: Three Relay for Drivers screens in phone frames on lavender, showing the redesigned home screen at the yard, the in-transit view and the tasks concept
 hero: /images/work/amazon-relay/hero.webp
 coverColor: "#c9c1fb"
+tags: [Design Lead, iOS & Android, Design System Migration]
 order: 1
 ---
 
