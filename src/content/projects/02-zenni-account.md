@@ -8,6 +8,7 @@ context: Zenni Optical
 project: My Account Redesign
 domain: Ecommerce
 summary: Build the foundation before the feature.
+cardLine: Zenni Optical’s customer account redesign on responsive web, and the foundation Order Tracking built on.
 role: Lead UX Designer (solo)
 timeline: 3 months UX, 4 months implementation
 platform: [Responsive web, Design system]
@@ -17,6 +18,7 @@ cover: /images/work/zenni-account/cover.webp
 hero: /images/work/zenni-account/hero.webp
 coverAlt: The redesigned Zenni My Account dashboard in a laptop frame on lime green
 coverColor: "#dcf774"
+moreWork: true
 order: 2
 ---
 

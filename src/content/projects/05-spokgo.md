@@ -8,12 +8,14 @@ context: Spok
 project: SpokGo clinical communications
 domain: Healthcare SaaS
 summary: Creating shared direction through discovery.
+cardLine: Field research and direction for a clinical communication app for hospital care teams, on iOS and Android.
 role: UX Strategy lead
 timeline: 1 month
 platform: [iOS, Android]
 partners: [Stakeholders across the organization]
 accent: spokgo
 tags: [UX Discovery, User Research, Healthcare SaaS]
+moreWork: true
 cover: /images/work/spokgo/cover.webp
 coverAlt: Three SpokGo screens in phone frames on yellow, a care team chat, a nurse call and a respiratory consult
 coverColor: "#fbe97c"
