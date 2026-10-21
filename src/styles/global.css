@@ -865,7 +865,8 @@ img[data-old-image] { outline: 3px dashed #e0007a; outline-offset: -3px; }
 
 /* ---------- Screen comparison (case studies) ----------
    MVP vs Future screens side by side, with notes pinned to the Future screen (Pung, 2026-10-21). */
-.screen-compare__grid { display: grid; grid-template-columns: minmax(0, 300px) 64px minmax(0, 540px); justify-content: center; align-items: start; gap: var(--space-4); }
+/* Fluid columns so the pair shrinks with the text column and never reaches the contents list. */
+.screen-compare__grid { --note-w: clamp(150px, 16vw, 200px); --note-gap: 32px; display: grid; grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1.75fr); max-width: 940px; margin-inline: auto; align-items: start; gap: var(--space-4); }
 .prose .screen-compare p { margin: 0; }
 .prose .screen-compare__pill { display: inline-block; padding: 4px 16px; border-radius: 999px; background: color-mix(in srgb, var(--ink) 7%, #fff); font-weight: 600; font-size: 1rem; color: var(--ink); }
 .prose .screen-compare__title { margin-top: var(--space-2); font-family: var(--font-display); font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem); line-height: 1.15; color: var(--ink); }
@@ -874,6 +875,10 @@ img[data-old-image] { outline: 3px dashed #e0007a; outline-offset: -3px; }
 .project__body .screen-compare__phone img { display: block; width: 100%; height: auto; margin: 0; border-radius: 0; }
 .screen-compare__col:first-child .screen-compare__phone { max-width: 300px; }
 .screen-compare__shot { position: relative; max-width: 300px; }
+@media (min-width: 900px) {
+  /* Leave room inside the Future column for the pinned notes. */
+  .screen-compare__shot { width: calc(100% - var(--note-w) - var(--note-gap)); }
+}
 .screen-compare__arrow { align-self: center; height: 2px; margin-top: 40%; background: repeating-linear-gradient(90deg, var(--violet) 0 4px, transparent 4px 9px); position: relative; }
 .screen-compare__arrow::after { content: ""; position: absolute; right: -2px; top: -5px; width: 10px; height: 10px; border-top: 2px solid var(--violet); border-right: 2px solid var(--violet); transform: rotate(45deg); }
 .screen-compare__notes { list-style: none; margin: 0; padding: 0; }
@@ -883,8 +888,8 @@ img[data-old-image] { outline: 3px dashed #e0007a; outline-offset: -3px; }
   .screen-compare__notes li {
     position: absolute;
     top: var(--at);
-    left: calc(100% + 40px);
-    width: 200px;
+    left: calc(100% + var(--note-gap));
+    width: var(--note-w);
     margin: 0;
     padding: var(--space-3) var(--space-4);
     border-radius: 12px;
@@ -892,8 +897,8 @@ img[data-old-image] { outline: 3px dashed #e0007a; outline-offset: -3px; }
     translate: 0 -50%;
   }
   /* Leader line and dot from the screen edge to the note. */
-  .screen-compare__notes li::before { content: ""; position: absolute; right: 100%; top: 50%; width: 32px; height: 1px; background: var(--violet); }
-  .screen-compare__notes li::after { content: ""; position: absolute; left: -40px; top: calc(50% - 4px); width: 8px; height: 8px; border-radius: 50%; background: var(--violet); }
+  .screen-compare__notes li::before { content: ""; position: absolute; right: 100%; top: 50%; width: calc(var(--note-gap) - 8px); height: 1px; background: var(--violet); }
+  .screen-compare__notes li::after { content: ""; position: absolute; left: calc(-1 * var(--note-gap)); top: calc(50% - 4px); width: 8px; height: 8px; border-radius: 50%; background: var(--violet); }
 }
 @media (max-width: 899px) {
   .screen-compare__grid { grid-template-columns: 1fr; gap: var(--space-6); }
