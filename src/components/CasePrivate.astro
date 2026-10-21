@@ -59,7 +59,6 @@
     b.className = cls;
     b.innerHTML = LOCK;
     b.append(label);
-    b.addEventListener('click', open);
     return b;
   };
 
@@ -89,7 +88,10 @@
     el.before(ph);
   });
 
-  document.querySelector('[data-unlock]')?.addEventListener('click', open);
+  // Delegated, so the copies of these buttons in the presentation's slides open the dialog too.
+  document.addEventListener('click', (e) => {
+    if ((e.target as Element | null)?.closest('[data-unlock], .private-lock__chip, .private-lock__btn')) open();
+  });
   dialog?.querySelector('[data-unlock-close]')?.addEventListener('click', () => dialog.close());
   dialog?.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
 
@@ -136,25 +138,26 @@
   .case-unlock:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 
   /* Inline: the public wording, then a small ink lock chip. */
-  /* Inline: the figure's blurred stand-in, then a bare lock icon. */
+  /* Inline: the figure's blurred stand-in, then a small ink lock chip. */
   .private-lock--inline { white-space: nowrap; }
   .private-lock__blur { filter: blur(0.3em); user-select: none; pointer-events: none; }
   .private-lock__chip {
     display: inline-flex;
     align-items: center;
-    margin-left: 0.15em;
-    padding: 0.1em;
+    margin-left: 0.25em;
+    padding: 0.2em 0.35em;
     border: 0;
     border-radius: var(--radius-pill);
-    background: transparent;
-    color: var(--ink);
+    background: var(--ink);
+    color: var(--paper);
     font-size: inherit;
     vertical-align: -0.05em;
     cursor: pointer;
   }
-  .private-lock__chip svg { width: 0.85em; height: 0.85em; }
-  .case-impact__figure .private-lock__chip svg { width: 0.45em; height: 0.45em; }
-  .private-lock__chip:hover { background: rgba(22, 22, 22, 0.08); }
+  .private-lock__chip svg { width: 0.8em; height: 0.8em; }
+  /* In a big display figure the chip stays body-sized. */
+  .case-impact__figure .private-lock__chip { font-size: 0.4em; vertical-align: 0.35em; }
+  .private-lock__chip:hover { background: var(--text-secondary); }
   .private-lock__chip:focus-visible,
   .private-lock__btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
 
