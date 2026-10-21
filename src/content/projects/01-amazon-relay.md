@@ -255,29 +255,8 @@ Account and menu, a row of widgets, then cards, some shared and some per persona
 
 We ranked homepage content by two dimensions: how important it was for drivers to see, and how disruptive it was to their work. The most urgent and disruptive items were placed at the top of the homepage.
 
-<figure class="visual priority-map">
-<div class="priority-map__frame">
-<p class="priority-map__axis-y" aria-hidden="true"><span>High</span><strong>Priority</strong><span>Low</span></p>
-<div class="priority-map__plot">
-<svg class="priority-map__trend" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path class="priority-map__band" d="M3 92 C 35 80, 60 55, 84 10"/><path class="priority-map__line" d="M3 92 C 35 80, 60 55, 84 10"/></svg>
-<p class="priority-map__end is-high">Higher on homepage</p>
-<ol class="priority-map__items" aria-label="Homepage content, from highest to lowest on the homepage">
-<li style="--x: 84%; --y: 86%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 3 20h18L12 4z"/><path d="M12 10v4M12 17h.01"/></svg>Cancellation</li>
-<li style="--x: 54.5%; --y: 78%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg>Vehicle status</li>
-<li style="--x: 85%; --y: 71%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 3 20h18L12 4z"/><path d="M12 10v4M12 17h.01"/></svg>Account alert</li>
-<li style="--x: 69%; --y: 67%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 3 20h18L12 4z"/><path d="M12 10v4M12 17h.01"/></svg>Weather alert</li>
-<li style="--x: 38%; --y: 65%"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h6a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h6"/></svg>Current trip</li>
-<li style="--x: 49.5%; --y: 54%"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Hours of service</li>
-<li style="--x: 42%; --y: 39%"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Calendar</li>
-<li style="--x: 55%; --y: 23%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6l-7-3z"/><path d="m12 9 .9 1.8 2 .3-1.45 1.4.35 2-1.8-.95-1.8.95.35-2L9.1 11.1l2-.3z"/></svg>Safety score</li>
-<li style="--x: 27%; --y: 21%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5L2 9z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>Learning center</li>
-<li style="--x: 9%; --y: 14%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg>Relay tips</li>
-</ol>
-<p class="priority-map__end is-low">Lower on homepage</p>
-</div>
-<p class="priority-map__axis-x" aria-hidden="true"><span>Low</span><strong>Disruption</strong><span>High</span></p>
-</div>
-<figcaption class="visually-hidden">Homepage content plotted by priority against disruption. Cancellation, vehicle status, account alert and weather alert sit highest; Relay tips and the learning center sit lowest.</figcaption>
+<figure class="visual">
+<img class="is-mockup" src="/images/work/amazon-relay/priority-map.webp" width="2570" height="1384" alt="Homepage content plotted by priority against disruption, with a trend arrow running from lower to higher on the homepage. Cancellation, vehicle status, account alert and weather alert sit highest, with the three alerts marked in red; current trip, hours of service and calendar sit in the middle; safety score, the learning center and Relay tips sit lowest." loading="lazy" />
 </figure>
 
 <aside class="decision-callout">
