@@ -238,9 +238,9 @@ The home screen should orient drivers, not do the heavy lifting.
 
 <p class="label case-status">Shipped in the first release</p>
 
-The project started as a “dynamic home screen”: depending on what a driver was doing, the app would adapt and surface the information we expected to be most valuable in that moment. On the surface, it was compelling, giving drivers only what they need to do their job right now. I wanted to make sure every viable approach was explored, so we evaluated it alongside the alternatives. The challenge was that there is no reliable way to predict what a driver is facing in the field. Field research also showed that drivers want to get in and out quickly, and many owner-operators work with other companies too, so a predictable, persona-based layout served them better.
+The project started as a “dynamic home screen”: depending on what a driver was doing, the app would adapt and surface the information we expected to be most valuable in that moment. On the surface, it was compelling, giving drivers only what they need to do their job right now. The challenge was that there is no reliable way to predict what a driver is facing in the field. Field research also showed that drivers want to get in and out quickly, and many owner-operators work with other companies too.
 
-I started a weekly show and tell to keep everyone close to the work. Seeing the existing design beside a more standard home screen layout helped the team and managers weigh options together, and it built the shared confidence behind the new structure.
+Rather than settle the direction on my own, I explored the problem with the team. We evaluated the dynamic approach alongside the alternatives, and I started a weekly show and tell to keep everyone close to the work. Seeing the existing design beside a more standard home screen layout helped the team and managers weigh the options together. By working through the problem as a group, we moved to a more predictable, stable approach, with shared confidence behind it.
 
 The home screen became a curated set of cards: the current task first, then past and future loads and other useful content. Cards lead into each capability, and the work happens elsewhere. It is **focused** on the most important task, **organized** so status shows consistently, and **curated**: it summarizes, it doesn’t execute.
 
