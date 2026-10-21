@@ -906,3 +906,4 @@ img[data-old-image] { outline: 3px dashed #e0007a; outline-offset: -3px; }
   .screen-compare__notes { counter-reset: note; display: grid; gap: var(--space-3); margin-top: var(--space-4); }
   .screen-compare__notes li { padding: var(--space-3) var(--space-4); border-radius: 12px; background: color-mix(in srgb, var(--violet) 10%, #fff); }
 }
+

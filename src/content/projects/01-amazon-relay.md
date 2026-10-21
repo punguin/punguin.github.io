@@ -251,12 +251,21 @@ Account and menu, a row of widgets, then cards, some shared and some per persona
 <figcaption>Persona-based cards: standard cards for everyone, plus driver, carrier and hostler cards.</figcaption>
 </figure>
 
-Instead of reshuffling, content is ordered by priority and disruption, with alerts at the top.
+<p class="concept-eval__title">Homepage content was prioritized by urgency and disruption.</p>
 
-<figure class="visual visual--wide">
-<img class="is-mockup" src="/images/work/amazon-relay/priority-disruption.webp" alt="Chart plotting home screen content by priority against disruption: cancellations and account alerts at the top, then weather alert, vehicle status, current trip, hours of service, calendar, safety score, learning center and Relay tips toward the bottom." loading="lazy" />
-<figcaption>Content order by priority and disruption, from alerts at the top to tips at the bottom.</figcaption>
+We ranked homepage content by two dimensions: how important it was for drivers to see, and how disruptive it was to their work. The most urgent and disruptive items were placed at the top of the homepage.
+
+<figure class="visual">
+<img class="is-mockup" src="/images/work/amazon-relay/priority-map.webp" width="2703" height="1895" alt="Homepage content plotted by priority against disruption. A path runs from Bottom, past safety score, calendar and current trip, up to Top. Cancellation, account alert and weather alert, marked in red, sit at the top with vehicle status; hours of service sits in the middle; safety score, the learning center and Relay tips sit lowest." loading="lazy" />
 </figure>
+
+<aside class="decision-callout">
+<span class="decision-callout__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span>
+<div>
+<p class="decision-callout__label">Design implication</p>
+<p>Alerts surface first. Less urgent, less disruptive content appears lower on the homepage.</p>
+</div>
+</aside>
 
 <figure class="visual visual--full">
 <img class="is-mockup" src="/images/work/amazon-relay/home-variations.webp" alt="Wireframe variations of the home screen for a driver (current trip active, no current trip, weather alert, trip cancellation), a carrier, and an owner-operator who switches between both." loading="lazy" />
