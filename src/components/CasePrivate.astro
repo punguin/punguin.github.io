@@ -1,0 +1,249 @@
+---
+// Public by default, private details on request. Anything in a case study wrapped in data-private is
+// hidden behind a lock until the reader enters the password; data-public gives the wording locked
+// readers see instead.
+//
+//   <div data-private data-public="What locked readers see">…</div>   a block (blank lines inside for Markdown)
+//   <li data-private>…</li>                                         a list item, e.g. an impact tile
+//   <span data-private data-public="nearly half">−46%</span>         a figure inside a sentence
+//
+// This only hides content in the browser: it is still in the page source, so it keeps casual readers
+// out, not anyone who reads the HTML. One unlock lasts the browser session (sessionStorage) and covers
+// every case; the presenter window inherits it because it is opened from the unlocked page.
+---
+<script is:inline>
+  // Runs before the story is parsed, so an unlocked reader never sees the locks flash.
+  try { if (sessionStorage.getItem('case-unlocked') === '1') document.documentElement.classList.add('is-unlocked'); } catch { /* storage blocked: ask every time */ }
+</script>
+
+<button type="button" class="case-unlock" data-unlock>
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
+  Unlock protected details
+</button>
+
+<dialog class="unlock" aria-labelledby="unlock-title" data-unlock-dialog>
+  <form class="unlock__card" method="dialog" data-unlock-form>
+    <button class="unlock__close" type="button" value="cancel" aria-label="Close" data-unlock-close>×</button>
+    <svg class="unlock__icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
+    <h2 class="unlock__title" id="unlock-title">Some details are confidential</h2>
+    <p class="unlock__lead">Figures and internal details from these projects are password protected. Enter the password to see them, or <a href="/#contact">get in touch</a> and I’ll send it to you.</p>
+    <label class="visually-hidden" for="unlock-input">Password</label>
+    <div class="unlock__row">
+      <input class="unlock__input" id="unlock-input" name="password" type="password" autocomplete="current-password" placeholder="Password" required />
+      <button class="unlock__btn" type="submit">Unlock</button>
+    </div>
+    <p class="unlock__error" role="alert" aria-live="assertive"></p>
+  </form>
+</dialog>
+
+<script>
+  // SHA-256 of the password, so the word itself isn't sitting in the page source.
+  const HASH = 'c35510cfe595519e6d25903fa4192349a420dcb29d6dc652ddb73ab37b9acfeb';
+  const root = document.documentElement;
+  const dialog = document.querySelector<HTMLDialogElement>('[data-unlock-dialog]');
+  const form = dialog?.querySelector<HTMLFormElement>('[data-unlock-form]');
+  const input = form?.querySelector<HTMLInputElement>('input');
+  const error = form?.querySelector<HTMLElement>('.unlock__error');
+  const LOCK = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>';
+  const INLINE = new Set(['SPAN', 'STRONG', 'EM', 'B', 'I', 'MARK', 'CODE', 'A']);
+
+  const open = () => {
+    if (!dialog || root.classList.contains('is-unlocked')) return;
+    if (error) error.textContent = '';
+    dialog.showModal();
+    input?.focus();
+  };
+
+  const lockButton = (label: string, cls: string) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = cls;
+    b.innerHTML = LOCK;
+    b.append(label);
+    b.addEventListener('click', open);
+    return b;
+  };
+
+  // A stand-in in front of each private element: the public wording plus a way in.
+  document.querySelectorAll<HTMLElement>('.project [data-private]').forEach((el) => {
+    const pub = el.dataset.public;
+    if (INLINE.has(el.tagName)) {
+      const ph = document.createElement('span');
+      ph.className = 'private-lock private-lock--inline';
+      if (pub) ph.append(pub, ' ');
+      ph.append(lockButton(pub ? '' : 'Protected', 'private-lock__chip'));
+      ph.lastElementChild?.setAttribute('aria-label', 'Unlock protected detail');
+      el.before(ph);
+      return;
+    }
+    const ph = document.createElement(el.tagName === 'LI' ? 'li' : 'div');
+    ph.className = 'private-lock private-lock--block';
+    const text = document.createElement('p');
+    text.className = 'private-lock__text';
+    text.textContent = pub || 'This detail is confidential.';
+    ph.append(text, lockButton('Enter password', 'private-lock__btn'));
+    el.before(ph);
+  });
+
+  document.querySelector('[data-unlock]')?.addEventListener('click', open);
+  dialog?.querySelector('[data-unlock-close]')?.addEventListener('click', () => dialog.close());
+  dialog?.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+
+  const sha256 = async (text: string) => {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+    return Array.from(new Uint8Array(buf), (b) => b.toString(16).padStart(2, '0')).join('');
+  };
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!input || !error || !dialog) return;
+    if ((await sha256(input.value.trim().toLowerCase())) !== HASH) {
+      error.textContent = 'That password didn’t work. Try again.';
+      input.select();
+      return;
+    }
+    try { sessionStorage.setItem('case-unlocked', '1'); } catch { /* storage blocked: unlocked for this page view only */ }
+    root.classList.add('is-unlocked');
+    input.value = '';
+    dialog.close();
+  });
+</script>
+
+<style is:global>
+  html:not(.is-unlocked) [data-private] { display: none !important; }
+  html.is-unlocked .private-lock,
+  html.is-unlocked .case-unlock { display: none !important; }
+
+  .case-unlock {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: var(--space-5) 0 0 var(--space-2);
+    padding: 11px 20px 11px 16px;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius-button);
+    background: transparent;
+    color: var(--ink);
+    font: 600 0.9375rem/1 var(--font-body);
+    cursor: pointer;
+  }
+  .case-present[hidden] + .case-unlock { margin-left: 0; }
+  .case-unlock:hover { background: var(--ink); color: var(--paper); }
+  .case-unlock:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+  /* Inline: the public wording, then a small ink lock chip. */
+  .private-lock--inline { white-space: normal; }
+  .private-lock__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 7px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--ink);
+    color: var(--paper);
+    font: 600 0.75rem/1.3 var(--font-body);
+    vertical-align: 0.1em;
+    cursor: pointer;
+  }
+  .private-lock__chip:hover { background: var(--text-secondary); }
+  .private-lock__chip:focus-visible,
+  .private-lock__btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+  /* Block: a dashed card in the content's place. */
+  .private-lock--block { display: grid; align-content: start; gap: var(--space-3); }
+  div.private-lock--block {
+    margin-block: var(--space-4);
+    padding: var(--space-5);
+    border: 1px dashed var(--ink);
+    border-radius: var(--radius-card);
+    background: rgba(255, 255, 255, 0.5);
+  }
+  /* In a list (an impact tile), keep the tile's own frame and just swap its content. */
+  li.private-lock--block .private-lock__text { color: var(--text-secondary); }
+  .private-lock__text { margin: 0; }
+  .private-lock__btn {
+    justify-self: start;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius-button);
+    background: var(--ink);
+    color: var(--paper);
+    font: 600 0.875rem/1 var(--font-body);
+    cursor: pointer;
+  }
+  .private-lock__btn:hover { background: transparent; color: var(--ink); }
+
+  .unlock {
+    width: min(calc(100% - 2 * var(--gutter)), 520px);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+  }
+  .unlock::backdrop { background: rgba(22, 22, 22, 0.45); }
+  .unlock__card {
+    position: relative;
+    display: grid;
+    gap: var(--space-4);
+    padding: clamp(24px, 5vw, 40px);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+  }
+  .unlock__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: var(--radius-button);
+    background: transparent;
+    color: var(--ink);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .unlock__close:hover { background: rgba(22, 22, 22, 0.06); }
+  .unlock__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 1.9375rem);
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+  .unlock__lead { margin: 0; color: var(--text-secondary); }
+  .unlock__lead a { color: var(--ink); }
+  .unlock__row { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-2); }
+  .unlock__input {
+    flex: 1 1 200px;
+    min-width: 0;
+    padding: 12px 16px;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius-button);
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1rem/1.2 var(--font-body);
+  }
+  .unlock__input:focus-visible,
+  .unlock__btn:focus-visible,
+  .unlock__close:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+  .unlock__btn {
+    padding: 12px 22px;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius-button);
+    background: var(--ink);
+    color: var(--paper);
+    font: 600 0.9375rem/1 var(--font-body);
+    cursor: pointer;
+  }
+  .unlock__btn:hover { background: transparent; color: var(--ink); }
+  .unlock__error { margin: 0; min-height: 1.4em; font-size: 0.875rem; color: #a3271b; }
+  @media print { .case-unlock, .private-lock__chip, .private-lock__btn { display: none !important; } }
+</style>

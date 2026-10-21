@@ -35,7 +35,7 @@ function copy<T extends Element>(el: T): T {
   const c = el.cloneNode(true) as T;
   c.removeAttribute('id');
   c.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'));
-  c.querySelectorAll('.old-image-tag, .case-decisions__more').forEach((n) => n.remove());
+  c.querySelectorAll('.old-image-tag, .case-decisions__more, .private-lock--block, .private-lock__chip, .private-lock__btn').forEach((n) => n.remove());
   c.querySelectorAll('a').forEach((a) => a.replaceWith(...Array.from(a.childNodes)));
   const imgs = c instanceof HTMLImageElement ? [c] : Array.from(c.querySelectorAll('img'));
   imgs.forEach((img) => {

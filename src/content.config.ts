@@ -43,7 +43,6 @@ const projects = defineCollection({
     hero: z.string().optional(), // wide mockup image at the top of the case page
     coverColor: z.string().optional(), // bright card colour behind the cover mockup, e.g. #c9c1fb; matches the hero image background
     tags: z.array(z.string()).optional(), // card tags on the homepage; without them the card shows the role and first two platforms
-    locked: z.boolean().default(false), // true puts the case page behind the password gate (src/components/CaseGate.astro)
     featured: z.boolean().default(true), // false hides the case study from the site (the editor's "Show on site")
     moreWork: z.boolean().default(false), // true lists it in the homepage's "More work" line instead of as a card; its page stays live
     order: z.number(),
