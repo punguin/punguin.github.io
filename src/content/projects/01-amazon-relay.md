@@ -238,9 +238,9 @@ The home screen should orient drivers, not do the heavy lifting.
 
 <p class="label case-status">Shipped in the first release</p>
 
-Early discussions centered on a home screen that adapts its content to each driver, which reflected the team’s thinking at the time. I wanted to make sure every viable approach was explored, so we evaluated it alongside the alternatives. Field research shaped the direction: drivers want to get in and out quickly, and many owner-operators also work with other companies, so a predictable, persona-based layout served them best.
+The project started as a “dynamic home screen”: depending on what a driver was doing, the app would adapt and surface the information we expected to be most valuable in that moment. The idea was appealing: show drivers only what they need for the task at hand. In practice, there was no reliable way to anticipate what a driver would be dealing with on the road. Field research also showed that drivers want to check the app quickly and get back to driving, and many owner-operators work with other companies too.
 
-I started a weekly show and tell to keep everyone close to the work. Seeing the existing design beside a more standard home screen layout helped the team and managers weigh options together, and it built the shared confidence behind the new structure.
+Rather than decide the direction on my own, I explored the problem with the team. We evaluated the dynamic approach alongside the alternatives, and I set up a weekly design review to keep everyone close to the work. Comparing the existing design with a more conventional home screen helped the team and managers weigh the trade-offs together. Working through the problem as a group led us to a consistent, predictable home screen that everyone stood behind.
 
 The home screen became a curated set of cards: the current task first, then past and future loads and other useful content. Cards lead into each capability, and the work happens elsewhere. It is **focused** on the most important task, **organized** so status shows consistently, and **curated**: it summarizes, it doesn’t execute.
 
