@@ -84,7 +84,7 @@ The default experience, however, often dropped carriers into a generic or incons
 <p class="callout">Help carriers express the work they are actually available for first, then make the remaining options easier to evaluate.</p>
 
 <figure class="visual visual--inline">
-<img class="is-mockup" src="/images/work/amazon-relay-load-board/carrier-behavior.webp" alt="Four cards of carrier behaviors from research: multiple saved searches, booking for several drivers, several browser tabs, and filtering default results." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay-load-board/carrier-behavior.webp" width="2084" height="1544" alt="Four cards of carrier behaviors on the old Load Board. Multiple saved searches: the saved searches menu lists three variations of a Minneapolis search with different radius and work type. Booking for several drivers: three result rows, each with a Book button, matched to Driver 1, 2 and 3. Several browser tabs: a browser with four Load Board tabs open, each holding its own search. Filtering default results: filter chips for work type, origin city, equipment and duration above the results." loading="lazy" />
 <figcaption>What carriers were already doing before the redesign: repeating saved searches, booking for several drivers, holding searches in browser tabs, and filtering generic results.</figcaption>
 </figure>
 
