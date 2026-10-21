@@ -14,8 +14,8 @@ platform: [iOS, Android, Meridian Design System]
 partners: [Senior Software Engineer, Product Manager, UX Research]
 accent: relay
 cover: /images/work/amazon-relay/cover.webp
-hero: /images/work/amazon-relay/hero.webp
 coverAlt: Three Relay for Drivers screens in phone frames on lavender, showing the redesigned home screen at the yard, the in-transit view and the tasks concept
+hero: /images/work/amazon-relay/hero.webp
 coverColor: "#c9c1fb"
 order: 1
 ---
@@ -329,10 +329,6 @@ One task anatomy (stop, instructions, action, link to stop details) covers a shi
 <figcaption>Workflow examples: a third-party shipper warehouse, an Amazon warehouse and a post office.</figcaption>
 </figure>
 
-<figure class="visual visual--wide">
-<img src="/images/work/amazon-relay/long-term-vision.webp" alt="Long-term vision boards for the home screen, sticky tasks and stop details, including card types and driver home screen states." loading="lazy" />
-<figcaption>The long-term vision: home screen, sticky tasks and stop details.</figcaption>
-</figure>
 
 ##### 4.5 Validation and launch
 
