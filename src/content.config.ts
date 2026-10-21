@@ -31,6 +31,7 @@ const projects = defineCollection({
     project: z.string(),
     domain: z.string(),
     summary: z.string(),
+    cardLine: z.string().optional(), // plain line under the headline on the homepage card: what it is, for whom, on what platform
     role: z.string(),
     timeline: z.string().optional(),
     platform: z.array(z.string()),
@@ -43,6 +44,7 @@ const projects = defineCollection({
     coverColor: z.string().optional(), // bright card colour behind the cover mockup, e.g. #c9c1fb; matches the hero image background
     tags: z.array(z.string()).optional(), // card tags on the homepage; without them the card shows the role and first two platforms
     featured: z.boolean().default(true), // false hides the case study from the site (the editor's "Show on site")
+    moreWork: z.boolean().default(false), // true lists it in the homepage's "More work" line instead of as a card; its page stays live
     order: z.number(),
   }),
 });

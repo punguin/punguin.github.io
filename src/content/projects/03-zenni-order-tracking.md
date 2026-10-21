@@ -8,6 +8,7 @@ context: Zenni Optical
 project: Enhanced Order Tracking
 domain: Ecommerce, post-purchase
 summary: Make order status feel like an answer, not a clue.
+cardLine: Order status and delivery updates for Zenni Optical’s online eyewear customers, on responsive web.
 role: Senior Product Designer, design lead
 timeline: 3 months
 platform: [Responsive web]
@@ -33,8 +34,7 @@ With the Account foundation in place, I led the next phase: reframing order trac
 Customers needed us less. The business held steady.
 
 <ul class="case-impact" role="list">
-<li><p class="case-impact__figure">−0.25<span class="case-impact__unit">pp</span></p><p class="case-impact__label">Chat initiation from Order Details</p><p class="case-impact__note">A drop of 0.25 percentage points against the legacy experience.</p><p class="case-impact__kind">50/50 A/B test</p></li>
-<li><p class="case-impact__figure">−0.10<span class="case-impact__unit">pp</span></p><p class="case-impact__label">Chat initiation from the Order List</p><p class="case-impact__note">A drop of 0.10 percentage points, in the same test.</p><p class="case-impact__kind">50/50 A/B test</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">Fewer chats</p><p class="case-impact__label">Customers needed support less</p><p class="case-impact__note">Chat initiation fell against the legacy experience: 0.25 percentage points from Order Details and 0.10 from the Order List.</p><p class="case-impact__kind">50/50 A/B test</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Stable</p><p class="case-impact__label">Conversion, average order value and add-to-cart</p><p class="case-impact__note">Exits to help pages decreased modestly.</p><p class="case-impact__kind">50/50 A/B test</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Every route</p><p class="case-impact__label">One messaging framework for all fulfillment paths</p><p class="case-impact__note">New origins and destinations don’t need a redesign. A new lab reuses the logic that’s already there.</p><p class="case-impact__kind">In the developer handoff</p></li>
 </ul>

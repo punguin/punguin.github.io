@@ -13,7 +13,7 @@ const DIR = 'src/content/projects';
 const API = 'https://api.github.com';
 const STORE = 'pung-brooks:editor';
 
-const KEYS = ['id', 'number', 'title', 'navLabel', 'company', 'context', 'project', 'domain', 'summary', 'role', 'timeline', 'platform', 'partners', 'accent', 'cover', 'coverAlt', 'hero', 'coverColor', 'tags', 'featured', 'order'] as const;
+const KEYS = ['id', 'number', 'title', 'navLabel', 'company', 'context', 'project', 'domain', 'summary', 'cardLine', 'role', 'timeline', 'platform', 'partners', 'accent', 'cover', 'coverAlt', 'hero', 'coverColor', 'tags', 'featured', 'moreWork', 'order'] as const;
 type Value = string | number | boolean | string[];
 type Data = Record<string, Value>;
 type Item = { path: string; sha: string; text: string; data: Data; body: string }; // text: the file as last read or written
@@ -133,8 +133,8 @@ const quote = (s: string, inList = false) =>
     : s;
 
 function serialize(data: Data, text: string): string {
-  // featured defaults to true, so it is only written when a case study is hidden.
-  const lines = KEYS.filter((k) => data[k] !== undefined && !(k === 'featured' && data[k] === true)).map((k) => {
+  // featured defaults to true and moreWork to false, so each is only written when it differs; an empty card line is left out.
+  const lines = KEYS.filter((k) => data[k] !== undefined && !(k === 'cardLine' && data[k] === '') && !(k === 'featured' && data[k] === true) && !(k === 'moreWork' && data[k] === false)).map((k) => {
     const v = data[k];
     if (Array.isArray(v)) return `${k}: [${v.map((x) => quote(x, true)).join(', ')}]`;
     if (typeof v === 'string') return `${k}: ${k === 'number' ? JSON.stringify(v) : quote(v)}`;
@@ -174,11 +174,12 @@ function renderList() {
 const field = (name: string) => form.elements.namedItem(name) as HTMLInputElement | null;
 
 function fill(data: Data, text: string) {
-  for (const k of ['title', 'summary', 'project', 'company', 'context', 'domain', 'role', 'timeline']) field(k)!.value = String(data[k] ?? '');
+  for (const k of ['title', 'summary', 'cardLine', 'project', 'company', 'context', 'domain', 'role', 'timeline']) field(k)!.value = String(data[k] ?? '');
   field('platform')!.value = ((data.platform as string[]) || []).join(', ');
   field('partners')!.value = ((data.partners as string[]) || []).join(', ');
   field('order')!.value = String(data.order ?? items.length + 1);
   field('featured')!.checked = data.featured !== false;
+  field('moreWork')!.checked = data.moreWork === true;
   const accent = form.querySelector<HTMLInputElement>(`[name="accent"][value="${data.accent}"]`);
   if (accent) accent.checked = true;
   body.value = text;
@@ -238,7 +239,7 @@ async function save(e: SubmitEvent) {
     number: `${prefix()}.${order}`,
     title,
     navLabel: title,
-    ...Object.fromEntries(['company', 'context', 'project', 'domain', 'summary', 'role', 'timeline'].map((k) => [k, field(k)!.value.trim()])),
+    ...Object.fromEntries(['company', 'context', 'project', 'domain', 'summary', 'cardLine', 'role', 'timeline'].map((k) => [k, field(k)!.value.trim()])),
     platform: list('platform'),
     partners: list('partners'),
     accent: (form.querySelector<HTMLInputElement>('[name="accent"]:checked')?.value) || 'yellow',
@@ -249,6 +250,7 @@ async function save(e: SubmitEvent) {
     coverColor: current?.data.coverColor,
     tags: current?.data.tags,
     featured: field('featured')!.checked,
+    moreWork: field('moreWork')!.checked,
     order,
   };
   const path = current ? current.path : `${DIR}/${String(order).padStart(2, '0')}-${id}.md`;
