@@ -388,7 +388,8 @@ function toggleNotes(force?: boolean) {
 
 function toggleFullscreen() {
   if (!deck) return;
-  if (document.fullscreenElement) document.exitFullscreen?.();
+  // F leaves full screen but keeps presenting in the window (handy for sharing one window on a call).
+  if (document.fullscreenElement) { ignoreFullscreenExitUntil = Date.now() + 1500; document.exitFullscreen?.(); }
   else deck.requestFullscreen?.().catch(() => {});
 }
 
@@ -455,7 +456,7 @@ function close() {
 }
 
 document.addEventListener('fullscreenchange', () => {
-  // Leaving full screen (Esc) ends the presentation, unless the presenter window caused it.
+  // Leaving full screen with Esc ends the presentation; F or opening the presenter window doesn't.
   if (!document.fullscreenElement && deck && !deck.hidden && Date.now() > ignoreFullscreenExitUntil) close();
 });
 
