@@ -17,6 +17,7 @@ cover: /images/work/amazon-relay/cover.webp
 coverAlt: Three Relay for Drivers screens in phone frames on lavender, showing the redesigned home screen at the yard, the in-transit view and the tasks concept
 hero: /images/work/amazon-relay/hero.webp
 coverColor: "#c9c1fb"
+locked: true
 order: 1
 ---
 

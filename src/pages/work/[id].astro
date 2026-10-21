@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { render } from 'astro:content';
 import Project from '../../components/Project.astro';
 import CaseContents from '../../components/CaseContents.astro';
+import CaseGate from '../../components/CaseGate.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { getSortedProjects } from '../../lib/outline';
@@ -22,7 +23,7 @@ const p = entry.data;
 const { headings } = await render(entry);
 const title = `${p.title}: ${p.summary} — Pung Brooks`;
 ---
-<BaseLayout title={title} description={`${p.title}. ${p.summary} ${p.project}.`} ogImage={`/og/${p.id}.png`}>
+<BaseLayout title={title} description={`${p.title}. ${p.summary} ${p.project}.`} ogImage={`/og/${p.id}.png`} noindex={p.locked}>
   <a class="skip-link" href="#main">Skip to content</a>
   <SiteHeader />
 
@@ -34,7 +35,7 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
         <div class="case-hero__text">
           <p class="eyebrow case-hero__kicker" aria-hidden="true">{p.company} · {p.project}</p>
           <h1 class="case-hero__title" id={`${p.id}-title`}><span class="visually-hidden">{p.title}: </span>{p.summary}</h1>
-          <button type="button" class="case-present" data-present hidden>
+          <button type="button" class="case-present" data-present data-gated={p.locked ? '' : undefined} hidden>
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/><path d="m10.5 8 3.5 2-3.5 2z" fill="currentColor"/></svg>
             View as a presentation
           </button>
@@ -43,7 +44,9 @@ const title = `${p.title}: ${p.summary} — Pung Brooks`;
       {p.cover && <img class="case-hero__media" src={p.cover} alt={p.coverAlt ?? ''} width="1600" height="1000" fetchpriority="high" />}
     </section>
 
-    <div class="page-shell">
+    {p.locked && <CaseGate title={p.title} />}
+
+    <div class="page-shell" data-gated={p.locked ? '' : undefined}>
       <div class="document">
         <div class="case-layout" id="top">
           <div class="case-layout__body">

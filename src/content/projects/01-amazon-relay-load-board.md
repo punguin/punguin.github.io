@@ -17,6 +17,7 @@ cover: /images/work/amazon-relay-load-board/cover.webp
 hero: /images/work/amazon-relay-load-board/hero.webp
 coverAlt: The redesigned Relay Load Board in a laptop frame on light blue
 coverColor: "#a6eff3"
+locked: true
 order: 1
 ---
 
