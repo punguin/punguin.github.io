@@ -20,10 +20,10 @@ coverColor: "#a6eff3"
 order: 1
 ---
 
-I led a four-month redesign of Amazon Relay’s Load Board, reshaping search, filtering, multi-search, load comparison, and booking so carriers could find work with less effort while giving the product a scalable interaction model for continued growth. After launch, US searches per carrier fell <span data-private data-public="sharply">46%</span> while loads per carrier stayed relatively flat.
+I led a four-month redesign of Amazon Relay’s Load Board, reshaping search, filtering, multi-search, load comparison, and booking so carriers could find work with less effort while giving the product a scalable interaction model for continued growth. After launch, US searches per carrier fell <span data-private>46%</span> while loads per carrier stayed relatively flat.
 
 <dl class="case-overview">
-<div><dt>The problem</dt><dd>A search experience designed for a few hundred available loads and six filters was now supporting <span data-private data-public="many times that volume, with big spikes at Peak,">100K+ weekly volume, as many as 27K trips at Peak,</span> and 22 filter options, for a carrier base that had grown far more varied.</dd></div>
+<div><dt>The problem</dt><dd>A search experience designed for a few hundred available loads and six filters was now supporting <span data-private>100K+</span> weekly volume, as many as <span data-private>27K</span> trips at Peak, and 22 filter options, for a carrier base that had grown far more varied.</dd></div>
 <div><dt>My role</dt><dd>I partnered closely with the PM as the BRD evolved. I helped design and define the product itself, using research, design exploration, and technical conversations to shape requirements, interaction models, scope, prioritization, and phased delivery.</dd></div>
 <div><dt>What I did</dt><dd>The redesign was already in motion when I joined, but the interaction model had not yet converged. The work required more than producing screens: I had to help turn a broad growth problem into a product model the team could align around, test, build, and launch at Amazon scale.</dd></div>
 </dl>
@@ -33,9 +33,9 @@ I led a four-month redesign of Amazon Relay’s Load Board, reshaping search, fi
 Carriers found and booked work with substantially fewer searches.
 
 <ul class="case-impact" role="list">
-<li><p class="case-impact__figure"><span data-private data-public="Fewer">−46%</span></p><p class="case-impact__label">Searches per carrier in the US</p><p class="case-impact__note">While loads per carrier remained relatively flat: roughly the same amount of work, booked with substantially fewer searches.</p><p class="case-impact__kind">Measured in production</p></li>
-<li><p class="case-impact__figure"><span data-private data-public="Fewer">−25%</span></p><p class="case-impact__label">Searches per carrier in the EU</p><p class="case-impact__note">While loads per carrier increased.</p><p class="case-impact__kind">Measured in production</p></li>
-<li data-private data-public="Multi-search adoption in the US and EU is confidential."><p class="case-impact__figure">52%</p><p class="case-impact__label">of US carriers had used multi-search</p><p class="case-impact__note">About 40% used it weekly. In the EU, 65% had used it and roughly 54% were using it every week.</p><p class="case-impact__kind">Measured adoption</p></li>
+<li><p class="case-impact__figure"><span data-private>−46%</span></p><p class="case-impact__label">Searches per carrier in the US</p><p class="case-impact__note">While loads per carrier remained relatively flat: roughly the same amount of work, booked with substantially fewer searches.</p><p class="case-impact__kind">Measured in production</p></li>
+<li><p class="case-impact__figure"><span data-private>−25%</span></p><p class="case-impact__label">Searches per carrier in the EU</p><p class="case-impact__note">While loads per carrier increased.</p><p class="case-impact__kind">Measured in production</p></li>
+<li><p class="case-impact__figure"><span data-private>52%</span></p><p class="case-impact__label">of US carriers had used multi-search</p><p class="case-impact__note">About <span data-private>40%</span> used it weekly. In the EU, <span data-private>65%</span> had used it and roughly <span data-private>54%</span> were using it every week.</p><p class="case-impact__kind">Measured adoption</p></li>
 <li><p class="case-impact__figure">5 of 5</p><p class="case-impact__label">carriers rated the experience 6 or 7 out of 7 for ease</p><p class="case-impact__note">In high-fidelity moderated testing, with no major UX blockers.</p><p class="case-impact__kind">Research finding</p></li>
 </ul>
 
@@ -61,7 +61,7 @@ The final UI looks straightforward. Getting there required a series of deliberat
 
 The product had outgrown the interaction model it started with.
 
-A search experience designed for a few hundred available loads and six filters was now supporting <span data-private data-public="many times that volume, with big spikes at Peak,">100K+ weekly volume, as many as 27K trips at Peak,</span> and 22 filter options.
+A search experience designed for a few hundred available loads and six filters was now supporting <span data-private>100K+</span> weekly volume, as many as <span data-private>27K</span> trips at Peak, and 22 filter options.
 
 Relay had also expanded into new freight types, work types, equipment, facilities, and geographies. The carrier base had broadened from owner-operators with relatively narrow needs to mid-sized businesses coordinating multiple drivers across regions and types of work.
 
@@ -176,7 +176,7 @@ Carriers quickly supplied their own use cases: an outbound load in one search, t
 
 This became one of the deliberately custom patterns in the redesign. By launch, carriers could keep up to five simultaneous searches in one browser tab, and Relay restored recent search tabs when they returned within 24 hours.
 
-The interaction also had real technical cost. Multi-search increased expected transaction load, so engineering reduced results per page from 100 to 50 after data showed that <span data-private data-public="the vast majority">more than 95%</span> of searches returned fewer than 50 results. We preserved the workflow value while making a data-backed implementation tradeoff.
+The interaction also had real technical cost. Multi-search increased expected transaction load, so engineering reduced results per page from 100 to 50 after data showed that more than <span data-private>95%</span> of searches returned fewer than 50 results. We preserved the workflow value while making a data-backed implementation tradeoff.
 
 <figure class="visual visual--wide">
 <img class="is-mockup" src="/images/work/amazon-relay-load-board/multi-search.webp" alt="The Load Board with three search tabs, Outbound, Backhaul and Second truck, above the search bar, filters and results. Notes: multi-search holds up to five searches, and tabs are restored for 24 hours." loading="lazy" />

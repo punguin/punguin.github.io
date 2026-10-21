@@ -23,7 +23,7 @@ order: 1
 I led a new information architecture for the Relay driver app, built around a predictable, persona-based home screen that lets drivers get in and out with minimal effort. Within a month of release, product teams were shipping features without coordinating app releases. The framework enabled four major new capabilities in 2022, and drivers kept executing loads at the same rate.
 
 <dl class="case-overview">
-<div><dt>The problem</dt><dd>The driver app was built around one rigid trip sequence, and five product teams now needed to add to it without slowing <span data-private data-public="a very large driver base">more than a million drivers</span> down.</dd></div>
+<div><dt>The problem</dt><dd>The driver app was built around one rigid trip sequence, and five product teams now needed to add to it without slowing more than <span data-private>a million</span> drivers down.</dd></div>
 <div><dt>My role</dt><dd>Responsible and accountable design lead, co-leading with the senior software engineer. UX Research and a senior product manager were consulted.</dd></div>
 <div><dt>What I did</dt><dd>Leadership asked for a home screen that also served carriers. The real work was an architecture the team could align on, ship incrementally and keep building on.</dd></div>
 <div><dt>What I owned</dt><dd><ul>
@@ -40,7 +40,7 @@ I led a new information architecture for the Relay driver app, built around a pr
 Drivers kept their pace, and the platform could grow.
 
 <ul class="case-impact" role="list">
-<li data-private data-public="First-week adoption of the new home screen is confidential."><p class="case-impact__figure">47,633</p><p class="case-impact__label">drivers executed 318,156 loads from the new home screen</p><p class="case-impact__note">In the first week after launch.</p><p class="case-impact__kind">Measured after launch</p></li>
+<li><p class="case-impact__figure"><span data-private>47,633</span></p><p class="case-impact__label">drivers executed <span data-private>318,156</span> loads from the new home screen</p><p class="case-impact__note">In the first week after launch.</p><p class="case-impact__kind">Measured after launch</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Steady</p><p class="case-impact__label">Completed tours per hour</p><p class="case-impact__note">Consistent throughout the rollout, so the new experience didn’t disrupt Relay operations.</p><p class="case-impact__kind">Measured after launch</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Within a month</p><p class="case-impact__label">Product teams released features on their own</p><p class="case-impact__note">Without coordinating new app releases.</p><p class="case-impact__kind">Organizational outcome</p></li>
 <li><p class="case-impact__figure">4</p><p class="case-impact__label">major new capabilities in 2022</p><p class="case-impact__note">Global Mile containers, identity, weather notifications and drive score, at lower design and engineering cost.</p><p class="case-impact__kind">Capability enabled</p></li>
@@ -67,7 +67,7 @@ The final screens look simple. A few structural decisions got them there.
 
 The app had outgrown the workflow it was built around.
 
-Relay connects carriers to Amazon’s freight network. Its driver app launched in 2017 <span data-private data-public="for a small group of drivers; by 2022 it served many times more,">with about 10,000 drivers; by 2022 it served more than a million,</span> across trip planning, navigation, inspections and electronic logging. Five dev teams now contributed to an app built by one team for a narrow use case, and every new capability had to fit into one rigid trip sequence. Engineering proposed a federated plugin model and asked for a dynamic home screen for any user type. I drove the work with my dev counterpart from discovery to design, bringing PM and stakeholders along through workshops and reviews.
+Relay connects carriers to Amazon’s freight network. Its driver app launched in 2017 with about <span data-private>10,000</span> drivers; by 2022 it served more than <span data-private>a million</span>, across trip planning, navigation, inspections and electronic logging. Five dev teams now contributed to an app built by one team for a narrow use case, and every new capability had to fit into one rigid trip sequence. Engineering proposed a federated plugin model and asked for a dynamic home screen for any user type. I drove the work with my dev counterpart from discovery to design, bringing PM and stakeholders along through workshops and reviews.
 
 ##### 3.1 People
 
