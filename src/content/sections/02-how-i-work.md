@@ -86,5 +86,5 @@ The questions stay the same. How I answer them depends on how much we don’t kn
 <aside class="ai-note">
 <p class="label">A note about AI</p>
 <p class="ai-note__head">Human first. AI where it helps.</p>
-<p>AI is built into my process wherever it’s useful. I use it to get to answers faster, so my team spends less time gathering and more time deciding. I use it to turn analysis into a clear story, so partners can see the tradeoffs and get to buy-in sooner. What I don’t hand off is judgment. Understanding people, deciding what matters and owning the call stay human.</p>
+<p>AI is built into my process wherever it’s useful. I use it to get to answers faster, so my team spends less time gathering and more time deciding. I use it to turn analysis into a clear story, so partners can see the tradeoffs and get to buy-in sooner. At Zenni, I used Gemini to synthesize workshops, build affinity maps and draft the narratives that documented our findings. Less time producing documents meant more time for the team to discuss tradeoffs, and clearer write-ups brought more people into the conversation. What I don’t hand off is judgment. Understanding people, deciding what matters and owning the call stay human.</p>
 </aside>

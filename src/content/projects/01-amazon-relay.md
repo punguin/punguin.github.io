@@ -41,7 +41,7 @@ I led a new information architecture for the Relay driver app, built around a pr
 Drivers kept their pace, and the platform could grow.
 
 <ul class="case-impact" role="list">
-<li><p class="case-impact__figure case-impact__figure--text">Steady</p><p class="case-impact__label">Completed tours per hour</p><p class="case-impact__note">The same as the week before launch.</p><p class="case-impact__kind">Measured after launch</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">Steady</p><p class="case-impact__label">Completed tours per hour</p><p class="case-impact__note">Consistent throughout the rollout, so the new experience didn’t disrupt Relay operations.</p><p class="case-impact__kind">Measured after launch</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Within a month</p><p class="case-impact__label">Product teams released features on their own</p><p class="case-impact__note">Without coordinating new app releases.</p><p class="case-impact__kind">Organizational outcome</p></li>
 <li><p class="case-impact__figure">4</p><p class="case-impact__label">major new capabilities in 2022</p><p class="case-impact__note">Global Mile containers, identity, weather notifications and drive score, at lower design and engineering cost.</p><p class="case-impact__kind">Capability enabled</p></li>
 </ul>
@@ -67,23 +67,17 @@ The final screens look simple. A few structural decisions got them there.
 
 The app had outgrown the workflow it was built around.
 
-Relay connects carriers to Amazon’s freight network. Its driver app launched in 2017 for picking up and dropping off loads, with about 10,000 drivers. By 2022 it had more than a million, covered trip planning, navigation, inspections and electronic logging, and served new sites and equipment, from post offices and airports to box trucks and containers.
-
-Five dev teams now contributed to an app one team had built for a narrow use case, and leadership wanted it to serve carriers and dispatchers too. But every new capability had to squeeze into one rigid trip sequence. Engineering proposed a federated plugin model so each team could own its home screen widgets, and asked for a dynamic home screen for any user type. I drove the work with my dev counterpart from discovery to design, bringing PM and stakeholders along through workshops and reviews.
+Relay connects carriers to Amazon’s freight network. Its driver app launched in 2017 with about 10,000 drivers; by 2022 it served more than a million, across trip planning, navigation, inspections and electronic logging. Five dev teams now contributed to an app built by one team for a narrow use case, and every new capability had to fit into one rigid trip sequence. Engineering proposed a federated plugin model and asked for a dynamic home screen for any user type. I drove the work with my dev counterpart from discovery to design, bringing PM and stakeholders along through workshops and reviews.
 
 ##### 3.1 People
 
 <p class="case-insight">Drivers did not need step-by-step instructions. They needed information.</p>
 
-I audited the app, interviewed stakeholders, reviewed feedback and data, interviewed drivers and rode along with one to Amazon and shipper warehouses. Drivers checked in with paperwork in one hand and a phone in the other.
+I audited the app, interviewed drivers and stakeholders, and rode along with a driver to Amazon and shipper warehouses. Three findings shaped the design:
 
-What changed my thinking:
-
-- The app’s workflows didn’t always match the real workflow at a site.
-- Drivers didn’t need step-by-step instructions. Every step in the app was extra work.
-- Information wasn’t always accurate, so drivers relied on workarounds, tribal knowledge and the Relay driver community.
-- Being on time drives their performance, so they often arrive hours early. The day is hurry up and wait.
-- They didn’t want unrelated messages, but did want quick access to training.
+- **Steps were overhead.** Drivers already knew their jobs, and the app’s sequence didn’t always match the real workflow at a site. This led to organizing around information instead of steps (4.1).
+- **Information was hard to trust and hard to reach.** Drivers relied on workarounds and the driver community for details the app should have held. This made stop details the home for always-needed information (4.1).
+- **The day is hurry up and wait.** Drivers often arrive hours early and check the app between tasks, so the home screen had to be quick to scan and useful while waiting (4.2).
 
 <figure class="visual visual--wide">
 <div class="img-grid img-grid--3">
@@ -111,25 +105,20 @@ With the senior software engineer, I mapped the existing experience end to end. 
 <figcaption>The existing experience, mapped with engineering: one fixed sequence of screens per stop.</figcaption>
 </figure>
 
-That caused what we saw in the field: information scattered across screens and hard to reach outside the current step. A later trip information card was a patch, and there was no place for training or capabilities like drive score.
-
-The code had the same shape: tightly coupled, expensive to extend, with one team as a bottleneck. As engineering built a federated foundation, the UX needed a matching structure. Resources were limited because the project was seen as technical, the MVP had to ship ahead of the year’s roadmap, yard procedures were unpredictable, and there was resistance to change.
+This explained what we saw in the field: information was scattered across screens and hard to reach outside the current step, with no place for capabilities like training or drive score. The code had the same shape, tightly coupled with one team as a bottleneck. As engineering built a federated foundation, the UX needed a matching structure, delivered with limited resources and ahead of the year’s roadmap.
 
 ##### 3.3 Gaps
 
 <p class="case-insight">The app was organized around steps. Drivers think about stops.</p>
 
-A journey mapping session I facilitated aligned the team on two themes:
-
-1. Drivers need more information about their stops.
-2. Drivers need that information whenever they need it.
+A journey mapping session I facilitated aligned the team on two themes: drivers need more information about their stops, and they need it whenever they need it.
 
 <figure class="visual visual--wide">
 <img src="/images/work/amazon-relay/journey-map.webp" alt="Journey map of a driver’s daily workflow, with rows for stages, doing, goals, feelings, pain points and opportunities across planning, driving to the yard, pre-trip, driving, yard execution and end of trip." loading="lazy" />
 <figcaption>The driver journey map, from planning the day before to the end of the trip.</figcaption>
 </figure>
 
-An object mapping session then aligned us on drivers’ own nouns: a driver has a schedule, a schedule has trips, a trip has stops, and each stop has a location, a time and loads. The structure came from drivers’ language, not screens.
+An object mapping session then defined the structure in drivers’ own terms: a driver has a schedule, a schedule has trips, and a trip has stops, each with a location, a time and loads.
 
 <figure class="visual visual--wide">
 <img class="is-mockup" src="/images/work/amazon-relay/object-map.webp" alt="Object map: driver, schedule, trip, stop and load connected by has-one and has-many relationships, with vehicle, task, location, status and scheduled time." loading="lazy" />
@@ -334,9 +323,7 @@ One task anatomy (stop, instructions, action, link to stop details) covers a shi
 
 The structure was tested with drivers before and after it shipped.
 
-Of 13 beta drivers, 12 were satisfied with stop details, 11 with the schedule and 10 with the home screen. They asked for a map, their block or trip number for ELD devices, and total miles. A contextual inquiry with 5 drivers found some use a phone and a tablet, and 3 missed the “Load Ready” notification.
-
-The work ran from November 2021 to handoff in February 2022. After beta fixes it went to general availability at 1%, with a plan to reach 100% over the following weeks.
+Of 13 beta drivers, 12 were satisfied with stop details, 11 with the schedule and 10 with the home screen; their top requests were a map, their block or trip number, and total miles. The work ran from November 2021 to handoff in February 2022, then went to general availability at 1% after beta fixes, with a plan to reach 100% over the following weeks.
 
 #### 05 / What it enabled
 
