@@ -20,15 +20,15 @@ coverColor: "#c9c1fb"
 order: 1
 ---
 
-I turned an in-flight request for a “dynamic home screen” into a new information architecture for the Relay driver app. Within a month of release, product teams were shipping features without coordinating app releases. The framework enabled four major new capabilities in 2022, and drivers kept executing loads at the same rate.
+I led a new information architecture for the Relay driver app, built around a predictable, persona-based home screen that lets drivers get in and out with minimal effort. Within a month of release, product teams were shipping features without coordinating app releases. The framework enabled four major new capabilities in 2022, and drivers kept executing loads at the same rate.
 
 <dl class="case-overview">
 <div><dt>The problem</dt><dd>The driver app was built around one rigid trip sequence, and five product teams now needed to add to it without slowing more than a million drivers down.</dd></div>
 <div><dt>My role</dt><dd>Responsible and accountable design lead, co-leading with the senior software engineer. UX Research and a senior product manager were consulted.</dd></div>
 <div><dt>What I did</dt><dd>Leadership asked for a home screen that also served carriers. The real work was an architecture the team could align on, ship incrementally and keep building on.</dd></div>
 <div><dt>What I owned</dt><dd><ul>
-<li>Reframed “dynamic home screen” around the information drivers need before work, during work and all the time.</li>
-<li>Argued for a consistent structure over a home screen that reshuffles itself.</li>
+<li>Organized the app around the information drivers need before work, during work and all the time.</li>
+<li>Shaped a predictable, persona-based home screen so drivers can find what they need quickly.</li>
 <li>Defined the card, persona and priority model other teams build on.</li>
 <li>Set feature parity as the first-release bar, wrapping the existing workflow instead of replacing it.</li>
 <li>Set the long-term direction for tasks and stop details, and contributed patterns back to Meridian.</li>
@@ -54,7 +54,7 @@ The final screens look simple. A few structural decisions got them there.
 
 <ol class="case-decisions">
 <li><p class="case-decisions__title"><a href="#41-organize-the-app-around-information-not-steps">Organize the app around information, not steps</a></p><p>Drivers already knew their jobs. The structure follows the objects they work with (schedule, trip, stop, load), so information is reachable at any point, not only at one step. <a class="case-decisions__more" href="#41-organize-the-app-around-information-not-steps">4.1 ↓</a></p></li>
-<li><p class="case-decisions__title"><a href="#42-keep-one-stable-structure-instead-of-a-home-screen-that-reshuffles-itself">Keep one stable structure instead of a home screen that reshuffles itself</a></p><p>“Dynamic” became a card framework ordered by priority and disruption: a home screen drivers can rely on, with a place for each team’s content. <a class="case-decisions__more" href="#42-keep-one-stable-structure-instead-of-a-home-screen-that-reshuffles-itself">4.2 ↓</a></p></li>
+<li><p class="case-decisions__title"><a href="#42-use-predictable-persona-based-cards">Use predictable, persona-based cards</a></p><p>A card framework ordered by priority and disruption gives drivers a home screen they can rely on, and gives each team a place for its content. <a class="case-decisions__more" href="#42-use-predictable-persona-based-cards">4.2 ↓</a></p></li>
 <li><p class="case-decisions__title"><a href="#43-wrap-the-existing-workflow-instead-of-replacing-it">Wrap the existing workflow instead of replacing it</a></p><p>The first release changed the structure around the execution workflow, not the workflow, so drivers kept their pace. <a class="case-decisions__more" href="#43-wrap-the-existing-workflow-instead-of-replacing-it">4.3 ↓</a></p></li>
 </ol>
 
@@ -232,13 +232,13 @@ Stop details held the information drivers needed again and again: what, where, a
 </div>
 </aside>
 
-##### 4.2 Keep one stable structure instead of a home screen that reshuffles itself
+##### 4.2 Use predictable, persona-based cards
 
 The home screen should orient drivers, not do the heavy lifting.
 
 <p class="label case-status">Shipped in the first release</p>
 
-The project began as a “dynamic home screen”, and part of my job was helping the team define what dynamic should mean for drivers. We talked through a home screen that adapts its content to each driver, and I shared what I’d seen in the field: drivers want to get in and out, and many owner-operators also work with other companies, so a predictable layout would serve them better than one that changes.
+Early discussions centered on a home screen that adapts its content to each driver, which reflected the team’s thinking at the time. I wanted to make sure every viable approach was explored, so we evaluated it alongside the alternatives. Field research shaped the direction: drivers want to get in and out quickly, and many owner-operators also work with other companies, so a predictable, persona-based layout served them best.
 
 I started a weekly show and tell to keep everyone close to the work. Seeing the existing design beside a more standard home screen layout helped the team and managers weigh options together, and it built the shared confidence behind the new structure.
 
