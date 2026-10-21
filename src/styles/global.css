@@ -101,7 +101,7 @@
   --frame: clamp(8px, 1.2vw, 16px);          /* margin around the homepage hero panel */
   --bar-side: calc(var(--frame) + clamp(8px, 1.4vw, 20px)); /* header bar inset from the page edge */
   --bar-top: clamp(8px, 1vw, 14px);           /* hero panels touch the top edge, so the bar sits close to it (Pung, 2026-10-20) */
-  --hero-bg: #a8ffd5;                        /* mint (Pung, 2026-10-20); all hero text passes AA on it */
+  --hero-bg: #f1ece4;                        /* warm neutral (Pung, 2026-10-21; was mint #a8ffd5); all hero text passes AA on it */
   --toc-width: 210px;
   --toc-gap: 64px;
   --toc-top: 24px;
