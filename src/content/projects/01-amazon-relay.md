@@ -298,7 +298,7 @@ Drivers had to keep their pace, feedback on the existing app was good, and engin
 We ran a moderated usability study of the first iteration with 8 drivers.
 
 <figure class="visual visual--wide">
-<img class="is-mockup" src="/images/work/amazon-relay/user-testing.webp" width="3309" height="1610" alt="Four screens from the first iteration with test results. Start of day home screen: 8 of 8 drivers valued the added content, like statuses and weather, and one said “I like that I can check my drive score and training while I wait”, but 3 of 8 struggled to start their work. Schedule: 3 of 8 struggled to find their trips. Schedule, expanded: 3 of 8 struggled to reach a future stop. Current step: 7 of 8 reached stop information." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/user-testing.webp" width="3309" height="2129" alt="Four screens from the first iteration with test results. Start of day home screen: 8 of 8 drivers valued the added content, like statuses and weather, and one said “I like that I can check my drive score and training while I wait”, but 3 of 8 struggled to start their work. Schedule: 3 of 8 struggled to find their trips. Schedule, expanded: 3 of 8 struggled to reach a future stop. Current step: 7 of 8 reached stop information." loading="lazy" />
 </figure>
 
 <aside class="decision-callout">
