@@ -423,6 +423,8 @@ function open(start = 0) {
   document.documentElement.classList.add('has-deck');
   document.addEventListener('keydown', onKey);
   if (!isPresenter) d.requestFullscreen?.().catch(() => {});
+  // Start clean: the slide shown when the presentation was last closed is still unhidden.
+  slides.forEach((sl) => { sl.el.hidden = true; });
   index = 0;
   // The presenter window waits for the audience view to say where it is.
   go(start, isPresenter ? 'remote' : undefined);
