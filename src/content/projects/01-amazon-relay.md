@@ -355,7 +355,7 @@ In a driver’s public video, the home screen keeps the same structure, now with
 <figcaption>In the wild, from a driver’s public video: a new Find work card plugged into the same home screen.</figcaption>
 </figure>
 
-The full vision was never built. Amazon weighed it against the existing business, and not every right decision for users makes it above the line. It wasn’t wasted work, though: it changed how Relay thought about its architecture.
+To my knowledge, the full vision was never built. In an uncertain economic climate, it’s understandable that it didn’t rise above the line against other priorities. The work still had lasting value: it reshaped how the team understood Relay’s architecture, and we built with that future in mind.
 
 ##### Reflection
 
