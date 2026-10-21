@@ -28,12 +28,6 @@ const more = all.filter((p) => p.data.moreWork);
                     <span class="tag">{p.data.role.startsWith('[') ? p.data.domain : p.data.role}</span>
                     {p.data.platform.filter((x) => !x.startsWith('[')).slice(0, 2).map((x) => <span class="tag">{x}</span>)}
                   </>}
-              {p.body?.includes('data-private') && (
-                <span class="tag tag--locked" title="Some details are password protected">
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
-                  Protected details
-                </span>
-              )}
             </span>
           </span>
           {p.data.cover && (
@@ -95,7 +89,6 @@ const more = all.filter((p) => p.data.moreWork);
   .work-card__line { font-size: 0.9375rem; line-height: 1.5; color: rgba(22, 22, 22, 0.78); max-width: 34em; }
   .work-card__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: 6px; }
   .work-card__tags .tag { background: rgba(255, 255, 255, 0.55); border-color: transparent; }
-  .work-card__tags .tag--locked { background: var(--ink); color: var(--paper); }
   .work-card__media { display: block; margin-top: auto; }
   .work-card__media img { display: block; width: 100%; height: auto; }
 
