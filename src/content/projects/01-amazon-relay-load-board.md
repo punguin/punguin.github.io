@@ -8,15 +8,17 @@ context: Amazon Middle Mile, Relay
 project: Web App Redesign
 domain: Middle Mile Operations
 summary: Redesigning a freight marketplace for the next stage of growth
+cardLine: The web marketplace where carriers search, compare and book Amazon freight loads.
 role: Design Lead
 timeline: 4 Months
-platform: [Web, Meridian Design System]
+platform: [Web, Design system]
 partners: [Product Manager, Engineering, Design System]
 accent: tracking
 cover: /images/work/amazon-relay-load-board/cover.webp
 hero: /images/work/amazon-relay-load-board/hero.webp
 coverAlt: The redesigned Relay Load Board in a laptop frame on light blue
 coverColor: "#a6eff3"
+tags: [Design Lead, Web, Design System Adoption]
 order: 1
 ---
 

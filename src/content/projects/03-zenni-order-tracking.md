@@ -18,6 +18,7 @@ cover: /images/work/zenni-order-tracking/cover.webp
 hero: /images/work/zenni-order-tracking/hero.webp
 coverAlt: The shipped Zenni Order Details page in a laptop frame on mint, with the Where is My Order card floating beside it
 coverColor: "#8cf0d3"
+tags: [Design Lead, Responsive Web, Post-purchase Experience]
 order: 3
 ---
 

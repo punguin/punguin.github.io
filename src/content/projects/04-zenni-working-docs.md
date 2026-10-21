@@ -13,7 +13,7 @@ role: Senior Product Designer, initiative lead
 platform: [Slack canvases, Team practice]
 partners: [UX manager, UX team, UX PM, Product, Engineering]
 accent: yellow
-tags: [Design Operations, Cross-functional Collaboration, Decision-Making & Alignment]
+tags: [Initiative Lead, Slack Canvases, Design Operations]
 cover: /images/work/zenni-working-docs/cover.webp
 hero: /images/work/zenni-working-docs/hero.webp
 coverAlt: A Zenni UX working doc for enhanced order tracking, shown as a Slack canvas in a laptop frame on peach
