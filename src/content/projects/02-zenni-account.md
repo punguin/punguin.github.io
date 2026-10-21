@@ -35,6 +35,7 @@ I modernized a fragmented account experience, established reusable product patte
 The redesign gave the team a foundation to build on rather than another one-off redesign.
 
 <ul class="case-impact" role="list">
+<li><p class="case-impact__figure case-impact__figure--text">Launched</p><p class="case-impact__label">with no measurable impact on the business</p><p class="case-impact__note">The new Account experience replaced the legacy pages without moving business performance, positive or negative.</p><p class="case-impact__kind">Measured after launch</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">One structure</p><p class="case-impact__label">for every Account page</p><p class="case-impact__note">One navigation, one structure and one set of patterns, in place of pages built at different times for different needs.</p><p class="case-impact__kind">Shipped</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Phase 2</p><p class="case-impact__label">Enhanced Order Tracking built on it</p><p class="case-impact__note">The next phase used the foundation to tackle a deeper post-purchase problem.</p><p class="case-impact__kind">Capability enabled</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Shared patterns</p><p class="case-impact__label">contributed back to the design system</p><p class="case-impact__note">Account pressure tested the system on a real product and gave it major components and patterns.</p><p class="case-impact__kind">Organizational outcome</p></li>
@@ -196,6 +197,6 @@ In January 2025 I ran a usability test built on the customer scenarios above, th
 
 We could build on the foundation instead of starting over.
 
-The redesigned Account experience established a shared structure and reusable patterns for future improvements. When we moved into Enhanced Order Tracking, we could focus on the harder problem of helping customers understand their orders rather than rebuilding the experience around them.
+The redesigned Account experience launched with no measurable impact on the business, and established a shared structure and reusable patterns for future improvements. When we moved into Enhanced Order Tracking, we could focus on the harder problem of helping customers understand their orders rather than rebuilding the experience around them.
 
 <a href="/work/zenni-order-tracking/">See Phase 2, Enhanced Order Tracking</a>.

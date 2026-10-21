@@ -40,7 +40,7 @@ I led a new information architecture for the Relay driver app, built around a pr
 Drivers kept their pace, and the platform could grow.
 
 <ul class="case-impact" role="list">
-<li><p class="case-impact__figure case-impact__figure--text">Steady</p><p class="case-impact__label">Completed tours per hour</p><p class="case-impact__note">The same as the week before launch.</p><p class="case-impact__kind">Measured after launch</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">Steady</p><p class="case-impact__label">Completed tours per hour</p><p class="case-impact__note">Consistent throughout the rollout, so the new experience didn’t disrupt Relay operations.</p><p class="case-impact__kind">Measured after launch</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Within a month</p><p class="case-impact__label">Product teams released features on their own</p><p class="case-impact__note">Without coordinating new app releases.</p><p class="case-impact__kind">Organizational outcome</p></li>
 <li><p class="case-impact__figure">4</p><p class="case-impact__label">major new capabilities in 2022</p><p class="case-impact__note">Global Mile containers, identity, weather notifications and drive score, at lower design and engineering cost.</p><p class="case-impact__kind">Capability enabled</p></li>
 </ul>

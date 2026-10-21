@@ -36,7 +36,7 @@ Discovery turned an open-ended ask into a plan the organization could build.
 
 <ul class="case-impact" role="list">
 <li><p class="case-impact__figure case-impact__figure--text">Aligned</p><p class="case-impact__label">teams across the organization</p><p class="case-impact__note">The work drove alignment across teams and clarified the product roadmap for the year.</p><p class="case-impact__kind">Organizational outcome</p></li>
-<li><p class="case-impact__figure case-impact__figure--text">GA launch</p><p class="case-impact__label">of SpokGo</p><p class="case-impact__note">It served as a runway for a series of sprints that ended in a successful general availability launch.</p><p class="case-impact__kind">Shipped</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">GA launch</p><p class="case-impact__label">of SpokGo</p><p class="case-impact__note">Discovery set up the sprints that led to general availability. A handful of hospitals adopted it, but it didn’t gain operational traction and was later sunset.</p><p class="case-impact__kind">Shipped</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">One app</p><p class="case-impact__label">instead of one per persona</p><p class="case-impact__note">Prioritization aligned stakeholders on a single app, for speed to market and extensibility.</p><p class="case-impact__kind">Product direction</p></li>
 </ul>
 
@@ -172,7 +172,9 @@ The map also covered the enterprise directory and on-call schedules, core messag
 
 A clear direction, a roadmap, and a launch.
 
-The initiative helped drive organizational alignment across teams and clarified the roadmap for the year. It served as a runway for a series of sprints that ultimately resulted in a successful GA launch of SpokGo.
+The initiative helped drive organizational alignment across teams and clarified the roadmap for the year. It served as a runway for a series of sprints that led to SpokGo’s general availability launch.
+
+After launch, a handful of hospitals adopted SpokGo, but it didn’t gain enough operational traction, and the effort was eventually sunset. The discovery still did its job: it gave the organization one shared direction to build and test in the market.
 
 <figure class="visual visual--wide">
 <img class="is-mockup" src="/images/work/spokgo/final-mockups.webp" alt="Three final SpokGo screens: a critical care team chat about a patient's vitals, a nurse call from a patient's bathroom with patient details and call actions, and a respiratory consult with the department, specialties and who is currently in the role." loading="lazy" />
