@@ -6,6 +6,8 @@
  * browser (session storage, or local storage when "remember" is ticked).
  */
 
+import { merge3 } from './merge';
+
 const REPO = 'punguin/punguin.github.io';
 const DIR = 'src/content/projects';
 const API = 'https://api.github.com';
@@ -14,7 +16,7 @@ const STORE = 'pung-brooks:editor';
 const KEYS = ['id', 'number', 'title', 'navLabel', 'company', 'context', 'project', 'domain', 'summary', 'role', 'timeline', 'platform', 'partners', 'accent', 'cover', 'coverAlt', 'hero', 'coverColor', 'tags', 'featured', 'order'] as const;
 type Value = string | number | boolean | string[];
 type Data = Record<string, Value>;
-type Item = { path: string; sha: string; data: Data; body: string };
+type Item = { path: string; sha: string; text: string; data: Data; body: string }; // text: the file as last read or written
 
 const $ = <T extends HTMLElement>(sel: string) => document.querySelector<T>(sel)!;
 const connectForm = $<HTMLFormElement>('[data-connect]');
@@ -42,6 +44,7 @@ const pageBody = $<HTMLTextAreaElement>('[data-page-body]');
 async function gh(path: string, init: RequestInit = {}) {
   const res = await fetch(`${API}${path}`, {
     ...init,
+    cache: 'no-store', // the contents API is cacheable, and a stale sha makes the next save fail
     headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', ...(init.headers || {}) },
   });
   if (!res.ok) {
@@ -65,6 +68,30 @@ async function putFile(path: string, content: string, message: string, sha?: str
     body: JSON.stringify({ message, content, branch, ...(sha ? { sha } : {}) }),
   });
 }
+
+/**
+ * Saves a file. If it changed on GitHub since the editor read it (`base`, `sha`), the user's edits are
+ * merged into the newer version first, so saving never undoes someone else's commit.
+ */
+async function saveFile(path: string, base: string, content: string, sha: string | undefined, message: string, check?: (text: string) => void) {
+  let text = content, merged = false;
+  if (sha) {
+    const latest = await gh(`/repos/${REPO}/contents/${path}?ref=${encodeURIComponent(branch)}`);
+    if (latest.sha !== sha) {
+      const result = merge3(base, content, decode(latest.content));
+      if (result === null) throw new Error('This changed on GitHub after you opened it, and the same lines were edited there. Copy your changes somewhere safe, reload this page, and apply them again.');
+      check?.(result);
+      text = result;
+      sha = latest.sha;
+      merged = true;
+    }
+  }
+  const res = await putFile(path, encode(text), message, sha);
+  return { sha: res.content.sha as string, text, merged };
+}
+
+const SAVED = 'Saved. The site rebuilds with it in a minute or two.';
+const MERGED = 'Saved, together with newer changes from GitHub. The site rebuilds with it in a minute or two.';
 
 // ---------- Front matter (the small subset these files use) ----------
 
@@ -188,7 +215,8 @@ async function load() {
   items = await Promise.all(
     files.filter((f) => f.name.endsWith('.md')).map(async (f) => {
       const file = await gh(`/repos/${REPO}/contents/${f.path}?ref=${encodeURIComponent(branch)}`);
-      return { path: f.path, sha: file.sha, ...parse(decode(file.content)) };
+      const text = decode(file.content);
+      return { path: f.path, sha: file.sha, text, ...parse(text) };
     }),
   );
   items.sort((a, b) => Number(a.data.order) - Number(b.data.order));
@@ -226,8 +254,9 @@ async function save(e: SubmitEvent) {
   const path = current ? current.path : `${DIR}/${String(order).padStart(2, '0')}-${id}.md`;
   setStatus('Saving…', 'busy');
   try {
-    const res = await putFile(path, encode(serialize(data, body.value)), `${current ? 'Update' : 'Add'} case study: ${title}`, current?.sha);
-    const saved: Item = { path, sha: res.content.sha, data, body: body.value };
+    const res = await saveFile(path, current?.text ?? '', serialize(data, body.value), current?.sha, `${current ? 'Update' : 'Add'} case study: ${title}`);
+    const saved: Item = res.merged ? { path, sha: res.sha, text: res.text, ...parse(res.text) } : { path, sha: res.sha, text: res.text, data, body: body.value };
+    if (res.merged) fill(saved.data, saved.body);
     if (current) items[items.indexOf(current)] = saved; else items.push(saved);
     items.sort((a, b) => Number(a.data.order) - Number(b.data.order));
     current = saved;
@@ -236,7 +265,7 @@ async function save(e: SubmitEvent) {
     viewLink.hidden = !data.featured;
     $('[data-form-title]').textContent = title;
     renderList();
-    setStatus('Saved. The site rebuilds with it in a minute or two.', 'ok');
+    setStatus(res.merged ? MERGED : SAVED, 'ok');
   } catch (err) {
     setStatus(`Couldn't save. ${(err as Error).message}`, 'error');
   }
@@ -248,7 +277,7 @@ async function save(e: SubmitEvent) {
 // added to a file shows up here without changing the editor.
 
 type Json = string | number | boolean | null | Json[] | { [k: string]: Json };
-type Page = { key: string; label: string; path: string; sha: string; kind: 'json' | 'md'; json?: Json; data?: Data; body?: string; anchor: string; hint: string };
+type Page = { key: string; label: string; path: string; sha: string; text: string; kind: 'json' | 'md'; json?: Json; data?: Data; body?: string; anchor: string; hint: string };
 
 const SECTIONS = 'src/content/sections';
 const LABELS: Record<string, string> = {
@@ -296,13 +325,13 @@ async function loadPages() {
   const json = async (key: string, label: string, anchor: string): Promise<Page> => {
     const path = `src/content/${key}.json`;
     const { sha, text } = await getFile(path);
-    return { key, label, path, sha, kind: 'json', json: JSON.parse(text), anchor, hint: HINTS[key] };
+    return { key, label, path, sha, text, kind: 'json', json: JSON.parse(text), anchor, hint: HINTS[key] };
   };
   const files = ((await gh(`/repos/${REPO}/contents/${SECTIONS}${ref}`)) as { name: string; path: string }[]).filter((f) => f.name.endsWith('.md'));
   const sections: Page[] = await Promise.all(files.map(async (f) => {
     const { sha, text } = await getFile(f.path);
     const { data, body } = parse(text);
-    return { key: String(data.id), label: `${data.number} · ${data.navLabel}`, path: f.path, sha, kind: 'md' as const, data, body, anchor: `#${data.id}`, hint: HINTS.section };
+    return { key: String(data.id), label: `${data.number} · ${data.navLabel}`, path: f.path, sha, text, kind: 'md' as const, data, body, anchor: `#${data.id}`, hint: HINTS.section };
   }));
   sections.sort((a, b) => Number(a.data!.order) - Number(b.data!.order));
   const [hero, experience, contact] = await Promise.all([json('hero', 'Hero', '#top'), json('experience', 'Experience: roles', '#experience'), json('contact', 'Contact: links', '#contact')]);
@@ -469,18 +498,22 @@ async function savePage(e: SubmitEvent) {
   }
   setStatus('Saving…', 'busy');
   try {
-    const res = await putFile(page.path, encode(content), `Update homepage: ${page.label}`, page.sha);
-    page.sha = res.content.sha;
-    if (page.kind === 'json') page.json = edited;
+    const check = page.kind === 'json' ? (text: string) => { JSON.parse(text); } : undefined;
+    const res = await saveFile(page.path, page.text, content, page.sha, `Update homepage: ${page.label}`, check);
+    page.sha = res.sha;
+    page.text = res.text;
+    if (page.kind === 'json') page.json = res.merged ? JSON.parse(res.text) : edited;
     else {
-      page.data = { ...page.data!, title: String(edited.title).trim(), navLabel: String(edited.navLabel).trim() || String(page.data!.navLabel) };
-      page.body = pageBody.value;
+      const merged = res.merged ? parse(res.text) : null;
+      page.data = merged ? merged.data : { ...page.data!, title: String(edited.title).trim(), navLabel: String(edited.navLabel).trim() || String(page.data!.navLabel) };
+      page.body = merged ? merged.body : pageBody.value;
       page.label = `${page.data.number} · ${page.data.navLabel}`;
       $('[data-page-title]').textContent = page.label;
     }
     dirty = false;
+    if (res.merged) openPage(page); // show what is now on GitHub
     renderPages();
-    setStatus('Saved. The site rebuilds with it in a minute or two.', 'ok');
+    setStatus(res.merged ? MERGED : SAVED, 'ok');
   } catch (err) {
     setStatus(`Couldn't save. ${(err as Error).message}`, 'error');
   }
