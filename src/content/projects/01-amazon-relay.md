@@ -292,16 +292,22 @@ Drivers had to keep their pace, feedback on the existing app was good, and engin
 <figcaption>The current stop hands off to the existing execution workflow, so the first release kept full parity.</figcaption>
 </figure>
 
-In testing with 8 drivers, all valued the extra content, statuses and weather, and 7 reached stop information. But 3 struggled to start work, 3 to find trips, and 3 to reach a future stop.
+<p class="label">User testing</p>
+<p class="concept-eval__title">User testing showed where the new model helped, and where it broke familiar patterns.</p>
 
-<blockquote>“I end up having to wait for my loads a lot of times and I like that I can check on my drive score and training in the app while I wait.”</blockquote>
+We ran a moderated usability study of the first iteration with 8 drivers.
 
-So I brought back familiar patterns, a “start” button and the word “Trips”, then moved the screens into Meridian’s visual language.
-
-<figure class="visual visual--inline">
-<img class="is-mockup" src="/images/work/amazon-relay/home-states.webp" alt="Two home screen states for a driver named Taylor: in the yard waiting for a load, and in transit, each with the current stop, arrival times, a Resume work button and the driver’s schedule." loading="lazy" />
-<figcaption>Home screen states: the current stop card shows whether the driver is in the yard or in transit.</figcaption>
+<figure class="visual visual--wide">
+<img class="is-mockup" src="/images/work/amazon-relay/user-testing.webp" width="3309" height="1610" alt="Four screens from the first iteration with test results. Start of day home screen: 8 of 8 drivers valued the added content, like statuses and weather, and one said “I like that I can check my drive score and training while I wait”, but 3 of 8 struggled to start their work. Schedule: 3 of 8 struggled to find their trips. Schedule, expanded: 3 of 8 struggled to reach a future stop. Current step: 7 of 8 reached stop information." loading="lazy" />
 </figure>
+
+<aside class="decision-callout">
+<span class="decision-callout__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M19 3v4M17 5h4"/></svg></span>
+<div>
+<p class="decision-callout__label">Design response</p>
+<p>I brought back familiar patterns, a <strong>Start</strong> button and the label <strong>Trips</strong>, then moved the screens into Meridian’s visual language.</p>
+</div>
+</aside>
 
 ##### 4.4 Keep the long-term vision visible without forcing it into the MVP
 
