@@ -256,7 +256,7 @@ Account and menu, a row of widgets, then cards, some shared and some per persona
 We ranked homepage content by two dimensions: how important it was for drivers to see, and how disruptive it was to their work. The most urgent and disruptive items were placed at the top of the homepage.
 
 <figure class="visual">
-<img class="is-mockup" src="/images/work/amazon-relay/priority-map.webp" width="2570" height="1384" alt="Homepage content plotted by priority against disruption, with a trend arrow running from lower to higher on the homepage. Cancellation, vehicle status, account alert and weather alert sit highest, with the three alerts marked in red; current trip, hours of service and calendar sit in the middle; safety score, the learning center and Relay tips sit lowest." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay/priority-map.webp" width="2703" height="1895" alt="Homepage content plotted by priority against disruption. A path runs from Bottom, past safety score, calendar and current trip, up to Top. Cancellation, account alert and weather alert, marked in red, sit at the top with vehicle status; hours of service sits in the middle; safety score, the learning center and Relay tips sit lowest." loading="lazy" />
 </figure>
 
 <aside class="decision-callout">
