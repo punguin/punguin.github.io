@@ -251,12 +251,42 @@ Account and menu, a row of widgets, then cards, some shared and some per persona
 <figcaption>Persona-based cards: standard cards for everyone, plus driver, carrier and hostler cards.</figcaption>
 </figure>
 
-Instead of reshuffling, content is ordered by priority and disruption, with alerts at the top.
+<p class="concept-eval__title">Homepage content was prioritized by urgency and disruption.</p>
 
-<figure class="visual visual--wide">
-<img class="is-mockup" src="/images/work/amazon-relay/priority-disruption.webp" alt="Chart plotting home screen content by priority against disruption: cancellations and account alerts at the top, then weather alert, vehicle status, current trip, hours of service, calendar, safety score, learning center and Relay tips toward the bottom." loading="lazy" />
-<figcaption>Content order by priority and disruption, from alerts at the top to tips at the bottom.</figcaption>
+We ranked homepage content by two dimensions: how important it was for drivers to see, and how disruptive it was to their work. The most urgent and disruptive items were placed at the top of the homepage.
+
+<figure class="visual priority-map">
+<div class="priority-map__frame">
+<p class="priority-map__axis-y" aria-hidden="true"><span>High</span><strong>Priority</strong><span>Low</span></p>
+<div class="priority-map__plot">
+<svg class="priority-map__trend" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path class="priority-map__band" d="M3 92 C 35 80, 60 55, 84 10"/><path class="priority-map__line" d="M3 92 C 35 80, 60 55, 84 10"/></svg>
+<p class="priority-map__end is-high">Higher on homepage</p>
+<ol class="priority-map__items" aria-label="Homepage content, from highest to lowest on the homepage">
+<li style="--x: 84%; --y: 86%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 3 20h18L12 4z"/><path d="M12 10v4M12 17h.01"/></svg>Cancellation</li>
+<li style="--x: 54.5%; --y: 78%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg>Vehicle status</li>
+<li style="--x: 85%; --y: 71%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 3 20h18L12 4z"/><path d="M12 10v4M12 17h.01"/></svg>Account alert</li>
+<li style="--x: 69%; --y: 67%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 3 20h18L12 4z"/><path d="M12 10v4M12 17h.01"/></svg>Weather alert</li>
+<li style="--x: 38%; --y: 65%"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h6a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h6"/></svg>Current trip</li>
+<li style="--x: 49.5%; --y: 54%"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Hours of service</li>
+<li style="--x: 42%; --y: 39%"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Calendar</li>
+<li style="--x: 55%; --y: 23%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6l-7-3z"/><path d="m12 9 .9 1.8 2 .3-1.45 1.4.35 2-1.8-.95-1.8.95.35-2L9.1 11.1l2-.3z"/></svg>Safety score</li>
+<li style="--x: 27%; --y: 21%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5L2 9z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg>Learning center</li>
+<li style="--x: 9%; --y: 14%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg>Relay tips</li>
+</ol>
+<p class="priority-map__end is-low">Lower on homepage</p>
+</div>
+<p class="priority-map__axis-x" aria-hidden="true"><span>Low</span><strong>Disruption</strong><span>High</span></p>
+</div>
+<figcaption class="visually-hidden">Homepage content plotted by priority against disruption. Cancellation, vehicle status, account alert and weather alert sit highest; Relay tips and the learning center sit lowest.</figcaption>
 </figure>
+
+<aside class="decision-callout">
+<span class="decision-callout__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span>
+<div>
+<p class="decision-callout__label">Design implication</p>
+<p>Alerts surface first. Less urgent, less disruptive content appears lower on the homepage.</p>
+</div>
+</aside>
 
 <figure class="visual visual--full">
 <img class="is-mockup" src="/images/work/amazon-relay/home-variations.webp" alt="Wireframe variations of the home screen for a driver (current trip active, no current trip, weather alert, trip cancellation), a carrier, and an owner-operator who switches between both." loading="lazy" />
