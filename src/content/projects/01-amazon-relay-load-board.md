@@ -123,18 +123,29 @@ That pattern repeated throughout the work: explore far enough to understand the 
 
 <p class="case-insight">The old experience was making one search model carry too much complexity.</p>
 
-The team could keep adding controls, or we could create a model that had somewhere for future complexity to go.
-
 Carriers needed a small set of criteria to define viable work, but the growing product had accumulated 22 parameters. They needed to monitor more than one work context, but the product treated search as one temporary state. They needed richer load information, but navigating away from results interrupted comparison. And they needed booking speed without the risk of making costly mistakes.
 
-The design problem was therefore not one feature. It was how the landing experience, search, filtering, multi-search, details, and booking flow should work together as one coherent system.
+**The requirements couldn’t show that gap on their own.** Interviews, saved searches, and product data all showed carriers managing several searches at once, across locations, equipment types, and drivers. But the requirements were organized feature by feature, and each user story made sense in isolation.
+
+I facilitated an impact-mapping session to make the gap visible. With the PMs, engineers, and business partners, we connected 22 user stories to the carrier outcomes they served: speed, confidence, flexibility, and scalability. Taken one at a time, the stories asked for features. Taken together, they told a different story: the gap was not a missing search control, it was the assumption that carriers worked within a single search context.
+
+That shared view moved the conversation from individual features to how the landing experience, search, filtering, multi-search, details, and booking should work together as one system, and it set the direction for <a href="#42-productize-the-workaround-multi-search">multi-search</a>.
+
+The team could keep adding controls, or we could create a model that had somewhere for future complexity to go.
 
 <p class="callout">How might we support increasing marketplace complexity without making the experience increasingly complicated?</p>
 
-<figure class="visual visual--wide">
-<img class="is-mockup" src="/images/work/amazon-relay-load-board/impact-map.webp" alt="Impact map with three columns: carrier outcomes (speed, confidence, flexibility, scalability), carrier user stories, and deliverables (landing state, global search, multi-search, search layout, trip details, booking flow)." loading="lazy" />
-<figcaption>The impact map, simplified: carrier outcomes connected through user stories to six deliverables, from the landing state to the booking flow.</figcaption>
+<figure class="visual visual--inline">
+<img class="is-mockup" src="/images/work/amazon-relay-load-board/impact-map.webp" width="2000" height="1752" alt="Simplified impact map. Four carrier outcomes on the left: speed, find and book loads quickly; confidence, compare options before committing; flexibility, work across drivers, routes and equipment; scalability, keep up with a growing marketplace. Lines connect them to six deliverables on the right: landing state, global search, multi-search, search layout, trip details and booking flow. Multi-search is highlighted, with lines from speed, flexibility and scalability." loading="lazy" />
+<figcaption>The impact map, simplified. Each user story made sense on its own; connected to carrier outcomes, they showed carriers working across several searches at once, which pointed to multi-search.</figcaption>
 </figure>
+
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay-load-board/impact-workshop.webp" width="1600" height="705" alt="The original workshop board, zoomed out: four areas titled What is Impact Mapping?, User Stories, the RLB Redesign Impact Map tree of goals, personas, impacts and deliverables, and a Parking Lot of sticky notes." loading="lazy" />
+<figcaption>The original workshop board: a primer on impact mapping, the full set of user stories, the impact map itself, and a parking lot.</figcaption>
+</figure>
+
+<p class="case-methods"><span class="label">Methods</span> impact mapping · cross-functional workshop facilitation · synthesis of research, saved searches, and product data</p>
 
 #### 04 / Making it work
 
