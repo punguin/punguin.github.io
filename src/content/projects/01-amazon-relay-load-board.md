@@ -8,7 +8,7 @@ context: Amazon Middle Mile, Relay
 project: Web App Redesign
 domain: Middle Mile Operations
 summary: Redesigning a freight marketplace for the next stage of growth
-cardLine: The web marketplace where carriers search, compare and book Amazon freight loads.
+cardLine: Redesigned search and booking around multi-search, so carriers booked the same work with substantially fewer searches.
 role: Design Lead
 timeline: 4 Months
 platform: [Web, Design system]
