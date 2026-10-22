@@ -90,7 +90,7 @@ The default experience, however, often dropped carriers into a generic or incons
 <figcaption>What carriers were already doing before the redesign: repeating saved searches, booking for several drivers, holding searches in browser tabs, and filtering generic results.</figcaption>
 </figure>
 
-<p class="case-methods"><span class="label">Methods</span> desk research · carrier interviews · existing-experience analysis · competitive review</p>
+<p class="case-methods"><span class="label">Methods</span> desk research · carrier interviews · event tracking and usage data · existing-experience analysis · competitive review</p>
 
 ##### 3.2 System
 
