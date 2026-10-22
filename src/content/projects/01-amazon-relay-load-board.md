@@ -127,7 +127,7 @@ Carriers needed a small set of criteria to define viable work, but the growing p
 
 **The requirements couldn’t show that gap on their own.** Interviews, saved searches, and product data all showed carriers managing several searches at once, across locations, equipment types, and drivers. But the requirements were organized feature by feature, and each user story made sense in isolation.
 
-I facilitated an impact-mapping session to make the gap visible. With the PMs, engineers, and business partners, we connected <span data-private>22</span> user stories to the carrier outcomes they served: speed, confidence, flexibility, and scalability. Taken one at a time, the stories asked for features. Taken together, they told a different story: the gap was not a missing search control, it was the assumption that carriers worked within a single search context.
+I facilitated an impact-mapping session to make the gap visible. With the PMs, engineers, and business partners, we connected 22 user stories to the carrier outcomes they served: speed, confidence, flexibility, and scalability. Taken one at a time, the stories asked for features. Taken together, they told a different story: the gap was not a missing search control, it was the assumption that carriers worked within a single search context.
 
 That shared view moved the conversation from individual features to how the landing experience, search, filtering, multi-search, details, and booking should work together as one system, and it set the direction for <a href="#42-productize-the-workaround-multi-search">multi-search</a>.
 
@@ -136,7 +136,7 @@ The team could keep adding controls, or we could create a model that had somewhe
 <p class="callout">How might we support increasing marketplace complexity without making the experience increasingly complicated?</p>
 
 <figure class="visual visual--inline">
-<img class="is-mockup" src="/images/work/amazon-relay-load-board/impact-map.webp" width="2000" height="1760" alt="Simplified impact map. Four carrier outcomes on the left: speed, find and book loads quickly; confidence, compare options before committing; flexibility, work across drivers, routes and equipment; scalability, keep up with a growing marketplace. Lines connect them to six deliverables on the right: landing state, global search, multi-search, search layout, trip details and booking flow. Multi-search is highlighted, with lines from speed, flexibility and scalability." loading="lazy" />
+<img class="is-mockup" src="/images/work/amazon-relay-load-board/impact-map.webp" width="2000" height="1752" alt="Simplified impact map. Four carrier outcomes on the left: speed, find and book loads quickly; confidence, compare options before committing; flexibility, work across drivers, routes and equipment; scalability, keep up with a growing marketplace. Lines connect them to six deliverables on the right: landing state, global search, multi-search, search layout, trip details and booking flow. Multi-search is highlighted, with lines from speed, flexibility and scalability." loading="lazy" />
 <figcaption>The impact map, simplified. Each user story made sense on its own; connected to carrier outcomes, they showed carriers working across several searches at once, which pointed to multi-search.</figcaption>
 </figure>
 
