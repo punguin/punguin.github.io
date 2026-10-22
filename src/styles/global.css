@@ -744,11 +744,14 @@ section[id], article[id], [id].anchor { scroll-margin-top: var(--anchor-offset);
 }
 .prose .dial__level > * { margin: 0; }
 .prose .dial__level > * + * { margin-top: var(--space-2); }
-.dial__meter { display: flex; gap: 4px; }
-.dial__meter span { flex: 1; height: 8px; border: 1px solid var(--ink); border-radius: 2px; }
-.dial__level[style*="--fill: 1"] .dial__meter span:nth-child(-n + 1),
-.dial__level[style*="--fill: 2"] .dial__meter span:nth-child(-n + 2),
-.dial__level[style*="--fill: 3"] .dial__meter span { background: var(--violet); }
+/* A certainty gauge: the needle and teal arc sit high when the problem is mostly known, low when mostly unknown. */
+.dial__meter svg { display: block; overflow: visible; }
+.dial__meter path, .dial__meter line { fill: none; stroke-linecap: round; }
+.dial__edge { stroke: var(--ink); stroke-width: 5.5; }
+.dial__track { stroke: var(--paper); stroke-width: 3; }
+.dial__value { stroke: var(--violet); stroke-width: 3; }
+.dial__needle { stroke: var(--ink); stroke-width: 2; }
+.dial__pivot { fill: var(--ink); }
 .prose .dial__when { margin-top: var(--space-4); font-family: var(--font-mono); font-size: 0.8125rem; color: var(--text-tertiary); }
 .prose .dial__aim { font-family: var(--font-display); font-size: 1.375rem; line-height: 1.15; }
 .prose .dial__level p:last-child { font-size: 0.9375rem; color: var(--text-secondary); }

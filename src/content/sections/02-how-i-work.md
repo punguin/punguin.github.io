@@ -63,20 +63,20 @@ UX has a rich vocabulary for describing process. I keep mine simple, because the
 The questions stay the same. How I answer them depends on how much we don’t know yet. When the answer is close at hand, I keep the process light. When nobody knows, I invest in the methods that build shared understanding.
 
 <ol class="dial" role="list">
-<li class="dial__level" style="--fill: 1">
-<p class="dial__meter" aria-hidden="true"><span></span><span></span><span></span></p>
+<li class="dial__level">
+<p class="dial__meter" role="img" aria-label="Certainty: high"><svg viewBox="0 0 48 32" width="60" height="40" aria-hidden="true"><path class="dial__edge" d="M4 28 A20 20 0 0 1 44 28"/><path class="dial__track" d="M4 28 A20 20 0 0 1 44 28"/><path class="dial__value" d="M4 28 A20 20 0 0 1 41.82 18.92"/><line class="dial__needle" x1="24" y1="28" x2="37.37" y2="21.19"/><circle class="dial__pivot" cx="24" cy="28" r="3"/></svg></p>
 <p class="dial__when">Mostly known</p>
 <p class="dial__aim">Confirm it and move.</p>
 <p>Existing analytics, a conversation with customer service or engineering, a quick sketch or design review.</p>
 </li>
-<li class="dial__level" style="--fill: 2">
-<p class="dial__meter" aria-hidden="true"><span></span><span></span><span></span></p>
+<li class="dial__level">
+<p class="dial__meter" role="img" aria-label="Certainty: medium"><svg viewBox="0 0 48 32" width="60" height="40" aria-hidden="true"><path class="dial__edge" d="M4 28 A20 20 0 0 1 44 28"/><path class="dial__track" d="M4 28 A20 20 0 0 1 44 28"/><path class="dial__value" d="M4 28 A20 20 0 0 1 24.00 8.00"/><line class="dial__needle" x1="24" y1="28" x2="24.00" y2="13.00"/><circle class="dial__pivot" cx="24" cy="28" r="3"/></svg></p>
 <p class="dial__when">Partly known</p>
 <p class="dial__aim">Test the riskiest assumption.</p>
 <p>A prototype, a usability test, or a working doc that gets partners reacting to something concrete.</p>
 </li>
-<li class="dial__level" style="--fill: 3">
-<p class="dial__meter" aria-hidden="true"><span></span><span></span><span></span></p>
+<li class="dial__level">
+<p class="dial__meter" role="img" aria-label="Certainty: low"><svg viewBox="0 0 48 32" width="60" height="40" aria-hidden="true"><path class="dial__edge" d="M4 28 A20 20 0 0 1 44 28"/><path class="dial__track" d="M4 28 A20 20 0 0 1 44 28"/><path class="dial__value" d="M4 28 A20 20 0 0 1 6.18 18.92"/><line class="dial__needle" x1="24" y1="28" x2="10.63" y2="21.19"/><circle class="dial__pivot" cx="24" cy="28" r="3"/></svg></p>
 <p class="dial__when">Mostly unknown</p>
 <p class="dial__aim">Build understanding together.</p>
 <p>Interviews, a workshop or design jam, and several directions explored side by side before committing to one.</p>
