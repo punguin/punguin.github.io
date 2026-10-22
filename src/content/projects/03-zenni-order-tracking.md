@@ -8,7 +8,7 @@ context: Zenni Optical
 project: Enhanced Order Tracking
 domain: Ecommerce, post-purchase
 summary: Make order status feel like an answer, not a clue.
-cardLine: Order status and delivery updates for Zenni Optical’s online eyewear customers, on responsive web.
+cardLine: Turned order status into five clear milestones. Support chats fell in a 50/50 test while conversion held.
 role: Senior Product Designer, design lead
 timeline: 3 months
 platform: [Responsive web]

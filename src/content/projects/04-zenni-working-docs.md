@@ -8,7 +8,7 @@ context: Zenni Optical
 project: UX working docs in Slack
 domain: Design practice, knowledge sharing
 summary: Make the thinking as visible as the design.
-cardLine: A Slack canvas workflow that let Zenni’s UX team document decisions and track its work in the open.
+cardLine: Introduced Slack canvas working docs, adopted by all three Zenni UX teams in place of the weekly status message.
 role: Senior Product Designer, initiative lead
 platform: [Slack canvases, Team practice]
 partners: [UX manager, UX team, UX PM, Product, Engineering]

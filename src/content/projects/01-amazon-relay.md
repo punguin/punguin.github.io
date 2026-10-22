@@ -8,7 +8,7 @@ context: Amazon Middle Mile, Relay
 project: Mobile App Redesign
 domain: Middle Mile Operations
 summary: Helping truck drivers execute loads more efficiently and confidently
-cardLine: Amazon Relay’s driver app, where truck drivers plan and run their loads, on iOS and Android.
+cardLine: Rebuilt the driver home screen around drivers’ loads. Tours per hour held steady, and teams started shipping features without app releases.
 role: Design Lead
 timeline: 4 Months
 platform: [iOS, Android, Design system]
