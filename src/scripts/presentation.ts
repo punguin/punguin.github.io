@@ -35,7 +35,7 @@ function copy<T extends Element>(el: T): T {
   const c = el.cloneNode(true) as T;
   c.removeAttribute('id');
   c.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'));
-  c.querySelectorAll('.old-image-tag, .case-decisions__more').forEach((n) => n.remove());
+  c.querySelectorAll('.old-image-tag, .case-decisions__more, .private-lock--block').forEach((n) => n.remove());
   c.querySelectorAll('a').forEach((a) => a.replaceWith(...Array.from(a.childNodes)));
   const imgs = c instanceof HTMLImageElement ? [c] : Array.from(c.querySelectorAll('img'));
   imgs.forEach((img) => {
@@ -404,6 +404,8 @@ function openPresenter() {
 
 function onKey(e: KeyboardEvent) {
   if (!deck || deck.hidden || e.metaKey || e.ctrlKey || e.altKey) return;
+  // Typing the password in the unlock dialog (opened from a slide's lock) shouldn't drive the deck.
+  if ((e.target as Element).closest?.('dialog[open]')) return;
   const onButton = (e.target as Element).closest?.('button');
   const k = e.key;
   if (['ArrowRight', 'ArrowDown', 'PageDown'].includes(k) || (k === ' ' && !onButton)) { e.preventDefault(); go(index + 1); }

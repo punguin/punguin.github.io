@@ -96,6 +96,8 @@ const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
             <label>Title <input name="title" required placeholder="Amazon Relay" /></label>
             <label>Headline <input name="summary" placeholder="Design around the work, not the workflow." />
               <small>The big line at the top of the page.</small></label>
+            <label>Card line <input name="cardLine" placeholder="Order status for online eyewear shoppers, on responsive web." />
+              <small>A plain line under the headline on the homepage card: what it is, for whom, on what platform.</small></label>
             <label>Project <input name="project" placeholder="Relay mobile application redesign" /></label>
             <div class="ed-row">
               <label>Company <input name="company" placeholder="Amazon" /></label>
@@ -126,6 +128,7 @@ const TOKEN_URL = 'https://github.com/settings/personal-access-tokens/new';
             <div class="ed-row">
               <label>Position <input name="order" type="number" min="1" step="1" /><small>1 is first in the list.</small></label>
               <label class="ed-check"><input name="featured" type="checkbox" /> Show on site</label>
+              <label class="ed-check"><input name="moreWork" type="checkbox" /> List under More work</label>
             </div>
           </fieldset>
 

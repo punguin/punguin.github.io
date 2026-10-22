@@ -8,6 +8,7 @@ context: Zenni Optical
 project: Enhanced Order Tracking
 domain: Ecommerce, post-purchase
 summary: Make order status feel like an answer, not a clue.
+cardLine: Order status and delivery updates for Zenni Optical’s online eyewear customers, on responsive web.
 role: Senior Product Designer, design lead
 timeline: 3 months
 platform: [Responsive web]
@@ -17,13 +18,14 @@ cover: /images/work/zenni-order-tracking/cover.webp
 hero: /images/work/zenni-order-tracking/hero.webp
 coverAlt: The shipped Zenni Order Details page in a laptop frame on mint, with the Where is My Order card floating beside it
 coverColor: "#8cf0d3"
+tags: [Design Lead, Responsive Web, Post-purchase Experience]
 order: 3
 ---
 
 With the Account foundation in place, I led the next phase: reframing order tracking around customer confidence, and reducing the need for support without sacrificing core commerce performance. This was Phase 2, and it was possible because <a href="/work/zenni-account/">Phase 1, the Account foundation</a>, had established the structures and design-system patterns it could build on.
 
 <dl class="case-overview">
-<div><dt>The problem</dt><dd>Order status and delivery questions were 12.3% of support contacts, about 17,000 a month. The status customers saw was technically accurate, but it didn’t tell them whether things were normal, what came next, or when their glasses would arrive.</dd></div>
+<div><dt>The problem</dt><dd>Order status and delivery questions were <span data-private>12.3%</span> of support contacts, about <span data-private>17,000</span> a month. The status customers saw was technically accurate, but it didn’t tell them whether things were normal, what came next, or when their glasses would arrive.</dd></div>
 <div><dt>My role</dt><dd>I was the UX designer for the Customer Satisfaction squad, working with product managers, a technical program manager, a content designer, engineering, analytics and customer service. I set up the UX working doc and tenets, ran a design jam with the team, owned the messaging framework, and took the design through review and developer handoff.</dd></div>
 <div><dt>What I did</dt><dd>I turned the operational record behind every order into a few milestones customers could read at a glance, an explanation of the step they were in, and a messaging framework that works across fulfillment routes, then designed the paths for holds, delays and errors.</dd></div>
 </dl>
@@ -33,8 +35,7 @@ With the Account foundation in place, I led the next phase: reframing order trac
 Customers needed us less. The business held steady.
 
 <ul class="case-impact" role="list">
-<li><p class="case-impact__figure">−0.25<span class="case-impact__unit">pp</span></p><p class="case-impact__label">Chat initiation from Order Details</p><p class="case-impact__note">A drop of 0.25 percentage points against the legacy experience.</p><p class="case-impact__kind">50/50 A/B test</p></li>
-<li><p class="case-impact__figure">−0.10<span class="case-impact__unit">pp</span></p><p class="case-impact__label">Chat initiation from the Order List</p><p class="case-impact__note">A drop of 0.10 percentage points, in the same test.</p><p class="case-impact__kind">50/50 A/B test</p></li>
+<li><p class="case-impact__figure case-impact__figure--text">Fewer chats</p><p class="case-impact__label">Customers needed support less</p><p class="case-impact__note">Chat initiation fell against the legacy experience: <span data-private>0.25</span> percentage points from Order Details and <span data-private>0.10</span> from the Order List.</p><p class="case-impact__kind">50/50 A/B test</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Stable</p><p class="case-impact__label">Conversion, average order value and add-to-cart</p><p class="case-impact__note">Exits to help pages decreased modestly.</p><p class="case-impact__kind">50/50 A/B test</p></li>
 <li><p class="case-impact__figure case-impact__figure--text">Every route</p><p class="case-impact__label">One messaging framework for all fulfillment paths</p><p class="case-impact__note">New origins and destinations don’t need a redesign. A new lab reuses the logic that’s already there.</p><p class="case-impact__kind">In the developer handoff</p></li>
 </ul>
@@ -63,7 +64,7 @@ The foundation was built. Now we could solve the harder problem.
 
 The squad’s vision was “a frictionless customer experience where self-service is intuitive, support is effortless, and every interaction is a moment of delight.” Its north star was the rate of orders with zero customer support interaction. This initiative focused on one slice of that: reducing “Where is my order?” inquiries, known internally as WISMO.
 
-Customer service had already made the case. In early 2025, order status and delivery questions were 12.3% of support contacts, about 17,000 a month, and 8 to 10% of all customer feedback was dissatisfaction about order status.
+Customer service had already made the case. In early 2025, order status and delivery questions were <span data-private>12.3%</span> of support contacts, about <span data-private>17,000</span> a month, and <span data-private>8 to 10%</span> of all customer feedback was dissatisfaction about order status.
 
 ##### 3.1 People
 
