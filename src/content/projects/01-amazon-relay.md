@@ -8,7 +8,7 @@ context: Amazon Middle Mile, Relay
 project: Mobile App Redesign
 domain: Middle Mile Operations
 summary: Helping truck drivers execute loads more efficiently and confidently
-cardLine: Rebuilt the driver home screen around drivers’ loads. Tours per hour held steady, and teams started shipping features without app releases.
+cardLine: Rebuilt the home screen to bring the driver’s current load, and the other key areas of the program, into focus.
 role: Design Lead
 timeline: 4 Months
 platform: [iOS, Android, Design system]
