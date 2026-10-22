@@ -140,6 +140,11 @@ The team could keep adding controls, or we could create a model that had somewhe
 <figcaption>The impact map, simplified. Each user story made sense on its own; connected to carrier outcomes, they showed carriers working across several searches at once, which pointed to multi-search.</figcaption>
 </figure>
 
+<figure class="visual visual--wide">
+<img src="/images/work/amazon-relay-load-board/impact-workshop.webp" width="1600" height="705" alt="The original workshop board, zoomed out: four areas titled What is Impact Mapping?, User Stories, the RLB Redesign Impact Map tree of goals, personas, impacts and deliverables, and a Parking Lot of sticky notes." loading="lazy" />
+<figcaption>The original workshop board: a primer on impact mapping, the full set of user stories, the impact map itself, and a parking lot.</figcaption>
+</figure>
+
 <p class="case-methods"><span class="label">Methods</span> impact mapping · cross-functional workshop facilitation · synthesis of research, saved searches, and product data</p>
 
 #### 04 / Making it work
