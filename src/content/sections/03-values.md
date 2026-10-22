@@ -2,7 +2,7 @@
 id: values
 number: "03"
 title: What matters underneath the work
-navLabel: Values
+navLabel: Principles
 order: 3
 ---
 
