@@ -82,11 +82,11 @@ The data showed the same anxiety: customers checked their order status multiple 
 
 Behind every order was a detailed operational record: lens processing, frame assembly and final quality checks in the lab, a bulk shipment to a US facility, then a carrier’s own scan events. The customer saw almost none of it. Order Details showed a single line such as “Manufactured/en Route To Distribution Center”, with “Not Yet Shipped” beside the item and only a shipping speed, not a date.
 
-That “Not Yet Shipped” box was a decision I made for the Account MVP. We couldn’t touch the legacy order statuses then, so an empty gray box in each shipment told customers whether it had shipped, and it’s where tracking appeared once it did. It was a small win within the constraints. Phase 2 was the chance to fix the statuses themselves.
+The shipment panel was a deliberate call I made in the Account MVP. The legacy order statuses were out of scope for that release, so instead of leaving customers to decode them, I gave each shipment a dedicated panel that answered the one question we could answer reliably: has it shipped? Once it had, the same panel held the carrier tracking. It was a modest change that added clarity within the MVP’s constraints. Phase 2 took on the statuses themselves.
 
 <figure class="visual visual--wide">
 <img src="/images/work/zenni-order-tracking/before-order-details.webp" alt="The Order Details page from the Account MVP: the heading Manufactured/en Route To Distribution Center, Shipping method Standard, estimated delivery in 7-14 business days, and a Not Yet Shipped panel saying tracking will appear once shipped." loading="lazy" />
-<figcaption>Before: the Account MVP. The legacy status line couldn’t change yet, so the shipment box I added at least showed shipped or not shipped. Personal details are hidden.</figcaption>
+<figcaption>Before: Order Details after the Account MVP. Statuses were fixed for that release, so the shipment panel I added showed whether an item had shipped. Personal details are hidden.</figcaption>
 </figure>
 
 Once an order shipped, customers were sent away to a carrier tracking page. It could show “Estimated Delivery Date: Unknown”, even after the package was delivered.
