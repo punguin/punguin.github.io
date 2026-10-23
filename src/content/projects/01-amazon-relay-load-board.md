@@ -236,13 +236,13 @@ This was part of the project's scalability work: not predicting every future fea
 
 ##### 4.5 Design system collaboration
 
-I used Meridian as infrastructure, not as the boundary of the solution space.
+I used the design system as infrastructure, not as the boundary of the solution space.
 
 The design system was still young, and it did not yet have patterns for every problem Relay was encountering.
 
-My approach followed four steps: explore the strongest customer interaction first; move those ideas toward existing Meridian patterns; calibrate directly with the system team through office hours and reviews; then deliberately decide which remaining snowflakes were worth the cost.
+My approach followed four steps: explore the strongest customer interaction first; move those ideas toward existing design system patterns; calibrate directly with the system team through office hours and reviews; then deliberately decide which remaining snowflakes were worth the cost.
 
-The formal design review explicitly asked whether the work adhered to Meridian and where we were 'diverging with intention.' At the time, Meridian had no standard search pattern for this problem space.
+The formal design review explicitly asked whether the work adhered to the design system and where we were 'diverging with intention.' At the time, the design system had no standard search pattern for this problem space.
 
 Multi-search is a good example. It introduced a custom interaction and additional technical cost, but the carrier behavior, usability evidence, and operational value were strong enough to justify the investment.
 
@@ -261,7 +261,7 @@ From there, Product and partner teams led carrier acceptance testing, live beta,
 <ol class="validation-ladder__steps">
 <li data-lead="design"><p class="validation-ladder__tag">People</p><p class="validation-ladder__name">Research</p><p class="validation-ladder__role">Partnered with Research</p><p class="validation-ladder__desc">Desk research, carrier interviews and analysis of the existing experience.</p></li>
 <li data-lead="design"><p class="validation-ladder__tag">Interaction</p><p class="validation-ladder__name">Usability testing</p><p class="validation-ladder__role">Co-led with Research</p><p class="validation-ladder__desc">Five experienced carriers rated the experience 6 or 7 out of 7 for ease, with no major UX blockers.</p></li>
-<li data-lead="design"><p class="validation-ladder__tag">System</p><p class="validation-ladder__name">Design system review</p><p class="validation-ladder__role">Design-led</p><p class="validation-ladder__desc">A formal Meridian review of where we followed the system and where we were diverging with intention.</p></li>
+<li data-lead="design"><p class="validation-ladder__tag">System</p><p class="validation-ladder__name">Design system and leadership reviews</p><p class="validation-ladder__role">Design-led</p><p class="validation-ladder__desc">A formal design system review of where we followed the system and where we were diverging with intention, plus multiple leadership reviews at various levels.</p></li>
 <li data-lead="partner"><p class="validation-ladder__tag">Operations</p><p class="validation-ladder__name">Bug bashes and carrier UAT</p><p class="validation-ladder__role">Led by Engineering, Product and carrier teams</p><p class="validation-ladder__desc">Internal bug bashes, then acceptance testing with carriers.</p></li>
 <li data-lead="partner"><p class="validation-ladder__tag">Real world</p><p class="validation-ladder__name">Live beta</p><p class="validation-ladder__role">Led by Product and Engineering</p><p class="validation-ladder__desc">The interaction model running on real data and real marketplace latency.</p></li>
 <li data-lead="partner"><p class="validation-ladder__tag">Adoption</p><p class="validation-ladder__name">Staged rollout</p><p class="validation-ladder__role">Led by Product</p><p class="validation-ladder__desc">Percentage-based dial-up, paused at 50% in the US, then 100% in the US, EU and Canada in 2023.</p></li>
