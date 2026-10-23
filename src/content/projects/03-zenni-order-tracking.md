@@ -82,9 +82,11 @@ The data showed the same anxiety: customers checked their order status multiple 
 
 Behind every order was a detailed operational record: lens processing, frame assembly and final quality checks in the lab, a bulk shipment to a US facility, then a carrier’s own scan events. The customer saw almost none of it. Order Details showed a single line such as “Manufactured/en Route To Distribution Center”, with “Not Yet Shipped” beside the item and only a shipping speed, not a date.
 
+That “Not Yet Shipped” box was a decision I made for the Account MVP. We couldn’t touch the legacy order statuses then, so an empty gray box in each shipment told customers whether it had shipped, and it’s where tracking appeared once it did. It was a small win within the constraints. Phase 2 was the chance to fix the statuses themselves.
+
 <figure class="visual visual--wide">
-<img src="/images/work/zenni-order-tracking/before-order-details.webp" alt="The legacy Order Details page: the heading Manufactured/en Route To Distribution Center, Shipping method Standard, estimated delivery in 7-14 business days, and a Not Yet Shipped panel saying tracking will appear once shipped." loading="lazy" />
-<figcaption>Before: one status line, a shipping speed and “Not Yet Shipped”. Personal details are hidden.</figcaption>
+<img src="/images/work/zenni-order-tracking/before-order-details.webp" alt="The Order Details page from the Account MVP: the heading Manufactured/en Route To Distribution Center, Shipping method Standard, estimated delivery in 7-14 business days, and a Not Yet Shipped panel saying tracking will appear once shipped." loading="lazy" />
+<figcaption>Before: the Account MVP. The legacy status line couldn’t change yet, so the shipment box I added at least showed shipped or not shipped. Personal details are hidden.</figcaption>
 </figure>
 
 Once an order shipped, customers were sent away to a carrier tracking page. It could show “Estimated Delivery Date: Unknown”, even after the package was delivered.
