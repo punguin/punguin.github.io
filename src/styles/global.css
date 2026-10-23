@@ -340,12 +340,14 @@ a.external::after {
 @media (max-width: 899px) {
   :root { --header-h: 78px; }
   .site-header__inner { flex-wrap: wrap; align-content: center; row-gap: 2px; padding-block: 10px; padding-inline: 32px 16px; }
+  .site-header__brand { flex: 1; min-width: 0; }
   .site-header__end { display: contents; }
-  .site-header__contact { order: 2; }
+  .site-header__contact { order: 2; padding: 8px 16px; }
   .site-header__status { order: 3; flex-basis: 100%; gap: 7px; font-size: 0.8125rem; }
   .site-header__dot { width: 7px; height: 7px; }
 }
-@media (max-width: 399px) { .site-header__title { display: none; } }
+/* Phones: the title won't fit beside the name and Contact, so it drops out and Contact stays on the first row. */
+@media (max-width: 599px) { .site-header__title { display: none; } }
 
 /* Homepage sections sit directly on the paper, separated by thin rules. */
 .sections > .doc-section { border-top: 1px solid var(--line); }
