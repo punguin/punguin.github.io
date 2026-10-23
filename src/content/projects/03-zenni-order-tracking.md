@@ -12,7 +12,7 @@ cardLine: Turned order status into five clear milestones. Support chats fell in 
 role: Senior Product Designer, design lead
 timeline: 3 months
 platform: [Responsive web]
-partners: [Product, Engineering, Content Design, Analytics, Customer Service]
+partners: [Product, Engineering, Content Design, CMS, Analytics, Customer Service]
 accent: tracking
 cover: /images/work/zenni-order-tracking/cover.webp
 hero: /images/work/zenni-order-tracking/hero.webp
@@ -26,7 +26,7 @@ With the Account foundation in place, I led the next phase: reframing order trac
 
 <dl class="case-overview">
 <div><dt>The problem</dt><dd>Order status and delivery questions were <span data-private>12.3%</span> of support contacts, about <span data-private>17,000</span> a month. The status customers saw was technically accurate, but it didn’t tell them whether things were normal, what came next, or when their glasses would arrive.</dd></div>
-<div><dt>My role</dt><dd>I was the UX designer for the Customer Satisfaction squad, working with product managers, a technical program manager, a content designer, engineering, analytics and customer service. I set up the UX working doc and tenets, ran a design jam with the team, owned the messaging framework, and took the design through review and developer handoff.</dd></div>
+<div><dt>My role</dt><dd>I was the UX designer for the Customer Satisfaction squad, working with product managers, a technical program manager, a content designer, engineering, analytics and customer service. I set up the UX working doc and tenets, ran a design jam with the team, owned the messaging framework, partnered closely with the CMS team and its designer so our messaging stayed aligned, and took the design through review and developer handoff.</dd></div>
 <div><dt>What I did</dt><dd>I turned the operational record behind every order into a few milestones customers could read at a glance, an explanation of the step they were in, and a messaging framework that works across fulfillment routes, then designed the paths for holds, delays and errors.</dd></div>
 </dl>
 
@@ -214,6 +214,8 @@ My answer was a messaging framework built on three principles: new routes should
 | 5 | Delivered |
 
 A new lab doesn’t need new design. It follows the same logic as the labs before it.
+
+I partnered closely with the CMS team and their designer throughout, so our messaging stayed aligned.
 
 ##### 4.5 Plan for delays and issues
 
