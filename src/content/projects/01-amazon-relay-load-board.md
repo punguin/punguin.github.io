@@ -252,19 +252,22 @@ Multi-search is a good example. It introduced a custom interaction and additiona
 
 We built confidence in the new model before putting it in front of more carriers.
 
-The redesign introduced a new interaction model to a live marketplace, so we validated it progressively. Each phase tested a different part of the design before the experience reached more carriers.
+The redesign introduced a new interaction model to a live marketplace, so we validated it progressively. I partnered with Research and Product to evaluate it through high-fidelity usability testing, and the findings refined the design before it moved into broader operational validation.
+
+From there, Product and partner teams led carrier acceptance testing, live beta, and the staged rollout. I supported each phase with design clarifications and refinements as feedback came in.
 
 <figure class="visual visual--wide validation-ladder">
-<p class="validation-ladder__title">Validation ladder</p>
+<div class="validation-ladder__head"><p class="validation-ladder__title">Validation ladder</p><ul class="validation-ladder__key"><li data-lead="design">Design led or partnered</li><li data-lead="partner">Partner-led, design supporting</li></ul></div>
 <ol class="validation-ladder__steps">
-<li><p class="validation-ladder__tag">People</p><p class="validation-ladder__name">Research</p><p class="validation-ladder__desc">Desk research, carrier interviews and analysis of the existing experience.</p></li>
-<li><p class="validation-ladder__tag">Interaction</p><p class="validation-ladder__name">Usability testing</p><p class="validation-ladder__desc">Five experienced carriers rated the experience 6 or 7 out of 7 for ease, with no major UX blockers.</p></li>
-<li><p class="validation-ladder__tag">System</p><p class="validation-ladder__name">Design system review</p><p class="validation-ladder__desc">A formal Meridian review of where we followed the system and where we were diverging with intention.</p></li>
-<li><p class="validation-ladder__tag">Operations</p><p class="validation-ladder__name">Bug bashes and carrier UAT</p><p class="validation-ladder__desc">Internal bug bashes, then acceptance testing with carriers.</p></li>
-<li><p class="validation-ladder__tag">Real world</p><p class="validation-ladder__name">Live beta</p><p class="validation-ladder__desc">The interaction model running on real data and real marketplace latency.</p></li>
-<li><p class="validation-ladder__tag">Adoption</p><p class="validation-ladder__name">Staged rollout</p><p class="validation-ladder__desc">Percentage-based dial-up, paused at 50% in the US, then 100% in the US, EU and Canada in 2023.</p></li>
+<li data-lead="design"><p class="validation-ladder__tag">People</p><p class="validation-ladder__name">Research</p><p class="validation-ladder__role">Partnered with Research</p><p class="validation-ladder__desc">Desk research, carrier interviews and analysis of the existing experience.</p></li>
+<li data-lead="design"><p class="validation-ladder__tag">Interaction</p><p class="validation-ladder__name">Usability testing</p><p class="validation-ladder__role">Co-led with Research</p><p class="validation-ladder__desc">Five experienced carriers rated the experience 6 or 7 out of 7 for ease, with no major UX blockers.</p></li>
+<li data-lead="design"><p class="validation-ladder__tag">System</p><p class="validation-ladder__name">Design system review</p><p class="validation-ladder__role">Design-led</p><p class="validation-ladder__desc">A formal Meridian review of where we followed the system and where we were diverging with intention.</p></li>
+<li data-lead="partner"><p class="validation-ladder__tag">Operations</p><p class="validation-ladder__name">Bug bashes and carrier UAT</p><p class="validation-ladder__role">Led by Engineering, Product and carrier teams</p><p class="validation-ladder__desc">Internal bug bashes, then acceptance testing with carriers.</p></li>
+<li data-lead="partner"><p class="validation-ladder__tag">Real world</p><p class="validation-ladder__name">Live beta</p><p class="validation-ladder__role">Led by Product and Engineering</p><p class="validation-ladder__desc">The interaction model running on real data and real marketplace latency.</p></li>
+<li data-lead="partner"><p class="validation-ladder__tag">Adoption</p><p class="validation-ladder__name">Staged rollout</p><p class="validation-ladder__role">Led by Product</p><p class="validation-ladder__desc">Percentage-based dial-up, paused at 50% in the US, then 100% in the US, EU and Canada in 2023.</p></li>
 </ol>
-<figcaption>Six phases between the first carrier interviews and full launch in 2023, from people and interaction to system, operations, real-world use and adoption.</figcaption>
+<dl class="validation-ladder__summary"><div><dt>My contribution</dt><dd>Helped establish and refine a usable, extensible interaction model through design judgment and cross-functional validation.</dd></div><div><dt>Team outcome</dt><dd>The experience progressed through carrier acceptance, live beta, and phased rollout across markets.</dd></div></dl>
+<figcaption>Six phases between the first carrier interviews and full launch in 2023. Teal phases are the ones I led or partnered on directly.</figcaption>
 </figure>
 
 High-fidelity moderated testing covered the landing experience, search, filtering, load details, booking, and net-new features. It did not simply validate the concept. It sharpened terminology, time-zone behavior, tab scalability, stop-information priority, booking placement, and confirmation latency.

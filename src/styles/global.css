@@ -850,51 +850,56 @@ img[data-old-image] { outline: 3px dashed #e0007a; outline-offset: -3px; }
 .prose .decision-callout .decision-callout__title { margin-top: var(--space-1, 4px); font-family: var(--font-display); font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem); line-height: 1.2; color: var(--ink); }
 .prose .case-note { font-size: var(--text-small); color: var(--text-secondary); }
 
-/* Validation ladder (Load Board 4.6): numbered phases on one rail. The markers fill in with the
-   accent as the audience widens, so the list reads as confidence building toward launch. */
+/* Validation ladder (Load Board 4.6): numbered phases on one rail. Teal markers are the phases
+   design led or partnered on directly; outlined markers are partner-led, with design supporting. */
 .validation-ladder {
+  --lead: color-mix(in srgb, var(--violet) 45%, #fff);
+  --partner: color-mix(in srgb, var(--ink) 22%, #fff);
   padding: var(--space-6) var(--space-6) var(--space-5);
   border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
   border-radius: 16px;
   background: #fff;
 }
-.prose .validation-ladder__title { margin: 0 0 var(--space-5); font-weight: 600; font-size: 1.125rem; color: var(--ink); }
+.prose .validation-ladder__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-2) var(--space-5); margin: 0 0 var(--space-5); }
+.prose .validation-ladder__title { margin: 0; font-weight: 600; font-size: 1.125rem; color: var(--ink); }
+.prose .validation-ladder__key { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); max-width: none; margin: 0; padding: 0; list-style: none; font-size: var(--text-meta); color: var(--text-secondary); }
+.prose .validation-ladder__key li { display: flex; align-items: center; gap: var(--space-2); margin: 0; }
+.prose .validation-ladder__key li::before { content: ""; width: 12px; height: 12px; border-radius: 50%; }
 .prose .validation-ladder__steps { list-style: none; max-width: none; margin: 0; padding: 0; counter-reset: rung; }
 .prose .validation-ladder__steps > li {
-  --fill: 10%;
   position: relative;
   counter-increment: rung;
   display: grid;
-  grid-template-columns: 40px minmax(0, 13em) minmax(0, 1fr) auto;
-  grid-template-areas: "num name desc tag";
+  grid-template-columns: 40px minmax(0, 14em) minmax(0, 1fr) auto;
+  grid-template-areas: "num name desc tag" "num role desc tag";
+  grid-template-rows: auto 1fr;
   column-gap: var(--space-5);
+  row-gap: 2px;
   align-items: baseline;
   margin: 0;
   padding-block: var(--space-4);
   border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
 }
 .prose .validation-ladder__steps > li:first-child { border-top: 0; padding-top: 0; }
-.prose .validation-ladder__steps > li:nth-child(2) { --fill: 22%; }
-.prose .validation-ladder__steps > li:nth-child(3) { --fill: 36%; }
-.prose .validation-ladder__steps > li:nth-child(4) { --fill: 52%; }
-.prose .validation-ladder__steps > li:nth-child(5) { --fill: 72%; }
-.prose .validation-ladder__steps > li:nth-child(6) { --fill: 100%; }
 .prose .validation-ladder__steps > li::before {
   content: counter(rung, decimal-leading-zero);
   grid-area: num;
+  grid-row: 1 / -1;
   align-self: start;
   display: grid;
   place-items: center;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--violet) var(--fill), #fff);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--violet) 55%, #fff);
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--ink);
 }
+.prose .validation-ladder [data-lead="design"]::before { background: var(--lead); box-shadow: inset 0 0 0 1px var(--violet); }
+.prose .validation-ladder [data-lead="partner"]::before { background: #fff; box-shadow: inset 0 0 0 1px var(--partner); }
+.prose .validation-ladder__key [data-lead]::before { box-shadow: inset 0 0 0 1px var(--violet); }
+.prose .validation-ladder__key [data-lead="partner"]::before { box-shadow: inset 0 0 0 1px var(--partner); }
 /* The rail joins each marker to the next one. */
 .prose .validation-ladder__steps > li:not(:last-child)::after {
   content: "";
@@ -903,11 +908,12 @@ img[data-old-image] { outline: 3px dashed #e0007a; outline-offset: -3px; }
   top: calc(var(--space-4) + 40px);
   bottom: calc(-1 * var(--space-4));
   width: 1px;
-  background: color-mix(in srgb, var(--violet) 55%, #fff);
+  background: var(--partner);
 }
 .prose .validation-ladder__steps > li:first-child::after { top: 40px; }
 .prose .validation-ladder__steps p { margin: 0; max-width: none; }
 .prose .validation-ladder__name { grid-area: name; font-weight: 600; font-size: 1.0625rem; line-height: 1.35; color: var(--ink); }
+.prose .validation-ladder__role { grid-area: role; font-size: var(--text-small); line-height: 1.4; color: var(--text-tertiary); }
 .prose .validation-ladder__desc { grid-area: desc; font-size: 1rem; line-height: 1.5; color: var(--text-secondary); }
 .prose .validation-ladder__tag {
   grid-area: tag;
@@ -923,18 +929,25 @@ img[data-old-image] { outline: 3px dashed #e0007a; outline-offset: -3px; }
   white-space: nowrap;
   color: var(--text-secondary);
 }
+.prose .validation-ladder__summary { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); max-width: none; margin: var(--space-5) 0 0; }
+.prose .validation-ladder__summary > div { padding: var(--space-4); border-radius: 12px; background: color-mix(in srgb, var(--ink) 4%, #fff); }
+.prose .validation-ladder__summary > div:first-child { background: color-mix(in srgb, var(--violet) 12%, #fff); }
+.prose .validation-ladder__summary dt { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); }
+.prose .validation-ladder__summary dd { margin: var(--space-2) 0 0; font-size: 1rem; line-height: 1.5; color: var(--ink); }
 @media (max-width: 860px) {
   /* Tablets and phones: the tag and name stack above the description, beside the marker. */
   .validation-ladder { padding: var(--space-5) var(--space-4) var(--space-4); }
   .prose .validation-ladder__steps > li {
     grid-template-columns: 40px minmax(0, 1fr);
-    grid-template-areas: "num tag" "num name" "num desc";
+    grid-template-areas: "num tag" "num name" "num role" "num desc";
+    grid-template-rows: none;
     column-gap: var(--space-4);
     row-gap: var(--space-1);
     align-items: start;
   }
   .prose .validation-ladder__tag { justify-self: start; }
-  .prose .validation-ladder__desc { font-size: 0.9375rem; }
+  .prose .validation-ladder__summary { grid-template-columns: 1fr; gap: var(--space-3); }
+  .prose .validation-ladder__desc { margin-top: var(--space-1); font-size: 0.9375rem; }
 }
 
 @media (max-width: 720px) {
