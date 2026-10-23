@@ -33,7 +33,7 @@ I led a new information architecture for the Relay driver app, built around a pr
 <li>Shaped a predictable, persona-based home screen so drivers can find what they need quickly.</li>
 <li>Defined the card, persona and priority model other teams build on.</li>
 <li>Set feature parity as the first-release bar, wrapping the existing workflow instead of replacing it.</li>
-<li>Set the long-term direction for tasks and stop details, and contributed patterns back to Meridian.</li>
+<li>Set the long-term direction for tasks and stop details, and contributed patterns back to the design system.</li>
 </ul></dd></div>
 </dl>
 
@@ -48,7 +48,7 @@ Drivers kept their pace, and the platform could grow.
 <li><p class="case-impact__figure">4</p><p class="case-impact__label">major new capabilities in 2022</p><p class="case-impact__note">Global Mile containers, identity, weather notifications and drive score, at lower design and engineering cost.</p><p class="case-impact__kind">Capability enabled</p></li>
 </ul>
 
-In the beta, 13 drivers rated the new screens 6.31 out of 7 for ease (SEQ). Moving to Meridian also made the UI more consistent and accessible.
+In the beta, 13 drivers rated the new screens 6.31 out of 7 for ease (SEQ). Moving to the design system also made the UI more consistent and accessible.
 
 #### 02 / Key decisions
 
@@ -144,7 +144,7 @@ Extensibility mattered as much as feasibility.
 <p class="label">Project goals</p>
 
 - **Usability.** Information when drivers need it, so they call support less.
-- **Consistency.** Migrate to the Meridian design system.
+- **Consistency.** Migrate to the design system.
 - **Scalability.** A foundation that onboards new programs and use cases easily.
 - **Parity.** Drivers execute loads at the same rate.
 
@@ -263,7 +263,7 @@ We ranked homepage content by two dimensions: how important it was for drivers t
 <figcaption>One home screen framework, different views: driver, carrier, and an owner-operator switching between them.</figcaption>
 </figure>
 
-Moving the UI to Meridian made it consistent with the rest of Relay. Where Meridian lacked a pattern drivers needed, I worked with the design system team and contributed one back.
+Moving the UI to the design system made it consistent with the rest of Relay. Where the system lacked a pattern drivers needed, I worked with the design system team and contributed one back.
 
 ##### 4.3 Wrap the existing workflow instead of replacing it
 
@@ -296,7 +296,7 @@ We ran a moderated usability study of the first iteration with 8 drivers.
 <span class="decision-callout__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M19 3v4M17 5h4"/></svg></span>
 <div>
 <p class="decision-callout__label">Design response</p>
-<p>I brought back familiar patterns, a <strong>Start</strong> button and the label <strong>Trips</strong>, then moved the screens into Meridian’s visual language.</p>
+<p>I brought back familiar patterns, a <strong>Start</strong> button and the label <strong>Trips</strong>, then moved the screens into the design system’s visual language.</p>
 </div>
 </aside>
 
