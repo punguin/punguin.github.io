@@ -22,7 +22,7 @@ tags: [Design Lead, Responsive Web, Post-purchase Experience]
 order: 3
 ---
 
-With the Account foundation in place, I led the next phase: reframing order tracking around customer confidence, and reducing the need for support without sacrificing core commerce performance. This was Phase 2, and it was possible because <a href="/work/zenni-account/">Phase 1, the Account foundation</a>, had established the structures and design-system patterns it could build on.
+“Where is my order?” was one of the most common reasons Zenni customers contacted support. I led the redesign of order tracking around customer confidence: turning a complex fulfillment process into a status customers could understand at a glance, and reducing the need for support without hurting conversion or order value. The work built on the structures and design-system patterns from the <a href="/work/zenni-account/">Zenni Account redesign</a> I had led before it.
 
 <dl class="case-overview">
 <div><dt>The problem</dt><dd>Order status and delivery questions were <span data-private>12.3%</span> of support contacts, about <span data-private>17,000</span> a month. The status customers saw was technically accurate, but it didn’t tell them whether things were normal, what came next, or when their glasses would arrive.</dd></div>
@@ -82,7 +82,7 @@ The data showed the same anxiety: customers checked their order status multiple 
 
 Behind every order was a detailed operational record: lens processing, frame assembly and final quality checks in the lab, a bulk shipment to a US facility, then a carrier’s own scan events. The customer saw almost none of it. Order Details showed a single line such as “Manufactured/en Route To Distribution Center”, with “Not Yet Shipped” beside the item and only a shipping speed, not a date.
 
-The shipment panel was a deliberate call I made in the Account MVP. The legacy order statuses were out of scope for that release, so instead of leaving customers to decode them, I gave each shipment a dedicated panel that answered the one question we could answer reliably: has it shipped? Once it had, the same panel held the carrier tracking. It was a modest change that added clarity within the MVP’s constraints. Phase 2 took on the statuses themselves.
+The shipment panel was a deliberate call I made in the Account MVP. The legacy order statuses were out of scope for that release, so instead of leaving customers to decode them, I gave each shipment a dedicated panel that answered the one question we could answer reliably: has it shipped? Once it had, the same panel held the carrier tracking. It was a modest change that added clarity within the MVP’s constraints. This project took on the statuses themselves.
 
 <figure class="visual visual--wide">
 <img src="/images/work/zenni-order-tracking/before-order-details.webp" alt="The Order Details page from the Account MVP: the heading Manufactured/en Route To Distribution Center, Shipping method Standard, estimated delivery in 7-14 business days, and a Not Yet Shipped panel saying tracking will appear once shipped." loading="lazy" />
@@ -107,7 +107,7 @@ The emails, the account status and what was actually happening didn’t line up.
 
 <p class="case-insight">A technically accurate status can still fail the customer.</p>
 
-When the product couldn’t provide enough confidence, customers had an obvious fallback: ask support. Modernizing Account in Phase 1 hadn’t solved that, because the problem wasn’t the interface. It was what the interface chose to say.
+When the product couldn’t provide enough confidence, customers had an obvious fallback: ask support. Modernizing the Account experience hadn’t solved that, because the problem wasn’t the interface. It was what the interface chose to say.
 
 <p class="callout">How might we give customers enough clarity and confidence to understand what is happening with their order, without requiring support to explain it?</p>
 
@@ -241,4 +241,4 @@ An answer customers could act on.
 
 <p class="callout">When customers could understand what was happening with their order, they were less likely to need someone at Zenni to explain it.</p>
 
-The interface was Phase 2. The architecture started earlier, in the <a href="/work/zenni-account/">Account foundation</a> that made it possible.
+The tracker is what customers see. The groundwork started earlier, in the <a href="/work/zenni-account/">Account foundation</a> that made it possible.
