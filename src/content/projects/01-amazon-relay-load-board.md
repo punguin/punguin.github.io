@@ -250,22 +250,28 @@ Multi-search is a good example. It introduced a custom interaction and additiona
 
 ##### 4.6 Validation and phased launch
 
-The model was scrutinized before it ever reached broad launch.
+We built confidence in the new model before putting it in front of more carriers.
 
-High-fidelity moderated testing covered the landing experience, search, filtering, load details, booking, and net-new features. All five experienced carriers rated the overall experience 6 or 7 out of 7 for ease, with no major UX blockers.
+The redesign introduced a new interaction model to a live marketplace, so we validated it progressively. Each phase tested a different part of the design before the experience reached more carriers.
 
-Testing did not simply validate the concept. It sharpened terminology, time-zone behavior, tab scalability, stop-information priority, booking placement, and confirmation latency. Later production feedback surfaced a small set of responsive-layout and control-placement issues that were folded into Phase 2 and fast-follow work.
-
-The design then moved through internal review, carrier UAT, beta testing, and staged production dial-up so the interaction model could be evaluated with real data, real latency, and different carrier cohorts.
-
-<figure class="visual visual--wide">
-<img class="is-mockup" src="/images/work/amazon-relay-load-board/placeholder-validation-ladder.svg" alt="Six steps of validation: research, high-fidelity usability testing with five experienced carriers, design system review, carrier UAT, beta with real data, and a staged rollout that paused at 50% in the US before reaching 100% in the US, EU and Canada." loading="lazy" />
-<figcaption>The scrutiny before full launch, from research and usability testing through design review, carrier UAT and beta to a staged rollout.</figcaption>
+<figure class="visual visual--wide validation-ladder">
+<p class="validation-ladder__title">Validation ladder</p>
+<ol class="validation-ladder__steps">
+<li><p class="validation-ladder__tag">People</p><p class="validation-ladder__name">Research</p><p class="validation-ladder__desc">Desk research, carrier interviews and analysis of the existing experience.</p></li>
+<li><p class="validation-ladder__tag">Interaction</p><p class="validation-ladder__name">Usability testing</p><p class="validation-ladder__desc">Five experienced carriers rated the experience 6 or 7 out of 7 for ease, with no major UX blockers.</p></li>
+<li><p class="validation-ladder__tag">System</p><p class="validation-ladder__name">Design system review</p><p class="validation-ladder__desc">A formal Meridian review of where we followed the system and where we were diverging with intention.</p></li>
+<li><p class="validation-ladder__tag">Operations</p><p class="validation-ladder__name">Bug bashes and carrier UAT</p><p class="validation-ladder__desc">Internal bug bashes, then acceptance testing with carriers.</p></li>
+<li><p class="validation-ladder__tag">Real world</p><p class="validation-ladder__name">Live beta</p><p class="validation-ladder__desc">The interaction model running on real data and real marketplace latency.</p></li>
+<li><p class="validation-ladder__tag">Adoption</p><p class="validation-ladder__name">Staged rollout</p><p class="validation-ladder__desc">Percentage-based dial-up, paused at 50% in the US, then 100% in the US, EU and Canada in 2023.</p></li>
+</ol>
+<figcaption>Six phases between the first carrier interviews and full launch in 2023, from people and interaction to system, operations, real-world use and adoption.</figcaption>
 </figure>
 
-The rollout was designed to reduce risk at Amazon scale. The GTM split the experience into phased releases with internal bug bashes, carrier UAT, live beta testing, and gradual public dial-up before full rollout.
+High-fidelity moderated testing covered the landing experience, search, filtering, load details, booking, and net-new features. It did not simply validate the concept. It sharpened terminology, time-zone behavior, tab scalability, stop-information priority, booking placement, and confirmation latency.
 
-The public release began with a small carrier cohort and expanded through percentage-based stages. In the US, Product paused the rollout at 50% when early business metrics were mixed, using the pause to gather a larger sample, review carrier feedback, and distinguish short-term learning effects from more fundamental problems. The core UX held up; the team identified addressable refinements rather than foundational issues, then continued the rollout. The design ultimately reached 100% in the US, EU, and Canada in 2023.
+The rollout was designed to reduce risk at Amazon scale. The public release began with a small carrier cohort and expanded through percentage-based stages, so the model could be evaluated with real data, real latency, and different carrier cohorts.
+
+In the US, Product paused the rollout at 50% when early business metrics were mixed, using the pause to gather a larger sample, review carrier feedback, and distinguish short-term learning effects from more fundamental problems. The core UX held up; the team identified addressable refinements rather than foundational issues, then continued the rollout. Later production feedback surfaced a small set of responsive-layout and control-placement issues that were folded into Phase 2 and fast-follow work. The design ultimately reached 100% in the US, EU, and Canada in 2023.
 
 That context matters because the design decisions had to work far beyond a prototype: across real marketplace latency, different operating models, global markets, learning curves, and measurable business risk.
 
