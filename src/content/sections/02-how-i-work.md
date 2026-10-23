@@ -58,7 +58,7 @@ UX has a rich vocabulary for describing process. I keep mine simple, because the
 </li>
 </ol>
 
-<p class="statement">The method <mark>follows the uncertainty.</mark></p>
+<p class="statement">The work <mark>follows what we need to learn.</mark></p>
 
 The questions stay the same. How I answer them depends on how much we don’t know yet. When the answer is close at hand, I keep the process light. When nobody knows, I invest in the methods that build shared understanding.
 
