@@ -236,13 +236,13 @@ This was part of the project's scalability work: not predicting every future fea
 
 ##### 4.5 Design system collaboration
 
-I used Meridian as infrastructure, not as the boundary of the solution space.
+I used the design system as infrastructure, not as the boundary of the solution space.
 
 The design system was still young, and it did not yet have patterns for every problem Relay was encountering.
 
-My approach followed four steps: explore the strongest customer interaction first; move those ideas toward existing Meridian patterns; calibrate directly with the system team through office hours and reviews; then deliberately decide which remaining snowflakes were worth the cost.
+My approach followed four steps: explore the strongest customer interaction first; move those ideas toward existing design system patterns; calibrate directly with the system team through office hours and reviews; then deliberately decide which remaining snowflakes were worth the cost.
 
-The formal design review explicitly asked whether the work adhered to Meridian and where we were 'diverging with intention.' At the time, Meridian had no standard search pattern for this problem space.
+The formal design review explicitly asked whether the work adhered to the design system and where we were 'diverging with intention.' At the time, the design system had no standard search pattern for this problem space.
 
 Multi-search is a good example. It introduced a custom interaction and additional technical cost, but the carrier behavior, usability evidence, and operational value were strong enough to justify the investment.
 
@@ -250,22 +250,31 @@ Multi-search is a good example. It introduced a custom interaction and additiona
 
 ##### 4.6 Validation and phased launch
 
-The model was scrutinized before it ever reached broad launch.
+We built confidence in the new model before putting it in front of more carriers.
 
-High-fidelity moderated testing covered the landing experience, search, filtering, load details, booking, and net-new features. All five experienced carriers rated the overall experience 6 or 7 out of 7 for ease, with no major UX blockers.
+The redesign introduced a new interaction model to a live marketplace, so we validated it progressively. I partnered with Research and Product to evaluate it through high-fidelity usability testing, and the findings refined the design before it moved into broader operational validation.
 
-Testing did not simply validate the concept. It sharpened terminology, time-zone behavior, tab scalability, stop-information priority, booking placement, and confirmation latency. Later production feedback surfaced a small set of responsive-layout and control-placement issues that were folded into Phase 2 and fast-follow work.
+From there, Product and partner teams led carrier acceptance testing, live beta, and the staged rollout. I supported each phase with design clarifications and refinements as feedback came in.
 
-The design then moved through internal review, carrier UAT, beta testing, and staged production dial-up so the interaction model could be evaluated with real data, real latency, and different carrier cohorts.
-
-<figure class="visual visual--wide">
-<img class="is-mockup" src="/images/work/amazon-relay-load-board/placeholder-validation-ladder.svg" alt="Six steps of validation: research, high-fidelity usability testing with five experienced carriers, design system review, carrier UAT, beta with real data, and a staged rollout that paused at 50% in the US before reaching 100% in the US, EU and Canada." loading="lazy" />
-<figcaption>The scrutiny before full launch, from research and usability testing through design review, carrier UAT and beta to a staged rollout.</figcaption>
+<figure class="visual visual--wide validation-ladder">
+<div class="validation-ladder__head"><p class="validation-ladder__title">Validation ladder</p><ul class="validation-ladder__key"><li data-lead="design">Design led or partnered</li><li data-lead="partner">Partner-led, design supporting</li></ul></div>
+<ol class="validation-ladder__steps">
+<li data-lead="design"><p class="validation-ladder__tag">People</p><p class="validation-ladder__name">Research</p><p class="validation-ladder__role">Partnered with Research</p><p class="validation-ladder__desc">Desk research, carrier interviews and analysis of the existing experience.</p></li>
+<li data-lead="design"><p class="validation-ladder__tag">Interaction</p><p class="validation-ladder__name">Usability testing</p><p class="validation-ladder__role">Co-led with Research</p><p class="validation-ladder__desc">Five experienced carriers rated the experience 6 or 7 out of 7 for ease, with no major UX blockers.</p></li>
+<li data-lead="design"><p class="validation-ladder__tag">System</p><p class="validation-ladder__name">Design system and leadership reviews</p><p class="validation-ladder__role">Design-led</p><p class="validation-ladder__desc">A formal design system review of where we followed the system and where we were diverging with intention, plus multiple leadership reviews at various levels.</p></li>
+<li data-lead="partner"><p class="validation-ladder__tag">Operations</p><p class="validation-ladder__name">Bug bashes and carrier UAT</p><p class="validation-ladder__role">Led by Engineering, Product and carrier teams</p><p class="validation-ladder__desc">Internal bug bashes, then acceptance testing with carriers.</p></li>
+<li data-lead="partner"><p class="validation-ladder__tag">Real world</p><p class="validation-ladder__name">Live beta</p><p class="validation-ladder__role">Led by Product and Engineering</p><p class="validation-ladder__desc">The interaction model running on real data and real marketplace latency.</p></li>
+<li data-lead="partner"><p class="validation-ladder__tag">Adoption</p><p class="validation-ladder__name">Staged rollout</p><p class="validation-ladder__role">Led by Product</p><p class="validation-ladder__desc">Percentage-based dial-up, paused at 50% in the US, then 100% in the US, EU and Canada in 2023.</p></li>
+</ol>
+<dl class="validation-ladder__summary"><div><dt>My contribution</dt><dd>Helped establish and refine a usable, extensible interaction model through design judgment and cross-functional validation.</dd></div><div><dt>Team outcome</dt><dd>The experience progressed through carrier acceptance, live beta, and phased rollout across markets.</dd></div></dl>
+<figcaption>Six phases between the first carrier interviews and full launch in 2023. Teal phases are the ones I led or partnered on directly.</figcaption>
 </figure>
 
-The rollout was designed to reduce risk at Amazon scale. The GTM split the experience into phased releases with internal bug bashes, carrier UAT, live beta testing, and gradual public dial-up before full rollout.
+High-fidelity moderated testing covered the landing experience, search, filtering, load details, booking, and net-new features. It did not simply validate the concept. It sharpened terminology, time-zone behavior, tab scalability, stop-information priority, booking placement, and confirmation latency.
 
-The public release began with a small carrier cohort and expanded through percentage-based stages. In the US, Product paused the rollout at 50% when early business metrics were mixed, using the pause to gather a larger sample, review carrier feedback, and distinguish short-term learning effects from more fundamental problems. The core UX held up; the team identified addressable refinements rather than foundational issues, then continued the rollout. The design ultimately reached 100% in the US, EU, and Canada in 2023.
+The rollout was designed to reduce risk at Amazon scale. The public release began with a small carrier cohort and expanded through percentage-based stages, so the model could be evaluated with real data, real latency, and different carrier cohorts.
+
+In the US, Product paused the rollout at 50% when early business metrics were mixed, using the pause to gather a larger sample, review carrier feedback, and distinguish short-term learning effects from more fundamental problems. The core UX held up; the team identified addressable refinements rather than foundational issues, then continued the rollout. Later production feedback surfaced a small set of responsive-layout and control-placement issues that were folded into Phase 2 and fast-follow work. The design ultimately reached 100% in the US, EU, and Canada in 2023.
 
 That context matters because the design decisions had to work far beyond a prototype: across real marketplace latency, different operating models, global markets, learning curves, and measurable business risk.
 
